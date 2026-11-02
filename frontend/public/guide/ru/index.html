@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Руководство · Alexandria Планер</title>
+<meta name="description" content="Пошаговое руководство по Alexandria Планер: стикеры, матрица Эйзенхауэра, доска руководителя, уведомления и администрирование." />
+<link rel="icon" href="../../favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600&family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="../guide.css" rel="stylesheet" />
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Содержание">
+  <a class="brand" href="#top"><img src="../../alexandria-planner-logo.svg" alt="" /><div><b>Alexandria</b><span>Планер · руководство</span></div></a>
+  <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" selected lang="ru">Русский</option><option value="en" lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
+  <h4>Знакомство</h4>
+  <ol>
+    <li><a href="#idea"><i>01</i>Что это такое</a></li>
+    <li><a href="#matrix"><i>02</i>Матрица Эйзенхауэра</a></li>
+    <li><a href="#roles"><i>03</i>Кто есть кто</a></li>
+    <li><a href="#login"><i>04</i>Вход и защита</a></li>
+  </ol>
+  <h4>Сотруднику</h4>
+  <ol>
+    <li><a href="#compose"><i>05</i>Отправить стикер</a></li>
+    <li><a href="#sent"><i>06</i>Следить за ответом</a></li>
+  </ol>
+  <h4>Руководителю</h4>
+  <ol>
+    <li><a href="#board"><i>07</i>Доска</a></li>
+    <li><a href="#sheet"><i>08</i>Карточка стикера</a></li>
+    <li><a href="#resolve"><i>09</i>Решение и другие действия</a></li>
+    <li><a href="#archive"><i>10</i>Архив</a></li>
+    <li><a href="#stats"><i>11</i>Статистика и Excel</a></li>
+  </ol>
+  <h4>Всем</h4>
+  <ol>
+    <li><a href="#notify"><i>12</i>Уведомления</a></li>
+    <li><a href="#profile"><i>13</i>Профиль</a></li>
+    <li><a href="#phone"><i>14</i>С телефона</a></li>
+  </ol>
+  <h4>Администратору</h4>
+  <ol>
+    <li><a href="#setup"><i>15</i>Первый запуск</a></li>
+    <li><a href="#users"><i>16</i>Люди и отделы</a></li>
+    <li><a href="#telegram"><i>17</i>Telegram-бот</a></li>
+    <li><a href="#updates"><i>18</i>Обновления</a></li>
+  </ol>
+  <h4>Ещё</h4>
+  <ol>
+    <li><a href="#faq"><i>19</i>Частые вопросы</a></li>
+    <li><a href="#author"><i>20</i>Автор</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+  <header class="cover">
+    <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" selected lang="ru">Русский</option><option value="en" lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
+    <span class="kicker">Руководство пользователя · версия 0.1</span>
+    <h1>Alexandria Планер</h1>
+    <p class="big">Вопросы руководителю без бумажных стикеров на столе. Сотрудник пишет стикер, руководитель раскладывает его по матрице Эйзенхауэра и отвечает, автор видит решение.</p>
+    <div class="who">
+      <a href="#compose"><span style="background:var(--q-plan)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></span>Я сотрудник</a>
+      <a href="#board"><span style="background:var(--q-do)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></span>Я руководитель</a>
+      <a href="#setup"><span style="background:var(--q-drop)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span>Я администратор</a>
+    </div>
+    <div class="hero"><img src="img/10-board.webp" alt="Доска руководителя: входящие стикеры и матрица Эйзенхауэра" width="1440" height="900" /></div>
+  </header>
+
+  <!-- 01 -->
+  <section class="slide" id="idea">
+    <span class="num">01</span>
+    <h2>Что это такое</h2>
+    <p class="lead">Раньше сотрудники оставляли на столе руководителя бумажные стикеры: «согласуйте отпуск», «нужна скидка клиенту», «сломался ноутбук». Стикеры терялись, ответы забывались, никто не знал, что уже решено.</p>
+    <div class="cols even">
+      <ol class="steps">
+        <li><b>Сотрудник пишет стикер</b><span>Коротко: что нужно и к какому сроку. Можно приложить файл и отметить, насколько это срочно и важно.</span></li>
+        <li><b>Руководитель разбирает</b><span>Стикер попадает во «Входящие» на доске. Руководитель кладёт его в один из четырёх квадрантов и берёт в работу, уточняет, поручает или сразу решает.</span></li>
+        <li><b>Автор получает ответ</b><span>Решение приходит в браузер и в Telegram. Автор подтверждает, что увидел ответ, и стикер уходит в архив.</span></li>
+      </ol>
+      <div>
+        <p>Всё это происходит в браузере, на компьютере или телефоне. Программа работает на сервере вашей компании: данные никуда не уходят, автор проекта их не видит.</p>
+        <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg><span>Если вы здесь впервые, прочитайте разделы 01–04, а потом раздел для своей роли: <a href="#compose">сотрудник</a>, <a href="#board">руководитель</a> или <a href="#setup">администратор</a>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" id="matrix">
+    <span class="num">02</span>
+    <h2>Матрица Эйзенхауэра</h2>
+    <p class="lead">Каждый стикер оценивается по двум вопросам: срочно ли это и важно ли это. Получается четыре квадранта, у каждого свой цвет, и этот цвет вы будете видеть везде в программе.</p>
+    <div class="matrix">
+      <div class="q"><small>1 · срочно и важно</small><h3>Сделать сейчас</h3><p>Горит и влияет на результат. Например, договор с клиентом, который нужно подписать сегодня.</p></div>
+      <div class="q"><small>2 · важно, не срочно</small><h3>Запланировать</h3><p>Влияет на результат, но время есть. Отчёт за месяц, обучение, планы.</p></div>
+      <div class="q"><small>3 · срочно, не важно</small><h3>Поручить</h3><p>Нужно быстро, но не обязательно руководителю. Обновить прайс, заказать визитки.</p></div>
+      <div class="q"><small>4 · не срочно, не важно</small><h3>Не делать</h3><p>Можно отложить надолго или отказаться. Заказать воду, купить кофемашину.</p></div>
+    </div>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Сотрудник при отправке ставит свою <i>оценку</i> («Срочно», «Важно»). Окончательный квадрант выбирает руководитель. Если оценки расходятся, это видно в статистике: так команда учится одинаково понимать приоритеты.</span></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" id="roles">
+    <span class="num">03</span>
+    <h2>Кто есть кто</h2>
+    <p class="lead">В программе три роли. Один человек может совмещать две: например, руководитель небольшого отдела часто сам и администратор.</p>
+    <div class="roles">
+      <div class="role"><div class="ico" style="background:var(--q-plan)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div><h3>Сотрудник</h3><p>Пишет стикеры руководителю или коллегам, отвечает на уточнения, подтверждает решения. Видит только свои стикеры и те, которыми с ним поделились.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Руководитель</h3><p>Получает стикеры отдела на доску, раскладывает их по квадрантам, отвечает, поручает, смотрит статистику и выгружает отчёт в Excel.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Администратор</h3><p>Заводит людей и отделы, сбрасывает пароли, подключает Telegram-бота и управляет обновлениями. Видит журнал входов.</p></div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" id="login">
+    <span class="num">04</span>
+    <h2>Вход и защита</h2>
+    <p class="lead">Логин и временный пароль выдаёт администратор. Логин обычно выглядит как первая буква имени и фамилия: <span class="chip">i.petrov</span>.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/04-login.webp" alt="Экран входа" loading="lazy" width="1440" height="900" /></div><figcaption>Шаг 1. Логин и пароль.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/05-totp.webp" alt="Ввод кода из приложения" loading="lazy" width="1440" height="900" /></div><figcaption>Шаг 2. Код из приложения: только у руководителей, администраторов и тех, кто включил защиту сам.</figcaption></figure>
+    </div>
+    <h3>Двухфакторная защита (2FA)</h3>
+    <p>Для руководителей и администраторов она обязательна: при первом входе программа покажет QR-код. Установите на телефон Google Authenticator, Яндекс Ключ или похожее приложение, отсканируйте код и введите 6 цифр. Дальше при каждом входе программа будет спрашивать новый код из приложения.</p>
+    <div class="note warn"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg><span>Забыли пароль или потеряли телефон с приложением? Обратитесь к администратору: он задаст новый пароль или сбросит 2FA в разделе «Администрирование → Пользователи». Восстановления по почте нет, так безопаснее.</span></div>
+  </section>
+
+  <div class="part"><h2>Сотруднику</h2><span>как задать вопрос и получить ответ</span></div>
+
+  <!-- 05 -->
+  <section class="slide" id="compose">
+    <span class="num">05</span>
+    <h2>Отправить стикер</h2>
+    <p class="lead">Нажмите «Создать стикер» в правом верхнем углу любой страницы. Откроется короткая форма.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/15-compose.webp" alt="Форма нового стикера" loading="lazy" width="1440" height="900" />
+        <i class="pin" style="--x:28.6;--y:24.6">1</i><i class="pin" style="--x:28.6;--y:34">2</i><i class="pin" style="--x:28.6;--y:57">3</i><i class="pin" style="--x:28.6;--y:69.6">4</i></div>
+        <figcaption>Форма «Новый стикер».</figcaption></figure>
+      <ol class="steps">
+        <li><b>Кому</b><span>По умолчанию ваш руководитель. Можно выбрать коллегу или «Себе»: личный стикер видите только вы, это удобно как напоминание.</span></li>
+        <li><b>Заголовок и подробности</b><span>Заголовок в одну строку: о чём речь. В подробностях можно написать детали и срок.</span></li>
+        <li><b>Ваша оценка</b><span>Нажмите «Срочно» и/или «Важно», если это так. Это подсказка руководителю, окончательный квадрант выберет он.</span></li>
+        <li><b>Срок и файлы</b><span>Если нужен ответ к дате, поставьте срок: за два дня до него стикер сам станет срочным. Файлы до 25 МБ.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" id="sent">
+    <span class="num">06</span>
+    <h2>Следить за ответом</h2>
+    <p class="lead">Раздел «Отправленные» показывает, что происходит с вашими стикерами. Стикеры лежат в колонках по шагам.</p>
+    <figure class="shot"><div class="frame"><img src="img/43-answer.webp" alt="Отправленные стикеры и вопрос руководителя" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:21;--y:12">1</i><i class="pin" style="--x:79.5;--y:25.5">2</i><i class="pin" style="--x:20.6;--y:37.6">3</i><i class="pin" style="--x:47.1;--y:37.6">4</i><i class="pin" style="--x:73.6;--y:37.6">5</i></div>
+      <figcaption>«Отправленные» глазами сотрудника: руководитель задал вопрос.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Нужен ваш ответ</b><span>Если руководитель что-то уточняет, вопрос закрепляется сверху страницы. Пока вы не ответите, стикер ждёт вас.</span></li>
+      <li><b>Ответить</b><span>Напишите ответ прямо здесь и нажмите «Ответить». Стикер вернётся руководителю.</span></li>
+      <li><b>Ждут разбора</b><span>Руководитель ещё не открывал стикер.</span></li>
+      <li><b>В работе</b><span>Стикер разобран. Его цвет показывает квадрант, который выбрал руководитель.</span></li>
+      <li><b>Решено</b><span>Есть ответ. Откройте стикер, прочитайте решение и нажмите «Подтвердить получение»: стикер закроется и уйдёт в архив. Если ответ не подходит, нажмите «Переоткрыть» и объясните почему.</span></li>
+    </ol>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg><span>Передумали? Пока руководитель не разобрал стикер (колонка «Ждут разбора»), его можно отозвать кнопкой «Отозвать» в карточке.</span></div>
+  </section>
+
+  <div class="part"><h2>Руководителю</h2><span>разбор входящих и ответы</span></div>
+
+  <!-- 07 -->
+  <section class="slide" id="board">
+    <span class="num">07</span>
+    <h2>Доска</h2>
+    <p class="lead">Главный экран руководителя. Сверху сводка дня, ниже входящие и матрица из четырёх квадрантов.</p>
+    <figure class="shot"><div class="frame"><img src="img/10-board.webp" alt="Доска руководителя" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:16.6;--y:3">1</i><i class="pin" style="--x:48.8;--y:5">2</i><i class="pin" style="--x:85.9;--y:4.5">3</i><i class="pin" style="--x:19.6;--y:14">4</i><i class="pin" style="--x:19.6;--y:29.5">5</i><i class="pin" style="--x:22.4;--y:66">6</i></div>
+      <figcaption>Доска руководителя утром.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Колокольчик</b><span>Новые события: стикеры, ответы, отчёты исполнителей. Число показывает непрочитанные.</span></li>
+      <li><b>Кольцо прогресса</b><span>Сколько стикеров на доске уже разобрано. Цель на день: пустые «Входящие».</span></li>
+      <li><b>Поиск и новый стикер</b><span>Поиск по заголовку, тексту и номеру. Руководитель тоже может писать стикеры: себе, сотруднику или своему руководителю.</span></li>
+      <li><b>Сводка</b><span>Сколько ждёт разбора, сколько срочного, что просрочено и сколько ваших стикеров ждут ответа от вас.</span></li>
+      <li><b>Входящие</b><span>Новые, ещё не разобранные стикеры. Перетащите стикер мышью (на телефоне пальцем) в нужный квадрант или нажмите на него, чтобы открыть.</span></li>
+      <li><b>Квадранты</b><span>Разобранные стикеры. Их можно перетаскивать между квадрантами в любой момент. Красная дата значит, что срок прошёл.</span></li>
+    </ol>
+    <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>Есть тёмная тема: «Профиль → Внешний вид». По умолчанию программа следует настройке системы.</span></div>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Доска в тёмной теме" loading="lazy" width="1440" height="900" /></div><figcaption>Та же доска в тёмной теме.</figcaption></figure>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" id="sheet">
+    <span class="num">08</span>
+    <h2>Карточка стикера</h2>
+    <p class="lead">Нажмите на любой стикер, откроется карточка. Слева текст и переписка, справа всё, что можно со стикером сделать.</p>
+    <figure class="shot"><div class="frame"><img src="img/12-sheet.webp" alt="Карточка стикера" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:17.4;--y:39.6">1</i><i class="pin" style="--x:56.3;--y:14.2">2</i><i class="pin" style="--x:56.3;--y:38.2">3</i><i class="pin" style="--x:56.3;--y:57.8">4</i><i class="pin" style="--x:56.3;--y:68">5</i></div>
+      <figcaption>Новый стикер от сотрудника.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Комментарий и файлы</b><span>Переписка по стикеру. Автор увидит комментарий сразу.</span></li>
+      <li><b>Ход стикера</b><span>Где стикер сейчас: новый, разобран, в работе, решён, закрыт.</span></li>
+      <li><b>Квадрант</b><span>Нажмите на квадрант, чтобы положить туда стикер. Ниже видно, как его оценил автор.</span></li>
+      <li><b>Срок</b><span>Можно поставить, поменять или убрать.</span></li>
+      <li><b>Действия</b><span>Набор кнопок зависит от состояния стикера и вашей роли. Подробнее в следующем разделе.</span></li>
+    </ol>
+    <p>Внизу справа «Журнал изменений»: кто, когда и что менял в стикере.</p>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" id="resolve">
+    <span class="num">09</span>
+    <h2>Решение и другие действия</h2>
+    <p class="lead">Чтобы ответить автору, нажмите «Решить», выберите итог и напишите пару слов. Ответ сразу уйдёт автору.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/13-resolve.webp" alt="Решение по стикеру" loading="lazy" width="1440" height="900" /></div><figcaption>Решение: итог «Согласовано» и ответ автору.</figcaption></figure>
+      <div>
+        <h3 style="margin-top:0">Итоги решения</h3>
+        <table>
+          <tr><td>Согласовано</td><td>Да, можно.</td></tr>
+          <tr><td>Отклонено</td><td>Нет, с объяснением.</td></tr>
+          <tr><td>Выполнено</td><td>Сделано: доступ выдан, документ подписан.</td></tr>
+          <tr><td>К сведению</td><td>Принято к сведению, действий не нужно.</td></tr>
+        </table>
+      </div>
+    </div>
+    <h3>Все действия</h3>
+    <table>
+      <tr><th>Кнопка</th><th>Что происходит</th></tr>
+      <tr><td>В работу</td><td>Вы занимаетесь стикером. Автор видит статус «В работе».</td></tr>
+      <tr><td>Уточнить</td><td>Задать автору вопрос. Стикер ждёт ответа, у автора вопрос закрепится в «Отправленных».</td></tr>
+      <tr><td>Делегировать</td><td>Поручить сотруднику. Стикер появится на его доске, исполнитель отчитается кнопкой «Отчитаться», а вы примете работу или вернёте «На доработку».</td></tr>
+      <tr><td>Отложить</td><td>Убрать с доски до завтра, на неделю или до даты. В нужный день стикер вернётся сам.</td></tr>
+      <tr><td>Отклонить</td><td>Отказать без рассмотрения, указав причину.</td></tr>
+      <tr><td>Открыть доступ</td><td>Показать стикер коллеге, например заместителю. Он увидит стикер в своих «Отправленных».</td></tr>
+    </table>
+    <figure class="shot" style="margin-top:26px"><div class="frame"><img src="img/14-sheet-question.webp" alt="Стикер с уточнением" loading="lazy" width="1440" height="900" /></div><figcaption>После «Уточнить» вопрос виден в переписке, а стикер ждёт ответа автора.</figcaption></figure>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M5 3 2 6M19 3l3 3"/></svg><span>Программа сама следит за сроками: за два дня до срока стикер становится срочным, просроченные подсвечиваются красным, а решённые стикеры, которые автор не подтвердил, закрываются автоматически через три дня.</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="archive">
+    <span class="num">10</span>
+    <h2>Архив</h2>
+    <p class="lead">Закрытые, отклонённые и отозванные стикеры складываются в архив по месяцам. На каждом штамп с итогом.</p>
+    <figure class="shot"><div class="frame"><img src="img/20-archive.webp" alt="Архив стикеров" loading="lazy" width="1440" height="900" /></div><figcaption>Поиск по заголовку, тексту или номеру и фильтры по итогу.</figcaption></figure>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="stats">
+    <span class="num">11</span>
+    <h2>Статистика и Excel</h2>
+    <p class="lead">Сколько вопросов приходит, как быстро вы отвечаете и кто из сотрудников чаще оценивает приоритеты иначе, чем вы.</p>
+    <figure class="shot"><div class="frame"><img src="img/21-stats.webp" alt="Статистика" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:35.2;--y:2.6">1</i><i class="pin" style="--x:87.6;--y:2.6">2</i><i class="pin" style="--x:19.6;--y:14.2">3</i><i class="pin" style="--x:59.4;--y:29.8">4</i><i class="pin" style="--x:19.6;--y:58.4">5</i></div>
+      <figcaption>Статистика руководителя за неделю.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Период</b><span>День, неделя, месяц, квартал или свои даты.</span></li>
+      <li><b>Скачать Excel</b><span>Отчёт за выбранный период на трёх листах: «Сводка», «Стикеры» и «По сотрудникам». Удобно приложить к отчёту для вышестоящего руководителя.</span></li>
+      <li><b>Итоги периода</b><span>Сколько пришло, решено, осталось и просрочено.</span></li>
+      <li><b>Скорость</b><span>Среднее время до разбора, до решения и до подтверждения автором. Ниже: как часто оценка автора совпала с вашим решением.</span></li>
+      <li><b>От кого</b><span>По каждому сотруднику: сколько прислал, сколько решено, время ответа и расхождения в оценках.</span></li>
+    </ol>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Стикеры, которые сотрудники пишут друг другу, руководитель не читает: в статистике видно только их количество и среднее время ответа.</span></div>
+  </section>
+
+  <div class="part"><h2>Всем</h2><span>уведомления, профиль, телефон</span></div>
+
+  <!-- 12 -->
+  <section class="slide" id="notify">
+    <span class="num">12</span>
+    <h2>Уведомления</h2>
+    <p class="lead">Узнать о новом стикере, вопросе или решении можно тремя способами.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/16-feed.webp" alt="Лента уведомлений" loading="lazy" width="1440" height="900" /></div><figcaption>Колокольчик в левом верхнем углу открывает ленту событий.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Колокольчик</b><span>Работает всегда, пока страница открыта. Нажмите на событие, чтобы открыть стикер.</span></li>
+        <li><b>Уведомления браузера</b><span>Приходят, даже когда вкладка закрыта. Включаются в «Профиль → Уведомления» на каждом устройстве отдельно. Нужен защищённый адрес (https).</span></li>
+        <li><b>Telegram</b><span>Если администратор подключил бота: «Профиль → Telegram → Привязать», затем «Start» в боте. В Telegram можно отвечать кнопками и создавать стикеры.</span></li>
+      </ol>
+    </div>
+    <h3>Сводки</h3>
+    <p>Утренняя сводка приходит в выбранное время по рабочим дням: что ждёт сегодня, что срочно, какие сроки и вопросы к вам. Вечерние итоги приходят в 18:00. Обе настраиваются в профиле.</p>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="profile">
+    <span class="num">13</span>
+    <h2>Профиль</h2>
+    <p class="lead">Личные настройки. Всё сохраняется сразу, кнопка «Сохранить» не нужна.</p>
+    <figure class="shot"><div class="frame"><img src="img/22-profile.webp" alt="Профиль" loading="lazy" width="1440" height="1010" /></div><figcaption>Слева карточка с именем и ролью, справа настройки.</figcaption></figure>
+    <table style="margin-top:22px">
+      <tr><td>Внешний вид</td><td>Светлая, тёмная или как в системе. Язык интерфейса: один из семи.</td></tr>
+      <tr><td>Время</td><td>Часовой пояс. По нему считаются сроки и приходят сводки.</td></tr>
+      <tr><td>Уведомления</td><td>Браузер на этом устройстве и Telegram.</td></tr>
+      <tr><td>Сводки</td><td>Утренняя (время и дни) и вечерние итоги.</td></tr>
+      <tr><td>Безопасность</td><td>Смена пароля (остальные сеансы при этом завершатся) и двухфакторная защита.</td></tr>
+    </table>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="phone">
+    <span class="num">14</span>
+    <h2>С телефона</h2>
+    <p class="lead">Отдельное приложение не нужно: откройте адрес Планера в браузере телефона. Всё работает так же, стикеры можно перетаскивать пальцем.</p>
+    <div class="phones">
+      <figure class="shot phone"><div class="frame"><img src="img/50-mobile-board.webp" alt="Доска на телефоне" loading="lazy" width="780" height="1688" /></div><figcaption>Доска.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/51-mobile-sheet.webp" alt="Карточка на телефоне" loading="lazy" width="780" height="1688" /></div><figcaption>Карточка стикера.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/52-mobile-sent.webp" alt="Отправленные на телефоне" loading="lazy" width="780" height="1688" /></div><figcaption>Отправленные.</figcaption></figure>
+    </div>
+    <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg><span>Добавьте Планер на главный экран, и он будет открываться как приложение. iPhone: Safari → «Поделиться» → «На экран Домой». Android: Chrome → меню ⋮ → «Добавить на главный экран». На iPhone уведомления работают только в Планере, открытом с главного экрана.</span></div>
+  </section>
+
+  <div class="part"><h2>Администратору</h2><span>установка и настройка</span></div>
+
+  <!-- 15 -->
+  <section class="slide" id="setup">
+    <span class="num">15</span>
+    <h2>Первый запуск</h2>
+    <p class="lead">После установки программа сразу предлагает создать администратора. Паролей по умолчанию нет: этот аккаунт единственный способ войти.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Первый запуск" loading="lazy" width="1440" height="900" /></div><figcaption>Отдел, имя, логин (подставится сам) и пароль.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Включение двухфакторной защиты" loading="lazy" width="1440" height="900" /></div><figcaption>Сразу после этого включается 2FA.</figcaption></figure>
+    </div>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Название отдела, имя и фамилия</b><span>Логин составится из имени и фамилии, его можно поправить.</span></li>
+      <li><b>Пароль</b><span>Не короче 10 символов, три вида из четырёх: строчные, заглавные, цифры, знаки.</span></li>
+      <li><b>«Я также руководитель этого отдела»</b><span>Оставьте галочку, если вы и разбираете стикеры. Если нет, снимите её и позже назначьте руководителя в «Отделах».</span></li>
+      <li><b>2FA</b><span>Отсканируйте QR-код приложением на телефоне и введите код. После этого откроется пустая доска.</span></li>
+    </ol>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="users">
+    <span class="num">16</span>
+    <h2>Люди и отделы</h2>
+    <p class="lead">Раздел «Администрирование». Сотрудники не регистрируются сами: их заводит администратор.</p>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Список пользователей" loading="lazy" width="1440" height="900" /></div><figcaption>Пользователи: логин, отдел, роль, включена ли 2FA.</figcaption></figure>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Добавить пользователя</b><span>Имя, фамилия, отдел, роль и временный пароль. Логин подставится сам. Передайте человеку логин, пароль и ссылку на это руководство.</span></li>
+      <li><b>Изменить</b><span>Новый пароль, другой отдел или роль, сброс 2FA, отключение уволенного сотрудника. Стикеры отключённого сохраняются.</span></li>
+      <li><b>Отделы</b><span>Название и руководитель. Стикеры сотрудника по умолчанию уходят руководителю его отдела.</span></li>
+      <li><b>Журнал входов</b><span>Кто, когда и откуда входил, неудачные попытки и блокировки. После 5 неверных паролей вход блокируется на 15 минут.</span></li>
+    </ol>
+    <div class="cols even" style="margin-top:22px">
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Отделы" loading="lazy" width="1440" height="900" /></div><figcaption>Отделы и их руководители.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Журнал входов" loading="lazy" width="1440" height="900" /></div><figcaption>Журнал входов.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="telegram">
+    <span class="num">17</span>
+    <h2>Telegram-бот</h2>
+    <p class="lead">У каждой компании свой бот: его создаёт администратор за пару минут, и сообщения идут напрямую между вашим сервером и Telegram.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/33-admin-telegram.webp" alt="Подключение Telegram-бота" loading="lazy" width="1440" height="900" /></div><figcaption>«Администрирование → Telegram».</figcaption></figure>
+      <ol class="steps">
+        <li><b>Создайте бота</b><span>В Telegram откройте @BotFather, отправьте /newbot и придумайте название, например «Планер Компания».</span></li>
+        <li><b>Имя бота</b><span>Оно должно заканчиваться на bot, например planer_company_bot.</span></li>
+        <li><b>Токен</b><span>BotFather пришлёт токен вида 123456789:AAH… Вставьте его и нажмите «Подключить».</span></li>
+        <li><b>Сотрудники</b><span>Каждый привязывает свой Telegram в профиле. Бота можно добавить в рабочий чат, и тогда писать стикеры командой /stiker текст.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="updates">
+    <span class="num">18</span>
+    <h2>Обновления</h2>
+    <p class="lead">Новую версию можно сначала дать нескольким людям (beta), а остальных оставить на проверенной (stable).</p>
+    <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Каналы обновлений" loading="lazy" width="1440" height="900" /></div><figcaption>«Администрирование → Обновления».</figcaption></figure>
+    <p>Переключатели есть у каждого отдела и у каждого человека, личный выбор важнее выбора отдела. Перевод и откат срабатывают сразу, без простоя: следующий запрос человека уходит на выбранную версию. Если тестовая версия упадёт, её пользователи автоматически продолжат работать на основной.</p>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span>Как запустить тестовую версию рядом с основной, описано в файле <span class="chip">docs/updates.md</span> в репозитории. Перед каждым обновлением базы программа сама делает резервную копию и хранит последние 10.</span></div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="faq">
+    <span class="num">19</span>
+    <h2>Частые вопросы</h2>
+    <p class="lead">&nbsp;</p>
+    <details class="faq"><summary>Стикер ушёл не тому человеку. Что делать?</summary><p>Пока его не разобрали, откройте стикер в «Отправленных» и нажмите «Отозвать», затем создайте новый с правильным получателем. Если стикер уже в работе, напишите получателю комментарий в карточке.</p></details>
+    <details class="faq"><summary>Руководитель видит мои личные стикеры?</summary><p>Нет. Стикер «Себе» видите только вы. Стикеры коллегам видят только вы и получатель; руководитель видит лишь их количество в статистике.</p></details>
+    <details class="faq"><summary>Почему стикер сам переехал в «Сделать сейчас»?</summary><p>За два дня до срока стикер становится срочным. Квадрант меняется, а важность остаётся: в карточке это отмечено как «Стал срочным по сроку».</p></details>
+    <details class="faq"><summary>Не приходят уведомления в браузере.</summary><p>Проверьте три вещи: адрес начинается с https, браузер разрешил уведомления для сайта, уведомления включены в «Профиль → Уведомления» на этом устройстве. Кнопка «Проверить» пришлёт тестовое уведомление.</p></details>
+    <details class="faq"><summary>Меня заблокировало после неверных паролей.</summary><p>Подождите 15 минут или попросите администратора задать новый пароль.</p></details>
+    <details class="faq"><summary>Сотрудник уволился. Удалять его?</summary><p>Не нужно: отключите его в «Пользователи → Изменить → Активен». Войти он не сможет, а история стикеров и статистика сохранятся.</p></details>
+    <details class="faq"><summary>На каких языках работает программа?</summary><p>Русский, английский, немецкий, чешский, белорусский, казахский и грузинский. Язык переключается в «Профиль → Внешний вид», каждый выбирает его сам. Уведомления, Telegram-бот и отчёт Excel приходят на выбранном языке.</p></details>
+  </section>
+
+  <section class="author" id="author">
+    <div>
+      <h2>Автор проекта</h2>
+      <p>Alexandria Планер — открытый проект. Если нашли ошибку, есть идея или нужна помощь с установкой, напишите в Telegram или откройте задачу на GitHub.</p>
+    </div>
+    <div class="links">
+      <a href="https://t.me/marshall033" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.4 13.2 1.7 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg>Telegram</a>
+      <a href="https://github.com/Loktionov-g-bit" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </section>
+  <footer>Скриншоты сделаны в настоящей программе на демонстрационных данных. Все имена вымышлены.</footer>
+</main>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Увеличенный скриншот"><img alt="" /></div>
+
+<script src="../guide.js"></script>
+</body>
+</html>

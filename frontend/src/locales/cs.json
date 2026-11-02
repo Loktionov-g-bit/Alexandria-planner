@@ -1,0 +1,613 @@
+{
+  "app": {
+    "name": "Plánovač",
+    "brand": "Alexandria",
+    "beta": "Testovací verze"
+  },
+  "nav": {
+    "board": "Nástěnka",
+    "sent": "Odeslané",
+    "archive": "Archiv",
+    "stats": "Statistika",
+    "admin": "Správa",
+    "profile": "Profil",
+    "logout": "Odhlásit se"
+  },
+  "setup": {
+    "title": "První spuštění",
+    "lead": "Vytvořte administrátora. Výchozí hesla neexistují – tento účet je jediná cesta dovnitř.",
+    "department": "Název oddělení",
+    "login": "Přihlašovací jméno",
+    "name": "Jak se jmenujete",
+    "password": "Heslo",
+    "password2": "Heslo znovu",
+    "isManager": "Toto oddělení také vedu",
+    "submit": "Vytvořit a pokračovat"
+  },
+  "login": {
+    "title": "Přihlášení",
+    "login": "Přihlašovací jméno",
+    "password": "Heslo",
+    "submit": "Přihlásit se",
+    "forgot": "Zapomněli jste heslo? Obnoví ho administrátor vaší firmy."
+  },
+  "authDesk": {
+    "kinds": [
+      "Naplánovat",
+      "Delegovat",
+      "Udělat hned",
+      "Nedělat",
+      "Nový"
+    ],
+    "deco": [
+      "Měsíční zpráva o prodeji",
+      "Aktualizovat ceník na webu",
+      "Podepsat smlouvu s dodavatelem",
+      "Objednat vodu do kanceláře",
+      "Schválit dovolenou"
+    ]
+  },
+  "totp": {
+    "title": "Ověřovací kód",
+    "lead": "Zadejte 6 číslic z ověřovací aplikace.",
+    "code": "Kód",
+    "submit": "Potvrdit",
+    "setupTitle": "Zapněte dvoufázové ověření",
+    "setupLead": "Pro vedoucí a administrátory je povinné. Naskenujte QR kód v Google Authenticator, Microsoft Authenticator nebo podobné aplikaci a zadejte kód.",
+    "manual": "Nebo zadejte klíč ručně",
+    "enable": "Zapnout",
+    "cancel": "Odhlásit se"
+  },
+  "board": {
+    "hello": {
+      "morning": "Dobré ráno",
+      "day": "Dobrý den",
+      "evening": "Dobrý večer",
+      "night": "Dobrou noc"
+    },
+    "lead": {
+      "morning": "Tohle vás dnes čeká.",
+      "day": "Takhle to dnes jde.",
+      "evening": "Shrnutí dne.",
+      "night": "Shrnutí uplynulého dne."
+    },
+    "ring": "Roztříděno {{done}} z {{total}}",
+    "ringSub": "na vaší nástěnce",
+    "search": "Hledat ve štítcích",
+    "create": "Nový štítek",
+    "kpi": {
+      "inbox": "Doručené",
+      "inboxNote": "čekají na roztřídění",
+      "doNote": "naléhavé a důležité",
+      "overdue": "Po termínu",
+      "overdueNote": "termín vypršel",
+      "waitingMe": "Čekají na vaši odpověď",
+      "waitingMeNote": "dotazy k vašim štítkům"
+    },
+    "inbox": "Doručené",
+    "inboxHint": "neroztříděné: přetáhněte štítek do kvadrantu nebo ho otevřete",
+    "inboxEmpty": "Doručené jsou roztříděné. Můžete si oddechnout.",
+    "matrix": "Eisenhowerova matice",
+    "axis": {
+      "urgent": "Naléhavé",
+      "notUrgent": "Nenaléhavé",
+      "important": "Důležité",
+      "notImportant": "Nedůležité"
+    },
+    "more": "další štítky",
+    "collapse": "Sbalit",
+    "zoneEmpty": "Prázdno. Přetáhněte sem štítek."
+  },
+  "quadrant": {
+    "do": "Udělat hned",
+    "plan": "Naplánovat",
+    "delegate": "Delegovat",
+    "drop": "Nedělat",
+    "short": {
+      "do": "Naléhavé · důležité",
+      "plan": "Důležité",
+      "delegate": "Naléhavé",
+      "drop": "Nenaléhavé · nedůležité"
+    },
+    "verb": {
+      "do": "naléhavé a důležité",
+      "plan": "důležité, nenaléhavé",
+      "delegate": "naléhavé, nedůležité",
+      "drop": "nenaléhavé, nedůležité"
+    }
+  },
+  "status": {
+    "new": "Nový",
+    "triaged": "Roztříděný",
+    "in_progress": "V řešení",
+    "needs_info": "Čeká na upřesnění",
+    "delegated": "Delegovaný",
+    "resolved": "Vyřešený",
+    "closed": "Uzavřený",
+    "snoozed": "Odložený",
+    "rejected": "Zamítnutý",
+    "withdrawn": "Stažený"
+  },
+  "outcome": {
+    "approved": "Schváleno",
+    "declined": "Zamítnuto",
+    "done": "Splněno",
+    "fyi": "Na vědomí"
+  },
+  "action": {
+    "start": "Začít řešit",
+    "resolve": "Vyřešit",
+    "ask": "Upřesnit",
+    "delegate": "Delegovat",
+    "snooze": "Odložit",
+    "reject": "Zamítnout",
+    "rework": "Vrátit k přepracování",
+    "wake": "Vrátit na nástěnku",
+    "answer": "Odpovědět",
+    "report": "Podat zprávu",
+    "confirm": "Potvrdit převzetí",
+    "reopen": "Znovu otevřít",
+    "withdraw": "Stáhnout",
+    "share": "Sdílet",
+    "done": "Hotovo"
+  },
+  "commentKind": {
+    "comment": "Komentář",
+    "question": "Dotaz",
+    "answer": "Odpověď",
+    "report": "Zpráva",
+    "resolution": "Rozhodnutí"
+  },
+  "sticker": {
+    "forMe": "Pro sebe",
+    "personal": "Osobní štítek",
+    "delegatedToMe": "Svěřeno mně",
+    "authorThought": "autor",
+    "no_recipient": "Není vybrán příjemce: vaše oddělení nemá vedoucího. Vyberte adresáta ručně.",
+    "self_recipient": "Štítek nelze poslat sám sobě. Zvolte „Pro sebe (osobní štítek)“.",
+    "text_required": "Napište text.",
+    "action_not_allowed": "Tato akce teď není dostupná. Obnovte stránku.",
+    "bad_delegate": "Štítek nelze svěřit sobě ani autorovi.",
+    "outcome_required": "Vyberte výsledek.",
+    "snooze_date": "Vyberte datum po dnešku.",
+    "bad_date": "Neplatné datum.",
+    "not_found": "Štítek nenalezen nebo k němu nemáte přístup.",
+    "not_on_board": "Tento štítek na vaší nástěnce není."
+  },
+  "sheet": {
+    "shareWith": "Komu zpřístupnit",
+    "delegateTo": "Komu svěřit",
+    "outcome": "Výsledek",
+    "tomorrow": "Do zítřka",
+    "inWeek": "Na týden",
+    "date": "Datum",
+    "prompt": {
+      "ask": "Co upřesnit u autora",
+      "answer": "Vaše odpověď",
+      "report": "Co je hotovo",
+      "rework": "Co přepracovat",
+      "reject": "Důvod zamítnutí",
+      "reopen": "Proč otevíráte znovu",
+      "delegate": "Poznámka pro řešitele (nepovinné)",
+      "resolve": "Odpověď autorovi"
+    },
+    "comment": "Komentář",
+    "write": "Napsat…",
+    "send": "Odeslat",
+    "attach": "Připojit soubor",
+    "notFound": "Štítek nenalezen nebo k němu nemáte přístup.",
+    "edit": "Upravit",
+    "rejected": "Důvod zamítnutí",
+    "due": "Termín",
+    "escalated": "Kvůli termínu se stal naléhavým",
+    "progress": "Průběh štítku",
+    "quadrant": "Kvadrant",
+    "authorEstimate": "Odhad autora",
+    "decision": "Rozhodnutí vedoucího",
+    "notTriaged": "Zatím neroztříděný",
+    "delegateBoard": "U řešitele {{name}}",
+    "deadline": "Termín",
+    "noDeadline": "Zrušit termín",
+    "noDeadlineSet": "Bez termínu",
+    "snoozedUntil": "Odloženo do",
+    "actions": "Akce",
+    "history": "Historie změn",
+    "system": "Systém"
+  },
+  "history": {
+    "created": "Štítek vytvořen",
+    "status": "Stav: {{status}}",
+    "quadrant": "Kvadrant: {{q}}",
+    "deadline": "Termín: {{date}}",
+    "deadlineRemoved": "Termín zrušen",
+    "escalated": "Termín se blíží: štítek se stal naléhavým",
+    "report": "Řešitel podal zprávu",
+    "rework": "Vráceno k přepracování",
+    "share": "Zpřístupněno",
+    "edited": "Text změněn",
+    "attachment": "Přidán soubor",
+    "delegate_quadrant": "Řešitel přesunul štítek"
+  },
+  "compose": {
+    "heading": "Nový štítek",
+    "to": "Komu",
+    "managers": "Vedoucí",
+    "myManager": "můj vedoucí",
+    "colleagues": "Kolegové",
+    "toMe": "Pro sebe (osobní štítek)",
+    "toMeHint": "Osobní štítek vidíte jen vy.",
+    "title": "Nadpis",
+    "titlePh": "Stručně, o co jde",
+    "body": "Podrobnosti",
+    "bodyPh": "Co je potřeba, do kdy, podrobnosti",
+    "estimate": "Váš odhad",
+    "urgent": "Naléhavé",
+    "important": "Důležité",
+    "estimateHint": "Konečný kvadrant vybere příjemce.",
+    "deadline": "Termín (nepovinné)",
+    "files": "Soubory",
+    "nFiles_one": "{{count}} soubor",
+    "nFiles_few": "{{count}} soubory",
+    "nFiles_many": "{{count}} souboru",
+    "nFiles_other": "{{count}} souborů",
+    "send": "Odeslat"
+  },
+  "lists": {
+    "needAnswer": "Čeká se na vaši odpověď",
+    "answerPh": "Odpověď půjde příjemci a štítek se mu vrátí",
+    "got": "Beru na vědomí",
+    "filter": "Filtr",
+    "active": "Aktivní",
+    "all": "Vše",
+    "lane": {
+      "waiting": "Čekají na roztřídění",
+      "waitingHint": "zatím neotevřené",
+      "working": "V řešení",
+      "workingHint": "barva = rozhodnutí příjemce",
+      "resolved": "Vyřešené",
+      "resolvedHint": "potvrďte, že jste to viděli",
+      "finished": "Ukončené",
+      "finishedHint": "uzavřené, zamítnuté, stažené"
+    },
+    "sentEmpty": "Zatím jste neposlali žádný štítek.",
+    "shared": "Zpřístupněno vám",
+    "archiveSearch": "Nadpis, text nebo č.",
+    "archiveEmpty": "Archiv je zatím prázdný: ukládají se sem uzavřené štítky.",
+    "nothingFound": "Nic nenalezeno.",
+    "filters": {
+      "all": "Vše",
+      "done": "Splněno",
+      "approved": "Schváleno",
+      "declined": "Zamítnuto",
+      "withdrawn": "Staženo"
+    },
+    "nStickers_one": "{{count}} štítek",
+    "nStickers_few": "{{count}} štítky",
+    "nStickers_many": "{{count}} štítku",
+    "nStickers_other": "{{count}} štítků",
+    "unfold": "Rozložit štítky za {{month}}",
+    "pileHint": "klikněte pro rozložení"
+  },
+  "common": {
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "close": "Zavřít"
+  },
+  "attachment": {
+    "too_large": "Soubor je větší než 25 MB.",
+    "not_found": "Soubor nenalezen."
+  },
+  "comment": {
+    "not_found": "Komentář nenalezen."
+  },
+  "admin": {
+    "users": "Uživatelé",
+    "departments": "Oddělení",
+    "logins": "Záznam přihlášení",
+    "addUser": "Přidat uživatele",
+    "addDepartment": "Přidat oddělení",
+    "save": "Uložit",
+    "create": "Vytvořit",
+    "cancel": "Zrušit",
+    "login": "Přihlašovací jméno",
+    "name": "Jméno a příjmení",
+    "firstName": "Jméno",
+    "lastName": "Příjmení",
+    "loginHint": "Vytvoří se ze jména a příjmení, lze upravit",
+    "email": "E-mail",
+    "role": "Role",
+    "department": "Oddělení",
+    "admin": "Administrátor",
+    "active": "Aktivní",
+    "password": "Heslo",
+    "newPassword": "Nové heslo (nechte prázdné, pokud ho neměníte)",
+    "reset2fa": "Resetovat 2FA",
+    "manager": "Vedoucí",
+    "noManager": "Nepřiřazen",
+    "noDepartment": "Bez oddělení",
+    "twofa": "2FA",
+    "you": "vy",
+    "when": "Kdy",
+    "who": "Přihlašovací jméno",
+    "ip": "IP",
+    "device": "Zařízení",
+    "result": "Výsledek",
+    "edit": "Upravit",
+    "blocked": "Deaktivován"
+  },
+  "role": {
+    "employee": "Zaměstnanec",
+    "manager": "Vedoucí"
+  },
+  "reason": {
+    "ok": "Úspěšně",
+    "password_ok": "Heslo správné, čeká se na kód",
+    "bad_password": "Nesprávné heslo",
+    "bad_totp": "Nesprávný kód 2FA",
+    "locked": "Zablokováno",
+    "inactive": "Účet deaktivován",
+    "totp_enabled": "2FA zapnuto"
+  },
+  "profile": {
+    "title": "Profil",
+    "name": "Jméno",
+    "email": "E-mail",
+    "language": "Jazyk",
+    "timezone": "Časové pásmo",
+    "theme": "Motiv",
+    "themes": {
+      "system": "Podle systému",
+      "light": "Světlý",
+      "dark": "Tmavý"
+    },
+    "save": "Uložit",
+    "saved": "Uloženo",
+    "password": "Změna hesla",
+    "oldPassword": "Současné heslo",
+    "newPassword": "Nové heslo",
+    "change": "Změnit heslo",
+    "changed": "Heslo změněno, ostatní relace byly ukončeny",
+    "twofa": "Dvoufázové ověření",
+    "twofaOn": "Zapnuto",
+    "twofaOff": "Vypnuto",
+    "twofaTitle": "Přihlášení s kódem z aplikace",
+    "twofaApps": "Google Authenticator, Microsoft Authenticator a podobné",
+    "role": "Role",
+    "noEmail": "neuveden",
+    "editName": "Změnit jméno a e-mail",
+    "passwordTitle": "Heslo",
+    "autosave": "Nastavení se ukládá okamžitě.",
+    "look": "Vzhled",
+    "guide": "Uživatelská příručka",
+    "guideHint": "Krok za krokem, se snímky obrazovky",
+    "tg": {
+      "noBot": "Administrátor zatím nepřipojil bota.",
+      "hint": "Oznámení s tlačítky a vytváření štítků přímo z messengeru.",
+      "link": "Propojit",
+      "again": "Otevřít bota znovu",
+      "waiting": "Otevřete bota a stiskněte „Start“:",
+      "linked": "Propojeno s {{name}}",
+      "notify": "Oznámení v Telegramu",
+      "unlink": "Odpojit"
+    },
+    "digest": {
+      "title": "Přehledy",
+      "hint": "Chodí do Telegramu a do prohlížeče, podle vašeho času.",
+      "morning": "Ranní přehled",
+      "morningHint": "Co vás dnes čeká: doručené, naléhavé, termíny, dotazy na vás.",
+      "evening": "Večerní shrnutí",
+      "eveningHint": "V 18:00: co se za den vyřešilo a co zbývá.",
+      "time": "Čas přehledu",
+      "days": "Dny",
+      "skipEmpty": "Neposílat, pokud je vše roztříděno"
+    },
+    "notify": {
+      "title": "Oznámení",
+      "hint": "O nových štítcích, dotazech a rozhodnutích.",
+      "push": "V prohlížeči na tomto zařízení",
+      "enable": "Zapnout",
+      "disable": "Vypnout",
+      "test": "Vyzkoušet",
+      "enabled": "Hotovo: oznámení budou chodit sem.",
+      "testSent": "Testovací oznámení odesláno.",
+      "testFail": "Zařízení oznámení nepřijalo. Vypněte a znovu zapněte.",
+      "state": {
+        "on": "Chodí na toto zařízení, i když je karta zavřená.",
+        "off": "Teď nechodí.",
+        "insecure": "Funguje jen přes zabezpečenou adresu (https). Požádejte administrátora o zapnutí HTTPS.",
+        "ios-install": "Na iPhonu: „Sdílet“ → „Přidat na plochu“, otevřete Plánovač z plochy a zapněte zde.",
+        "denied": "Prohlížeč pro tento web oznámení zakázal. Povolte je v nastavení prohlížeče.",
+        "unsupported": "Tento prohlížeč neumí přijímat oznámení."
+      }
+    },
+    "timeTitle": "Čas",
+    "timeHint": "Podle něj se počítají termíny a chodí přehledy.",
+    "nowAt": "U vás je teď {{time}}",
+    "security": "Zabezpečení",
+    "twofaMandatory": "Pro vaši roli povinné",
+    "enable2fa": "Zapnout 2FA",
+    "disable2fa": "Vypnout"
+  },
+  "tg": {
+    "howTitle": "Jak připojit bota",
+    "step1": "Otevřete v Telegramu",
+    "step2": "Pošlete /newbot a vymyslete název (například „Plánovač Firma“).",
+    "step3": "Vymyslete uživatelské jméno bota, musí končit na bot.",
+    "step4": "BotFather pošle token ve tvaru 123456789:AAH… Vložte ho sem.",
+    "token": "Token bota",
+    "connect": "Připojit",
+    "saved": "Bot připojen. Zaměstnanci si mohou Telegram propojit v profilu.",
+    "connected": "Bot @{{name}} je připojen",
+    "tokenMasked": "Token {{token}} je uložen jen na tomto serveru.",
+    "on": "Funguje",
+    "check": "Ověřit připojení",
+    "checkOk": "Telegram odpovídá, vše v pořádku.",
+    "replace": "Vyměnit token",
+    "remove": "Odpojit bota",
+    "removed": "Bot odpojen.",
+    "groupHint": "V pracovním chatu: přidejte @{{name}} do skupiny a kolegové mohou psát /stiker text.",
+    "privacy": "Zprávy jdou přímo mezi tímto serverem a Telegramem. Autor projektu je nevidí.",
+    "adminUnlink": "Odpojit Telegram uživatele {{name}}",
+    "bad_token": "Telegram token nepřijal. Zkopírujte ho z BotFather celý.",
+    "unreachable": "Telegram je nedostupný. Zkontrolujte připojení serveru k internetu.",
+    "not_configured": "Bot zatím není připojen."
+  },
+  "stats": {
+    "period": "Období",
+    "p": {
+      "day": "Den",
+      "week": "Týden",
+      "month": "Měsíc",
+      "quarter": "Čtvrtletí",
+      "custom": "Vlastní"
+    },
+    "from": "Od",
+    "to": "Do",
+    "excel": "Stáhnout Excel",
+    "scope": {
+      "received": "Štítky adresované vám",
+      "sent": "Vaše odeslané štítky"
+    },
+    "total": "Celkem",
+    "totalNote": "za období",
+    "resolved": "Vyřešeno",
+    "resolvedNote": "s odpovědí",
+    "active": "V řešení",
+    "activeNote": "stále na nástěnce",
+    "overdue": "Po termínu",
+    "overdueNote": "termín vypršel",
+    "board": "Teď na nástěnce",
+    "boardHint": "bez ohledu na období",
+    "speed": "Rychlost",
+    "speedHint": "v průměru",
+    "toTriage": "Do roztřídění",
+    "toResolve": "Od roztřídění k rozhodnutí",
+    "toClose": "Do potvrzení autorem",
+    "match": "Odhad autora se shodoval s rozhodnutím v {{same}} z {{all}}",
+    "noJudged": "Zatím žádné roztříděné štítky.",
+    "people": {
+      "received": "Od koho",
+      "sent": "Komu"
+    },
+    "person": {
+      "received": "Zaměstnanec",
+      "sent": "Příjemce"
+    },
+    "count": {
+      "received": "Poslal",
+      "sent": "Dostal"
+    },
+    "response": "Doba odpovědi",
+    "mismatch": "Rozdíly",
+    "empty": "Za toto období žádné štítky.",
+    "e2e_one": "Kolegové z oddělení si poslali {{count}} štítek, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_few": "Kolegové z oddělení si poslali {{count}} štítky, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_many": "Kolegové z oddělení si poslali {{count}} štítku, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_other": "Kolegové z oddělení si poslali {{count}} štítků, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "min": "{{n}} min",
+    "hours": "{{n}} h",
+    "days": "{{n}} d"
+  },
+  "ch": {
+    "tab": "Aktualizace",
+    "stable": "Hlavní verze (stable)",
+    "beta": "Testovací verze (beta)",
+    "onBeta": "Lidí na beta",
+    "state": {
+      "up": "běží",
+      "down": "neodpovídá",
+      "off": "nespuštěna"
+    },
+    "allBeta": "Převést všechny na beta",
+    "allStable": "Vrátit všechny na stable",
+    "hint": "Převod i návrat platí hned, bez výpadku: další požadavek člověka jde na zvolenou verzi.",
+    "hintOff": "Testovací verze neběží. Jak ji spustit: docs/updates.md. Zatím všichni pracují na hlavní verzi.",
+    "inherit": "jako oddělení",
+    "usersHint": "osobní volba má přednost před oddělením"
+  },
+  "telegram": {
+    "bad_token": "Telegram token nepřijal. Zkopírujte ho z BotFather celý.",
+    "unreachable": "Telegram je nedostupný. Zkontrolujte připojení serveru k internetu.",
+    "not_configured": "Bot zatím není připojen."
+  },
+  "push": {
+    "bad_subscription": "Prohlížeč poslal neúplné přihlášení k odběru. Zkuste to znovu."
+  },
+  "feed": {
+    "title": "Oznámení",
+    "readAll": "Označit vše jako přečtené",
+    "empty": "Zatím nic nového."
+  },
+  "footer": {
+    "author": "Autor projektu"
+  },
+  "error": {
+    "generic": "Něco se pokazilo. Zkuste to znovu.",
+    "validation": "Zkontrolujte vyplněná pole.",
+    "mismatch": "Hesla se neshodují"
+  },
+  "auth": {
+    "invalid": "Nesprávné přihlašovací jméno nebo heslo",
+    "locked": "Příliš mnoho pokusů. Přihlášení je dočasně zablokováno, zkuste to za 15 minut.",
+    "bad_code": "Nesprávný kód",
+    "required": "Je potřeba se přihlásit",
+    "totp_mandatory": "Pro vaši roli je 2FA povinné"
+  },
+  "password": {
+    "too_short": "Heslo je příliš krátké (alespoň 10 znaků)",
+    "too_simple": "Použijte alespoň tři druhy znaků: malá písmena, velká písmena, číslice, symboly",
+    "contains_login": "Heslo nesmí obsahovat přihlašovací jméno",
+    "hint": "Alespoň 10 znaků, tři druhy z: malá písmena, velká písmena, číslice, symboly."
+  },
+  "user": {
+    "not_found": "Uživatel nenalezen",
+    "login_taken": "Toto přihlašovací jméno je již obsazené",
+    "cannot_demote_self": "Nemůžete si odebrat práva administrátora ani deaktivovat sami sebe"
+  },
+  "department": {
+    "name_taken": "Oddělení s tímto názvem už existuje",
+    "manager_must_be_manager": "Vedoucím oddělení může být jen uživatel s rolí „Vedoucí“"
+  },
+  "tunnel": {
+    "title": "Záložní spojení přes WireGuard",
+    "lead": "Pokud se server nedostane k Telegramu přímo (například v Rusku), nahrajte konfiguraci WireGuard: soubor .conf nebo archiv .zip s ním. Tunelem půjdou jen požadavky na Telegram, jinak se na serveru nic nemění.",
+    "upload": "Nahrát konfiguraci",
+    "checkDirect": "Ověřit spojení s Telegramem",
+    "check": "Ověřit spojení",
+    "replace": "Nahradit soubor",
+    "remove": "Odstranit",
+    "removed": "Konfigurace odstraněna.",
+    "saved": "Konfigurace nahrána, tunel spuštěn.",
+    "file": "WireGuard: {{name}}",
+    "details": "Server {{endpoint}} · adresa v tunelu {{address}}",
+    "modeLabel": "Kdy používat tunel",
+    "mode": {
+      "auto": "Záložní",
+      "always": "Vždy",
+      "off": "Vypnuto"
+    },
+    "modeHint": {
+      "auto": "Nejdřív přímo. Když Telegram neodpovídá, bot přepne na WireGuard a každých 10 minut zkusí znovu přímo.",
+      "always": "Všechny požadavky na Telegram jdou jen přes WireGuard.",
+      "off": "Konfigurace je uložená, ale nepoužívá se."
+    },
+    "route": {
+      "direct": "Telegram přímo",
+      "tunnel": "Přes WireGuard"
+    },
+    "yes": "ano",
+    "no": "ne",
+    "notSet": "nenastaveno",
+    "checkResult": "Přímo: {{direct}}. Přes WireGuard: {{tunnel}}.",
+    "lastError": "Poslední chyba: {{error}}",
+    "noBinary": "Tato verze neobsahuje wireproxy, tunel se nespustí. Aktualizujte kontejner.",
+    "keysHint": "Klíče ze souboru zůstávají jen na tomto serveru a stránka je už nezobrazí.",
+    "bad_format": "Tohle nevypadá jako konfigurace WireGuard: je potřeba [Interface] s PrivateKey a Address a [Peer] s PublicKey a Endpoint.",
+    "bad_zip": "Archiv je poškozený.",
+    "no_conf": "V archivu není soubor .conf.",
+    "many_conf": "V archivu je více souborů .conf. Nechte jeden nebo nahrajte správný .conf samostatně.",
+    "too_big": "Soubor je na konfiguraci WireGuard příliš velký.",
+    "amnezia": "Tohle je konfigurace AmneziaWG (obsahuje Jc, Jmin, H1…). Je potřeba běžný WireGuard; aplikace Amnezia ho umí exportovat.",
+    "not_configured": "Konfigurace zatím není nahraná."
+  }
+}

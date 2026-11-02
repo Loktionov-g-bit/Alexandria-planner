@@ -1,0 +1,62 @@
+# Alexandria Planner. Start: copy .env.example to .env, edit, then `docker compose up -d`.
+# Images: ghcr.io/loktionov-g-bit/alexandria-planner (amd64, arm64). `docker compose build` builds locally instead.
+services:
+  app:
+    image: ghcr.io/loktionov-g-bit/alexandria-planner:${PLANNER_TAG:-stable}
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PLANNER_DATABASE_URL: postgresql+asyncpg://planner:${POSTGRES_PASSWORD}@db:5432/planner
+      PLANNER_CHANNEL: stable
+      # users on the beta channel are forwarded here; if beta is not running they simply stay on stable
+      PLANNER_BETA_URL: http://app-beta:8000
+    ports:
+      - "${PLANNER_PORT:-8000}:8000"
+    volumes:
+      - planner-data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 384m
+
+  # Canary release (docs/SPEC.md §10): `docker compose --profile beta up -d app-beta`.
+  # Same database and files as stable; no published port: stable forwards beta users to it.
+  app-beta:
+    image: ghcr.io/loktionov-g-bit/alexandria-planner:${PLANNER_BETA_TAG:-beta}
+    profiles: ["beta"]
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PLANNER_DATABASE_URL: postgresql+asyncpg://planner:${POSTGRES_PASSWORD}@db:5432/planner
+      PLANNER_CHANNEL: beta
+      PLANNER_WORKER: "false"   # scheduler, notifications and the Telegram bot run on stable only
+    volumes:
+      - planner-data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 384m
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: planner
+      POSTGRES_DB: planner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    # trimmed memory settings: whole stack must idle under 512 MB
+    command: >
+      postgres -c shared_buffers=32MB -c work_mem=2MB -c maintenance_work_mem=16MB
+               -c max_connections=30 -c effective_cache_size=128MB
+    volumes:
+      - planner-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U planner"]
+      interval: 5s
+      retries: 10
+    mem_limit: 256m
+
+volumes:
+  planner-data:
+  planner-db:

@@ -1,0 +1,42 @@
+# Alexandria Planner as a Synology Container Manager project (e.g. /volume1/docker/alexandria-planner).
+# Container Manager → Project → Create → this file as compose.yaml; put a .env next to it with
+# POSTGRES_PASSWORD (openssl rand -hex 24) and PLANNER_BASE_URL. Create ./data and ./db first and give ./data
+# to uid 1000 (`chown 1000:1000 data`): the app does not run as root.
+# Data lives in the project folder: ./db (PostgreSQL), ./data (attachments, backups before migrations).
+services:
+  app:
+    image: ghcr.io/loktionov-g-bit/alexandria-planner:${PLANNER_TAG:-stable}
+    container_name: alexandria-planner
+    restart: unless-stopped
+    environment:
+      PLANNER_DATABASE_URL: postgresql+asyncpg://planner:${POSTGRES_PASSWORD}@db:5432/planner
+      PLANNER_BASE_URL: ${PLANNER_BASE_URL}
+      PLANNER_CHANNEL: stable
+      TZ: Europe/Moscow
+    ports:
+      - "${PLANNER_PORT:-3085}:8000"
+    volumes:
+      - ./data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 384m
+
+  db:
+    image: postgres:16-alpine
+    container_name: alexandria-planner-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: planner
+      POSTGRES_DB: planner
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: >
+      postgres -c shared_buffers=32MB -c work_mem=2MB -c maintenance_work_mem=16MB
+               -c max_connections=30 -c effective_cache_size=128MB
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U planner"]
+      interval: 5s
+      retries: 10
+    mem_limit: 256m

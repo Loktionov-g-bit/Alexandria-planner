@@ -1,0 +1,613 @@
+{
+  "app": {
+    "name": "Planner",
+    "brand": "Alexandria",
+    "beta": "Beta version"
+  },
+  "nav": {
+    "board": "Board",
+    "sent": "Sent",
+    "archive": "Archive",
+    "stats": "Statistics",
+    "admin": "Administration",
+    "profile": "Profile",
+    "logout": "Sign out"
+  },
+  "setup": {
+    "title": "First launch",
+    "lead": "Create the administrator. There are no default passwords: this account is the only way in.",
+    "department": "Department name",
+    "login": "Login",
+    "name": "Your name",
+    "password": "Password",
+    "password2": "Repeat password",
+    "isManager": "I am also the manager of this department",
+    "submit": "Create and continue"
+  },
+  "login": {
+    "title": "Sign in",
+    "login": "Login",
+    "password": "Password",
+    "submit": "Sign in",
+    "forgot": "Forgot your password? Your company administrator can reset it."
+  },
+  "authDesk": {
+    "kinds": [
+      "Schedule",
+      "Delegate",
+      "Do now",
+      "Eliminate",
+      "New"
+    ],
+    "deco": [
+      "Monthly sales report",
+      "Update prices on the website",
+      "Sign the supplier contract",
+      "Order office water",
+      "Approve my vacation"
+    ]
+  },
+  "totp": {
+    "title": "Verification code",
+    "lead": "Enter the 6 digits from your authenticator app.",
+    "code": "Code",
+    "submit": "Verify",
+    "setupTitle": "Turn on two-factor protection",
+    "setupLead": "It is mandatory for managers and administrators. Scan the QR code with Google Authenticator or a similar app and enter the code.",
+    "manual": "Or enter the key manually",
+    "enable": "Turn on",
+    "cancel": "Sign out"
+  },
+  "board": {
+    "hello": {
+      "morning": "Good morning",
+      "day": "Good afternoon",
+      "evening": "Good evening",
+      "night": "Good night"
+    },
+    "lead": {
+      "morning": "Here is what today holds.",
+      "day": "Here is how things are going.",
+      "evening": "How the day went.",
+      "night": "How the past day went."
+    },
+    "ring": "{{done}} of {{total}} triaged",
+    "ringSub": "on your board",
+    "search": "Search stickers",
+    "create": "New sticker",
+    "kpi": {
+      "inbox": "Inbox",
+      "inboxNote": "awaiting triage",
+      "doNote": "urgent and important",
+      "overdue": "Overdue",
+      "overdueNote": "past the deadline",
+      "waitingMe": "Waiting for your answer",
+      "waitingMeNote": "questions on your stickers"
+    },
+    "inbox": "Inbox",
+    "inboxHint": "not triaged yet: drag a sticker into a quadrant or open it",
+    "inboxEmpty": "Inbox zero. Take a breath.",
+    "matrix": "Eisenhower matrix",
+    "axis": {
+      "urgent": "Urgent",
+      "notUrgent": "Not urgent",
+      "important": "Important",
+      "notImportant": "Not important"
+    },
+    "more": "more stickers",
+    "collapse": "Collapse",
+    "zoneEmpty": "Empty. Drop a sticker here."
+  },
+  "quadrant": {
+    "do": "Do now",
+    "plan": "Schedule",
+    "delegate": "Delegate",
+    "drop": "Eliminate",
+    "short": {
+      "do": "Urgent · important",
+      "plan": "Important",
+      "delegate": "Urgent",
+      "drop": "Neither"
+    },
+    "verb": {
+      "do": "urgent and important",
+      "plan": "important, not urgent",
+      "delegate": "urgent, not important",
+      "drop": "not urgent, not important"
+    }
+  },
+  "status": {
+    "new": "New",
+    "triaged": "Triaged",
+    "in_progress": "In progress",
+    "needs_info": "Needs info",
+    "delegated": "Delegated",
+    "resolved": "Resolved",
+    "closed": "Closed",
+    "snoozed": "Snoozed",
+    "rejected": "Rejected",
+    "withdrawn": "Withdrawn"
+  },
+  "outcome": {
+    "approved": "Approved",
+    "declined": "Declined",
+    "done": "Done",
+    "fyi": "For information"
+  },
+  "action": {
+    "start": "Start",
+    "resolve": "Resolve",
+    "ask": "Ask",
+    "delegate": "Delegate",
+    "snooze": "Snooze",
+    "reject": "Reject",
+    "rework": "Send back",
+    "wake": "Back to board",
+    "answer": "Answer",
+    "report": "Report",
+    "confirm": "Confirm receipt",
+    "reopen": "Reopen",
+    "withdraw": "Withdraw",
+    "share": "Share",
+    "done": "Done"
+  },
+  "commentKind": {
+    "comment": "Comment",
+    "question": "Question",
+    "answer": "Answer",
+    "report": "Report",
+    "resolution": "Resolution"
+  },
+  "sticker": {
+    "forMe": "Me",
+    "personal": "Personal sticker",
+    "delegatedToMe": "Delegated to me",
+    "authorThought": "author",
+    "no_recipient": "No recipient: your department has no manager. Pick a recipient.",
+    "self_recipient": "You cannot send a sticker to yourself. Choose \"Me (personal sticker)\".",
+    "text_required": "Please write some text.",
+    "action_not_allowed": "This action is not available now. Refresh the page.",
+    "bad_delegate": "You cannot delegate to yourself or the author.",
+    "outcome_required": "Choose an outcome.",
+    "snooze_date": "Pick a date after today.",
+    "bad_date": "Invalid date.",
+    "not_found": "Sticker not found or no access.",
+    "not_on_board": "This sticker is not on your board."
+  },
+  "sheet": {
+    "shareWith": "Share with",
+    "delegateTo": "Delegate to",
+    "outcome": "Outcome",
+    "tomorrow": "Until tomorrow",
+    "inWeek": "For a week",
+    "date": "Date",
+    "prompt": {
+      "ask": "What to ask the author",
+      "answer": "Your answer",
+      "report": "What was done",
+      "rework": "What to improve",
+      "reject": "Reason",
+      "reopen": "Why reopen",
+      "delegate": "Note for the assignee (optional)",
+      "resolve": "Answer to the author"
+    },
+    "comment": "Comment",
+    "write": "Write…",
+    "send": "Send",
+    "attach": "Attach file",
+    "notFound": "Sticker not found or you have no access.",
+    "edit": "Edit",
+    "rejected": "Reason for rejection",
+    "due": "Due",
+    "escalated": "Became urgent by deadline",
+    "progress": "Progress",
+    "quadrant": "Quadrant",
+    "authorEstimate": "Author's estimate",
+    "decision": "Manager's decision",
+    "notTriaged": "Not triaged yet",
+    "delegateBoard": "On {{name}}'s board",
+    "deadline": "Deadline",
+    "noDeadline": "Remove deadline",
+    "noDeadlineSet": "No deadline",
+    "snoozedUntil": "Snoozed until",
+    "actions": "Actions",
+    "history": "Change log",
+    "system": "System"
+  },
+  "history": {
+    "created": "Sticker created",
+    "status": "Status: {{status}}",
+    "quadrant": "Quadrant: {{q}}",
+    "deadline": "Deadline: {{date}}",
+    "deadlineRemoved": "Deadline removed",
+    "escalated": "Deadline is close: became urgent",
+    "report": "Assignee reported",
+    "rework": "Sent back for rework",
+    "share": "Shared",
+    "edited": "Text edited",
+    "attachment": "File added",
+    "delegate_quadrant": "Assignee moved the sticker"
+  },
+  "compose": {
+    "heading": "New sticker",
+    "to": "To",
+    "managers": "Managers",
+    "myManager": "my manager",
+    "colleagues": "Colleagues",
+    "toMe": "Me (personal sticker)",
+    "toMeHint": "Only you can see a personal sticker.",
+    "title": "Title",
+    "titlePh": "What is it about, in short",
+    "body": "Details",
+    "bodyPh": "What is needed, by when, details",
+    "estimate": "Your estimate",
+    "urgent": "Urgent",
+    "important": "Important",
+    "estimateHint": "The recipient picks the final quadrant.",
+    "deadline": "Deadline (optional)",
+    "files": "Files",
+    "nFiles_one": "{{count}} file",
+    "nFiles_few": "{{count}} files",
+    "nFiles_many": "{{count}} files",
+    "nFiles_other": "{{count}} files",
+    "send": "Send"
+  },
+  "lists": {
+    "needAnswer": "Your answer is needed",
+    "answerPh": "The answer goes to the recipient, the sticker returns to them",
+    "got": "Got it",
+    "filter": "Filter",
+    "active": "Active",
+    "all": "All",
+    "lane": {
+      "waiting": "Awaiting triage",
+      "waitingHint": "not opened yet",
+      "working": "In progress",
+      "workingHint": "colour = recipient's decision",
+      "resolved": "Resolved",
+      "resolvedHint": "confirm you have seen it",
+      "finished": "Finished",
+      "finishedHint": "closed, rejected, withdrawn"
+    },
+    "sentEmpty": "You have not sent any stickers yet.",
+    "shared": "Shared with you",
+    "archiveSearch": "Title, text or №",
+    "archiveEmpty": "The archive is empty: closed stickers end up here.",
+    "nothingFound": "Nothing found.",
+    "filters": {
+      "all": "All",
+      "done": "Done",
+      "approved": "Approved",
+      "declined": "Declined",
+      "withdrawn": "Withdrawn"
+    },
+    "nStickers_one": "{{count}} sticker",
+    "nStickers_few": "{{count}} stickers",
+    "nStickers_many": "{{count}} stickers",
+    "nStickers_other": "{{count}} stickers",
+    "unfold": "Unfold stickers for {{month}}",
+    "pileHint": "click to unfold"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close"
+  },
+  "attachment": {
+    "too_large": "File is larger than 25 MB.",
+    "not_found": "File not found."
+  },
+  "comment": {
+    "not_found": "Comment not found."
+  },
+  "admin": {
+    "users": "Users",
+    "departments": "Departments",
+    "logins": "Sign-in log",
+    "addUser": "Add user",
+    "addDepartment": "Add department",
+    "save": "Save",
+    "create": "Create",
+    "cancel": "Cancel",
+    "login": "Login",
+    "name": "Full name",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "loginHint": "Made from the first and last name, you can change it",
+    "email": "Email",
+    "role": "Role",
+    "department": "Department",
+    "admin": "Administrator",
+    "active": "Active",
+    "password": "Password",
+    "newPassword": "New password (leave empty to keep)",
+    "reset2fa": "Reset 2FA",
+    "manager": "Manager",
+    "noManager": "Not assigned",
+    "noDepartment": "No department",
+    "twofa": "2FA",
+    "you": "you",
+    "when": "When",
+    "who": "Login",
+    "ip": "IP",
+    "device": "Device",
+    "result": "Result",
+    "edit": "Edit",
+    "blocked": "Disabled"
+  },
+  "role": {
+    "employee": "Employee",
+    "manager": "Manager"
+  },
+  "reason": {
+    "ok": "Success",
+    "password_ok": "Password OK, awaiting code",
+    "bad_password": "Wrong password",
+    "bad_totp": "Wrong 2FA code",
+    "locked": "Locked",
+    "inactive": "Account disabled",
+    "totp_enabled": "2FA turned on"
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "email": "Email",
+    "language": "Language",
+    "timezone": "Time zone",
+    "theme": "Theme",
+    "themes": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "save": "Save",
+    "saved": "Saved",
+    "password": "Change password",
+    "oldPassword": "Current password",
+    "newPassword": "New password",
+    "change": "Change password",
+    "changed": "Password changed, other sessions signed out",
+    "twofa": "Two-factor protection",
+    "twofaOn": "On",
+    "twofaOff": "Off",
+    "twofaTitle": "Sign-in code from an app",
+    "twofaApps": "Google Authenticator and similar apps",
+    "role": "Role",
+    "noEmail": "not set",
+    "editName": "Edit name and email",
+    "passwordTitle": "Password",
+    "autosave": "Settings are saved instantly.",
+    "look": "Appearance",
+    "guide": "User guide",
+    "guideHint": "Step by step, with screenshots",
+    "tg": {
+      "noBot": "The administrator has not connected a bot yet.",
+      "hint": "Notifications with buttons and creating stickers from the messenger.",
+      "link": "Link",
+      "again": "Open the bot again",
+      "waiting": "Open the bot and press Start:",
+      "linked": "Linked {{name}}",
+      "notify": "Telegram notifications",
+      "unlink": "Unlink"
+    },
+    "digest": {
+      "title": "Digests",
+      "hint": "Sent to Telegram and the browser, in your time zone.",
+      "morning": "Morning digest",
+      "morningHint": "What today holds: inbox, urgent items, deadlines, questions to you.",
+      "evening": "Evening summary",
+      "eveningHint": "At 18:00: what was resolved today and what is left.",
+      "time": "Digest time",
+      "days": "Days",
+      "skipEmpty": "Skip when everything is triaged"
+    },
+    "notify": {
+      "title": "Notifications",
+      "hint": "About new stickers, questions and decisions.",
+      "push": "In the browser on this device",
+      "enable": "Turn on",
+      "disable": "Turn off",
+      "test": "Test",
+      "enabled": "Done: notifications will arrive here.",
+      "testSent": "A test notification was sent.",
+      "testFail": "The device did not accept it. Turn off and on again.",
+      "state": {
+        "on": "Arrive on this device even when the tab is closed.",
+        "off": "Not arriving now.",
+        "insecure": "Works only on a secure (https) address. Ask the administrator to enable HTTPS.",
+        "ios-install": "On iPhone: Share → Add to Home Screen, open the Planner from there and turn it on here.",
+        "denied": "The browser blocked notifications for this site. Allow them in the browser settings.",
+        "unsupported": "This browser cannot receive notifications."
+      }
+    },
+    "timeTitle": "Time",
+    "timeHint": "Deadlines and digests follow it.",
+    "nowAt": "It is {{time}} for you now",
+    "security": "Security",
+    "twofaMandatory": "Mandatory for your role",
+    "enable2fa": "Turn on 2FA",
+    "disable2fa": "Turn off"
+  },
+  "tg": {
+    "howTitle": "How to connect a bot",
+    "step1": "In Telegram open",
+    "step2": "Send /newbot and pick a name (e.g. \"Company Planner\").",
+    "step3": "Pick a username for the bot; it must end with bot.",
+    "step4": "BotFather sends a token like 123456789:AAH… Paste it here.",
+    "token": "Bot token",
+    "connect": "Connect",
+    "saved": "The bot is connected. People can link Telegram in their profile.",
+    "connected": "Bot @{{name}} is connected",
+    "tokenMasked": "Token {{token}} is stored on this server only.",
+    "on": "Running",
+    "check": "Check connection",
+    "checkOk": "Telegram answers, all good.",
+    "replace": "Replace token",
+    "remove": "Disconnect bot",
+    "removed": "The bot is disconnected.",
+    "groupHint": "In a work chat: add @{{name}} to the group and people can write /stiker text.",
+    "privacy": "Messages go directly between this server and Telegram. The project author never sees them.",
+    "adminUnlink": "Unlink Telegram {{name}}",
+    "bad_token": "Telegram rejected the token. Copy it from BotFather in full.",
+    "unreachable": "Cannot reach Telegram. Check the server internet access.",
+    "not_configured": "The bot is not connected yet."
+  },
+  "stats": {
+    "period": "Period",
+    "p": {
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "quarter": "Quarter",
+      "custom": "Custom"
+    },
+    "from": "From",
+    "to": "To",
+    "excel": "Download Excel",
+    "scope": {
+      "received": "Stickers addressed to you",
+      "sent": "Stickers you sent"
+    },
+    "total": "Total",
+    "totalNote": "in the period",
+    "resolved": "Resolved",
+    "resolvedNote": "answered",
+    "active": "In progress",
+    "activeNote": "still on the board",
+    "overdue": "Overdue",
+    "overdueNote": "past the deadline",
+    "board": "On the board now",
+    "boardHint": "regardless of period",
+    "speed": "Speed",
+    "speedHint": "on average",
+    "toTriage": "To triage",
+    "toResolve": "Triage to decision",
+    "toClose": "To author confirmation",
+    "match": "The author's estimate matched the decision in {{same}} of {{all}}",
+    "noJudged": "No triaged stickers yet.",
+    "people": {
+      "received": "From whom",
+      "sent": "To whom"
+    },
+    "person": {
+      "received": "Person",
+      "sent": "Recipient"
+    },
+    "count": {
+      "received": "Sent",
+      "sent": "Received"
+    },
+    "response": "Response time",
+    "mismatch": "Mismatches",
+    "empty": "No stickers in this period.",
+    "e2e_one": "People in the department sent each other {{count}} sticker, average response {{time}}. You do not see their content.",
+    "e2e_other": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "e2e_few": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "e2e_many": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "min": "{{n}} min",
+    "hours": "{{n}} h",
+    "days": "{{n}} d"
+  },
+  "ch": {
+    "tab": "Updates",
+    "stable": "Main version (stable)",
+    "beta": "Test version (beta)",
+    "onBeta": "People on beta",
+    "state": {
+      "up": "running",
+      "down": "not responding",
+      "off": "not started"
+    },
+    "allBeta": "Move everyone to beta",
+    "allStable": "Move everyone back to stable",
+    "hint": "Moves and rollbacks apply immediately, no downtime: the next request goes to the chosen version.",
+    "hintOff": "The test version is not running. How to start it: docs/updates.md. Everyone is on the main version.",
+    "inherit": "as department",
+    "usersHint": "a personal choice overrides the department"
+  },
+  "telegram": {
+    "bad_token": "Telegram rejected the token. Copy it from BotFather in full.",
+    "unreachable": "Cannot reach Telegram. Check the server internet access.",
+    "not_configured": "The bot is not connected yet."
+  },
+  "push": {
+    "bad_subscription": "The browser sent an incomplete subscription. Try again."
+  },
+  "feed": {
+    "title": "Notifications",
+    "readAll": "Mark all read",
+    "empty": "Nothing new yet."
+  },
+  "footer": {
+    "author": "Project author"
+  },
+  "error": {
+    "generic": "Something went wrong. Please try again.",
+    "validation": "Please check the fields.",
+    "mismatch": "Passwords do not match"
+  },
+  "auth": {
+    "invalid": "Wrong login or password",
+    "locked": "Too many attempts. Sign-in is temporarily locked, try again in 15 minutes.",
+    "bad_code": "Wrong code",
+    "required": "Please sign in",
+    "totp_mandatory": "2FA is mandatory for your role"
+  },
+  "password": {
+    "too_short": "Password is too short (at least 10 characters)",
+    "too_simple": "Use at least three kinds: lowercase, uppercase, digits, symbols",
+    "contains_login": "Password must not contain the login",
+    "hint": "At least 10 characters, three kinds of: lowercase, uppercase, digits, symbols."
+  },
+  "user": {
+    "not_found": "User not found",
+    "login_taken": "This login is already taken",
+    "cannot_demote_self": "You cannot remove your own admin rights or disable yourself"
+  },
+  "department": {
+    "name_taken": "A department with this name already exists",
+    "manager_must_be_manager": "Only a user with the Manager role can manage a department"
+  },
+  "tunnel": {
+    "title": "Backup route via WireGuard",
+    "lead": "If this server cannot reach Telegram directly (for example in Russia), upload a WireGuard config: a .conf file or a .zip with one. Only requests to Telegram go through the tunnel; nothing else on the server changes.",
+    "upload": "Upload config",
+    "checkDirect": "Check connection to Telegram",
+    "check": "Check connection",
+    "replace": "Replace file",
+    "remove": "Remove",
+    "removed": "Config removed.",
+    "saved": "Config uploaded, tunnel started.",
+    "file": "WireGuard: {{name}}",
+    "details": "Server {{endpoint}} · tunnel address {{address}}",
+    "modeLabel": "When to use the tunnel",
+    "mode": {
+      "auto": "Backup",
+      "always": "Always",
+      "off": "Off"
+    },
+    "modeHint": {
+      "auto": "Direct first. If Telegram does not answer, the bot switches to WireGuard and tries direct again every 10 minutes.",
+      "always": "All requests to Telegram go through WireGuard only.",
+      "off": "The config is kept but not used."
+    },
+    "route": {
+      "direct": "Telegram directly",
+      "tunnel": "Via WireGuard"
+    },
+    "yes": "yes",
+    "no": "no",
+    "notSet": "not set up",
+    "checkResult": "Directly: {{direct}}. Via WireGuard: {{tunnel}}.",
+    "lastError": "Last error: {{error}}",
+    "noBinary": "This build has no wireproxy, the tunnel cannot start. Update the container.",
+    "keysHint": "Keys from the file stay on this server and are never shown on the page again.",
+    "bad_format": "This does not look like a WireGuard config: it needs [Interface] with PrivateKey and Address and [Peer] with PublicKey and Endpoint.",
+    "bad_zip": "The archive is damaged.",
+    "no_conf": "There is no .conf file in the archive.",
+    "many_conf": "The archive has several .conf files. Keep one, or upload the right .conf on its own.",
+    "too_big": "The file is too big for a WireGuard config.",
+    "amnezia": "This is an AmneziaWG config (it has Jc, Jmin, H1…). Plain WireGuard is needed; the Amnezia app can export one.",
+    "not_configured": "No config uploaded yet."
+  }
+}

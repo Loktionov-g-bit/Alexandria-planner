@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Архив</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@300;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#16191E}a:hover{color:#535D69}
+.ar{--bg:#E9ECF0;--dots:rgba(25,28,33,.10);--surface:#F8F9FB;--raised:#FFFFFF;--ink:#16191E;--muted:#535D69;--line:#D5DAE1;--btn:rgba(255,255,255,.62);--btnline:rgba(22,25,30,.15);--tape:rgba(255,255,255,.7);--paper:#FFFFFF;--late:#B42318;--ok:#2F7D4F;
+--q1:#F4B6A7;--q2:#B7DCC2;--q3:#F6D887;--q4:#C5D1E3;
+--shadow:0 1px 1px rgba(16,24,40,.07),0 10px 20px -10px rgba(16,24,40,.35);
+width:1440px;min-height:1060px;display:flex;background-color:var(--bg);background-image:radial-gradient(var(--dots) 1px,transparent 1.2px);background-size:22px 22px;color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:15px}
+.ar.dark{--bg:#0F1114;--dots:rgba(232,236,241,.07);--surface:#16191D;--raised:#1C2025;--ink:#E8ECF1;--muted:#9AA3AE;--line:#272C33;--btn:rgba(255,255,255,.06);--btnline:rgba(232,236,241,.16);--tape:rgba(255,255,255,.14);--paper:#262B33;--late:#FF9C8C;--ok:#7FD1A0;
+--q1:#5E3530;--q2:#2B4A38;--q3:#5A4A1E;--q4:#2F3A4D;--shadow:0 1px 1px rgba(0,0,0,.45),0 12px 22px -10px rgba(0,0,0,.8)}
+.ct{flex:1;min-width:0;padding:30px 36px 40px;display:flex;flex-direction:column;gap:24px}
+.hd{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hd h1{margin:0;font-family:'Unbounded',sans-serif;font-weight:500;font-size:28px;letter-spacing:-.02em}
+.search{flex:1 1 320px;max-width:520px;display:flex;align-items:center;gap:8px;min-height:46px;padding:0 14px;box-sizing:border-box;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);color:var(--muted)}
+.search input{flex:1;border:0;outline:0;background:transparent;color:var(--ink);font:inherit}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:38px;padding:0 14px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.chip.on{background:var(--ink);color:var(--bg);box-shadow:none}
+.mo{display:flex;flex-direction:column;gap:18px}
+.mh{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.mh h2{margin:0;font-family:'Unbounded',sans-serif;font-weight:500;font-size:18px}
+.mh span{font-size:13px;color:var(--muted)}
+.grid{display:flex;flex-wrap:wrap;gap:24px 20px;padding:8px 4px}
+.st{position:relative;width:150px;height:150px;box-sizing:border-box;padding:15px 13px 11px;border:0;border-radius:2px 2px 4px 3px;background:var(--tone);color:var(--ink);font:inherit;text-align:left;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);transform:rotate(var(--r));cursor:pointer;filter:saturate(.7)}
+.st::after{content:"";position:absolute;right:0;bottom:0;width:15px;height:15px;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.1) 50%)}
+.st small{font-size:10px;font-weight:600;letter-spacing:.07em;opacity:.7}
+.st strong{font-size:14px;line-height:1.27;font-weight:600}
+.st .ft{margin-top:auto;display:flex;align-items:center;gap:6px;font-size:11.5px}
+.av{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9px;font-weight:700}
+.stamp{position:absolute;right:8px;bottom:38px;padding:3px 7px;border:2px solid currentColor;border-radius:6px;font-family:'Unbounded',sans-serif;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transform:rotate(-9deg);opacity:.85}
+.stamp.ok{color:var(--ok)}.stamp.no{color:var(--late)}.stamp.mu{color:var(--muted)}
+.pile{position:relative;display:flex;align-items:center;gap:22px;width:max-content;padding:8px 4px;border:0;background:none;color:var(--ink);font:inherit;cursor:pointer;text-align:left}
+.pile .sheets{position:relative;width:150px;height:150px}
+.pile .sheets i{position:absolute;inset:0;border-radius:2px 2px 4px 3px;background:var(--tone);box-shadow:var(--shadow)}
+.pile b{display:block;font-family:'Unbounded',sans-serif;font-size:26px;font-weight:500}
+.pile span{font-size:13.5px;color:var(--muted)}
+.tp{position:absolute;top:-9px;left:50%;width:54px;height:18px;transform:translateX(-50%) rotate(-3deg);background:var(--tape);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+</style>
+</helmet>
+<div class="{{rootCls}}">
+<dc-import name="Side" dark="{{dark}}" active="archive" hint-size="248px,1060px"></dc-import>
+<main class="ct">
+<div class="hd">
+<h1>Архив</h1>
+<label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><input type="search" placeholder="Заголовок, текст или №" aria-label="Поиск по архиву"></label>
+</div>
+<div class="chips" role="group" aria-label="Итог">
+<button class="chip on" type="button" aria-pressed="true">Все</button>
+<button class="chip" type="button" aria-pressed="false">Выполнено</button>
+<button class="chip" type="button" aria-pressed="false">Согласовано</button>
+<button class="chip" type="button" aria-pressed="false">Отклонено</button>
+<button class="chip" type="button" aria-pressed="false">Отозвано</button>
+</div>
+
+<section class="mo" aria-label="Ноябрь 2026">
+<div class="mh"><h2>Ноябрь 2026</h2><span>5 стикеров</span></div>
+<div class="grid">
+<button type="button" class="st" style="--tone: var(--q2); --r: -1.5deg"><span class="tp" aria-hidden="true"></span><small>№12</small><strong>Заявка на обучение по переговорам</strong><span class="stamp ok">Согласовано</span><span class="ft"><span class="av" style="background: #2F9E6F">ИП</span>Иван П.</span></button>
+<button type="button" class="st" style="--tone: var(--q1); --r: 1deg; margin-top: 8px"><span class="tp" aria-hidden="true"></span><small>№9</small><strong>Подписать договор с «Вектором»</strong><span class="stamp ok">Выполнено</span><span class="ft"><span class="av" style="background: #7C5CD6">МК</span>Мария К.</span></button>
+<button type="button" class="st" style="--tone: var(--q4); --r: 2deg"><span class="tp" aria-hidden="true"></span><small>№7</small><strong>Заказать воду в офис</strong><span class="stamp no">Отклонено</span><span class="ft"><span class="av" style="background: #2F9E6F">ИП</span>Иван П.</span></button>
+<button type="button" class="st" style="--tone: var(--paper); --r: -2.5deg; margin-top: 4px"><span class="tp" aria-hidden="true"></span><small>№6</small><strong>Новый ноутбук: старый не тянет CRM</strong><span class="stamp mu">Отозван</span><span class="ft"><span class="av" style="background: #0E8FB8">ОС</span>Олег С.</span></button>
+<button type="button" class="st" style="--tone: var(--q3); --r: .6deg; margin-top: 10px"><span class="tp" aria-hidden="true"></span><small>№5</small><strong>Перенести планёрку на 10:30</strong><span class="stamp ok">К сведению</span><span class="ft"><span class="av" style="background: #0E8FB8">ОС</span>Олег С.</span></button>
+</div>
+</section>
+
+<section class="mo" aria-label="Октябрь 2026">
+<div class="mh"><h2>Октябрь 2026</h2><span>14 стикеров</span></div>
+<button type="button" class="pile" aria-label="Показать 14 стикеров за октябрь">
+<span class="sheets" aria-hidden="true"><i style="--tone: var(--q4); transform: rotate(6deg) translate(14px, 6px)"></i><i style="--tone: var(--q2); transform: rotate(-4deg) translate(7px, 2px)"></i><i style="--tone: var(--q1); transform: rotate(2deg)"></i></span>
+<span><b>14</b><span>стикеров, нажмите, чтобы разложить</span></span>
+</button>
+</section>
+
+<section class="mo" aria-label="Сентябрь 2026">
+<div class="mh"><h2>Сентябрь 2026</h2><span>9 стикеров</span></div>
+<button type="button" class="pile" aria-label="Показать 9 стикеров за сентябрь">
+<span class="sheets" aria-hidden="true"><i style="--tone: var(--q3); transform: rotate(-5deg) translate(12px, 4px)"></i><i style="--tone: var(--paper); transform: rotate(3deg) translate(5px, 1px)"></i><i style="--tone: var(--q2); transform: rotate(-1deg)"></i></span>
+<span><b>9</b><span>стикеров, нажмите, чтобы разложить</span></span>
+</button>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+const dark = !!this.props.dark;
+return { dark, rootCls: dark ? 'ar dark' : 'ar' };
+}
+}
+</script>
+</body>
+</html>

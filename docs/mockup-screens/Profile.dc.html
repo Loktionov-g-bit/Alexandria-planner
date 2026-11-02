@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Профиль</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@300;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#16191E}a:hover{color:#535D69}
+.pf{--bg:#E9ECF0;--dots:rgba(25,28,33,.10);--surface:#F8F9FB;--raised:#FFFFFF;--ink:#16191E;--muted:#535D69;--line:#D5DAE1;--btn:rgba(255,255,255,.62);--btnline:rgba(22,25,30,.15);--tape:rgba(255,255,255,.7);--paper:#FFFFFF;--late:#B42318;--ok:#2F7D4F;
+--q1:#F4B6A7;--q2:#B7DCC2;--q3:#F6D887;--q4:#C5D1E3;
+--shadow:0 1px 1px rgba(16,24,40,.07),0 10px 20px -10px rgba(16,24,40,.35);--lift:0 3px 6px rgba(16,24,40,.08),0 28px 40px -14px rgba(16,24,40,.42);
+width:1440px;min-height:1060px;display:flex;background-color:var(--bg);background-image:radial-gradient(var(--dots) 1px,transparent 1.2px);background-size:22px 22px;color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:15px}
+.pf.dark{--bg:#0F1114;--dots:rgba(232,236,241,.07);--surface:#16191D;--raised:#1C2025;--ink:#E8ECF1;--muted:#9AA3AE;--line:#272C33;--btn:rgba(255,255,255,.06);--btnline:rgba(232,236,241,.16);--tape:rgba(255,255,255,.14);--paper:#262B33;--late:#FF9C8C;--ok:#7FD1A0;
+--q1:#5E3530;--q2:#2B4A38;--q3:#5A4A1E;--q4:#2F3A4D;--shadow:0 1px 1px rgba(0,0,0,.45),0 12px 22px -10px rgba(0,0,0,.8);--lift:0 3px 6px rgba(0,0,0,.5),0 30px 44px -14px rgba(0,0,0,.9)}
+.ct{flex:1;min-width:0;padding:30px 36px 40px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:48px;align-items:start}
+.tag{position:relative;margin-top:24px;padding:36px 26px 26px;background:var(--paper);border-radius:3px 3px 6px 4px;box-shadow:var(--lift);transform:rotate(-1.2deg);display:flex;flex-direction:column;gap:14px}
+.tag .tp{position:absolute;top:-12px;left:50%;width:90px;height:24px;transform:translateX(-50%) rotate(-2deg);background:repeating-linear-gradient(90deg,rgba(80,185,145,.78) 0 4px,rgba(255,255,255,.55) 4px 9px);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tag .big{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:26px;font-weight:700;background:#7C5CD6}
+.tag h1{margin:0;font-family:'Unbounded',sans-serif;font-weight:500;font-size:22px;line-height:1.2}
+.tag dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.tag dt{color:var(--muted)}
+.tag dd{margin:0;font-weight:500}
+.edit{align-self:flex-start;min-height:38px;padding:0 14px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.auto{margin:0;font-size:13px;color:var(--muted);transform:rotate(-1.2deg)}
+.secs{display:flex;flex-direction:column}
+.sec{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;padding:26px 0;border-bottom:1px solid var(--line)}
+.sec:first-child{padding-top:6px}
+.sec h2{margin:0;font-size:16px;font-weight:600}
+.sec p.d{margin:6px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.themes{display:flex;gap:14px;flex-wrap:wrap}
+.th{display:flex;flex-direction:column;gap:8px;padding:0;border:0;background:none;color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;text-align:left}
+.mini{width:150px;height:96px;box-sizing:border-box;border-radius:12px;padding:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;box-shadow:inset 0 0 0 1px var(--line)}
+.mini i{border-radius:3px}
+.th.on .mini{box-shadow:inset 0 0 0 2px var(--ink),0 0 0 4px color-mix(in srgb,var(--ink) 12%,transparent)}
+.seg{display:inline-flex;gap:2px;padding:3px;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{min-height:38px;padding:0 16px;border:0;border-radius:9px;background:transparent;color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+select{min-height:44px;padding:0 12px;border:0;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);font:inherit}
+.now{font-size:14px;color:var(--muted)}
+.sw{position:relative;width:46px;height:28px;border:0;border-radius:14px;background:var(--ink);cursor:pointer;padding:0}
+.sw::after{content:"";position:absolute;top:3px;left:21px;width:22px;height:22px;border-radius:50%;background:var(--bg)}
+.days{display:flex;gap:6px}
+.day{width:40px;height:40px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--muted);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.day.on{background:var(--q2);color:var(--ink);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--q2) 60%,var(--line))}
+.time{width:96px}
+.btn{min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--ink);color:var(--bg);box-shadow:none}
+.state{display:inline-flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.dot.ok{background:var(--ok)}
+.lines{display:flex;flex-direction:column;gap:16px}
+.line{display:flex;align-items:center;gap:14px}
+.line .w{flex:1;min-width:0}
+.line .w small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+</style>
+</helmet>
+<div class="{{rootCls}}">
+<dc-import name="Side" dark="{{dark}}" active="profile" hint-size="248px,1060px"></dc-import>
+<main class="ct">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="tag">
+<span class="tp" aria-hidden="true"></span>
+<span class="big" aria-hidden="true">МК</span>
+<h1>Мария Кузнецова</h1>
+<dl><dt>Роль</dt><dd>Сотрудник</dd><dt>Отдел</dt><dd>Отдел продаж</dd><dt>Логин</dt><dd>maria</dd><dt>Email</dt><dd>не указан</dd></dl>
+<button class="edit" type="button">Изменить имя и email</button>
+</div>
+<p class="auto">Настройки справа сохраняются сразу.</p>
+</div>
+
+<div class="secs">
+<section class="sec" aria-labelledby="h-look">
+<div><h2 id="h-look">Внешний вид</h2></div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<div class="themes" role="radiogroup" aria-label="Тема">
+<button class="th" type="button" role="radio" aria-checked="false"><span class="mini" style="background: #E9ECF0"><i style="background: #F4B6A7"></i><i style="background: #B7DCC2"></i><i style="background: #F6D887"></i><i style="background: #C5D1E3"></i></span>Светлая</button>
+<button class="th" type="button" role="radio" aria-checked="false"><span class="mini" style="background: #0F1114"><i style="background: #5E3530"></i><i style="background: #2B4A38"></i><i style="background: #5A4A1E"></i><i style="background: #2F3A4D"></i></span>Тёмная</button>
+<button class="th on" type="button" role="radio" aria-checked="true"><span class="mini" style="background: linear-gradient(135deg, #E9ECF0 50%, #0F1114 50%)"><i style="background: #F4B6A7"></i><i style="background: #B7DCC2"></i><i style="background: #5A4A1E"></i><i style="background: #2F3A4D"></i></span>Как в системе</button>
+</div>
+<div class="row"><span style="font-size: 14px; font-weight: 600; width: 80px">Язык</span><div class="seg" role="group" aria-label="Язык"><button type="button" class="on" aria-pressed="true">Русский</button><button type="button" aria-pressed="false">English</button></div></div>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-time">
+<div><h2 id="h-time">Время</h2><p class="d">По нему приходят сводки и считаются сроки.</p></div>
+<div class="row"><label for="tz" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Часовой пояс</label><select id="tz"><option>Москва (UTC+3)</option></select><span class="now">У вас сейчас 00:44</span></div>
+</section>
+
+<section class="sec" aria-labelledby="h-morning">
+<div><h2 id="h-morning">Утренняя сводка</h2><p class="d">Что ждёт сегодня: новые стикеры, сроки, вопросы к вам.</p></div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div class="row"><button class="sw" type="button" role="switch" aria-checked="true" aria-label="Утренняя сводка"></button><span style="font-weight: 600">Присылать в</span><label for="mt" style="position: absolute; width: 1px; height: 1px; overflow: hidden">Время сводки</label><select id="mt" class="time"><option>08:00</option></select></div>
+<div class="days" role="group" aria-label="Дни"><button class="day on" type="button" aria-pressed="true">Пн</button><button class="day on" type="button" aria-pressed="true">Вт</button><button class="day on" type="button" aria-pressed="true">Ср</button><button class="day on" type="button" aria-pressed="true">Чт</button><button class="day on" type="button" aria-pressed="true">Пт</button><button class="day" type="button" aria-pressed="false">Сб</button><button class="day" type="button" aria-pressed="false">Вс</button></div>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="h-tg">
+<div><h2 id="h-tg">Telegram</h2><p class="d">Уведомления и ответы на стикеры прямо в мессенджере.</p></div>
+<div class="row"><span class="state"><span class="dot" aria-hidden="true"></span>Не привязан</span><button class="btn pri" type="button">Привязать</button></div>
+</section>
+
+<section class="sec" aria-labelledby="h-sec" style="border-bottom: 0">
+<div><h2 id="h-sec">Безопасность</h2></div>
+<div class="lines">
+<div class="line"><div class="w"><b>Пароль</b><small>Менялся 31 октября</small></div><button class="btn" type="button">Сменить</button></div>
+<div class="line"><div class="w"><b>Вход с кодом из приложения</b><small>Google Authenticator, Яндекс Ключ и похожие</small></div><span class="state"><span class="dot" aria-hidden="true"></span>Выключен</span><button class="btn" type="button">Включить</button></div>
+<div class="line"><div class="w"><b>Где вы вошли</b><small>Этот браузер · Chrome, Linux</small></div><button class="btn" type="button">Выйти на других устройствах</button></div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+const dark = !!this.props.dark;
+return { dark, rootCls: dark ? 'pf dark' : 'pf' };
+}
+}
+</script>
+</body>
+</html>

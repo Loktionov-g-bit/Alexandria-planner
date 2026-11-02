@@ -1,0 +1,613 @@
+{
+  "app": {
+    "name": "Planer",
+    "brand": "Alexandria",
+    "beta": "Testversion"
+  },
+  "nav": {
+    "board": "Board",
+    "sent": "Gesendet",
+    "archive": "Archiv",
+    "stats": "Statistik",
+    "admin": "Verwaltung",
+    "profile": "Profil",
+    "logout": "Abmelden"
+  },
+  "setup": {
+    "title": "Erster Start",
+    "lead": "Legen Sie den Administrator an. Es gibt keine Standardpasswörter – dieses Konto ist der einzige Weg hinein.",
+    "department": "Name der Abteilung",
+    "login": "Login",
+    "name": "Ihr Name",
+    "password": "Passwort",
+    "password2": "Passwort wiederholen",
+    "isManager": "Ich leite diese Abteilung auch",
+    "submit": "Anlegen und weiter"
+  },
+  "login": {
+    "title": "Anmeldung",
+    "login": "Login",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "forgot": "Passwort vergessen? Der Administrator Ihres Unternehmens setzt es zurück."
+  },
+  "authDesk": {
+    "kinds": [
+      "Einplanen",
+      "Delegieren",
+      "Sofort erledigen",
+      "Nicht tun",
+      "Neu"
+    ],
+    "deco": [
+      "Monatlicher Verkaufsbericht",
+      "Preisliste auf der Website aktualisieren",
+      "Vertrag mit dem Lieferanten unterschreiben",
+      "Wasser fürs Büro bestellen",
+      "Urlaub genehmigen"
+    ]
+  },
+  "totp": {
+    "title": "Bestätigungscode",
+    "lead": "Geben Sie die 6 Ziffern aus der Authenticator-App ein.",
+    "code": "Code",
+    "submit": "Bestätigen",
+    "setupTitle": "Zwei-Faktor-Schutz einschalten",
+    "setupLead": "Für Führungskräfte und Administratoren ist er Pflicht. Scannen Sie den QR-Code mit Google Authenticator, Microsoft Authenticator oder einer ähnlichen App und geben Sie den Code ein.",
+    "manual": "Oder den Schlüssel manuell eingeben",
+    "enable": "Einschalten",
+    "cancel": "Abmelden"
+  },
+  "board": {
+    "hello": {
+      "morning": "Guten Morgen",
+      "day": "Guten Tag",
+      "evening": "Guten Abend",
+      "night": "Gute Nacht"
+    },
+    "lead": {
+      "morning": "Das steht heute an.",
+      "day": "So läuft es gerade.",
+      "evening": "Der Tag im Überblick.",
+      "night": "Der vergangene Tag im Überblick."
+    },
+    "ring": "{{done}} von {{total}} sortiert",
+    "ringSub": "auf Ihrem Board",
+    "search": "Sticker durchsuchen",
+    "create": "Sticker erstellen",
+    "kpi": {
+      "inbox": "Eingang",
+      "inboxNote": "warten auf Sortierung",
+      "doNote": "dringend und wichtig",
+      "overdue": "Überfällig",
+      "overdueNote": "Frist abgelaufen",
+      "waitingMe": "Warten auf Ihre Antwort",
+      "waitingMeNote": "Rückfragen zu Ihren Stickern"
+    },
+    "inbox": "Eingang",
+    "inboxHint": "noch nicht sortiert: Sticker in einen Quadranten ziehen oder öffnen",
+    "inboxEmpty": "Eingang ist leer. Durchatmen.",
+    "matrix": "Eisenhower-Matrix",
+    "axis": {
+      "urgent": "Dringend",
+      "notUrgent": "Nicht dringend",
+      "important": "Wichtig",
+      "notImportant": "Nicht wichtig"
+    },
+    "more": "weitere Sticker",
+    "collapse": "Einklappen",
+    "zoneEmpty": "Leer. Ziehen Sie einen Sticker hierher."
+  },
+  "quadrant": {
+    "do": "Sofort erledigen",
+    "plan": "Einplanen",
+    "delegate": "Delegieren",
+    "drop": "Nicht tun",
+    "short": {
+      "do": "Dringend · wichtig",
+      "plan": "Wichtig",
+      "delegate": "Dringend",
+      "drop": "Nicht dringend · nicht wichtig"
+    },
+    "verb": {
+      "do": "dringend und wichtig",
+      "plan": "wichtig, nicht dringend",
+      "delegate": "dringend, nicht wichtig",
+      "drop": "nicht dringend, nicht wichtig"
+    }
+  },
+  "status": {
+    "new": "Neu",
+    "triaged": "Sortiert",
+    "in_progress": "In Arbeit",
+    "needs_info": "Rückfrage offen",
+    "delegated": "Delegiert",
+    "resolved": "Entschieden",
+    "closed": "Geschlossen",
+    "snoozed": "Zurückgestellt",
+    "rejected": "Abgelehnt",
+    "withdrawn": "Zurückgezogen"
+  },
+  "outcome": {
+    "approved": "Genehmigt",
+    "declined": "Abgelehnt",
+    "done": "Erledigt",
+    "fyi": "Zur Kenntnis"
+  },
+  "action": {
+    "start": "In Arbeit nehmen",
+    "resolve": "Entscheiden",
+    "ask": "Nachfragen",
+    "delegate": "Delegieren",
+    "snooze": "Zurückstellen",
+    "reject": "Ablehnen",
+    "rework": "Zur Nacharbeit",
+    "wake": "Zurück aufs Board",
+    "answer": "Antworten",
+    "report": "Bericht abgeben",
+    "confirm": "Erhalt bestätigen",
+    "reopen": "Wieder öffnen",
+    "withdraw": "Zurückziehen",
+    "share": "Freigeben",
+    "done": "Fertig"
+  },
+  "commentKind": {
+    "comment": "Kommentar",
+    "question": "Frage",
+    "answer": "Antwort",
+    "report": "Bericht",
+    "resolution": "Entscheidung"
+  },
+  "sticker": {
+    "forMe": "Für mich",
+    "personal": "Persönlicher Sticker",
+    "delegatedToMe": "Mir delegiert",
+    "authorThought": "Autor",
+    "no_recipient": "Kein Empfänger gewählt: Ihre Abteilung hat keine Leitung. Wählen Sie den Empfänger selbst.",
+    "self_recipient": "Sie können sich keinen Sticker schicken. Wählen Sie „Für mich (persönlicher Sticker)“.",
+    "text_required": "Bitte Text eingeben.",
+    "action_not_allowed": "Diese Aktion ist gerade nicht möglich. Laden Sie die Seite neu.",
+    "bad_delegate": "Ein Sticker kann nicht an Sie selbst oder den Autor delegiert werden.",
+    "outcome_required": "Wählen Sie ein Ergebnis.",
+    "snooze_date": "Wählen Sie ein Datum nach heute.",
+    "bad_date": "Ungültiges Datum.",
+    "not_found": "Sticker nicht gefunden oder kein Zugriff.",
+    "not_on_board": "Dieser Sticker ist nicht auf Ihrem Board."
+  },
+  "sheet": {
+    "shareWith": "Freigeben für",
+    "delegateTo": "Delegieren an",
+    "outcome": "Ergebnis",
+    "tomorrow": "Bis morgen",
+    "inWeek": "Eine Woche",
+    "date": "Datum",
+    "prompt": {
+      "ask": "Was möchten Sie vom Autor wissen",
+      "answer": "Ihre Antwort",
+      "report": "Was wurde erledigt",
+      "rework": "Was nachbessern",
+      "reject": "Grund der Ablehnung",
+      "reopen": "Warum wieder öffnen",
+      "delegate": "Hinweis für die ausführende Person (optional)",
+      "resolve": "Antwort an den Autor"
+    },
+    "comment": "Kommentar",
+    "write": "Schreiben…",
+    "send": "Senden",
+    "attach": "Datei anhängen",
+    "notFound": "Sticker nicht gefunden oder Sie haben keinen Zugriff.",
+    "edit": "Bearbeiten",
+    "rejected": "Grund der Ablehnung",
+    "due": "Frist",
+    "escalated": "Wegen der Frist dringend geworden",
+    "progress": "Verlauf",
+    "quadrant": "Quadrant",
+    "authorEstimate": "Einschätzung des Autors",
+    "decision": "Entscheidung der Leitung",
+    "notTriaged": "Noch nicht sortiert",
+    "delegateBoard": "Bei {{name}}",
+    "deadline": "Frist",
+    "noDeadline": "Frist entfernen",
+    "noDeadlineSet": "Ohne Frist",
+    "snoozedUntil": "Zurückgestellt bis",
+    "actions": "Aktionen",
+    "history": "Änderungsprotokoll",
+    "system": "System"
+  },
+  "history": {
+    "created": "Sticker erstellt",
+    "status": "Status: {{status}}",
+    "quadrant": "Quadrant: {{q}}",
+    "deadline": "Frist: {{date}}",
+    "deadlineRemoved": "Frist entfernt",
+    "escalated": "Frist naht: Sticker wurde dringend",
+    "report": "Bericht der ausführenden Person",
+    "rework": "Zur Nacharbeit zurückgegeben",
+    "share": "Freigegeben",
+    "edited": "Text geändert",
+    "attachment": "Datei hinzugefügt",
+    "delegate_quadrant": "Ausführende Person hat den Sticker verschoben"
+  },
+  "compose": {
+    "heading": "Neuer Sticker",
+    "to": "An",
+    "managers": "Leitung",
+    "myManager": "meine Führungskraft",
+    "colleagues": "Kollegen",
+    "toMe": "Für mich (persönlicher Sticker)",
+    "toMeHint": "Einen persönlichen Sticker sehen nur Sie.",
+    "title": "Titel",
+    "titlePh": "Kurz: worum geht es",
+    "body": "Details",
+    "bodyPh": "Was wird gebraucht, bis wann, Einzelheiten",
+    "estimate": "Ihre Einschätzung",
+    "urgent": "Dringend",
+    "important": "Wichtig",
+    "estimateHint": "Den endgültigen Quadranten wählt der Empfänger.",
+    "deadline": "Frist (optional)",
+    "files": "Dateien",
+    "nFiles_one": "{{count}} Datei",
+    "nFiles_few": "{{count}} Dateien",
+    "nFiles_many": "{{count}} Dateien",
+    "nFiles_other": "{{count}} Dateien",
+    "send": "Senden"
+  },
+  "lists": {
+    "needAnswer": "Ihre Antwort wird gebraucht",
+    "answerPh": "Die Antwort geht an den Empfänger, der Sticker kehrt zu ihm zurück",
+    "got": "Gesehen",
+    "filter": "Filter",
+    "active": "Aktiv",
+    "all": "Alle",
+    "lane": {
+      "waiting": "Warten auf Sortierung",
+      "waitingHint": "noch nicht geöffnet",
+      "working": "In Arbeit",
+      "workingHint": "Farbe = Entscheidung des Empfängers",
+      "resolved": "Entschieden",
+      "resolvedHint": "bestätigen Sie, dass Sie es gesehen haben",
+      "finished": "Abgeschlossen",
+      "finishedHint": "geschlossen, abgelehnt, zurückgezogen"
+    },
+    "sentEmpty": "Sie haben noch keine Sticker gesendet.",
+    "shared": "Für Sie freigegeben",
+    "archiveSearch": "Titel, Text oder Nr.",
+    "archiveEmpty": "Das Archiv ist noch leer: hier landen geschlossene Sticker.",
+    "nothingFound": "Nichts gefunden.",
+    "filters": {
+      "all": "Alle",
+      "done": "Erledigt",
+      "approved": "Genehmigt",
+      "declined": "Abgelehnt",
+      "withdrawn": "Zurückgezogen"
+    },
+    "nStickers_one": "{{count}} Sticker",
+    "nStickers_few": "{{count}} Sticker",
+    "nStickers_many": "{{count}} Sticker",
+    "nStickers_other": "{{count}} Sticker",
+    "unfold": "Sticker aus {{month}} ausbreiten",
+    "pileHint": "klicken zum Ausbreiten"
+  },
+  "common": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "close": "Schließen"
+  },
+  "attachment": {
+    "too_large": "Die Datei ist größer als 25 MB.",
+    "not_found": "Datei nicht gefunden."
+  },
+  "comment": {
+    "not_found": "Kommentar nicht gefunden."
+  },
+  "admin": {
+    "users": "Benutzer",
+    "departments": "Abteilungen",
+    "logins": "Anmeldeprotokoll",
+    "addUser": "Benutzer hinzufügen",
+    "addDepartment": "Abteilung hinzufügen",
+    "save": "Speichern",
+    "create": "Anlegen",
+    "cancel": "Abbrechen",
+    "login": "Login",
+    "name": "Vor- und Nachname",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "loginHint": "Wird aus Vor- und Nachname gebildet, änderbar",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "department": "Abteilung",
+    "admin": "Administrator",
+    "active": "Aktiv",
+    "password": "Passwort",
+    "newPassword": "Neues Passwort (leer lassen, um es nicht zu ändern)",
+    "reset2fa": "2FA zurücksetzen",
+    "manager": "Leitung",
+    "noManager": "Nicht festgelegt",
+    "noDepartment": "Ohne Abteilung",
+    "twofa": "2FA",
+    "you": "Sie",
+    "when": "Wann",
+    "who": "Login",
+    "ip": "IP",
+    "device": "Gerät",
+    "result": "Ergebnis",
+    "edit": "Bearbeiten",
+    "blocked": "Deaktiviert"
+  },
+  "role": {
+    "employee": "Mitarbeiter",
+    "manager": "Führungskraft"
+  },
+  "reason": {
+    "ok": "Erfolgreich",
+    "password_ok": "Passwort richtig, Code ausstehend",
+    "bad_password": "Falsches Passwort",
+    "bad_totp": "Falscher 2FA-Code",
+    "locked": "Gesperrt",
+    "inactive": "Konto deaktiviert",
+    "totp_enabled": "2FA eingeschaltet"
+  },
+  "profile": {
+    "title": "Profil",
+    "name": "Name",
+    "email": "E-Mail",
+    "language": "Sprache",
+    "timezone": "Zeitzone",
+    "theme": "Design",
+    "themes": {
+      "system": "Wie im System",
+      "light": "Hell",
+      "dark": "Dunkel"
+    },
+    "save": "Speichern",
+    "saved": "Gespeichert",
+    "password": "Passwort ändern",
+    "oldPassword": "Aktuelles Passwort",
+    "newPassword": "Neues Passwort",
+    "change": "Passwort ändern",
+    "changed": "Passwort geändert, andere Sitzungen wurden beendet",
+    "twofa": "Zwei-Faktor-Schutz",
+    "twofaOn": "Ein",
+    "twofaOff": "Aus",
+    "twofaTitle": "Anmeldung mit Code aus einer App",
+    "twofaApps": "Google Authenticator, Microsoft Authenticator und ähnliche",
+    "role": "Rolle",
+    "noEmail": "nicht angegeben",
+    "editName": "Name und E-Mail ändern",
+    "passwordTitle": "Passwort",
+    "autosave": "Einstellungen werden sofort gespeichert.",
+    "look": "Darstellung",
+    "guide": "Benutzerhandbuch",
+    "guideHint": "Schritt für Schritt, mit Screenshots",
+    "tg": {
+      "noBot": "Der Administrator hat noch keinen Bot verbunden.",
+      "hint": "Benachrichtigungen mit Schaltflächen und Sticker direkt aus dem Messenger.",
+      "link": "Verknüpfen",
+      "again": "Bot erneut öffnen",
+      "waiting": "Öffnen Sie den Bot und tippen Sie auf „Start“:",
+      "linked": "Verknüpft mit {{name}}",
+      "notify": "Benachrichtigungen in Telegram",
+      "unlink": "Trennen"
+    },
+    "digest": {
+      "title": "Zusammenfassungen",
+      "hint": "Kommen in Telegram und im Browser, nach Ihrer Uhrzeit.",
+      "morning": "Morgenübersicht",
+      "morningHint": "Was heute ansteht: Eingang, Dringendes, Fristen, Fragen an Sie.",
+      "evening": "Tagesbilanz",
+      "eveningHint": "Um 18:00: was heute entschieden wurde und was offen ist.",
+      "time": "Uhrzeit",
+      "days": "Tage",
+      "skipEmpty": "Nicht senden, wenn alles sortiert ist"
+    },
+    "notify": {
+      "title": "Benachrichtigungen",
+      "hint": "Über neue Sticker, Rückfragen und Entscheidungen.",
+      "push": "Im Browser auf diesem Gerät",
+      "enable": "Einschalten",
+      "disable": "Ausschalten",
+      "test": "Testen",
+      "enabled": "Fertig: Benachrichtigungen kommen jetzt hierher.",
+      "testSent": "Testbenachrichtigung gesendet.",
+      "testFail": "Das Gerät hat die Benachrichtigung nicht angenommen. Aus- und wieder einschalten.",
+      "state": {
+        "on": "Kommen auf diesem Gerät an, auch wenn der Tab geschlossen ist.",
+        "off": "Derzeit aus.",
+        "insecure": "Funktioniert nur über eine sichere Adresse (https). Bitten Sie den Administrator, HTTPS einzuschalten.",
+        "ios-install": "Auf dem iPhone: „Teilen“ → „Zum Home-Bildschirm“, Planer vom Home-Bildschirm öffnen und hier einschalten.",
+        "denied": "Der Browser hat Benachrichtigungen für diese Seite blockiert. Erlauben Sie sie in den Browsereinstellungen.",
+        "unsupported": "Dieser Browser kann keine Benachrichtigungen empfangen."
+      }
+    },
+    "timeTitle": "Zeit",
+    "timeHint": "Danach richten sich Fristen und Zusammenfassungen.",
+    "nowAt": "Bei Ihnen ist es {{time}}",
+    "security": "Sicherheit",
+    "twofaMandatory": "Für Ihre Rolle Pflicht",
+    "enable2fa": "2FA einschalten",
+    "disable2fa": "Ausschalten"
+  },
+  "tg": {
+    "howTitle": "So verbinden Sie den Bot",
+    "step1": "Öffnen Sie in Telegram",
+    "step2": "Senden Sie /newbot und wählen Sie einen Namen (z. B. „Planer Firma“).",
+    "step3": "Wählen Sie einen Benutzernamen für den Bot, er muss auf bot enden.",
+    "step4": "BotFather schickt ein Token wie 123456789:AAH… Fügen Sie es hier ein.",
+    "token": "Bot-Token",
+    "connect": "Verbinden",
+    "saved": "Bot verbunden. Mitarbeiter können Telegram im Profil verknüpfen.",
+    "connected": "Bot @{{name}} verbunden",
+    "tokenMasked": "Das Token {{token}} wird nur auf diesem Server gespeichert.",
+    "on": "Aktiv",
+    "check": "Verbindung prüfen",
+    "checkOk": "Telegram antwortet, alles in Ordnung.",
+    "replace": "Token ersetzen",
+    "remove": "Bot trennen",
+    "removed": "Bot getrennt.",
+    "groupHint": "Im Team-Chat: Fügen Sie @{{name}} der Gruppe hinzu, dann können alle /stiker Text schreiben.",
+    "privacy": "Nachrichten laufen direkt zwischen diesem Server und Telegram. Der Projektautor sieht sie nicht.",
+    "adminUnlink": "Telegram von {{name}} trennen",
+    "bad_token": "Telegram hat das Token nicht akzeptiert. Kopieren Sie es vollständig aus BotFather.",
+    "unreachable": "Keine Verbindung zu Telegram. Prüfen Sie die Internetverbindung des Servers.",
+    "not_configured": "Der Bot ist noch nicht verbunden."
+  },
+  "stats": {
+    "period": "Zeitraum",
+    "p": {
+      "day": "Tag",
+      "week": "Woche",
+      "month": "Monat",
+      "quarter": "Quartal",
+      "custom": "Eigener"
+    },
+    "from": "Von",
+    "to": "Bis",
+    "excel": "Excel herunterladen",
+    "scope": {
+      "received": "Sticker an Sie",
+      "sent": "Ihre gesendeten Sticker"
+    },
+    "total": "Gesamt",
+    "totalNote": "im Zeitraum",
+    "resolved": "Entschieden",
+    "resolvedNote": "mit Antwort",
+    "active": "In Arbeit",
+    "activeNote": "noch auf dem Board",
+    "overdue": "Überfällig",
+    "overdueNote": "Frist abgelaufen",
+    "board": "Jetzt auf dem Board",
+    "boardHint": "unabhängig vom Zeitraum",
+    "speed": "Tempo",
+    "speedHint": "im Schnitt",
+    "toTriage": "Bis zur Sortierung",
+    "toResolve": "Von Sortierung bis Entscheidung",
+    "toClose": "Bis zur Bestätigung durch den Autor",
+    "match": "Die Einschätzung des Autors stimmte in {{same}} von {{all}} Fällen mit der Entscheidung überein",
+    "noJudged": "Noch keine sortierten Sticker.",
+    "people": {
+      "received": "Von wem",
+      "sent": "An wen"
+    },
+    "person": {
+      "received": "Mitarbeiter",
+      "sent": "Empfänger"
+    },
+    "count": {
+      "received": "Gesendet",
+      "sent": "Erhalten"
+    },
+    "response": "Antwortzeit",
+    "mismatch": "Abweichungen",
+    "empty": "Keine Sticker in diesem Zeitraum.",
+    "e2e_one": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_few": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_many": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_other": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "min": "{{n}} Min.",
+    "hours": "{{n}} Std.",
+    "days": "{{n}} T."
+  },
+  "ch": {
+    "tab": "Updates",
+    "stable": "Hauptversion (stable)",
+    "beta": "Testversion (beta)",
+    "onBeta": "Personen auf beta",
+    "state": {
+      "up": "läuft",
+      "down": "antwortet nicht",
+      "off": "nicht gestartet"
+    },
+    "allBeta": "Alle auf beta umstellen",
+    "allStable": "Alle zurück auf stable",
+    "hint": "Umstellen und Zurückrollen wirken sofort, ohne Ausfall: die nächste Anfrage geht an die gewählte Version.",
+    "hintOff": "Die Testversion läuft nicht. Wie man sie startet: docs/updates.md. Bis dahin arbeiten alle mit der Hauptversion.",
+    "inherit": "wie Abteilung",
+    "usersHint": "persönliche Wahl geht vor der Abteilung"
+  },
+  "telegram": {
+    "bad_token": "Telegram hat das Token nicht akzeptiert. Kopieren Sie es vollständig aus BotFather.",
+    "unreachable": "Keine Verbindung zu Telegram. Prüfen Sie die Internetverbindung des Servers.",
+    "not_configured": "Der Bot ist noch nicht verbunden."
+  },
+  "push": {
+    "bad_subscription": "Der Browser hat ein unvollständiges Abonnement gesendet. Bitte erneut versuchen."
+  },
+  "feed": {
+    "title": "Benachrichtigungen",
+    "readAll": "Alle gelesen",
+    "empty": "Noch nichts Neues."
+  },
+  "footer": {
+    "author": "Projektautor"
+  },
+  "error": {
+    "generic": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "validation": "Bitte prüfen Sie die Felder.",
+    "mismatch": "Passwörter stimmen nicht überein"
+  },
+  "auth": {
+    "invalid": "Login oder Passwort falsch",
+    "locked": "Zu viele Versuche. Die Anmeldung ist vorübergehend gesperrt, versuchen Sie es in 15 Minuten erneut.",
+    "bad_code": "Falscher Code",
+    "required": "Bitte anmelden",
+    "totp_mandatory": "Für Ihre Rolle ist 2FA Pflicht"
+  },
+  "password": {
+    "too_short": "Passwort zu kurz (mindestens 10 Zeichen)",
+    "too_simple": "Verwenden Sie mindestens drei Arten: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen",
+    "contains_login": "Das Passwort darf den Login nicht enthalten",
+    "hint": "Mindestens 10 Zeichen, drei Arten aus: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen."
+  },
+  "user": {
+    "not_found": "Benutzer nicht gefunden",
+    "login_taken": "Dieser Login ist bereits vergeben",
+    "cannot_demote_self": "Sie können sich nicht selbst die Administratorrechte entziehen oder sich deaktivieren"
+  },
+  "department": {
+    "name_taken": "Eine Abteilung mit diesem Namen gibt es schon",
+    "manager_must_be_manager": "Eine Abteilung kann nur ein Benutzer mit der Rolle „Führungskraft“ leiten"
+  },
+  "tunnel": {
+    "title": "Ersatzverbindung über WireGuard",
+    "lead": "Wenn dieser Server Telegram nicht direkt erreicht (zum Beispiel in Russland), laden Sie eine WireGuard-Konfiguration hoch: eine .conf-Datei oder ein .zip damit. Nur Anfragen an Telegram laufen durch den Tunnel, sonst ändert sich am Server nichts.",
+    "upload": "Konfiguration hochladen",
+    "checkDirect": "Verbindung zu Telegram prüfen",
+    "check": "Verbindung prüfen",
+    "replace": "Datei ersetzen",
+    "remove": "Entfernen",
+    "removed": "Konfiguration entfernt.",
+    "saved": "Konfiguration hochgeladen, Tunnel gestartet.",
+    "file": "WireGuard: {{name}}",
+    "details": "Server {{endpoint}} · Tunneladresse {{address}}",
+    "modeLabel": "Wann der Tunnel genutzt wird",
+    "mode": {
+      "auto": "Ersatz",
+      "always": "Immer",
+      "off": "Aus"
+    },
+    "modeHint": {
+      "auto": "Zuerst direkt. Antwortet Telegram nicht, wechselt der Bot zu WireGuard und versucht alle 10 Minuten wieder direkt.",
+      "always": "Alle Anfragen an Telegram laufen nur über WireGuard.",
+      "off": "Die Konfiguration bleibt gespeichert, wird aber nicht genutzt."
+    },
+    "route": {
+      "direct": "Telegram direkt",
+      "tunnel": "Über WireGuard"
+    },
+    "yes": "ja",
+    "no": "nein",
+    "notSet": "nicht eingerichtet",
+    "checkResult": "Direkt: {{direct}}. Über WireGuard: {{tunnel}}.",
+    "lastError": "Letzter Fehler: {{error}}",
+    "noBinary": "Diese Version enthält kein wireproxy, der Tunnel kann nicht starten. Aktualisieren Sie den Container.",
+    "keysHint": "Die Schlüssel aus der Datei bleiben auf diesem Server und werden nicht wieder angezeigt.",
+    "bad_format": "Das ist keine WireGuard-Konfiguration: Nötig sind [Interface] mit PrivateKey und Address und [Peer] mit PublicKey und Endpoint.",
+    "bad_zip": "Das Archiv ist beschädigt.",
+    "no_conf": "Im Archiv ist keine .conf-Datei.",
+    "many_conf": "Das Archiv enthält mehrere .conf-Dateien. Behalten Sie eine oder laden Sie die richtige .conf einzeln hoch.",
+    "too_big": "Die Datei ist zu groß für eine WireGuard-Konfiguration.",
+    "amnezia": "Das ist eine AmneziaWG-Konfiguration (mit Jc, Jmin, H1…). Nötig ist normales WireGuard; die Amnezia-App kann es exportieren.",
+    "not_configured": "Noch keine Konfiguration hochgeladen."
+  }
+}

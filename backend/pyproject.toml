@@ -1,0 +1,37 @@
+[project]
+name = "alexandria-planner"
+version = "0.1.0"
+description = "Alexandria Planner: sticky notes from employees to managers, sorted by the Eisenhower matrix"
+license = "MIT"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "sqlalchemy[asyncio]>=2.0.30",
+  "asyncpg>=0.29",
+  "alembic>=1.13",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "argon2-cffi>=23.1",
+  "pyotp>=2.9",
+  "python-multipart>=0.0.9",
+  "pywebpush>=2.5.0",
+  "openpyxl>=3.1.5",
+  "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "aiosqlite>=0.20"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

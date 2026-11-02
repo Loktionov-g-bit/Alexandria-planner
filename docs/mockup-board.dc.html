@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Доска руководителя</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@300;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2F5BD3}a:hover{color:#1E3F99}
+.app{--bg:#E9ECF0;--dots:rgba(25,28,33,.10);--surface:#F8F9FB;--raised:#FFFFFF;--ink:#16191E;--muted:#535D69;--line:#D5DAE1;--late:#B42318;--btn:rgba(255,255,255,.62);--btnline:rgba(22,25,30,.15);--tape:rgba(255,255,255,.62);
+--q1:#F4B6A7;--q2:#B7DCC2;--q3:#F6D887;--q4:#C5D1E3;--paper:#FFFFFF;
+--shadow:0 1px 1px rgba(16,24,40,.07),0 10px 20px -10px rgba(16,24,40,.35);--lift:0 3px 6px rgba(16,24,40,.08),0 28px 40px -14px rgba(16,24,40,.42);
+--glow:rgba(255,255,255,.55);
+min-height:100vh;background-color:var(--bg);background-image:radial-gradient(1100px 520px at 88% -8%,var(--glow),transparent 62%),radial-gradient(var(--dots) 1px,transparent 1.2px);background-size:auto,22px 22px;color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:15px;transition:background-color .3s,color .3s}
+.app.dark{--bg:#0F1114;--dots:rgba(232,236,241,.07);--surface:#16191D;--raised:#1C2025;--ink:#E8ECF1;--muted:#9AA3AE;--line:#272C33;--late:#FF9C8C;--btn:rgba(255,255,255,.06);--btnline:rgba(232,236,241,.16);--tape:rgba(255,255,255,.13);
+--q1:#5E3530;--q2:#2B4A38;--q3:#5A4A1E;--q4:#2F3A4D;--paper:#262B33;
+--shadow:0 1px 1px rgba(0,0,0,.45),0 12px 22px -10px rgba(0,0,0,.8);--lift:0 3px 6px rgba(0,0,0,.5),0 30px 44px -14px rgba(0,0,0,.9)}
+.display{font-family:'Unbounded','Onest',sans-serif}
+.app.p-morning{--bg:#E3EBF5;--dots:rgba(36,72,128,.11);--glow:rgba(255,224,130,.5)}
+.app.p-day{--glow:rgba(255,255,255,.65)}
+.app.p-evening{--bg:#E9E7F3;--dots:rgba(70,50,130,.10);--glow:rgba(176,148,255,.34)}
+.app.p-night{--bg:#E1E5EF;--dots:rgba(30,50,110,.11);--glow:rgba(110,140,240,.24)}
+.app.dark.p-morning{--bg:#0E1318;--glow:rgba(255,206,110,.09)}
+.app.dark.p-day{--bg:#0F1114;--glow:rgba(255,255,255,.04)}
+.app.dark.p-evening{--bg:#121019;--glow:rgba(160,120,255,.13)}
+.app.dark.p-night{--bg:#0B0D13;--glow:rgba(100,130,255,.13)}
+.greet{display:flex;align-items:center;gap:16px}
+.sky{flex:none;width:60px;height:60px;display:grid;place-items:center;border-radius:20px;background:var(--raised);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line),0 8px 18px -10px rgba(16,24,40,.35)}
+.sky svg{animation:skyin .7s cubic-bezier(.2,1.3,.4,1)}
+@keyframes skyin{from{opacity:0;transform:translateY(10px) rotate(-12deg) scale(.8)}to{opacity:1;transform:none}}
+.ring{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 16px 6px 8px;border-radius:16px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line)}
+.ring b{display:block;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.ring small{display:block;font-size:12.5px;color:var(--muted)}
+.ring-bg{stroke:var(--line)}
+.ring-v{stroke:var(--ink);transition:stroke-dasharray .6s cubic-bezier(.2,.8,.2,1)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin:2px 0 14px;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.wd{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;font-size:10.5px;line-height:1;color:var(--muted)}
+.wd b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;font-size:13px;line-height:1;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.wd i{display:block;height:3px;border-radius:2px;background:var(--ink);opacity:.3}
+.wd.off b{color:var(--muted);font-weight:500}
+.wd.now{color:var(--ink);font-weight:600}
+.wd.now b{background:color-mix(in srgb,var(--ink) 7%,transparent);color:var(--ink);font-weight:700;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink) 28%,transparent)}
+.wd.now i{opacity:.6}
+.qicon{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:var(--tone);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(0,0,0,.08),0 4px 10px -6px rgba(16,24,40,.35)}
+.zt h2{margin:0;font-size:16px;font-weight:600}
+.zt .verb{margin-top:3px}
+.count.bump{animation:bump .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes bump{40%{transform:scale(1.4)}100%{transform:scale(1)}}
+.slot{flex:none;width:176px;height:176px;box-sizing:border-box;border-radius:6px;border:2px dashed color-mix(in srgb,var(--ink) 30%,transparent);background:color-mix(in srgb,var(--tone) 35%,transparent);animation:slotin .25s ease-out}
+@keyframes slotin{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.zempty{margin:22px 4px;color:var(--muted);font-size:14px}
+.empty.done{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink)}
+.empty.done path{stroke-dasharray:30;stroke-dashoffset:30;animation:draw .5s .15s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.mockbar{display:flex;flex-wrap:wrap;gap:8px 12px;margin-bottom:12px}
+.mockbar .seg{margin-bottom:0}
+.zone.compact .stickers{gap:20px 16px}
+.zone.compact .sticker{width:142px;height:142px;padding:15px 12px 10px;gap:6px}
+.zone.compact .s-title{font-size:14px}
+.zone.compact .s-top{font-size:9.5px}
+.zone.compact .slot{width:142px;height:142px}
+.more{position:relative;flex:none;width:142px;height:142px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:0;border-radius:3px;background:var(--tone);color:var(--ink);font:inherit;cursor:pointer;box-shadow:5px 5px 0 -1px color-mix(in srgb,var(--tone) 70%,var(--surface)),10px 10px 0 -2px color-mix(in srgb,var(--tone) 45%,var(--surface)),var(--shadow);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.more:hover{transform:translateY(-4px)}
+.more b{font-family:'Unbounded',sans-serif;font-size:30px;font-weight:500;letter-spacing:-.03em}
+.more span{font-size:13px;font-weight:500;opacity:.8}
+.collapse{flex-basis:100%;align-self:flex-start;min-height:40px;padding:0 14px;border:0;border-radius:10px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;max-width:max-content}
+.shell{display:flex;flex-wrap:wrap;min-height:100vh}
+.side{flex:1 1 240px;max-width:100%;box-sizing:border-box;padding:22px 18px;display:flex;flex-direction:column;gap:22px;background:var(--surface);border-right:1px solid var(--line)}
+.content{flex:999 1 620px;min-width:0;box-sizing:border-box;padding:26px 30px 40px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 6px}
+.brand b{display:block;font-size:15px;letter-spacing:-.01em}
+.brand small{display:block;font-size:12px;color:var(--muted)}
+.nav{display:flex;flex-direction:column;gap:2px}
+.navi{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border:0;border-radius:12px;background:transparent;color:var(--muted);font:inherit;font-weight:500;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.navi:hover{background:var(--btn);color:var(--ink)}
+.navi.on{background:var(--raised);color:var(--ink);box-shadow:0 1px 2px rgba(16,24,40,.08),inset 0 0 0 1px var(--line)}
+.navi .n{margin-left:auto;font-size:12px;font-weight:600;color:var(--muted)}
+.today{border-radius:16px;padding:16px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line)}
+.today h3{margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.today .d{margin:0 0 12px;font-weight:600}
+.trow{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:14px}
+.trow i{width:8px;height:8px;border-radius:50%;background:var(--ink);opacity:.35}
+.trow b{margin-left:auto;font-variant-numeric:tabular-nums}
+.trow.late i{background:var(--late);opacity:1}
+.trow.late b{color:var(--late)}
+.side-foot{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px 6px 0;border-top:1px solid var(--line)}
+.side-foot .who{flex:1;min-width:0;font-size:14px;font-weight:600}
+.side-foot .who small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.iconbtn{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:0;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);cursor:pointer}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px 20px;margin-bottom:24px}
+.head h1{margin:0;font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.1}
+.head p{margin:6px 0 0;color:var(--muted)}
+.spacer{flex:1}
+.seg{display:inline-flex;align-items:center;gap:2px;margin-bottom:12px;padding:3px;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);font-size:12.5px}
+.seg small{padding:0 8px;color:var(--muted);font-size:12px}
+.seg button{min-height:30px;padding:0 11px;border:0;border-radius:9px;background:transparent;color:var(--muted);font:inherit;font-weight:500;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.search{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);color:var(--muted);min-width:220px}
+.search input{border:0;outline:0;background:transparent;color:var(--ink);font:inherit;width:100%}
+.create{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px 0 14px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font:inherit;font-weight:600;cursor:pointer;box-shadow:0 8px 18px -8px rgba(16,24,40,.6);transition:transform .15s,box-shadow .15s}
+.create:hover{transform:translateY(-1px);box-shadow:0 12px 22px -8px rgba(16,24,40,.6)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:22px}
+.kpi{position:relative;overflow:hidden;border-radius:16px;padding:14px 16px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);animation:kin .35s ease-out}
+@keyframes kin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kpi small{display:block;font-size:12.5px;color:var(--muted);font-weight:500}
+.kpi b{display:block;margin-top:6px;font-size:26px;font-weight:500;letter-spacing:-.02em}
+.kpi b.late{color:var(--late)}
+.kpi em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.tray{position:relative;border-radius:20px;padding:16px 20px 10px;margin-bottom:22px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s,background .2s}
+.tray.over{box-shadow:inset 0 0 0 2px var(--ink)}
+.sec{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sec h2{margin:0;font-size:16px;font-weight:600}
+.sec span.m{color:var(--muted);font-size:13px}
+.count{min-width:24px;height:24px;padding:0 8px;box-sizing:border-box;border-radius:12px;background:var(--ink);color:var(--bg);font-size:12px;font-weight:600;display:inline-grid;place-items:center}
+.pile{display:flex;align-items:flex-start;overflow-x:auto;padding:18px 8px 22px;min-height:160px}
+.pile .sticker{margin-right:-44px;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,margin .35s cubic-bezier(.2,.8,.2,1),opacity .2s}
+.pile:hover .sticker{margin-right:18px}
+.pile .sticker:hover{z-index:2}
+.empty{color:var(--muted);font-size:14px;align-self:center;margin:0 0 0 4px}
+.matrix{display:grid;grid-template-columns:30px minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto;grid-template-areas:". tu tn" "li q1 q2" "ln q3 q4";gap:12px}
+.ax{display:flex;align-items:center;justify-content:center;gap:10px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ax::before,.ax::after{content:"";flex:1;height:1px;background:var(--line)}
+.ax.v{writing-mode:vertical-rl;transform:rotate(180deg)}
+.ax.v::before,.ax.v::after{width:1px;height:auto}
+.a-tu{grid-area:tu}.a-tn{grid-area:tn}.a-li{grid-area:li}.a-ln{grid-area:ln}
+.p-q1{grid-area:q1}.p-q2{grid-area:q2}.p-q3{grid-area:q3}.p-q4{grid-area:q4}
+.zone{position:relative;overflow:hidden;min-height:330px;padding:18px 20px 26px;border-radius:20px;background:color-mix(in srgb,var(--tone) 16%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tone) 45%,var(--line));transition:box-shadow .2s,background .2s}
+.zone.over{background:color-mix(in srgb,var(--tone) 30%,var(--surface));box-shadow:inset 0 0 0 2px var(--ink)}
+.num{position:absolute;right:16px;top:2px;font-family:'Unbounded',sans-serif;font-size:76px;font-weight:300;line-height:1;letter-spacing:-.04em;color:var(--ink);opacity:.07;pointer-events:none}
+.zone .sec{position:relative}
+.dot{width:12px;height:12px;border-radius:4px;background:var(--tone);box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}
+.verb{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.load{position:relative;height:4px;border-radius:2px;background:color-mix(in srgb,var(--tone) 35%,transparent);margin:2px 0 16px;overflow:hidden}
+.load i{position:absolute;left:0;top:0;bottom:0;border-radius:2px;background:var(--ink);opacity:.55;transition:width .4s}
+.stickers{position:relative;display:flex;flex-wrap:wrap;gap:24px 22px;padding:10px 4px 4px}
+.tone-q1{--tone:var(--q1)}.tone-q2{--tone:var(--q2)}.tone-q3{--tone:var(--q3)}.tone-q4{--tone:var(--q4)}.tone-inbox{--tone:var(--paper)}
+.r1{--r:-2deg}.r2{--r:-.8deg}.r3{--r:.6deg}.r4{--r:1.3deg}.r5{--r:2deg}.r6{--r:-3deg}.r7{--r:2.8deg}
+.j1{margin-top:7px}.j2{margin-top:-4px}.j3{margin-top:12px}
+.sticker{position:relative;flex:none;width:176px;height:176px;box-sizing:border-box;padding:18px 15px 13px;border:0;border-radius:2px 2px 4px 3px;background:var(--tone);color:var(--ink);font:inherit;text-align:left;display:flex;flex-direction:column;gap:8px;cursor:grab;transform:rotate(var(--r));box-shadow:var(--shadow);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,opacity .2s}
+.att{position:absolute;z-index:2;pointer-events:none}
+.att.tape{top:-10px;left:50%;width:64px;height:20px;transform:translateX(-50%) rotate(var(--ta,-3deg));background:var(--tape);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.att.tape.t2{--ta:5deg;left:36%}
+.att.washi-blue{background:repeating-linear-gradient(45deg,rgba(110,150,225,.82) 0 5px,rgba(255,255,255,.62) 5px 10px)}
+.att.washi-mint{background:repeating-linear-gradient(90deg,rgba(80,185,145,.78) 0 4px,rgba(255,255,255,.55) 4px 9px)}
+.att.washi-pink{background:radial-gradient(circle,rgba(255,255,255,.9) 1.6px,transparent 2.1px) 0 0/8px 8px,rgba(232,112,156,.74)}
+.att.corners{top:0;left:0;right:0;height:0}
+.att.corners::before,.att.corners::after{content:"";position:absolute;top:-4px;width:44px;height:16px;background:var(--tape);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.att.corners::before{left:-14px;transform:rotate(-40deg)}
+.att.corners::after{right:-14px;transform:rotate(40deg)}
+.att.pin{top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.8) 0 1.8px,transparent 3px),var(--pin);box-shadow:inset -2px -3px 4px rgba(0,0,0,.25),0 5px 4px -2px rgba(0,0,0,.4)}
+.att.pin::after{content:"";position:absolute;left:10px;top:13px;width:2px;height:8px;border-radius:1px;background:rgba(0,0,0,.22);transform:rotate(-35deg)}
+.att.off-l{left:24%}.att.off-r{left:76%}
+.pin-red{--pin:#D2391F}.pin-blue{--pin:#2F6BDB}.pin-yellow{--pin:#F2B705}.pin-green{--pin:#1F9D6B}.pin-black{--pin:#2A2E35}.pin-white{--pin:#EEF1F5}.pin-violet{--pin:#7A4FD0}
+.att.magnet{top:-10px;left:50%;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.55),transparent 55%),var(--pin);box-shadow:0 4px 7px -2px rgba(0,0,0,.4),inset 0 -2px 3px rgba(0,0,0,.22)}
+.att.clip{top:-17px;left:22px;width:14px;height:42px;box-sizing:border-box;border:2.5px solid #8F99A5;border-radius:7px;transform:rotate(-5deg)}
+.att.clip::before{content:"";position:absolute;left:1.5px;top:7px;width:6px;height:26px;box-sizing:border-box;border:2.5px solid #8F99A5;border-radius:5px}
+.sticker::after{content:"";position:absolute;right:0;bottom:0;width:18px;height:18px;border-radius:0 0 4px 0;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.1) 50%)}
+.sticker:hover{transform:rotate(0deg) translateY(-5px) scale(1.035);box-shadow:var(--lift)}
+.sticker:active{cursor:grabbing}
+.sticker:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+.sticker.dragging{opacity:.28;transform:rotate(0deg) scale(.94)}
+.sticker.landed{animation:settle .62s cubic-bezier(.2,1.3,.35,1)}
+@keyframes settle{0%{transform:rotate(0deg) translateY(-16px) scale(1.09);box-shadow:var(--lift)}65%{transform:rotate(var(--r)) translateY(1px) scale(.985)}100%{transform:rotate(var(--r)) scale(1);box-shadow:var(--shadow)}}
+.s-top{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;opacity:.75}
+.s-top svg{margin-left:auto;flex:none}
+.s-title{font-weight:600;font-size:15.5px;line-height:1.27;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.s-div{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;opacity:.8}
+.s-foot{margin-top:auto;display:flex;align-items:center;gap:7px;font-size:12px}
+.ava{flex:none;width:24px;height:24px;border-radius:50%;color:#fff;display:grid;place-items:center;font-size:9.5px;font-weight:700;letter-spacing:.02em;box-shadow:0 0 0 2px var(--tone)}
+.ava.lg{width:36px;height:36px;font-size:12px;box-shadow:none}
+.s-from{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.due{margin-left:auto;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;font-variant-numeric:tabular-nums;opacity:.8}
+.due.late{opacity:1;color:var(--late);font-weight:700}
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(10,12,16,.55);backdrop-filter:blur(3px);display:grid;place-items:center;padding:16px;animation:fade .2s ease-out}
+.sheet{position:relative;width:min(980px,100%);max-height:calc(100vh - 32px);overflow:auto;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);border-radius:22px;background:var(--surface);box-shadow:var(--lift);animation:pop .36s cubic-bezier(.2,1.25,.4,1)}
+.sheet.narrow{width:min(640px,100%);grid-template-columns:minmax(0,1fr)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:none}}
+.paperwrap{padding:34px 30px 28px;background:color-mix(in srgb,var(--tone) 22%,var(--surface))}
+.paper{position:relative;padding:30px 28px 24px;background:var(--tone);color:var(--ink);border-radius:3px 3px 6px 4px;box-shadow:var(--shadow);transform:rotate(-.4deg)}
+.paper .att{transform-origin:center;scale:1.3}
+.paper h2{margin:10px 0 8px;font-size:25px;line-height:1.2;letter-spacing:-.015em}
+.from{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-size:14px}
+.from small{display:block;opacity:.75;font-size:12.5px}
+.body{margin:0 0 18px;font-size:16px;line-height:1.55;white-space:pre-line}
+.files{display:flex;flex-wrap:wrap;gap:8px}
+.file{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 12px;border:0;border-radius:10px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:14px;font-weight:500}
+.thread{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.msg{display:flex;gap:10px}
+.msg .bubble{flex:1;padding:10px 12px;border-radius:4px 12px 12px 12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line)}
+.msg p{margin:3px 0 0;font-size:14.5px;line-height:1.45}
+.msg small{font-size:12px;color:var(--muted)}
+.panel{padding:26px 26px 24px;display:flex;flex-direction:column;gap:22px;border-left:1px solid var(--line)}
+.panel-top{display:flex;align-items:center;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:0 11px;border-radius:14px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);font-size:13px;font-weight:600}
+.chip.late{color:var(--late)}
+.close{margin-left:auto;width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);cursor:pointer}
+.label{margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.step{position:relative;display:flex;align-items:center;gap:12px;padding:6px 0;font-size:14px;color:var(--muted)}
+.step::before{content:"";position:absolute;left:6px;top:-6px;height:12px;width:2px;background:var(--line)}
+.step:first-child::before{display:none}
+.step i{position:relative;z-index:1;width:14px;height:14px;box-sizing:border-box;border-radius:50%;border:2px solid var(--line);background:var(--surface)}
+.step.done{color:var(--ink)}
+.step.done i{background:var(--ink);border-color:var(--ink)}
+.step.done::before{background:var(--ink)}
+.step.cur{color:var(--ink);font-weight:600}
+.step.cur i{border-color:var(--ink);box-shadow:0 0 0 4px color-mix(in srgb,var(--ink) 15%,transparent)}
+.step.cur::before{background:var(--ink)}
+.qgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.qbtn{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 12px;border:0;border-radius:12px;background:color-mix(in srgb,var(--tone) 30%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tone) 60%,var(--line));color:var(--ink);font:inherit;font-size:13.5px;font-weight:600;text-align:left;cursor:pointer;transition:background .15s}
+.qbtn:hover{background:color-mix(in srgb,var(--tone) 55%,var(--surface))}
+.qbtn.on{background:var(--tone);box-shadow:inset 0 0 0 2px var(--ink)}
+.qbtn i{width:12px;height:12px;border-radius:4px;background:var(--tone);box-shadow:inset 0 0 0 1px rgba(0,0,0,.2);flex:none}
+.est{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field textarea,.field input,.field select{width:100%;box-sizing:border-box;border:0;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);font:inherit}
+.field textarea{min-height:76px;padding:10px 12px;resize:vertical}
+.field input,.field select{min-height:44px;padding:0 12px}
+.paper .field textarea,.paper .field input,.paper .field select{background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline)}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.btn:hover{background:var(--raised)}
+.btn.primary{background:var(--ink);color:var(--bg);box-shadow:none}
+.form{display:flex;flex-direction:column;gap:16px}
+.form .field input.big{font-size:19px;font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.row .field{flex:1 1 200px}
+.toggles{display:flex;flex-wrap:wrap;gap:8px}
+.tgl{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.tgl.on{background:var(--ink);color:var(--bg);box-shadow:none}
+.hint{margin:8px 0 0;font-size:13px;opacity:.8}
+.toast{position:fixed;left:50%;bottom:24px;z-index:60;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;background:var(--ink);color:var(--bg);font-size:14px;font-weight:500;box-shadow:var(--lift);animation:pop .3s cubic-bezier(.2,1.25,.4,1)}
+@media (max-width:900px){.sheet{grid-template-columns:minmax(0,1fr)}.panel{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:760px){.matrix{grid-template-columns:minmax(0,1fr);grid-template-areas:"q1" "q2" "q3" "q4"}.ax{display:none}.sticker{width:150px;height:150px}.content{padding:18px 16px 32px}.side{padding:16px}.today{display:none}.nav{flex-direction:row;flex-wrap:wrap}.head h1{font-size:24px}.paperwrap{padding:26px 16px 20px}.panel{padding:20px 16px}}
+@media (prefers-reduced-motion:reduce){.app *{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="{{appCls}}">
+<div class="shell">
+<aside class="side" aria-label="Навигация">
+<div class="brand">
+<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="9" y="5" width="20" height="20" rx="2" fill="#B7DCC2" transform="rotate(8 19 15)"></rect><rect x="5" y="9" width="20" height="20" rx="2" fill="#F4B6A7" transform="rotate(-6 15 19)"></rect><rect x="11" y="6.5" width="10" height="4" fill="rgba(255,255,255,.7)" transform="rotate(-8 16 8)"></rect></svg>
+<span><b class="display">Alexandria</b><small>Планер</small></span>
+</div>
+<nav class="nav">
+<button class="navi on" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect></svg>Доска<span class="n">{{stats.total}}</span></button>
+<button class="navi" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-2.5-6.5z"></path></svg>Отправленные<span class="n">4</span></button>
+<button class="navi" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="5" rx="1.5"></rect><path d="M5.5 9v9.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5V9M10 13h4"></path></svg>Архив</button>
+<button class="navi" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6"></path></svg>Статистика</button>
+<button class="navi" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"></path></svg>Настройки</button>
+</nav>
+<section class="today" aria-label="Сводка">
+<h3>{{greet.summary}}</h3>
+<p class="d">Суббота, 31 октября · {{clock}}</p>
+<div class="week" aria-label="Неделя">
+<sc-for list="{{week}}" as="w" hint-placeholder-count="7"><span class="{{w.cls}}"><span>{{w.dn}}</span><b>{{w.d}}</b><i style="{{w.load}}"></i></span></sc-for>
+</div>
+<sc-for list="{{ticks}}" as="t" hint-placeholder-count="4">
+<div class="{{t.rowCls}}"><i></i>{{t.label}}<b>{{t.n}}</b></div>
+</sc-for>
+</section>
+<div class="side-foot">
+<span class="ava lg" style="background: #16191E">ГЖ</span>
+<span class="who">Руководитель<small>Отдел продаж</small></span>
+<button class="iconbtn" type="button" onClick="{{toggleTheme}}" aria-label="{{themeLabel}}">
+<sc-if value="{{dark}}" hint-placeholder-val="{{ false }}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"></path></svg>
+</sc-if>
+<sc-if value="{{light}}" hint-placeholder-val="{{ true }}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path></svg>
+</sc-if>
+</button>
+</div>
+</aside>
+
+<main class="content">
+<div class="mockbar">
+<div class="seg" role="group" aria-label="Предпросмотр времени суток"><small>Макет, время суток:</small>
+<sc-for list="{{periods}}" as="p" hint-placeholder-count="5"><button type="button" class="{{p.cls}}" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}">{{p.label}}</button></sc-for>
+</div>
+<div class="seg" role="group" aria-label="Количество стикеров в макете"><small>Стикеров:</small>
+<button type="button" class="{{load.fewCls}}" onClick="{{load.few}}" aria-pressed="{{load.fewPressed}}">мало</button>
+<button type="button" class="{{load.manyCls}}" onClick="{{load.many}}" aria-pressed="{{load.manyPressed}}">много</button>
+</div>
+</div>
+<div class="head">
+<div class="greet">
+<span class="sky" aria-hidden="true">
+<sc-if value="{{is.morning}}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M11 33a13 13 0 0 1 26 0Z" fill="#F7C04A"></path><path d="M24 9v5M12.5 15.5l3.4 3.4M35.5 15.5l-3.4 3.4M6 27h4.5M37.5 27H42" stroke="#EFA52A" stroke-width="2.6" stroke-linecap="round"></path><path d="M5 34h38M13 40h22" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".3"></path></svg></sc-if>
+<sc-if value="{{is.day}}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="9" fill="#F7C04A"></circle><path d="M24 6v5M24 37v5M6 24h5M37 24h5M11.3 11.3l3.5 3.5M33.2 33.2l3.5 3.5M11.3 36.7l3.5-3.5M33.2 14.8l3.5-3.5" stroke="#EFA52A" stroke-width="2.6" stroke-linecap="round"></path></svg></sc-if>
+<sc-if value="{{is.evening}}" hint-placeholder-val="{{ false }}"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M13 31a11 11 0 0 1 22 0Z" fill="#F2875E"></path><path d="M24 12v4M14.5 17.5l2.6 2.6M33.5 17.5l-2.6 2.6" stroke="#E2734B" stroke-width="2.6" stroke-linecap="round"></path><path d="M5 32h38M11 38h26M17 43h14" stroke="#8C7BD6" stroke-width="2.6" stroke-linecap="round"></path></svg></sc-if>
+<sc-if value="{{is.night}}" hint-placeholder-val="{{ true }}"><svg width="40" height="40" viewBox="0 0 48 48" fill="none"><path d="M29 9a15 15 0 1 0 11 25A12 12 0 0 1 29 9Z" fill="#9DB0EE"></path><path d="M37 7l1.2 2.8L41 11l-2.8 1.2L37 15l-1.2-2.8L33 11l2.8-1.2zM12 10l.8 1.7 1.7.8-1.7.8-.8 1.7-.8-1.7-1.7-.8 1.7-.8z" fill="#F7C04A"></path></svg></sc-if>
+</span>
+<div>
+<h1 class="display">{{greet.title}}</h1>
+<p>{{greet.sub}}</p>
+</div>
+</div>
+<div class="ring">
+<svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="ring-bg" cx="26" cy="26" r="21" fill="none" stroke-width="5"></circle><circle class="ring-v" cx="26" cy="26" r="21" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ring.dash}}" transform="rotate(-90 26 26)"></circle></svg>
+<div><b>{{ring.pct}}%</b><small>{{ring.label}}</small></div>
+</div>
+<div class="spacer"></div>
+<label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.5 4.5"></path></svg><input type="search" placeholder="Поиск по стикерам" aria-label="Поиск по стикерам"></label>
+<button class="create" type="button" onClick="{{openCompose}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Создать стикер</button>
+</div>
+
+<div class="kpis">
+<sc-for list="{{ticks}}" as="t" hint-placeholder-count="4">
+<div class="kpi"><small>{{t.label}}</small><b class="{{t.bCls}}">{{t.n}}</b><em>{{t.note}}</em></div>
+</sc-for>
+</div>
+
+<section class="{{inbox.cls}}" aria-label="Входящие" onDragOver="{{inbox.onDragOver}}" onDragLeave="{{inbox.onDragLeave}}" onDrop="{{inbox.onDrop}}">
+<div class="sec"><h2>Входящие</h2><span class="count">{{stats.inbox}}</span><span class="m">не разобраны — наведите, чтобы разложить, и перетащите в квадрант</span></div>
+<div class="pile">
+<sc-for list="{{inbox.items}}" as="s" hint-placeholder-count="3">
+<button type="button" class="{{s.cls}}" draggable="true" onDragStart="{{s.onDragStart}}" onDragEnd="{{s.onDragEnd}}" onClick="{{s.open}}"><span class="{{s.attCls}}" aria-hidden="true"></span>
+<span class="s-top"><span>{{s.estLabel}}</span><sc-if value="{{s.group}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Групповой"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"></path><circle cx="17" cy="9" r="2.6"></circle><path d="M16 13.6c2.9.1 5 2 5 4.9"></path></svg></sc-if></span>
+<span class="s-title">{{s.title}}</span>
+<span class="s-foot"><span class="ava" style="{{s.avaStyle}}">{{s.initials}}</span><span class="s-from">{{s.fromShort}}</span><sc-if value="{{s.due}}" hint-placeholder-val="{{ true }}"><span class="{{s.dueCls}}">{{s.due}}</span></sc-if></span>
+</button>
+</sc-for>
+<sc-if value="{{inbox.empty}}" hint-placeholder-val="{{ false }}"><p class="empty done"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Входящие разобраны. Можно выдохнуть.</p></sc-if>
+</div>
+</section>
+
+<section class="matrix" aria-label="Матрица Эйзенхауэра">
+<div class="ax a-tu" aria-hidden="true">Срочно</div>
+<div class="ax a-tn" aria-hidden="true">Не срочно</div>
+<div class="ax v a-li" aria-hidden="true">Важно</div>
+<div class="ax v a-ln" aria-hidden="true">Не важно</div>
+<sc-for list="{{zones}}" as="z" hint-placeholder-count="4">
+<div class="{{z.cls}}" onDragOver="{{z.onDragOver}}" onDragLeave="{{z.onDragLeave}}" onDrop="{{z.onDrop}}">
+<div class="sec">
+<span class="qicon" aria-hidden="true">
+<sc-if value="{{z.is1}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6 0-3.6 2.6-5.4 3.6-8.5.4 1.8 1.4 3 2.6 3.6.4-2.7 1.8-5 4-6.6-.4 3 .9 4.6 2.2 6.4 1 1.4 1.6 3 1.6 5.1 0 3.4-2.6 6-7.5 6z"></path></svg></sc-if>
+<sc-if value="{{z.is2}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"></rect><path d="M3.5 10h17M8 3v4M16 3v4M9 15l2 2 4-4"></path></svg></sc-if>
+<sc-if value="{{z.is3}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3.5-3.5M20 16H7l3.5 3.5"></path></svg></sc-if>
+<sc-if value="{{z.is4}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h10M7 20.5h10M8 3.5v2.5a4 4 0 0 0 1.6 3.2L12 12l-2.4 2.8A4 4 0 0 0 8 18v2.5M16 3.5v2.5a4 4 0 0 1-1.6 3.2L12 12l2.4 2.8A4 4 0 0 1 16 18v2.5"></path></svg></sc-if>
+</span>
+<div class="zt"><h2>{{z.title}}</h2><div class="verb">{{z.sub}}</div></div>
+<span class="spacer"></span>
+<span class="{{z.countCls}}">{{z.count}}</span>
+</div>
+<div class="load" aria-hidden="true"><i style="{{z.loadStyle}}"></i></div>
+<div class="stickers">
+<sc-for list="{{z.items}}" as="s" hint-placeholder-count="2">
+<button type="button" class="{{s.cls}}" draggable="true" onDragStart="{{s.onDragStart}}" onDragEnd="{{s.onDragEnd}}" onClick="{{s.open}}"><span class="{{s.attCls}}" aria-hidden="true"></span>
+<span class="s-top"><span>{{s.statusShort}}</span><sc-if value="{{s.group}}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Групповой"><circle cx="9" cy="8" r="3.2"></circle><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5"></path><circle cx="17" cy="9" r="2.6"></circle><path d="M16 13.6c2.9.1 5 2 5 4.9"></path></svg></sc-if></span>
+<span class="s-title">{{s.title}}</span>
+<sc-if value="{{s.diverge}}" hint-placeholder-val="{{ false }}"><span class="s-div"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>автор: {{s.authorShort}}</span></sc-if>
+<span class="s-foot"><span class="ava" style="{{s.avaStyle}}">{{s.initials}}</span><span class="s-from">{{s.fromShort}}</span><sc-if value="{{s.due}}" hint-placeholder-val="{{ true }}"><span class="{{s.dueCls}}">{{s.due}}</span></sc-if></span>
+</button>
+</sc-for>
+<sc-if value="{{z.hasMore}}" hint-placeholder-val="{{ false }}"><button type="button" class="more" onClick="{{z.toggleMore}}"><b>+{{z.hidden}}</b><span>ещё стикеров</span></button></sc-if>
+<sc-if value="{{z.canCollapse}}" hint-placeholder-val="{{ false }}"><button type="button" class="collapse" onClick="{{z.toggleMore}}">Свернуть</button></sc-if>
+<sc-if value="{{z.showSlot}}" hint-placeholder-val="{{ false }}"><span class="slot" aria-hidden="true"></span></sc-if>
+<sc-if value="{{z.showEmpty}}" hint-placeholder-val="{{ false }}"><p class="zempty">Пусто. Перетащите сюда стикер.</p></sc-if>
+</div>
+</div>
+</sc-for>
+</section>
+</main>
+</div>
+
+<sc-if value="{{isOpen}}" hint-placeholder-val="{{ false }}">
+<div class="scrim" onClick="{{close}}">
+<div class="{{o.sheetCls}}" role="dialog" aria-modal="true" aria-label="{{o.title}}" onClick="{{stop}}">
+<div class="paperwrap">
+<div class="paper"><span class="{{o.attCls}}" aria-hidden="true"></span>
+<div class="s-top"><span>{{o.qShort}}</span></div>
+<h2>{{o.title}}</h2>
+<div class="from"><span class="ava lg" style="{{o.avaStyle}}">{{o.initials}}</span><span><b>{{o.author}}</b><small>{{o.role}} · {{o.created}}</small></span></div>
+<p class="body">{{o.text}}</p>
+<div class="files">
+<sc-for list="{{o.files}}" as="f" hint-placeholder-count="1">
+<span class="file"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4l7.9-7.9"></path></svg>{{f}}</span>
+</sc-for>
+</div>
+</div>
+<div class="thread">
+<sc-for list="{{o.comments}}" as="c" hint-placeholder-count="1">
+<div class="msg"><span class="ava" style="{{c.avaStyle}}">{{c.initials}}</span><div class="bubble"><small>{{c.who}} · {{c.when}}</small><p>{{c.text}}</p></div></div>
+</sc-for>
+<div class="field"><label for="reply">Комментарий или ответ</label><textarea id="reply" placeholder="Написать…"></textarea></div>
+</div>
+</div>
+<div class="panel">
+<div class="panel-top">
+<span class="chip">№{{o.num}}</span>
+<sc-if value="{{o.due}}" hint-placeholder-val="{{ true }}"><span class="{{o.dueChip}}">Срок {{o.due}}</span></sc-if>
+<button type="button" class="close" onClick="{{close}}" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div>
+<p class="label">Ход стикера</p>
+<ol class="steps">
+<sc-for list="{{o.steps}}" as="p" hint-placeholder-count="5">
+<li class="{{p.cls}}"><i></i>{{p.label}}</li>
+</sc-for>
+</ol>
+</div>
+<div>
+<p class="label">Квадрант</p>
+<div class="qgrid">
+<sc-for list="{{o.qButtons}}" as="b" hint-placeholder-count="4">
+<button type="button" class="{{b.cls}}" onClick="{{b.pick}}"><i></i>{{b.label}}</button>
+</sc-for>
+</div>
+<p class="est">Оценка автора: {{o.authorEst}}</p>
+</div>
+<div>
+<p class="label">Действия</p>
+<div class="actions">
+<button type="button" class="btn primary" onClick="{{o.toWork}}">В работу</button>
+<button type="button" class="btn" onClick="{{o.solve}}">Решить</button>
+<button type="button" class="btn" onClick="{{o.ask}}">Уточнить</button>
+<button type="button" class="btn" onClick="{{o.delegate}}">Делегировать</button>
+<button type="button" class="btn" onClick="{{o.snooze}}">Отложить</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{c.open}}" hint-placeholder-val="{{ false }}">
+<div class="scrim" onClick="{{c.close}}">
+<div class="sheet narrow" role="dialog" aria-modal="true" aria-label="Новый стикер" onClick="{{stop}}">
+<div class="{{c.wrapCls}}">
+<div class="panel-top" style="margin-bottom: 18px"><span class="chip">Новый стикер</span><button type="button" class="close" onClick="{{c.close}}" aria-label="Закрыть"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+<div class="paper"><span class="att tape washi-blue" aria-hidden="true"></span>
+<div class="form">
+<div class="field"><label for="c-title">Заголовок</label><input id="c-title" class="big" type="text" placeholder="Коротко: о чём стикер" value="{{c.title}}" onInput="{{c.onTitle}}"></div>
+<div class="field"><label for="c-text">Подробности</label><textarea id="c-text" placeholder="Что случилось, что нужно решить" value="{{c.text}}" onInput="{{c.onText}}"></textarea></div>
+<div class="row">
+<div class="field"><label for="c-to">Кому</label>
+<select id="c-to" value="{{c.to}}" onChange="{{c.onTo}}">
+<option value="me">Себе (личный стикер)</option>
+<option value="Иванов И.">Иванов И.</option>
+<option value="Петрова А.">Петрова А.</option>
+<option value="Смирнова Е.">Смирнова Е.</option>
+<option value="Козлов Д.">Козлов Д.</option>
+<option value="dept">Всему отделу (групповой)</option>
+<option value="Бухгалтерия">Отдел: Бухгалтерия</option>
+</select></div>
+<div class="field"><label for="c-due">Срок (необязательно)</label><input id="c-due" type="date" value="{{c.due}}" onInput="{{c.onDue}}"></div>
+</div>
+<div>
+<p class="label" style="color: inherit; opacity: .8">Оценка</p>
+<div class="toggles">
+<button type="button" class="{{c.urgCls}}" onClick="{{c.toggleUrg}}" aria-pressed="{{c.urg}}">Срочно</button>
+<button type="button" class="{{c.impCls}}" onClick="{{c.toggleImp}}" aria-pressed="{{c.imp}}">Важно</button>
+</div>
+<p class="hint">Попадёт в квадрант «{{c.qTitle}}». Получатель может переложить.</p>
+</div>
+<div class="actions">
+<button type="button" class="file" style="cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.3 3.3 0 0 1 4.7 4.7l-8.6 8.6a1.7 1.7 0 0 1-2.4-2.4l7.9-7.9"></path></svg>Прикрепить файл</button>
+<span class="spacer"></span>
+<button type="button" class="btn" onClick="{{c.close}}">Отмена</button>
+<button type="button" class="btn primary" onClick="{{c.submit}}">Отправить</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}"><div class="toast" role="status"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{toast}}</div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dark: false, period: 'auto', solvedSession: 0, bumpZone: null, many: false, expanded: {},
+      extra: [
+        { id: 'x1', num: 113, q: 'q1', est: 'q1', ord: 1, rot: 'r4', title: 'Сломался кондиционер в серверной', author: 'Козлов Д.', initials: 'ДК', role: 'специалист', created: '29.10, 09:10', due: '30.10', late: true, status: 'В работе', text: 'Температура в серверной 31°. Сервисная служба обещала приехать, но не приехала.', files: [], comments: [] },
+        { id: 'x2', num: 120, q: 'q1', est: 'q1', ord: 2, rot: 'r2', title: 'Согласовать скидку 12% для ключевого клиента', author: 'Иванов И.', initials: 'ИИ', role: 'специалист', created: 'сегодня, 10:02', due: 'сегодня', late: false, status: 'Разобран', text: 'Клиент готов подписать годовой договор при скидке 12%. Расчёт маржи во вложении.', files: ['расчёт_маржи.xlsx'], comments: [] },
+        { id: 'x3', num: 115, q: 'q1', est: 'q1', ord: 3, rot: 'r1', title: 'Подписать акт выполненных работ', author: 'Петрова А.', initials: 'АП', role: 'ведущий специалист', created: '30.10, 15:40', due: 'сегодня', late: false, status: 'Разобран', text: 'Подрядчик закрыл работы по ремонту переговорной, нужен подписанный акт.', files: ['акт_042.pdf'], comments: [] },
+        { id: 'x4', num: 121, q: 'q1', est: 'q1', ord: 4, rot: 'r5', title: 'Ответить на претензию клиента', author: 'Смирнова Е.', initials: 'ЕС', role: 'менеджер', created: 'сегодня, 11:20', due: '01.11', late: false, status: 'В работе', text: 'Клиент недоволен сроками поставки и грозит расторгнуть договор. Нужна позиция руководителя.', files: ['претензия.pdf'], comments: [] },
+        { id: 'x5', num: 122, q: 'q1', est: 'q2', ord: 5, rot: 'r3', title: 'Проверить счёт перед оплатой', author: 'Иванов И.', initials: 'ИИ', role: 'специалист', created: 'сегодня, 12:05', due: '01.11', late: false, status: 'Разобран', text: 'Сумма в счёте не совпадает с договором на 4 300 ₽.', files: ['счёт_2240.pdf'], comments: [] },
+        { id: 'x6', num: 114, q: 'q1', est: 'q1', ord: 6, rot: 'r2', title: 'Перенос встречи с поставщиком', author: 'Смирнова Е.', initials: 'ЕС', role: 'менеджер', created: '30.10, 10:00', due: '03.11', late: false, status: 'Разобран', text: 'Поставщик просит перенести встречу со вторника на четверг.', files: [], comments: [] },
+        { id: 'x7', num: 123, q: 'q1', est: 'q1', ord: 7, rot: 'r4', title: 'Подтвердить даты отпуска', author: 'Петрова А.', initials: 'АП', role: 'ведущий специалист', created: 'сегодня, 13:30', due: '04.11', late: false, status: 'Новый', text: 'Хочу взять отпуск с 10 по 21 ноября, замещать будет Иванов.', files: [], comments: [] }
+      ], dragId: null, overZone: null, landedId: null, openId: null,
+      compose: false, cTitle: '', cText: '', cTo: 'me', cDue: '', cUrg: false, cImp: true, toast: '', nextId: 1,
+      stickers: [
+        { id: 'i1', num: 118, q: null, est: 'q3', rot: 'r2', title: 'Не работает принтер на втором этаже', author: 'Козлов Д.', initials: 'ДК', role: 'специалист', created: 'сегодня, 08:42', due: 'сегодня', late: false, status: 'Новый', text: 'С утра принтер в общем кабинете печатает пустые листы. Картридж меняли на прошлой неделе. Вызвать мастера или заказать новый?', files: [], comments: [] },
+        { id: 'i2', num: 119, q: null, est: 'q1', rot: 'r4', title: 'Нужна подпись на договоре поставки', author: 'Смирнова Е.', initials: 'ЕС', role: 'менеджер', created: 'сегодня, 09:15', due: '01.11', late: false, status: 'Новый', text: 'Поставщик ждёт подписанный экземпляр до конца завтрашнего дня, иначе сдвигают отгрузку на две недели.', files: ['договор_поставки.pdf'], comments: [] },
+        { id: 'i3', num: 117, q: null, est: 'q4', rot: 'r1', title: 'Предложение: перенести планёрку на 9:30', author: 'Козлов Д.', initials: 'ДК', role: 'специалист', created: 'вчера, 17:30', due: '', late: false, status: 'Новый', text: 'В 9:00 половина отдела ещё в дороге. Если сдвинуть на 9:30, все будут вовремя.', files: [], comments: [] },
+        { id: 's1', num: 112, q: 'q1', est: 'q1', rot: 'r3', title: 'Согласовать закупку картриджей', author: 'Иванов И.', initials: 'ИИ', role: 'специалист', created: '29.10, 11:05', due: '05.11', late: false, status: 'В работе', text: 'Нужно 3 картриджа для принтеров отдела, сумма около 12 000 ₽. Счёт от поставщика во вложении.', files: ['счёт_2231.pdf'], comments: [ { who: 'Руководитель', initials: 'ГЖ', when: '30.10, 10:12', text: 'Есть ли вариант дешевле у второго поставщика?' }, { who: 'Иванов И.', initials: 'ИИ', when: '30.10, 14:40', text: 'Проверил — у них дороже на 1 500 ₽ и срок неделя.' } ] },
+        { id: 's2', num: 108, q: 'q1', est: 'q1', rot: 'r5', title: 'Отчёт за октябрь для дирекции', author: 'Я', initials: 'ГЖ', role: 'личный стикер', created: '27.10', due: '30.10', late: true, status: 'В работе', text: 'Свести показатели отдела за октябрь, приложить статистику по стикерам.', files: [], comments: [] },
+        { id: 's3', num: 110, q: 'q2', est: 'q2', rot: 'r1', title: 'План обучения нового сотрудника', author: 'Петрова А.', initials: 'АП', role: 'ведущий специалист', created: '28.10, 16:20', due: '15.11', late: false, status: 'Разобран', text: 'С 18 ноября выходит новый сотрудник. Предлагаю план на первые две недели — черновик во вложении.', files: ['план_адаптации.docx'], comments: [] },
+        { id: 's4', num: 104, q: 'q2', est: 'q2', rot: 'r4', group: true, title: 'Сверка актов до конца года', author: 'Бухгалтерия · Орлова М.', initials: 'МО', role: 'отдел → отдел', created: '26.10, 12:00', due: '20.12', late: false, status: 'Разобран', text: 'Просим до 20 декабря сверить акты с контрагентами вашего отдела и передать список расхождений.', files: ['список_контрагентов.xlsx'], comments: [] },
+        { id: 's5', num: 116, q: 'q3', est: 'q1', rot: 'r2', title: 'Пропуск для курьера на завтра', author: 'Смирнова Е.', initials: 'ЕС', role: 'менеджер', created: 'сегодня, 07:58', due: 'завтра', late: false, status: 'Делегирован', text: 'Завтра в 11:00 приедет курьер с образцами, нужен разовый пропуск.', files: [], comments: [ { who: 'Руководитель', initials: 'ГЖ', when: 'сегодня, 08:30', text: 'Дмитрий, оформи, пожалуйста, через охрану.' } ] },
+        { id: 's6', num: 101, q: 'q4', est: 'q4', rot: 'r3', title: 'Заказать новые кружки на кухню', author: 'Петрова А.', initials: 'АП', role: 'ведущий специалист', created: '20.10, 13:10', due: '', late: false, status: 'Отложен', text: 'Старые почти все побились. Можно заказать с логотипом.', files: [], comments: [] }
+      ]
+    };
+  }
+
+  componentDidMount() {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) this.setState({ dark: true });
+    } catch (e) {}
+  }
+
+  move(id, q) {
+    const stickers = this.state.stickers.map((s) => s.id === id ? { ...s, q: q, status: q && s.status === 'Новый' ? 'Разобран' : (!q ? 'Новый' : s.status) } : s);
+    this.setState({ stickers: stickers, dragId: null, overZone: null, landedId: id, bumpZone: q });
+    clearTimeout(this._landT);
+    this._landT = setTimeout(() => this.setState({ landedId: null, bumpZone: null }), 680);
+  }
+
+  showToast(text) {
+    this.setState({ toast: text });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toast: '' }), 2800);
+  }
+
+  submitCompose() {
+    const st = this.state;
+    const title = st.cTitle.trim();
+    if (!title) { this.showToast('Добавьте заголовок'); return; }
+    const q = st.cUrg && st.cImp ? 'q1' : st.cImp ? 'q2' : st.cUrg ? 'q3' : 'q4';
+    const reset = { compose: false, cTitle: '', cText: '', cTo: 'me', cDue: '', cUrg: false, cImp: true };
+    if (st.cTo !== 'me') {
+      const who = st.cTo === 'dept' ? 'всему отделу' : st.cTo;
+      this.setState(reset);
+      this.showToast('Стикер «' + title + '» отправлен: ' + who);
+      return;
+    }
+    let due = '';
+    if (st.cDue) { const p = st.cDue.split('-'); due = p[2] + '.' + p[1]; }
+    const id = 'n' + st.nextId;
+    const rots = ['r1', 'r2', 'r3', 'r4', 'r5'];
+    const s = { id: id, num: 119 + st.nextId, q: q, est: q, rot: rots[st.nextId % 5], title: title, author: 'Я', initials: 'ГЖ', role: 'личный стикер', created: 'только что', due: due, late: false, status: 'Разобран', text: st.cText || '—', files: [], comments: [] };
+    this.setState({ ...reset, stickers: st.stickers.concat([s]), nextId: st.nextId + 1, landedId: id });
+    clearTimeout(this._landT);
+    this._landT = setTimeout(() => this.setState({ landedId: null }), 680);
+    this.showToast('Личный стикер добавлен на доску');
+  }
+
+  setStatus(id, status) {
+    const extra = status === 'Решён' ? { solvedSession: this.state.solvedSession + 1 } : {};
+    this.setState({ ...extra, stickers: this.state.stickers.map((s) => s.id === id ? { ...s, status: status } : s) });
+  }
+
+  dropZone(zid) {
+    return {
+      onDragOver: (e) => { e.preventDefault(); if (e.dataTransfer) e.dataTransfer.dropEffect = 'move'; if (this.state.overZone !== zid) this.setState({ overZone: zid }); },
+      onDragLeave: (e) => { if (e.currentTarget.contains(e.relatedTarget)) return; if (this.state.overZone === zid) this.setState({ overZone: null }); },
+      onDrop: (e) => { e.preventDefault(); const id = this.state.dragId || (e.dataTransfer && e.dataTransfer.getData('text/plain')); if (id) this.move(id, zid === 'inbox' ? null : zid); }
+    };
+  }
+
+  renderVals() {
+    const Q = {
+      q1: { num: '01', title: 'Срочно и важно', sub: 'Сделать сейчас', short: 'срочно · важно' },
+      q2: { num: '02', title: 'Важно, не срочно', sub: 'Запланировать', short: 'важно' },
+      q3: { num: '03', title: 'Срочно, не важно', sub: 'Делегировать', short: 'срочно' },
+      q4: { num: '04', title: 'Не срочно, не важно', sub: 'Отложить или отказаться', short: 'не срочно · не важно' }
+    };
+    const AVA = { 'ИИ': '#2F5BD3', 'АП': '#7A3FB8', 'ЕС': '#0D7C6E', 'ДК': '#B4372F', 'МО': '#C2410C', 'ГЖ': '#16191E' };
+    const ava = (i) => 'background: ' + (AVA[i] || '#535D69');
+    const ATT = ['att tape', 'att tape washi-blue', 'att pin pin-blue', 'att corners', 'att pin pin-yellow off-l', 'att magnet pin-green', 'att pin pin-black off-r', 'att tape washi-mint t2', 'att pin pin-violet', 'att tape washi-pink', 'att magnet pin-blue', 'att pin pin-white off-l', 'att tape t2', 'att magnet pin-yellow', 'att pin pin-green off-r'];
+    const att = (s) => s.late ? 'att pin pin-red' : ATT[(s.num * 7) % ATT.length];
+    const st = this.state;
+    const view = (s) => ({
+      ...s,
+      cls: 'sticker tone-' + (s.q || 'inbox') + ' r' + (s.num % 7 + 1) + ' j' + (s.num % 4) + (st.dragId === s.id ? ' dragging' : '') + (st.landedId === s.id ? ' landed' : ''),
+      attCls: att(s),
+      estLabel: 'автор: ' + Q[s.est].short,
+      statusShort: s.status,
+      authorShort: Q[s.est].short,
+      diverge: !!s.q && s.q !== s.est,
+      fromShort: s.author,
+      group: !!s.group,
+      avaStyle: ava(s.initials),
+      dueCls: 'due' + (s.late ? ' late' : ''),
+      onDragStart: (e) => { try { e.dataTransfer.setData('text/plain', s.id); e.dataTransfer.effectAllowed = 'move'; } catch (err) {} setTimeout(() => this.setState({ dragId: s.id }), 0); },
+      onDragEnd: () => this.setState({ dragId: null, overZone: null }),
+      open: () => this.setState({ openId: s.id })
+    });
+    const onBoard = st.stickers.filter((s) => s.q).length || 1;
+    const LIMIT = 7;
+    const zones = ['q1', 'q2', 'q3', 'q4'].map((zid) => {
+      const all = st.stickers.filter((s) => s.q === zid)
+        .map((s, i) => ({ s: s, k: (s.late ? 0 : 100) + (s.ord != null ? s.ord : 50 + i) }))
+        .sort((a, b) => a.k - b.k).map((x) => view(x.s));
+      const open = !!st.expanded[zid];
+      const over = all.length > LIMIT + 1;
+      const items = over && !open ? all.slice(0, LIMIT) : all;
+      const toggleMore = () => this.setState({ expanded: { ...st.expanded, [zid]: !open } });
+      return { ...Q[zid], ...this.dropZone(zid), cls: 'zone tone-' + zid + ' p-' + zid + (all.length > 4 ? ' compact' : '') + (st.overZone === zid ? ' over' : ''), count: all.length, items: items,
+        hasMore: over && !open, canCollapse: over && open, hidden: all.length - LIMIT, toggleMore: toggleMore,
+        is1: zid === 'q1', is2: zid === 'q2', is3: zid === 'q3', is4: zid === 'q4',
+        countCls: 'count' + (st.bumpZone === zid ? ' bump' : ''),
+        showSlot: !!st.dragId && st.overZone === zid && !items.some((s) => s.id === st.dragId),
+        showEmpty: items.length === 0 && !(st.dragId && st.overZone === zid),
+        loadStyle: 'width: ' + Math.round(items.length / onBoard * 100) + '%' };
+    });
+    const inboxItems = st.stickers.filter((s) => !s.q).map(view);
+    const late = st.stickers.filter((s) => s.late).length;
+
+    let period = st.period;
+    let clock;
+    if (period === 'auto') {
+      const d = new Date();
+      const h = d.getHours();
+      period = h >= 5 && h < 12 ? 'morning' : h >= 12 && h < 18 ? 'day' : h >= 18 && h < 23 ? 'evening' : 'night';
+      clock = String(h).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    } else {
+      clock = { morning: '08:42', day: '14:10', evening: '19:35', night: '01:20' }[period];
+    }
+    const done = st.solvedSession;
+    const G = {
+      morning: { title: 'Доброе утро', sub: 'Вот что ждёт сегодня. Начните с входящих.', summary: 'Сводка на утро' },
+      day: { title: 'Добрый день', sub: 'Что сделано с утра до этой минуты.', summary: 'Сводка за день' },
+      evening: { title: 'Добрый вечер', sub: 'Итоги дня. Остальное перейдёт на завтра.', summary: 'Итоги дня' },
+      night: { title: 'Доброй ночи', sub: 'Итоги прошедшего дня. Остальное подождёт до утра.', summary: 'Итоги дня' }
+    };
+    const T = {
+      morning: [
+        { n: inboxItems.length, label: 'Во входящих', note: 'ждут разбора' },
+        { n: zones[0].count, label: 'Срочно и важно', note: 'начать с них' },
+        { n: late, label: 'Просрочено', note: 'нужно внимание', alert: late > 0 },
+        { n: 1, label: 'Срок сегодня', note: 'не забыть' }
+      ],
+      day: [
+        { n: 2 + done, label: 'Решено с утра', note: 'хороший темп' },
+        { n: 3, label: 'Взято в работу', note: 'с 08:00' },
+        { n: 2, label: 'Пришло новых', note: 'с утра' },
+        { n: inboxItems.length, label: 'Ждут разбора', note: 'во входящих', alert: inboxItems.length > 0 }
+      ],
+      evening: [
+        { n: 6 + done, label: 'Решено за день', note: 'вчера было 5' },
+        { n: 4, label: 'Закрыто авторами', note: 'ответ получен' },
+        { n: 5, label: 'Пришло за день', note: 'новых стикеров' },
+        { n: inboxItems.length + late, label: 'Переходит на завтра', note: 'входящие и просрочка', alert: inboxItems.length + late > 0 }
+      ]
+    };
+    T.night = T.evening;
+    const ticks = T[period].map((t) => ({ ...t, bCls: t.alert ? 'late' : '', rowCls: 'trow' + (t.alert ? ' late' : '') }));
+    const periods = [['auto', 'авто'], ['morning', 'утро'], ['day', 'день'], ['evening', 'вечер'], ['night', 'ночь']].map((p) => ({ label: p[1], cls: st.period === p[0] ? 'on' : '', pressed: st.period === p[0] ? 'true' : 'false', pick: () => this.setState({ period: p[0] }) }));
+
+    const cur = st.stickers.find((s) => s.id === st.openId);
+    let o = { files: [], comments: [], qButtons: [], steps: [] };
+    if (cur) {
+      const order = ['Новый', 'Разобран', 'В работе', 'Решён', 'Закрыт'];
+      const map = { 'Нужно уточнение': 'В работе', 'Делегирован': 'В работе', 'Отложен': 'Разобран' };
+      const curStep = order.indexOf(map[cur.status] || cur.status);
+      o = {
+        ...cur,
+        sheetCls: 'sheet tone-' + (cur.q || 'inbox'),
+        attCls: att(cur),
+        dueChip: 'chip' + (cur.late ? ' late' : ''),
+        avaStyle: ava(cur.initials),
+        qShort: cur.q ? Q[cur.q].title : 'не разобран',
+        authorEst: Q[cur.est].title.toLowerCase(),
+        comments: cur.comments.map((c) => ({ ...c, avaStyle: ava(c.initials) })),
+        steps: order.map((label, i) => ({ label: i === curStep && map[cur.status] ? label + ' · ' + cur.status.toLowerCase() : label, cls: 'step' + (i < curStep ? ' done' : i === curStep ? ' cur' : '') })),
+        qButtons: ['q1', 'q2', 'q3', 'q4'].map((q) => ({ label: Q[q].title, cls: 'qbtn tone-' + q + (cur.q === q ? ' on' : ''), pick: () => this.move(cur.id, q) })),
+        toWork: () => this.setStatus(cur.id, 'В работе'),
+        ask: () => this.setStatus(cur.id, 'Нужно уточнение'),
+        delegate: () => this.setStatus(cur.id, 'Делегирован'),
+        solve: () => this.setStatus(cur.id, 'Решён'),
+        snooze: () => this.setStatus(cur.id, 'Отложен')
+      };
+    }
+    const cq = st.cUrg && st.cImp ? 'q1' : st.cImp ? 'q2' : st.cUrg ? 'q3' : 'q4';
+    return {
+      appCls: 'app p-' + period + (st.dark ? ' dark' : ''),
+      is: { morning: period === 'morning', day: period === 'day', evening: period === 'evening', night: period === 'night' },
+      ring: (() => {
+        const total = st.stickers.length || 1;
+        const pct = Math.round((st.stickers.length - inboxItems.length) / total * 100);
+        const c = 2 * Math.PI * 21;
+        return { pct: pct, label: 'разобрано · ' + (st.stickers.length - inboxItems.length) + ' из ' + st.stickers.length, dash: (c * pct / 100).toFixed(1) + ' ' + c.toFixed(1) };
+      })(),
+      week: [['Пн', 26, 3], ['Вт', 27, 5], ['Ср', 28, 4], ['Чт', 29, 6], ['Пт', 30, 5], ['Сб', 31, 2], ['Вс', 1, 0]].map((w, i) => ({ dn: w[0], d: w[1], load: 'width: ' + Math.max(w[2] * 3, 3) + 'px' + (w[2] ? '' : '; opacity: 0'), cls: 'wd' + (i === 5 ? ' now' : i === 6 ? ' off' : '') })),
+      dark: st.dark,
+      light: !st.dark,
+      themeLabel: st.dark ? 'Светлая тема' : 'Тёмная тема',
+      toggleTheme: () => this.setState({ dark: !st.dark }),
+      clock: clock,
+      greet: G[period],
+      ticks: ticks,
+      periods: periods,
+      load: {
+        fewCls: st.many ? '' : 'on', manyCls: st.many ? 'on' : '',
+        fewPressed: st.many ? 'false' : 'true', manyPressed: st.many ? 'true' : 'false',
+        few: () => this.setState({ many: false, expanded: {}, stickers: st.stickers.filter((s) => s.id[0] !== 'x') }),
+        many: () => { if (st.many) return; const have = {}; st.stickers.forEach((s) => { have[s.id] = 1; }); this.setState({ many: true, stickers: st.stickers.concat(st.extra.filter((s) => !have[s.id])) }); }
+      },
+      stats: { inbox: inboxItems.length, total: st.stickers.length - inboxItems.length },
+      inbox: { ...this.dropZone('inbox'), cls: 'tray' + (st.overZone === 'inbox' ? ' over' : ''), items: inboxItems, empty: inboxItems.length === 0 },
+      zones: zones,
+      isOpen: !!cur,
+      o: o,
+      openCompose: () => this.setState({ compose: true, openId: null }),
+      c: {
+        open: st.compose,
+        wrapCls: 'paperwrap tone-' + cq,
+        title: st.cTitle, text: st.cText, to: st.cTo, due: st.cDue,
+        urg: st.cUrg ? 'true' : 'false', imp: st.cImp ? 'true' : 'false',
+        urgCls: 'tgl' + (st.cUrg ? ' on' : ''), impCls: 'tgl' + (st.cImp ? ' on' : ''),
+        qTitle: Q[cq].title.toLowerCase(),
+        onTitle: (e) => this.setState({ cTitle: e.target.value }),
+        onText: (e) => this.setState({ cText: e.target.value }),
+        onTo: (e) => this.setState({ cTo: e.target.value }),
+        onDue: (e) => this.setState({ cDue: e.target.value }),
+        toggleUrg: () => this.setState({ cUrg: !st.cUrg }),
+        toggleImp: () => this.setState({ cImp: !st.cImp }),
+        close: () => this.setState({ compose: false }),
+        submit: () => this.submitCompose()
+      },
+      hasToast: !!st.toast,
+      toast: st.toast,
+      close: () => this.setState({ openId: null }),
+      stop: (e) => e.stopPropagation()
+    };
+  }
+}
+</script>
+</body>
+</html>

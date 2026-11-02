@@ -1,0 +1,392 @@
+<!-- title: User guide · Alexandria Planner -->
+<!-- description: Step-by-step guide to Alexandria Planner: stickers, the Eisenhower matrix, the manager's board, notifications and administration. -->
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <a class="brand" href="#top"><img src="../alexandria-planner-logo.svg" alt="" /><div><b>Alexandria</b><span>Planner · user guide</span></div></a>
+  {{langs}}
+  <h4>Getting started</h4>
+  <ol>
+    <li><a href="#idea"><i>01</i>What it is</a></li>
+    <li><a href="#matrix"><i>02</i>The Eisenhower matrix</a></li>
+    <li><a href="#roles"><i>03</i>Who is who</a></li>
+    <li><a href="#login"><i>04</i>Signing in and security</a></li>
+  </ol>
+  <h4>For employees</h4>
+  <ol>
+    <li><a href="#compose"><i>05</i>Send a sticker</a></li>
+    <li><a href="#sent"><i>06</i>Follow the answer</a></li>
+  </ol>
+  <h4>For managers</h4>
+  <ol>
+    <li><a href="#board"><i>07</i>The board</a></li>
+    <li><a href="#sheet"><i>08</i>The sticker card</a></li>
+    <li><a href="#resolve"><i>09</i>Decisions and other actions</a></li>
+    <li><a href="#archive"><i>10</i>Archive</a></li>
+    <li><a href="#stats"><i>11</i>Statistics and Excel</a></li>
+  </ol>
+  <h4>For everyone</h4>
+  <ol>
+    <li><a href="#notify"><i>12</i>Notifications</a></li>
+    <li><a href="#profile"><i>13</i>Profile</a></li>
+    <li><a href="#phone"><i>14</i>On your phone</a></li>
+  </ol>
+  <h4>For administrators</h4>
+  <ol>
+    <li><a href="#setup"><i>15</i>First launch</a></li>
+    <li><a href="#users"><i>16</i>People and departments</a></li>
+    <li><a href="#telegram"><i>17</i>Telegram bot</a></li>
+    <li><a href="#updates"><i>18</i>Updates</a></li>
+  </ol>
+  <h4>More</h4>
+  <ol>
+    <li><a href="#faq"><i>19</i>FAQ</a></li>
+    <li><a href="#author"><i>20</i>Author</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+  <header class="cover">
+    {{langs}}
+    <span class="kicker">User guide · version 0.1</span>
+    <h1>Alexandria Planner</h1>
+    <p class="big">Questions for your manager without paper notes on their desk. An employee writes a sticker, the manager sorts it on the Eisenhower matrix and answers, the author sees the decision.</p>
+    <div class="who">
+      <a href="#compose"><span style="background:var(--q-plan)">{{icon:i1}}</span>I'm an employee</a>
+      <a href="#board"><span style="background:var(--q-do)">{{icon:i2}}</span>I'm a manager</a>
+      <a href="#setup"><span style="background:var(--q-drop)">{{icon:i3}}</span>I'm an administrator</a>
+    </div>
+    <div class="hero"><img src="img/10-board.webp" alt="The manager's board: incoming stickers and the Eisenhower matrix" width="1440" height="900" /></div>
+  </header>
+
+  <!-- 01 -->
+  <section class="slide" id="idea">
+    <span class="num">01</span>
+    <h2>What it is</h2>
+    <p class="lead">Employees used to leave paper notes on their manager's desk: "please approve my leave", "a client needs a discount", "my laptop broke". Notes got lost, answers were forgotten, nobody knew what had already been decided.</p>
+    <div class="cols even">
+      <ol class="steps">
+        <li><b>The employee writes a sticker</b><span>Briefly: what is needed and by when. You can attach a file and mark how urgent and important it is.</span></li>
+        <li><b>The manager sorts it</b><span>The sticker lands in the Inbox on the board. The manager puts it into one of four quadrants and starts working on it, asks a question, delegates it or decides right away.</span></li>
+        <li><b>The author gets an answer</b><span>The decision arrives in the browser and in Telegram. The author confirms they have seen it, and the sticker moves to the archive.</span></li>
+      </ol>
+      <div>
+        <p>All of this happens in the browser, on a computer or a phone. The program runs on your company's server: the data stays there, and the project author never sees it.</p>
+        <div class="note tip">{{icon:i4}}<span>New here? Read sections 01–04 first, then the section for your role: <a href="#compose">employee</a>, <a href="#board">manager</a> or <a href="#setup">administrator</a>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" id="matrix">
+    <span class="num">02</span>
+    <h2>The Eisenhower matrix</h2>
+    <p class="lead">Every sticker is judged by two questions: is it urgent, and is it important. That gives four quadrants. Each has its own colour, and you will see that colour everywhere in the program.</p>
+    <div class="matrix">
+      <div class="q"><small>1 · urgent and important</small><h3>Do now</h3><p>On fire and affects results. For example, a client contract that has to be signed today.</p></div>
+      <div class="q"><small>2 · important, not urgent</small><h3>Schedule</h3><p>Affects results, but there is time. A monthly report, training, plans.</p></div>
+      <div class="q"><small>3 · urgent, not important</small><h3>Delegate</h3><p>Needs to be quick, but not necessarily by the manager. Update the price list, order business cards.</p></div>
+      <div class="q"><small>4 · not urgent, not important</small><h3>Eliminate</h3><p>Can wait a long time or be declined. Order water, buy a coffee machine.</p></div>
+    </div>
+    <div class="note">{{icon:i5}}<span>When sending, the employee adds their own <i>estimate</i> ("Urgent", "Important"). The manager chooses the final quadrant. When the two differ, it shows up in the statistics: this is how a team learns to see priorities the same way.</span></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" id="roles">
+    <span class="num">03</span>
+    <h2>Who is who</h2>
+    <p class="lead">There are three roles. One person can hold two: the head of a small department is often the administrator too.</p>
+    <div class="roles">
+      <div class="role"><div class="ico" style="background:var(--q-plan)">{{icon:i6}}</div><h3>Employee</h3><p>Writes stickers to the manager or colleagues, answers questions, confirms decisions. Sees only their own stickers and those shared with them.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Manager</h3><p>Receives the department's stickers on the board, sorts them into quadrants, answers, delegates, reviews statistics and exports the Excel report.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrator</h3><p>Adds people and departments, resets passwords, connects the Telegram bot and manages updates. Sees the sign-in log.</p></div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" id="login">
+    <span class="num">04</span>
+    <h2>Signing in and security</h2>
+    <p class="lead">The administrator gives you a login and a temporary password. A login usually looks like the first letter of the first name plus the last name: <span class="chip">j.porter</span>.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/04-login.webp" alt="Sign-in screen" loading="lazy" width="1440" height="900" /></div><figcaption>Step 1. Login and password.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/05-totp.webp" alt="Entering the code from the app" loading="lazy" width="1440" height="900" /></div><figcaption>Step 2. A code from the app: only for managers, administrators and those who turned it on themselves.</figcaption></figure>
+    </div>
+    <h3>Two-factor protection (2FA)</h3>
+    <p>It is mandatory for managers and administrators: on the first sign-in the program shows a QR code. Install Google Authenticator, Microsoft Authenticator or a similar app on your phone, scan the code and enter the 6 digits. From then on, every sign-in asks for a fresh code from the app.</p>
+    <div class="note warn">{{icon:i9}}<span>Forgot your password or lost the phone with the app? Ask your administrator: they will set a new password or reset 2FA under "Administration → Users". There is no e-mail recovery; it is safer that way.</span></div>
+  </section>
+
+  <div class="part"><h2>For employees</h2><span>how to ask and get an answer</span></div>
+
+  <!-- 05 -->
+  <section class="slide" id="compose">
+    <span class="num">05</span>
+    <h2>Send a sticker</h2>
+    <p class="lead">Click "New sticker" in the top right corner of any page. A short form opens.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/15-compose.webp" alt="New sticker form" loading="lazy" width="1440" height="900" />
+        <i class="pin" style="--x:28.6;--y:24.6">1</i><i class="pin" style="--x:28.6;--y:34">2</i><i class="pin" style="--x:28.6;--y:57">3</i><i class="pin" style="--x:28.6;--y:69.6">4</i></div>
+        <figcaption>The "New sticker" form.</figcaption></figure>
+      <ol class="steps">
+        <li><b>To</b><span>Your manager by default. You can pick a colleague or "Me (personal sticker)": only you see it, which makes it a handy reminder.</span></li>
+        <li><b>Title and details</b><span>A one-line title: what it is about. Details and deadlines go below.</span></li>
+        <li><b>Your estimate</b><span>Press "Urgent" and/or "Important" if that is the case. It is a hint for the manager, who chooses the final quadrant.</span></li>
+        <li><b>Deadline and files</b><span>If you need an answer by a date, set a deadline: two days before it the sticker becomes urgent on its own. Files up to 25 MB.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" id="sent">
+    <span class="num">06</span>
+    <h2>Follow the answer</h2>
+    <p class="lead">"Sent" shows what is happening with your stickers. They sit in columns, one per step.</p>
+    <figure class="shot"><div class="frame"><img src="img/43-answer.webp" alt="Sent stickers and the manager's question" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:21;--y:12">1</i><i class="pin" style="--x:79.5;--y:25.5">2</i><i class="pin" style="--x:20.6;--y:37.6">3</i><i class="pin" style="--x:47.1;--y:37.6">4</i><i class="pin" style="--x:73.6;--y:37.6">5</i></div>
+      <figcaption>"Sent" as an employee sees it: the manager has asked a question.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Your answer is needed</b><span>When the manager asks something, the question is pinned at the top of the page. The sticker waits for you until you answer.</span></li>
+      <li><b>Answer</b><span>Type your answer right here and press "Answer". The sticker goes back to the manager.</span></li>
+      <li><b>Awaiting triage</b><span>The manager has not opened the sticker yet.</span></li>
+      <li><b>In progress</b><span>The sticker has been sorted. Its colour shows the quadrant the manager chose.</span></li>
+      <li><b>Resolved</b><span>There is an answer. Open the sticker, read the decision and press "Confirm receipt": the sticker closes and moves to the archive. If the answer does not work for you, press "Reopen" and explain why.</span></li>
+    </ol>
+    <div class="note">{{icon:i10}}<span>Changed your mind? While the manager has not sorted the sticker yet ("Awaiting triage" column), you can take it back with "Withdraw" on the card.</span></div>
+  </section>
+
+  <div class="part"><h2>For managers</h2><span>sorting the inbox and answering</span></div>
+
+  <!-- 07 -->
+  <section class="slide" id="board">
+    <span class="num">07</span>
+    <h2>The board</h2>
+    <p class="lead">The manager's main screen. The day's summary at the top, below it the inbox and the four-quadrant matrix.</p>
+    <figure class="shot"><div class="frame"><img src="img/10-board.webp" alt="The manager's board" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:16.6;--y:3">1</i><i class="pin" style="--x:48.8;--y:5">2</i><i class="pin" style="--x:85.9;--y:4.5">3</i><i class="pin" style="--x:19.6;--y:14">4</i><i class="pin" style="--x:19.6;--y:29.5">5</i><i class="pin" style="--x:22.4;--y:66">6</i></div>
+      <figcaption>The manager's board in the morning.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Bell</b><span>New events: stickers, answers, reports from assignees. The number shows how many are unread.</span></li>
+      <li><b>Progress ring</b><span>How many stickers on the board are already sorted. The goal for the day: an empty Inbox.</span></li>
+      <li><b>Search and new sticker</b><span>Search by title, text and number. Managers can write stickers too: to themselves, to an employee or to their own manager.</span></li>
+      <li><b>Summary</b><span>How many wait for triage, how many are urgent, what is overdue and how many of your stickers wait for your answer.</span></li>
+      <li><b>Inbox</b><span>New, not yet sorted stickers. Drag a sticker with the mouse (with your finger on a phone) into a quadrant, or click it to open.</span></li>
+      <li><b>Quadrants</b><span>Sorted stickers. You can drag them between quadrants at any time. A red date means the deadline has passed.</span></li>
+    </ol>
+    <div class="note tip">{{icon:i11}}<span>There is a dark theme: "Profile → Appearance". By default the program follows your system setting.</span></div>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="The board in the dark theme" loading="lazy" width="1440" height="900" /></div><figcaption>The same board in the dark theme.</figcaption></figure>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" id="sheet">
+    <span class="num">08</span>
+    <h2>The sticker card</h2>
+    <p class="lead">Click any sticker to open its card. On the left the text and the conversation, on the right everything you can do with the sticker.</p>
+    <figure class="shot"><div class="frame"><img src="img/12-sheet.webp" alt="The sticker card" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:17.4;--y:39.6">1</i><i class="pin" style="--x:56.3;--y:14.2">2</i><i class="pin" style="--x:56.3;--y:38.2">3</i><i class="pin" style="--x:56.3;--y:57.8">4</i><i class="pin" style="--x:56.3;--y:68">5</i></div>
+      <figcaption>A new sticker from an employee.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Comments and files</b><span>The conversation about the sticker. The author sees a comment right away.</span></li>
+      <li><b>Progress</b><span>Where the sticker is now: new, sorted, in progress, resolved, closed.</span></li>
+      <li><b>Quadrant</b><span>Click a quadrant to put the sticker there. Below you can see how the author estimated it.</span></li>
+      <li><b>Deadline</b><span>Set it, change it or remove it.</span></li>
+      <li><b>Actions</b><span>The buttons depend on the sticker's state and your role. More in the next section.</span></li>
+    </ol>
+    <p>At the bottom right, the "Change log": who changed what in the sticker, and when.</p>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" id="resolve">
+    <span class="num">09</span>
+    <h2>Decisions and other actions</h2>
+    <p class="lead">To answer the author, press "Resolve", choose an outcome and write a few words. The answer goes to the author immediately.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/13-resolve.webp" alt="Resolving a sticker" loading="lazy" width="1440" height="900" /></div><figcaption>A decision: outcome "Approved" and an answer to the author.</figcaption></figure>
+      <div>
+        <h3 style="margin-top:0">Outcomes</h3>
+        <table>
+          <tr><td>Approved</td><td>Yes, go ahead.</td></tr>
+          <tr><td>Declined</td><td>No, with an explanation.</td></tr>
+          <tr><td>Done</td><td>Taken care of: access granted, document signed.</td></tr>
+          <tr><td>For information</td><td>Noted, no action needed.</td></tr>
+        </table>
+      </div>
+    </div>
+    <h3>All actions</h3>
+    <table>
+      <tr><th>Button</th><th>What happens</th></tr>
+      <tr><td>Start</td><td>You are working on the sticker. The author sees the status "In progress".</td></tr>
+      <tr><td>Ask</td><td>Ask the author a question. The sticker waits for the answer, and the question is pinned in the author's "Sent".</td></tr>
+      <tr><td>Delegate</td><td>Hand it to an employee. The sticker appears on their board, they report back with "Report", and you accept the work or send it back with "Send back".</td></tr>
+      <tr><td>Snooze</td><td>Take it off the board until tomorrow, for a week or until a date. On that day the sticker comes back on its own.</td></tr>
+      <tr><td>Reject</td><td>Decline without going into it, giving a reason.</td></tr>
+      <tr><td>Share</td><td>Show the sticker to a colleague, for example your deputy. They will see it in their "Sent".</td></tr>
+    </table>
+    <figure class="shot" style="margin-top:26px"><div class="frame"><img src="img/14-sheet-question.webp" alt="A sticker with a question" loading="lazy" width="1440" height="900" /></div><figcaption>After "Ask" the question shows in the conversation and the sticker waits for the author's answer.</figcaption></figure>
+    <div class="note">{{icon:i12}}<span>The program watches deadlines for you: two days before the deadline a sticker becomes urgent, overdue ones are highlighted in red, and resolved stickers the author has not confirmed close automatically after three days.</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="archive">
+    <span class="num">10</span>
+    <h2>Archive</h2>
+    <p class="lead">Closed, rejected and withdrawn stickers are filed in the archive by month. Each one carries a stamp with its outcome.</p>
+    <figure class="shot"><div class="frame"><img src="img/20-archive.webp" alt="Sticker archive" loading="lazy" width="1440" height="900" /></div><figcaption>Search by title, text or number, and filter by outcome.</figcaption></figure>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="stats">
+    <span class="num">11</span>
+    <h2>Statistics and Excel</h2>
+    <p class="lead">How many questions come in, how fast you answer, and which employees see priorities differently from you.</p>
+    <figure class="shot"><div class="frame"><img src="img/21-stats.webp" alt="Statistics" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:35.2;--y:2.6">1</i><i class="pin" style="--x:87.6;--y:2.6">2</i><i class="pin" style="--x:19.6;--y:14.2">3</i><i class="pin" style="--x:59.4;--y:29.8">4</i><i class="pin" style="--x:19.6;--y:58.4">5</i></div>
+      <figcaption>A manager's statistics for the week.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Period</b><span>Day, week, month, quarter or your own dates.</span></li>
+      <li><b>Download Excel</b><span>A report for the chosen period on three sheets: "Summary", "Stickers" and "By person". Handy to attach to a report for your own manager.</span></li>
+      <li><b>Period totals</b><span>How many came in, were resolved, remain and are overdue.</span></li>
+      <li><b>Speed</b><span>Average time to triage, to a decision and to the author's confirmation. Below: how often the author's estimate matched your decision.</span></li>
+      <li><b>From whom</b><span>For each employee: how many they sent, how many were resolved, response time and estimate mismatches.</span></li>
+    </ol>
+    <div class="note">{{icon:i13}}<span>Managers do not read the stickers employees send each other: the statistics show only how many there were and the average response time.</span></div>
+  </section>
+
+  <div class="part"><h2>For everyone</h2><span>notifications, profile, phone</span></div>
+
+  <!-- 12 -->
+  <section class="slide" id="notify">
+    <span class="num">12</span>
+    <h2>Notifications</h2>
+    <p class="lead">There are three ways to learn about a new sticker, question or decision.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/16-feed.webp" alt="Notification feed" loading="lazy" width="1440" height="900" /></div><figcaption>The bell in the top left corner opens the event feed.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Bell</b><span>Always works while the page is open. Click an event to open the sticker.</span></li>
+        <li><b>Browser notifications</b><span>Arrive even when the tab is closed. Turn them on under "Profile → Notifications", separately on each device. Requires a secure address (https).</span></li>
+        <li><b>Telegram</b><span>If the administrator has connected a bot: "Profile → Telegram → Link", then "Start" in the bot. In Telegram you can answer with buttons and create stickers.</span></li>
+      </ol>
+    </div>
+    <h3>Digests</h3>
+    <p>The morning digest arrives at the time you choose on working days: what awaits you today, what is urgent, deadlines and questions for you. The evening summary arrives at 18:00. Both are set up in the profile.</p>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="profile">
+    <span class="num">13</span>
+    <h2>Profile</h2>
+    <p class="lead">Personal settings. Everything is saved immediately, there is no "Save" button.</p>
+    <figure class="shot"><div class="frame"><img src="img/22-profile.webp" alt="Profile" loading="lazy" width="1440" height="1010" /></div><figcaption>On the left a card with your name and role, on the right the settings.</figcaption></figure>
+    <table style="margin-top:22px">
+      <tr><td>Appearance</td><td>Light, dark or as in the system. Interface language: one of seven.</td></tr>
+      <tr><td>Time</td><td>Time zone. Deadlines and digests follow it.</td></tr>
+      <tr><td>Notifications</td><td>The browser on this device, and Telegram.</td></tr>
+      <tr><td>Digests</td><td>Morning digest (time and days) and the evening summary.</td></tr>
+      <tr><td>Security</td><td>Change password (all other sessions are signed out) and two-factor protection.</td></tr>
+    </table>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="phone">
+    <span class="num">14</span>
+    <h2>On your phone</h2>
+    <p class="lead">No separate app needed: open the Planner address in your phone's browser. Everything works the same, and you can drag stickers with your finger.</p>
+    <div class="phones">
+      <figure class="shot phone"><div class="frame"><img src="img/50-mobile-board.webp" alt="The board on a phone" loading="lazy" width="780" height="1688" /></div><figcaption>Board.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/51-mobile-sheet.webp" alt="A sticker card on a phone" loading="lazy" width="780" height="1688" /></div><figcaption>Sticker card.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/52-mobile-sent.webp" alt="Sent on a phone" loading="lazy" width="780" height="1688" /></div><figcaption>Sent.</figcaption></figure>
+    </div>
+    <div class="note tip">{{icon:i14}}<span>Add Planner to your home screen and it will open like an app. iPhone: Safari → "Share" → "Add to Home Screen". Android: Chrome → menu ⋮ → "Add to Home screen". On iPhone, notifications only work in Planner opened from the home screen.</span></div>
+  </section>
+
+  <div class="part"><h2>For administrators</h2><span>installation and setup</span></div>
+
+  <!-- 15 -->
+  <section class="slide" id="setup">
+    <span class="num">15</span>
+    <h2>First launch</h2>
+    <p class="lead">Right after installation the program asks you to create an administrator. There are no default passwords: this account is the only way in.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="First launch" loading="lazy" width="1440" height="900" /></div><figcaption>Department, name, login (filled in for you) and password.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Turning on two-factor protection" loading="lazy" width="1440" height="900" /></div><figcaption>2FA is turned on right after that.</figcaption></figure>
+    </div>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Department name, first and last name</b><span>The login is built from your name, and you can edit it.</span></li>
+      <li><b>Password</b><span>At least 10 characters, three kinds out of four: lowercase, uppercase, digits, symbols.</span></li>
+      <li><b>"I am also the manager of this department"</b><span>Keep it ticked if you are the one sorting stickers. If not, untick it and assign a manager later under "Departments".</span></li>
+      <li><b>2FA</b><span>Scan the QR code with an app on your phone and enter the code. An empty board opens after that.</span></li>
+    </ol>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="users">
+    <span class="num">16</span>
+    <h2>People and departments</h2>
+    <p class="lead">The "Administration" section. Employees do not sign up themselves: the administrator adds them.</p>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="User list" loading="lazy" width="1440" height="900" /></div><figcaption>Users: login, department, role, whether 2FA is on.</figcaption></figure>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Add user</b><span>First and last name, department, role and a temporary password. The login is filled in for you. Give the person their login, password and a link to this guide.</span></li>
+      <li><b>Edit</b><span>A new password, another department or role, 2FA reset, deactivating someone who has left. A deactivated person's stickers are kept.</span></li>
+      <li><b>Departments</b><span>Name and manager. By default an employee's stickers go to the manager of their department.</span></li>
+      <li><b>Sign-in log</b><span>Who signed in, when and from where, failed attempts and lockouts. After 5 wrong passwords sign-in is locked for 15 minutes.</span></li>
+    </ol>
+    <div class="cols even" style="margin-top:22px">
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Departments" loading="lazy" width="1440" height="900" /></div><figcaption>Departments and their managers.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Sign-in log" loading="lazy" width="1440" height="900" /></div><figcaption>Sign-in log.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="telegram">
+    <span class="num">17</span>
+    <h2>Telegram bot</h2>
+    <p class="lead">Every company has its own bot: the administrator creates it in a couple of minutes, and messages go directly between your server and Telegram.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/33-admin-telegram.webp" alt="Connecting the Telegram bot" loading="lazy" width="1440" height="900" /></div><figcaption>"Administration → Telegram".</figcaption></figure>
+      <ol class="steps">
+        <li><b>Create a bot</b><span>In Telegram, open @BotFather, send /newbot and choose a name, for example "Planner Company".</span></li>
+        <li><b>Bot username</b><span>It must end in bot, for example planner_company_bot.</span></li>
+        <li><b>Token</b><span>BotFather sends a token like 123456789:AAH… Paste it and press "Connect".</span></li>
+        <li><b>Employees</b><span>Everyone links their own Telegram in the profile. You can add the bot to a team chat and write stickers there with /stiker text.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="updates">
+    <span class="num">18</span>
+    <h2>Updates</h2>
+    <p class="lead">You can give a new version to a few people first (beta) and keep everyone else on the proven one (stable).</p>
+    <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Update channels" loading="lazy" width="1440" height="900" /></div><figcaption>"Administration → Updates".</figcaption></figure>
+    <p>Every department and every person has a switch, and a personal choice overrides the department's. Moving and rolling back take effect immediately, with no downtime: the person's next request goes to the chosen version. If the test version goes down, its users automatically carry on with the main one.</p>
+    <div class="note">{{icon:i15}}<span>How to run the test version next to the main one is described in <span class="chip">docs/updates.md</span> in the repository. Before every database update the program makes a backup and keeps the last 10.</span></div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="faq">
+    <span class="num">19</span>
+    <h2>FAQ</h2>
+    <p class="lead">&nbsp;</p>
+    <details class="faq"><summary>My sticker went to the wrong person. What now?</summary><p>While it has not been sorted, open it in "Sent" and press "Withdraw", then create a new one with the right recipient. If it is already in progress, leave the recipient a comment on the card.</p></details>
+    <details class="faq"><summary>Does my manager see my personal stickers?</summary><p>No. Only you see a "Me (personal sticker)". Stickers to colleagues are seen only by you and the recipient; the manager sees just how many there were in the statistics.</p></details>
+    <details class="faq"><summary>Why did a sticker move to "Do now" by itself?</summary><p>Two days before its deadline a sticker becomes urgent. The quadrant changes but the importance stays; the card marks it as "Became urgent by deadline".</p></details>
+    <details class="faq"><summary>Browser notifications do not arrive.</summary><p>Check three things: the address starts with https, the browser allows notifications for the site, and notifications are on under "Profile → Notifications" on this device. The "Test" button sends a test notification.</p></details>
+    <details class="faq"><summary>I got locked out after wrong passwords.</summary><p>Wait 15 minutes or ask the administrator to set a new password.</p></details>
+    <details class="faq"><summary>An employee has left. Should I delete them?</summary><p>No need: deactivate them under "Users → Edit → Active". They cannot sign in, and the sticker history and statistics are kept.</p></details>
+    <details class="faq"><summary>Which languages does the program speak?</summary><p>Russian, English, German, Czech, Belarusian, Kazakh and Georgian. The language is switched under "Profile → Appearance", everyone chooses their own. Notifications, the Telegram bot and the Excel report come in the chosen language.</p></details>
+  </section>
+
+  <section class="author" id="author">
+    <div>
+      <h2>Project author</h2>
+      <p>Alexandria Planner is an open project. If you found a bug, have an idea or need help with installation, write on Telegram or open an issue on GitHub.</p>
+    </div>
+    <div class="links">
+      <a href="https://t.me/marshall033" target="_blank" rel="noreferrer">{{icon:i16}}Telegram</a>
+      <a href="https://github.com/Loktionov-g-bit" target="_blank" rel="noreferrer">{{icon:i17}}GitHub</a>
+    </div>
+  </section>
+  <footer>The screenshots were taken in the real program with demo data. All names are made up.</footer>
+</main>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Enlarged screenshot"><img alt="" /></div>

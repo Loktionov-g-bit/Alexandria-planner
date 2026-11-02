@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Отправленные</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@300;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#16191E}a:hover{color:#535D69}
+.sp{--bg:#E9ECF0;--dots:rgba(25,28,33,.10);--surface:#F8F9FB;--raised:#FFFFFF;--ink:#16191E;--muted:#535D69;--line:#D5DAE1;--btn:rgba(255,255,255,.62);--btnline:rgba(22,25,30,.15);--tape:rgba(255,255,255,.7);--paper:#FFFFFF;--late:#B42318;--ok:#2F7D4F;
+--q1:#F4B6A7;--q2:#B7DCC2;--q3:#F6D887;--q4:#C5D1E3;
+--shadow:0 1px 1px rgba(16,24,40,.07),0 10px 20px -10px rgba(16,24,40,.35);--lift:0 3px 6px rgba(16,24,40,.08),0 28px 40px -14px rgba(16,24,40,.42);
+width:1440px;min-height:1060px;display:flex;background-color:var(--bg);background-image:radial-gradient(var(--dots) 1px,transparent 1.2px);background-size:22px 22px;color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:15px}
+.sp.dark{--bg:#0F1114;--dots:rgba(232,236,241,.07);--surface:#16191D;--raised:#1C2025;--ink:#E8ECF1;--muted:#9AA3AE;--line:#272C33;--btn:rgba(255,255,255,.06);--btnline:rgba(232,236,241,.16);--tape:rgba(255,255,255,.14);--paper:#262B33;--late:#FF9C8C;--ok:#7FD1A0;
+--q1:#5E3530;--q2:#2B4A38;--q3:#5A4A1E;--q4:#2F3A4D;
+--shadow:0 1px 1px rgba(0,0,0,.45),0 12px 22px -10px rgba(0,0,0,.8);--lift:0 3px 6px rgba(0,0,0,.5),0 30px 44px -14px rgba(0,0,0,.9)}
+.ct{flex:1;min-width:0;padding:30px 36px 40px;display:flex;flex-direction:column;gap:26px}
+.hd{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hd h1{margin:0;font-family:'Unbounded',sans-serif;font-weight:500;font-size:28px;letter-spacing:-.02em}
+.seg{display:inline-flex;gap:2px;padding:3px;border-radius:12px;background:var(--raised);box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{min-height:34px;padding:0 14px;border:0;border-radius:9px;background:transparent;color:var(--muted);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.create{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px 0 14px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font:inherit;font-weight:600;cursor:pointer;box-shadow:0 8px 18px -8px rgba(16,24,40,.6)}
+.ask{position:relative;display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px;align-items:start;max-width:880px;padding:28px 28px 24px;background:var(--paper);border-radius:3px 3px 6px 4px;box-shadow:var(--lift);transform:rotate(-.3deg)}
+.pin{position:absolute;top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.8) 0 1.8px,transparent 3px),var(--pin);box-shadow:inset -2px -3px 4px rgba(0,0,0,.25),0 5px 4px -2px rgba(0,0,0,.4)}
+.ask .pin{left:40px}
+.kick{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--late)}
+.ask h2{margin:8px 0 10px;font-size:19px;line-height:1.25;font-weight:600}
+.to{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.av{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700}
+.q{display:flex;gap:10px}
+.bub{flex:1;padding:10px 14px;border-radius:4px 14px 14px 14px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.bub small{font-size:12px;color:var(--muted)}
+.bub p{margin:3px 0 0;font-size:15.5px;line-height:1.45}
+.ans{margin-top:12px;display:flex;gap:10px;align-items:flex-end}
+.ans label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ans textarea{flex:1;min-height:46px;height:46px;box-sizing:border-box;padding:12px 14px;border:0;border-radius:12px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);font:inherit;resize:none}
+.btn{min-height:46px;padding:0 18px;border:0;border-radius:12px;background:var(--btn);box-shadow:inset 0 0 0 1px var(--btnline);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--ink);color:var(--bg);box-shadow:none}
+.lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.lane{min-height:520px;padding:18px 18px 26px;border-radius:20px;background:color-mix(in srgb,var(--surface) 70%,transparent);box-shadow:inset 0 0 0 1px var(--line)}
+.lh{display:flex;align-items:baseline;gap:10px;margin-bottom:22px}
+.lh h3{margin:0;font-size:16px;font-weight:600}
+.lh span{font-size:13px;color:var(--muted)}
+.lh b{margin-left:auto;min-width:24px;height:24px;padding:0 8px;box-sizing:border-box;border-radius:12px;background:var(--ink);color:var(--bg);font-size:12px;display:inline-grid;place-items:center}
+.stk{display:flex;flex-wrap:wrap;gap:26px 18px}
+.st{position:relative;width:162px;height:162px;box-sizing:border-box;padding:17px 14px 12px;border:0;border-radius:2px 2px 4px 3px;background:var(--tone);color:var(--ink);font:inherit;text-align:left;display:flex;flex-direction:column;gap:7px;box-shadow:var(--shadow);transform:rotate(var(--r));cursor:pointer}
+.st::after{content:"";position:absolute;right:0;bottom:0;width:16px;height:16px;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.1) 50%)}
+.st .tp{position:absolute;top:-10px;left:50%;width:58px;height:19px;transform:translateX(-50%) rotate(-3deg);background:var(--tape);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.st .mg{position:absolute;top:-10px;left:50%;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.55),transparent 55%),var(--pin);box-shadow:0 4px 7px -2px rgba(0,0,0,.4)}
+.st small{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;opacity:.7}
+.st strong{font-size:14.5px;line-height:1.27;font-weight:600}
+.st .ft{margin-top:auto;display:flex;align-items:center;gap:6px;font-size:12px}
+.st .ft em{margin-left:auto;font-style:normal;opacity:.8}
+.st .ft em.late{opacity:1;color:var(--late);font-weight:700}
+.stamp{position:absolute;right:10px;top:54px;padding:4px 8px;border:2px solid currentColor;border-radius:6px;font-family:'Unbounded',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transform:rotate(-9deg);opacity:.85}
+.stamp.ok{color:var(--ok)}
+.got{margin-top:12px;min-height:40px;width:162px}
+.seen{display:flex;align-items:center;gap:6px;font-size:12px;opacity:.75}
+</style>
+</helmet>
+<div class="{{rootCls}}">
+<dc-import name="Side" dark="{{dark}}" active="sent" hint-size="248px,1060px"></dc-import>
+<main class="ct">
+<div class="hd">
+<h1>Отправленные</h1>
+<div class="seg" role="group" aria-label="Фильтр"><button type="button" class="on" aria-pressed="true">Активные</button><button type="button" aria-pressed="false">Все</button></div>
+<span style="flex: 1"></span>
+<button class="create" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Создать стикер</button>
+</div>
+
+<section class="ask" aria-label="Нужен ваш ответ">
+<span class="pin" style="--pin: #D2391F" aria-hidden="true"></span>
+<div>
+<span class="kick">Нужен ваш ответ</span>
+<h2>Командировка в Казань на выставку</h2>
+<div class="to">№8 · <span class="av" style="background: #5B7CFA">АС</span>Анне Соколовой</div>
+</div>
+<div>
+<div class="q"><span class="av" style="background: #5B7CFA; width: 32px; height: 32px; font-size: 11px">АС</span>
+<div class="bub"><small>Анна Соколова · вчера, 20:57</small><p>Сколько человек и какой бюджет?</p></div></div>
+<div class="ans"><label for="ans">Ваш ответ</label><textarea id="ans" placeholder="Ответ уйдёт Анне, стикер вернётся к ней"></textarea><button class="btn pri" type="button">Ответить</button></div>
+</div>
+</section>
+
+<div class="lanes">
+<section class="lane" aria-label="Ждут разбора">
+<div class="lh"><h3>Ждут разбора</h3><span>ещё не открыты</span><b>2</b></div>
+<div class="stk">
+<button type="button" class="st" style="--tone: var(--paper); --r: -1.5deg"><span class="tp" aria-hidden="true"></span><small>Срочно · важно</small><strong>Скидка 12% для ООО «Север»</strong><span class="ft"><span class="av" style="background: #5B7CFA">АС</span>Анна С.<em>1 нояб.</em></span></button>
+<button type="button" class="st" style="--tone: var(--paper); --r: 1.2deg; margin-top: 10px"><span class="mg" style="--pin: #2F6BDB" aria-hidden="true"></span><small>Важно</small><strong>Курсы английского за счёт компании</strong><span class="ft"><span class="av" style="background: #5B7CFA">АС</span>Анна С.</span></button>
+</div>
+</section>
+<section class="lane" aria-label="В работе">
+<div class="lh"><h3>В работе</h3><span>цвет — решение руководителя</span><b>2</b></div>
+<div class="stk">
+<button type="button" class="st" style="--tone: var(--q1); --r: 1deg"><span class="pin" style="--pin: #D2391F" aria-hidden="true"></span><small>Разобран</small><strong>Подписать договор с «Вектором»</strong><span class="ft"><span class="av" style="background: #5B7CFA">АС</span>Анна С.<em class="late">30 окт.</em></span></button>
+<button type="button" class="st" style="--tone: var(--q3); --r: -2deg; margin-top: 8px"><span class="tp" aria-hidden="true"></span><small>Делегирован</small><strong>Обновить прайс на сайте</strong><span class="seen"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>у Ивана П.</span><span class="ft"><span class="av" style="background: #5B7CFA">АС</span>Анна С.<em>2 нояб.</em></span></button>
+</div>
+</section>
+<section class="lane" aria-label="Решено">
+<div class="lh"><h3>Решено</h3><span>подтвердите, что увидели</span><b>1</b></div>
+<div class="stk">
+<div>
+<button type="button" class="st" style="--tone: var(--q2); --r: -1deg"><span class="mg" style="--pin: #1F9D6B" aria-hidden="true"></span><small>Решён</small><strong>Заявка на обучение по переговорам</strong><span class="stamp ok">Согласовано</span><span class="ft"><span class="av" style="background: #5B7CFA">АС</span>Анна С.</span></button>
+<button class="btn got" type="button">Получил</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+renderVals() {
+const dark = !!this.props.dark;
+return { dark, rootCls: dark ? 'sp dark' : 'sp' };
+}
+}
+</script>
+</body>
+</html>

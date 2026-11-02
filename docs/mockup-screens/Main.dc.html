@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Вход</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@300;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#16191E}a:hover{color:#535D69}
+.lg{--bg:#E9ECF0;--dots:rgba(25,28,33,.10);--surface:#F8F9FB;--raised:#FFFFFF;--ink:#16191E;--muted:#535D69;--line:#D5DAE1;--btn:rgba(255,255,255,.62);--btnline:rgba(22,25,30,.15);--tape:rgba(255,255,255,.7);--paper:#FFFFFF;
+--q1:#F4B6A7;--q2:#B7DCC2;--q3:#F6D887;--q4:#C5D1E3;--glow:rgba(255,224,130,.42);
+--shadow:0 1px 1px rgba(16,24,40,.07),0 10px 20px -10px rgba(16,24,40,.35);--lift:0 3px 6px rgba(16,24,40,.08),0 30px 50px -18px rgba(16,24,40,.45);
+position:relative;overflow:hidden;width:1440px;height:900px;box-sizing:border-box;background-color:var(--bg);background-image:radial-gradient(1000px 560px at 50% 40%,var(--glow),transparent 65%),radial-gradient(var(--dots) 1px,transparent 1.2px);background-size:auto,22px 22px;color:var(--ink);font-family:'Onest',system-ui,sans-serif;font-size:15px}
+.lg.dark{--bg:#0F1114;--dots:rgba(232,236,241,.07);--surface:#16191D;--raised:#1C2025;--ink:#E8ECF1;--muted:#9AA3AE;--line:#272C33;--btn:rgba(255,255,255,.06);--btnline:rgba(232,236,241,.16);--tape:rgba(255,255,255,.14);--paper:#262B33;
+--q1:#5E3530;--q2:#2B4A38;--q3:#5A4A1E;--q4:#2F3A4D;--glow:rgba(110,140,240,.12);
+--shadow:0 1px 1px rgba(0,0,0,.45),0 12px 22px -10px rgba(0,0,0,.8);--lift:0 3px 6px rgba(0,0,0,.5),0 30px 50px -18px rgba(0,0,0,.9)}
+.deco{position:absolute;width:176px;height:176px;box-sizing:border-box;padding:18px 16px;border-radius:2px 2px 4px 3px;background:var(--tone);box-shadow:var(--shadow);font-weight:600;font-size:15px;line-height:1.3;color:var(--ink)}
+.deco small{display:block;margin-bottom:8px;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;opacity:.65}
+.deco::after{content:"";position:absolute;right:0;bottom:0;width:18px;height:18px;background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.1) 50%)}
+.tape{position:absolute;top:-10px;left:50%;width:64px;height:20px;transform:translateX(-50%) rotate(-3deg);background:var(--tape);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.pin{position:absolute;top:-7px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.8) 0 1.8px,transparent 3px),var(--pin);box-shadow:inset -2px -3px 4px rgba(0,0,0,.25),0 5px 4px -2px rgba(0,0,0,.4)}
+.magnet{position:absolute;top:-10px;left:50%;width:26px;height:26px;margin-left:-13px;border-radius:50%;background:radial-gradient(circle at 38% 32%,rgba(255,255,255,.55),transparent 55%),var(--pin);box-shadow:0 4px 7px -2px rgba(0,0,0,.4),inset 0 -2px 3px rgba(0,0,0,.22)}
+.washi{background:repeating-linear-gradient(45deg,rgba(110,150,225,.82) 0 5px,rgba(255,255,255,.62) 5px 10px)}
+.card{position:absolute;left:50%;top:50%;width:420px;box-sizing:border-box;margin:-262px 0 0 -210px;padding:44px 40px 34px;background:var(--paper);border-radius:3px 3px 6px 4px;box-shadow:var(--lift);transform:rotate(-.6deg)}
+.card .tape{width:96px;height:26px;top:-13px}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.brand img{width:44px;height:44px}
+.brand b{display:block;font-family:'Unbounded',sans-serif;font-weight:500;font-size:16px}
+.brand span{font-size:12.5px;color:var(--muted)}
+.f{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.f label{font-size:13px;font-weight:600}
+.f input{height:46px;box-sizing:border-box;padding:0 14px;border:0;border-radius:12px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);color:var(--ink);font:inherit;font-size:15px}
+.go{width:100%;height:48px;margin-top:8px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font:inherit;font-weight:600;font-size:15px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(16,24,40,.6)}
+.help{margin:18px 0 0;font-size:13px;color:var(--muted);line-height:1.45}
+.foot{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
+.foot a{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;color:var(--muted)}
+</style>
+</helmet>
+<div class="{{rootCls}}">
+<div class="deco" style="left: 150px; top: 120px; transform: rotate(-4deg); --tone: var(--q2)"><span class="tape" aria-hidden="true"></span><small>Запланировать</small>Отчёт по продажам за октябрь</div>
+<div class="deco" style="left: 236px; top: 560px; transform: rotate(3deg); --tone: var(--q3)"><span class="pin" style="--pin: #2F6BDB" aria-hidden="true"></span><small>Поручить</small>Обновить прайс на сайте</div>
+<div class="deco" style="left: 1090px; top: 150px; transform: rotate(2.5deg); --tone: var(--q1)"><span class="magnet" style="--pin: #1F9D6B" aria-hidden="true"></span><small>Сделать сейчас</small>Подписать договор с «Вектором»</div>
+<div class="deco" style="left: 1150px; top: 590px; transform: rotate(-2deg); --tone: var(--q4)"><span class="tape washi" aria-hidden="true"></span><small>Не делать</small>Заказать воду в офис</div>
+<div class="deco" style="left: -60px; top: 380px; transform: rotate(6deg); --tone: var(--paper)"><span class="pin" style="--pin: #7A4FD0" aria-hidden="true"></span><small>Новый</small>Отпуск с 10 ноября</div>
+
+<form class="card" aria-label="Вход">
+<span class="tape" aria-hidden="true"></span>
+<div class="brand"><img src="/_blob/efe90e0bb9039947541af6be369d5172" alt=""><span><b>Alexandria</b><span>Планер</span></span></div>
+<div class="f"><label for="l-login">Логин</label><input id="l-login" type="text" value="maria" autocomplete="username"></div>
+<div class="f"><label for="l-pass">Пароль</label><input id="l-pass" type="password" value="password12" autocomplete="current-password"></div>
+<button class="go" type="button">Войти</button>
+<p class="help">Забыли пароль? Его сбросит администратор вашей компании.</p>
+</form>
+
+<div class="foot">Автор проекта
+<a href="https://t.me/marshall033" aria-label="Telegram"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.4 13.2 1.7 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"></path></svg></a>
+<a href="https://github.com/Loktionov-g-bit" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"></path></svg></a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return { rootCls: this.props.dark ? 'lg dark' : 'lg' };
+}
+}
+</script>
+</body>
+</html>

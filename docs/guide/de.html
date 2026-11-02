@@ -1,0 +1,392 @@
+<!-- title: Benutzerhandbuch · Alexandria Planer -->
+<!-- description: Schritt-für-Schritt-Anleitung für Alexandria Planer: Sticker, Eisenhower-Matrix, Board der Führungskraft, Benachrichtigungen und Verwaltung. -->
+<div class="wrap">
+<nav class="toc" aria-label="Inhalt">
+  <a class="brand" href="#top"><img src="../alexandria-planner-logo.svg" alt="" /><div><b>Alexandria</b><span>Planer · Handbuch</span></div></a>
+  {{langs}}
+  <h4>Einstieg</h4>
+  <ol>
+    <li><a href="#idea"><i>01</i>Worum es geht</a></li>
+    <li><a href="#matrix"><i>02</i>Die Eisenhower-Matrix</a></li>
+    <li><a href="#roles"><i>03</i>Wer ist wer</a></li>
+    <li><a href="#login"><i>04</i>Anmeldung und Schutz</a></li>
+  </ol>
+  <h4>Für Mitarbeiter</h4>
+  <ol>
+    <li><a href="#compose"><i>05</i>Sticker senden</a></li>
+    <li><a href="#sent"><i>06</i>Antwort verfolgen</a></li>
+  </ol>
+  <h4>Für Führungskräfte</h4>
+  <ol>
+    <li><a href="#board"><i>07</i>Das Board</a></li>
+    <li><a href="#sheet"><i>08</i>Die Sticker-Karte</a></li>
+    <li><a href="#resolve"><i>09</i>Entscheidung und weitere Aktionen</a></li>
+    <li><a href="#archive"><i>10</i>Archiv</a></li>
+    <li><a href="#stats"><i>11</i>Statistik und Excel</a></li>
+  </ol>
+  <h4>Für alle</h4>
+  <ol>
+    <li><a href="#notify"><i>12</i>Benachrichtigungen</a></li>
+    <li><a href="#profile"><i>13</i>Profil</a></li>
+    <li><a href="#phone"><i>14</i>Auf dem Smartphone</a></li>
+  </ol>
+  <h4>Für Administratoren</h4>
+  <ol>
+    <li><a href="#setup"><i>15</i>Erster Start</a></li>
+    <li><a href="#users"><i>16</i>Personen und Abteilungen</a></li>
+    <li><a href="#telegram"><i>17</i>Telegram-Bot</a></li>
+    <li><a href="#updates"><i>18</i>Updates</a></li>
+  </ol>
+  <h4>Mehr</h4>
+  <ol>
+    <li><a href="#faq"><i>19</i>Häufige Fragen</a></li>
+    <li><a href="#author"><i>20</i>Autor</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+  <header class="cover">
+    {{langs}}
+    <span class="kicker">Benutzerhandbuch · Version 0.1</span>
+    <h1>Alexandria Planer</h1>
+    <p class="big">Fragen an die Führungskraft ohne Papierzettel auf dem Schreibtisch. Mitarbeiter schreiben einen Sticker, die Führungskraft sortiert ihn in der Eisenhower-Matrix und antwortet, der Autor sieht die Entscheidung.</p>
+    <div class="who">
+      <a href="#compose"><span style="background:var(--q-plan)">{{icon:i1}}</span>Ich bin Mitarbeiter</a>
+      <a href="#board"><span style="background:var(--q-do)">{{icon:i2}}</span>Ich bin Führungskraft</a>
+      <a href="#setup"><span style="background:var(--q-drop)">{{icon:i3}}</span>Ich bin Administrator</a>
+    </div>
+    <div class="hero"><img src="img/10-board.webp" alt="Board der Führungskraft: Eingang und Eisenhower-Matrix" width="1440" height="900" /></div>
+  </header>
+
+  <!-- 01 -->
+  <section class="slide" id="idea">
+    <span class="num">01</span>
+    <h2>Worum es geht</h2>
+    <p class="lead">Früher klebten Mitarbeiter Zettel auf den Schreibtisch der Führungskraft: „Urlaub genehmigen“, „Kunde braucht Rabatt“, „Laptop kaputt“. Zettel gingen verloren, Antworten wurden vergessen, niemand wusste, was schon entschieden war.</p>
+    <div class="cols even">
+      <ol class="steps">
+        <li><b>Mitarbeiter schreibt einen Sticker</b><span>Kurz: was gebraucht wird und bis wann. Man kann eine Datei anhängen und angeben, wie dringend und wichtig es ist.</span></li>
+        <li><b>Führungskraft sortiert</b><span>Der Sticker landet im Eingang auf dem Board. Die Führungskraft legt ihn in einen der vier Quadranten und nimmt ihn in Arbeit, fragt nach, delegiert oder entscheidet sofort.</span></li>
+        <li><b>Autor bekommt die Antwort</b><span>Die Entscheidung kommt im Browser und in Telegram an. Der Autor bestätigt, dass er sie gesehen hat, und der Sticker wandert ins Archiv.</span></li>
+      </ol>
+      <div>
+        <p>Das alles passiert im Browser, am Computer oder auf dem Smartphone. Das Programm läuft auf dem Server Ihres Unternehmens: Die Daten bleiben dort, der Projektautor sieht sie nicht.</p>
+        <div class="note tip">{{icon:i4}}<span>Zum ersten Mal hier? Lesen Sie die Abschnitte 01–04 und danach den Teil für Ihre Rolle: <a href="#compose">Mitarbeiter</a>, <a href="#board">Führungskraft</a> oder <a href="#setup">Administrator</a>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" id="matrix">
+    <span class="num">02</span>
+    <h2>Die Eisenhower-Matrix</h2>
+    <p class="lead">Jeder Sticker wird nach zwei Fragen bewertet: Ist es dringend? Ist es wichtig? Daraus entstehen vier Quadranten, jeder mit eigener Farbe, die Sie überall im Programm wiederfinden.</p>
+    <div class="matrix">
+      <div class="q"><small>1 · dringend und wichtig</small><h3>Sofort erledigen</h3><p>Brennt und wirkt sich auf das Ergebnis aus. Zum Beispiel ein Kundenvertrag, der heute unterschrieben werden muss.</p></div>
+      <div class="q"><small>2 · wichtig, nicht dringend</small><h3>Einplanen</h3><p>Wirkt sich auf das Ergebnis aus, aber es ist Zeit. Monatsbericht, Weiterbildung, Pläne.</p></div>
+      <div class="q"><small>3 · dringend, nicht wichtig</small><h3>Delegieren</h3><p>Muss schnell gehen, aber nicht unbedingt durch die Führungskraft. Preisliste aktualisieren, Visitenkarten bestellen.</p></div>
+      <div class="q"><small>4 · nicht dringend, nicht wichtig</small><h3>Nicht tun</h3><p>Kann lange warten oder abgelehnt werden. Wasser bestellen, Kaffeemaschine kaufen.</p></div>
+    </div>
+    <div class="note">{{icon:i5}}<span>Beim Senden gibt der Mitarbeiter seine <i>Einschätzung</i> an („Dringend“, „Wichtig“). Den endgültigen Quadranten wählt die Führungskraft. Weichen beide ab, zeigt das die Statistik: So lernt ein Team, Prioritäten gleich zu sehen.</span></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" id="roles">
+    <span class="num">03</span>
+    <h2>Wer ist wer</h2>
+    <p class="lead">Es gibt drei Rollen. Eine Person kann zwei davon haben: Die Leitung einer kleinen Abteilung ist oft auch Administrator.</p>
+    <div class="roles">
+      <div class="role"><div class="ico" style="background:var(--q-plan)">{{icon:i6}}</div><h3>Mitarbeiter</h3><p>Schreibt Sticker an die Führungskraft oder an Kollegen, beantwortet Rückfragen, bestätigt Entscheidungen. Sieht nur eigene Sticker und solche, die für ihn freigegeben wurden.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Führungskraft</h3><p>Bekommt die Sticker der Abteilung aufs Board, sortiert sie in Quadranten, antwortet, delegiert, sieht die Statistik und exportiert den Excel-Bericht.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrator</h3><p>Legt Personen und Abteilungen an, setzt Passwörter zurück, verbindet den Telegram-Bot und steuert Updates. Sieht das Anmeldeprotokoll.</p></div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" id="login">
+    <span class="num">04</span>
+    <h2>Anmeldung und Schutz</h2>
+    <p class="lead">Login und vorläufiges Passwort bekommen Sie vom Administrator. Ein Login besteht meist aus dem ersten Buchstaben des Vornamens und dem Nachnamen: <span class="chip">j.becker</span>.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/04-login.webp" alt="Anmeldebildschirm" loading="lazy" width="1440" height="900" /></div><figcaption>Schritt 1. Login und Passwort.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/05-totp.webp" alt="Code aus der App eingeben" loading="lazy" width="1440" height="900" /></div><figcaption>Schritt 2. Code aus der App: nur für Führungskräfte, Administratoren und alle, die den Schutz selbst eingeschaltet haben.</figcaption></figure>
+    </div>
+    <h3>Zwei-Faktor-Schutz (2FA)</h3>
+    <p>Für Führungskräfte und Administratoren ist er Pflicht: Bei der ersten Anmeldung zeigt das Programm einen QR-Code. Installieren Sie Google Authenticator, Microsoft Authenticator oder eine ähnliche App auf dem Smartphone, scannen Sie den Code und geben Sie die 6 Ziffern ein. Danach fragt das Programm bei jeder Anmeldung nach einem neuen Code aus der App.</p>
+    <div class="note warn">{{icon:i9}}<span>Passwort vergessen oder Smartphone mit der App verloren? Wenden Sie sich an den Administrator: Er setzt unter „Verwaltung → Benutzer“ ein neues Passwort oder setzt 2FA zurück. Eine Wiederherstellung per E-Mail gibt es nicht, das ist sicherer.</span></div>
+  </section>
+
+  <div class="part"><h2>Für Mitarbeiter</h2><span>fragen und eine Antwort bekommen</span></div>
+
+  <!-- 05 -->
+  <section class="slide" id="compose">
+    <span class="num">05</span>
+    <h2>Sticker senden</h2>
+    <p class="lead">Klicken Sie oben rechts auf einer beliebigen Seite auf „Sticker erstellen“. Ein kurzes Formular öffnet sich.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/15-compose.webp" alt="Formular für einen neuen Sticker" loading="lazy" width="1440" height="900" />
+        <i class="pin" style="--x:28.6;--y:24.6">1</i><i class="pin" style="--x:28.6;--y:34">2</i><i class="pin" style="--x:28.6;--y:57">3</i><i class="pin" style="--x:28.6;--y:69.6">4</i></div>
+        <figcaption>Das Formular „Neuer Sticker“.</figcaption></figure>
+      <ol class="steps">
+        <li><b>An</b><span>Standardmäßig Ihre Führungskraft. Sie können einen Kollegen wählen oder „Für mich (persönlicher Sticker)“: Den sehen nur Sie, praktisch als Erinnerung.</span></li>
+        <li><b>Titel und Details</b><span>Ein einzeiliger Titel: worum es geht. Einzelheiten und Fristen kommen in die Details.</span></li>
+        <li><b>Ihre Einschätzung</b><span>Drücken Sie „Dringend“ und/oder „Wichtig“, wenn das zutrifft. Es ist ein Hinweis für die Führungskraft, die den endgültigen Quadranten wählt.</span></li>
+        <li><b>Frist und Dateien</b><span>Brauchen Sie die Antwort bis zu einem Datum, setzen Sie eine Frist: Zwei Tage vorher wird der Sticker von selbst dringend. Dateien bis 25 MB.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" id="sent">
+    <span class="num">06</span>
+    <h2>Antwort verfolgen</h2>
+    <p class="lead">Unter „Gesendet“ sehen Sie, was mit Ihren Stickern passiert. Sie liegen in Spalten, eine pro Schritt.</p>
+    <figure class="shot"><div class="frame"><img src="img/43-answer.webp" alt="Gesendete Sticker und eine Rückfrage der Führungskraft" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:21;--y:12">1</i><i class="pin" style="--x:79.5;--y:25.5">2</i><i class="pin" style="--x:20.6;--y:37.6">3</i><i class="pin" style="--x:47.1;--y:37.6">4</i><i class="pin" style="--x:73.6;--y:37.6">5</i></div>
+      <figcaption>„Gesendet“ aus Sicht eines Mitarbeiters: Die Führungskraft hat eine Rückfrage.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Ihre Antwort wird gebraucht</b><span>Fragt die Führungskraft nach, wird die Frage oben auf der Seite angeheftet. Bis Sie antworten, wartet der Sticker auf Sie.</span></li>
+      <li><b>Antworten</b><span>Schreiben Sie die Antwort direkt hier und drücken Sie „Antworten“. Der Sticker geht zurück an die Führungskraft.</span></li>
+      <li><b>Warten auf Sortierung</b><span>Die Führungskraft hat den Sticker noch nicht geöffnet.</span></li>
+      <li><b>In Arbeit</b><span>Der Sticker ist sortiert. Seine Farbe zeigt den Quadranten, den die Führungskraft gewählt hat.</span></li>
+      <li><b>Entschieden</b><span>Es gibt eine Antwort. Öffnen Sie den Sticker, lesen Sie die Entscheidung und drücken Sie „Erhalt bestätigen“: Der Sticker wird geschlossen und ins Archiv gelegt. Passt die Antwort nicht, drücken Sie „Wieder öffnen“ und erklären Sie warum.</span></li>
+    </ol>
+    <div class="note">{{icon:i10}}<span>Umentschieden? Solange die Führungskraft den Sticker nicht sortiert hat (Spalte „Warten auf Sortierung“), können Sie ihn mit „Zurückziehen“ in der Karte zurücknehmen.</span></div>
+  </section>
+
+  <div class="part"><h2>Für Führungskräfte</h2><span>Eingang sortieren und antworten</span></div>
+
+  <!-- 07 -->
+  <section class="slide" id="board">
+    <span class="num">07</span>
+    <h2>Das Board</h2>
+    <p class="lead">Der Hauptbildschirm der Führungskraft. Oben die Tagesübersicht, darunter der Eingang und die Matrix mit vier Quadranten.</p>
+    <figure class="shot"><div class="frame"><img src="img/10-board.webp" alt="Board der Führungskraft" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:16.6;--y:3">1</i><i class="pin" style="--x:48.8;--y:5">2</i><i class="pin" style="--x:85.9;--y:4.5">3</i><i class="pin" style="--x:19.6;--y:14">4</i><i class="pin" style="--x:19.6;--y:29.5">5</i><i class="pin" style="--x:22.4;--y:66">6</i></div>
+      <figcaption>Das Board der Führungskraft am Morgen.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Glocke</b><span>Neue Ereignisse: Sticker, Antworten, Berichte. Die Zahl zeigt die ungelesenen.</span></li>
+      <li><b>Fortschrittsring</b><span>Wie viele Sticker auf dem Board schon sortiert sind. Das Tagesziel: ein leerer Eingang.</span></li>
+      <li><b>Suche und neuer Sticker</b><span>Suche nach Titel, Text und Nummer. Auch Führungskräfte können Sticker schreiben: an sich selbst, an Mitarbeiter oder an die eigene Führungskraft.</span></li>
+      <li><b>Übersicht</b><span>Wie viele auf Sortierung warten, wie viele dringend sind, was überfällig ist und wie viele Ihrer Sticker auf Ihre Antwort warten.</span></li>
+      <li><b>Eingang</b><span>Neue, noch nicht sortierte Sticker. Ziehen Sie einen Sticker mit der Maus (auf dem Smartphone mit dem Finger) in einen Quadranten oder klicken Sie ihn an, um ihn zu öffnen.</span></li>
+      <li><b>Quadranten</b><span>Sortierte Sticker. Sie lassen sich jederzeit zwischen Quadranten verschieben. Ein rotes Datum bedeutet: Frist abgelaufen.</span></li>
+    </ol>
+    <div class="note tip">{{icon:i11}}<span>Es gibt ein dunkles Design: „Profil → Darstellung“. Standardmäßig folgt das Programm der Systemeinstellung.</span></div>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Board im dunklen Design" loading="lazy" width="1440" height="900" /></div><figcaption>Dasselbe Board im dunklen Design.</figcaption></figure>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" id="sheet">
+    <span class="num">08</span>
+    <h2>Die Sticker-Karte</h2>
+    <p class="lead">Klicken Sie auf einen Sticker, um seine Karte zu öffnen. Links Text und Unterhaltung, rechts alles, was Sie mit dem Sticker tun können.</p>
+    <figure class="shot"><div class="frame"><img src="img/12-sheet.webp" alt="Sticker-Karte" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:17.4;--y:39.6">1</i><i class="pin" style="--x:56.3;--y:14.2">2</i><i class="pin" style="--x:56.3;--y:38.2">3</i><i class="pin" style="--x:56.3;--y:57.8">4</i><i class="pin" style="--x:56.3;--y:68">5</i></div>
+      <figcaption>Ein neuer Sticker von einer Mitarbeiterin.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Kommentar und Dateien</b><span>Die Unterhaltung zum Sticker. Der Autor sieht einen Kommentar sofort.</span></li>
+      <li><b>Verlauf</b><span>Wo der Sticker gerade steht: neu, sortiert, in Arbeit, entschieden, geschlossen.</span></li>
+      <li><b>Quadrant</b><span>Klicken Sie auf einen Quadranten, um den Sticker dorthin zu legen. Darunter sehen Sie die Einschätzung des Autors.</span></li>
+      <li><b>Frist</b><span>Setzen, ändern oder entfernen.</span></li>
+      <li><b>Aktionen</b><span>Welche Schaltflächen erscheinen, hängt vom Zustand des Stickers und Ihrer Rolle ab. Mehr dazu im nächsten Abschnitt.</span></li>
+    </ol>
+    <p>Unten rechts das „Änderungsprotokoll“: wer wann was am Sticker geändert hat.</p>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" id="resolve">
+    <span class="num">09</span>
+    <h2>Entscheidung und weitere Aktionen</h2>
+    <p class="lead">Um dem Autor zu antworten, drücken Sie „Entscheiden“, wählen ein Ergebnis und schreiben ein paar Worte. Die Antwort geht sofort an den Autor.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/13-resolve.webp" alt="Entscheidung zu einem Sticker" loading="lazy" width="1440" height="900" /></div><figcaption>Entscheidung: Ergebnis „Genehmigt“ und Antwort an den Autor.</figcaption></figure>
+      <div>
+        <h3 style="margin-top:0">Ergebnisse</h3>
+        <table>
+          <tr><td>Genehmigt</td><td>Ja, einverstanden.</td></tr>
+          <tr><td>Abgelehnt</td><td>Nein, mit Begründung.</td></tr>
+          <tr><td>Erledigt</td><td>Umgesetzt: Zugang eingerichtet, Dokument unterschrieben.</td></tr>
+          <tr><td>Zur Kenntnis</td><td>Zur Kenntnis genommen, nichts zu tun.</td></tr>
+        </table>
+      </div>
+    </div>
+    <h3>Alle Aktionen</h3>
+    <table>
+      <tr><th>Schaltfläche</th><th>Was passiert</th></tr>
+      <tr><td>In Arbeit nehmen</td><td>Sie kümmern sich um den Sticker. Der Autor sieht den Status „In Arbeit“.</td></tr>
+      <tr><td>Nachfragen</td><td>Dem Autor eine Frage stellen. Der Sticker wartet auf die Antwort, beim Autor wird die Frage unter „Gesendet“ angeheftet.</td></tr>
+      <tr><td>Delegieren</td><td>An einen Mitarbeiter übergeben. Der Sticker erscheint auf dessen Board, er meldet sich mit „Bericht abgeben“, und Sie nehmen die Arbeit ab oder schicken sie „Zur Nacharbeit“ zurück.</td></tr>
+      <tr><td>Zurückstellen</td><td>Bis morgen, für eine Woche oder bis zu einem Datum vom Board nehmen. Am gewählten Tag kommt der Sticker von selbst zurück.</td></tr>
+      <tr><td>Ablehnen</td><td>Ohne Bearbeitung ablehnen, mit Angabe des Grundes.</td></tr>
+      <tr><td>Freigeben</td><td>Den Sticker einem Kollegen zeigen, etwa Ihrer Vertretung. Er sieht ihn unter „Gesendet“.</td></tr>
+    </table>
+    <figure class="shot" style="margin-top:26px"><div class="frame"><img src="img/14-sheet-question.webp" alt="Sticker mit Rückfrage" loading="lazy" width="1440" height="900" /></div><figcaption>Nach „Nachfragen“ steht die Frage in der Unterhaltung, und der Sticker wartet auf die Antwort des Autors.</figcaption></figure>
+    <div class="note">{{icon:i12}}<span>Das Programm achtet selbst auf Fristen: Zwei Tage vor der Frist wird ein Sticker dringend, überfällige werden rot markiert, und entschiedene Sticker, die der Autor nicht bestätigt hat, werden nach drei Tagen automatisch geschlossen.</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="archive">
+    <span class="num">10</span>
+    <h2>Archiv</h2>
+    <p class="lead">Geschlossene, abgelehnte und zurückgezogene Sticker werden nach Monaten im Archiv abgelegt. Jeder trägt einen Stempel mit dem Ergebnis.</p>
+    <figure class="shot"><div class="frame"><img src="img/20-archive.webp" alt="Sticker-Archiv" loading="lazy" width="1440" height="900" /></div><figcaption>Suche nach Titel, Text oder Nummer und Filter nach Ergebnis.</figcaption></figure>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="stats">
+    <span class="num">11</span>
+    <h2>Statistik und Excel</h2>
+    <p class="lead">Wie viele Fragen kommen, wie schnell Sie antworten und welche Mitarbeiter Prioritäten anders einschätzen als Sie.</p>
+    <figure class="shot"><div class="frame"><img src="img/21-stats.webp" alt="Statistik" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:35.2;--y:2.6">1</i><i class="pin" style="--x:87.6;--y:2.6">2</i><i class="pin" style="--x:19.6;--y:14.2">3</i><i class="pin" style="--x:59.4;--y:29.8">4</i><i class="pin" style="--x:19.6;--y:58.4">5</i></div>
+      <figcaption>Statistik einer Führungskraft für die Woche.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Zeitraum</b><span>Tag, Woche, Monat, Quartal oder eigene Daten.</span></li>
+      <li><b>Excel herunterladen</b><span>Ein Bericht für den gewählten Zeitraum auf drei Blättern: „Übersicht“, „Sticker“ und „Nach Personen“. Praktisch als Anlage für die eigene Führungskraft.</span></li>
+      <li><b>Bilanz des Zeitraums</b><span>Wie viele eingegangen, entschieden, offen und überfällig sind.</span></li>
+      <li><b>Tempo</b><span>Durchschnittliche Zeit bis zur Sortierung, bis zur Entscheidung und bis zur Bestätigung durch den Autor. Darunter: wie oft die Einschätzung des Autors mit Ihrer Entscheidung übereinstimmte.</span></li>
+      <li><b>Von wem</b><span>Für jeden Mitarbeiter: wie viele gesendet, wie viele entschieden, Antwortzeit und abweichende Einschätzungen.</span></li>
+    </ol>
+    <div class="note">{{icon:i13}}<span>Sticker, die Mitarbeiter einander schreiben, liest die Führungskraft nicht: Die Statistik zeigt nur ihre Anzahl und die durchschnittliche Antwortzeit.</span></div>
+  </section>
+
+  <div class="part"><h2>Für alle</h2><span>Benachrichtigungen, Profil, Smartphone</span></div>
+
+  <!-- 12 -->
+  <section class="slide" id="notify">
+    <span class="num">12</span>
+    <h2>Benachrichtigungen</h2>
+    <p class="lead">Von einem neuen Sticker, einer Rückfrage oder Entscheidung erfahren Sie auf drei Wegen.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/16-feed.webp" alt="Benachrichtigungen" loading="lazy" width="1440" height="900" /></div><figcaption>Die Glocke oben links öffnet die Ereignisliste.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Glocke</b><span>Funktioniert immer, solange die Seite offen ist. Klicken Sie auf ein Ereignis, um den Sticker zu öffnen.</span></li>
+        <li><b>Browser-Benachrichtigungen</b><span>Kommen auch bei geschlossenem Tab. Einschalten unter „Profil → Benachrichtigungen“, auf jedem Gerät einzeln. Nötig ist eine sichere Adresse (https).</span></li>
+        <li><b>Telegram</b><span>Wenn der Administrator einen Bot verbunden hat: „Profil → Telegram → Verknüpfen“, dann „Start“ im Bot. In Telegram können Sie per Schaltfläche antworten und Sticker erstellen.</span></li>
+      </ol>
+    </div>
+    <h3>Zusammenfassungen</h3>
+    <p>Die Morgenübersicht kommt an Arbeitstagen zur gewählten Uhrzeit: was heute ansteht, was dringend ist, Fristen und Fragen an Sie. Die Tagesbilanz kommt um 18:00. Beides stellen Sie im Profil ein.</p>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="profile">
+    <span class="num">13</span>
+    <h2>Profil</h2>
+    <p class="lead">Persönliche Einstellungen. Alles wird sofort gespeichert, eine „Speichern“-Schaltfläche gibt es nicht.</p>
+    <figure class="shot"><div class="frame"><img src="img/22-profile.webp" alt="Profil" loading="lazy" width="1440" height="1010" /></div><figcaption>Links eine Karte mit Name und Rolle, rechts die Einstellungen.</figcaption></figure>
+    <table style="margin-top:22px">
+      <tr><td>Darstellung</td><td>Hell, dunkel oder wie im System. Sprache der Oberfläche: eine von sieben.</td></tr>
+      <tr><td>Zeit</td><td>Zeitzone. Danach richten sich Fristen und Zusammenfassungen.</td></tr>
+      <tr><td>Benachrichtigungen</td><td>Browser auf diesem Gerät und Telegram.</td></tr>
+      <tr><td>Zusammenfassungen</td><td>Morgenübersicht (Uhrzeit und Tage) und Tagesbilanz.</td></tr>
+      <tr><td>Sicherheit</td><td>Passwort ändern (alle anderen Sitzungen werden beendet) und Zwei-Faktor-Schutz.</td></tr>
+    </table>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="phone">
+    <span class="num">14</span>
+    <h2>Auf dem Smartphone</h2>
+    <p class="lead">Eine eigene App ist nicht nötig: Öffnen Sie die Planer-Adresse im Browser des Smartphones. Alles funktioniert genauso, Sticker lassen sich mit dem Finger verschieben.</p>
+    <div class="phones">
+      <figure class="shot phone"><div class="frame"><img src="img/50-mobile-board.webp" alt="Board auf dem Smartphone" loading="lazy" width="780" height="1688" /></div><figcaption>Board.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/51-mobile-sheet.webp" alt="Sticker-Karte auf dem Smartphone" loading="lazy" width="780" height="1688" /></div><figcaption>Sticker-Karte.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/52-mobile-sent.webp" alt="Gesendet auf dem Smartphone" loading="lazy" width="780" height="1688" /></div><figcaption>Gesendet.</figcaption></figure>
+    </div>
+    <div class="note tip">{{icon:i14}}<span>Legen Sie den Planer auf den Home-Bildschirm, dann öffnet er sich wie eine App. iPhone: Safari → „Teilen“ → „Zum Home-Bildschirm“. Android: Chrome → Menü ⋮ → „Zum Startbildschirm hinzufügen“. Auf dem iPhone funktionieren Benachrichtigungen nur im Planer, der vom Home-Bildschirm geöffnet wurde.</span></div>
+  </section>
+
+  <div class="part"><h2>Für Administratoren</h2><span>Installation und Einrichtung</span></div>
+
+  <!-- 15 -->
+  <section class="slide" id="setup">
+    <span class="num">15</span>
+    <h2>Erster Start</h2>
+    <p class="lead">Direkt nach der Installation bittet das Programm, einen Administrator anzulegen. Standardpasswörter gibt es nicht: Dieses Konto ist der einzige Zugang.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Erster Start" loading="lazy" width="1440" height="900" /></div><figcaption>Abteilung, Name, Login (wird vorgeschlagen) und Passwort.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Zwei-Faktor-Schutz einschalten" loading="lazy" width="1440" height="900" /></div><figcaption>Gleich danach wird 2FA eingeschaltet.</figcaption></figure>
+    </div>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Abteilungsname, Vor- und Nachname</b><span>Der Login wird aus dem Namen gebildet und lässt sich ändern.</span></li>
+      <li><b>Passwort</b><span>Mindestens 10 Zeichen, drei von vier Arten: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen.</span></li>
+      <li><b>„Ich leite diese Abteilung auch“</b><span>Lassen Sie das Häkchen, wenn Sie selbst Sticker sortieren. Wenn nicht, entfernen Sie es und legen Sie die Leitung später unter „Abteilungen“ fest.</span></li>
+      <li><b>2FA</b><span>Scannen Sie den QR-Code mit der App auf dem Smartphone und geben Sie den Code ein. Danach öffnet sich ein leeres Board.</span></li>
+    </ol>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="users">
+    <span class="num">16</span>
+    <h2>Personen und Abteilungen</h2>
+    <p class="lead">Der Bereich „Verwaltung“. Mitarbeiter registrieren sich nicht selbst: Der Administrator legt sie an.</p>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Benutzerliste" loading="lazy" width="1440" height="900" /></div><figcaption>Benutzer: Login, Abteilung, Rolle, ob 2FA eingeschaltet ist.</figcaption></figure>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Benutzer hinzufügen</b><span>Vor- und Nachname, Abteilung, Rolle und ein vorläufiges Passwort. Der Login wird vorgeschlagen. Geben Sie der Person Login, Passwort und einen Link zu diesem Handbuch.</span></li>
+      <li><b>Bearbeiten</b><span>Neues Passwort, andere Abteilung oder Rolle, 2FA zurücksetzen, ausgeschiedene Mitarbeiter deaktivieren. Ihre Sticker bleiben erhalten.</span></li>
+      <li><b>Abteilungen</b><span>Name und Leitung. Sticker eines Mitarbeiters gehen standardmäßig an die Leitung seiner Abteilung.</span></li>
+      <li><b>Anmeldeprotokoll</b><span>Wer sich wann und von wo angemeldet hat, Fehlversuche und Sperren. Nach 5 falschen Passwörtern wird die Anmeldung für 15 Minuten gesperrt.</span></li>
+    </ol>
+    <div class="cols even" style="margin-top:22px">
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Abteilungen" loading="lazy" width="1440" height="900" /></div><figcaption>Abteilungen und ihre Leitung.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Anmeldeprotokoll" loading="lazy" width="1440" height="900" /></div><figcaption>Anmeldeprotokoll.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="telegram">
+    <span class="num">17</span>
+    <h2>Telegram-Bot</h2>
+    <p class="lead">Jedes Unternehmen hat seinen eigenen Bot: Der Administrator erstellt ihn in wenigen Minuten, und Nachrichten laufen direkt zwischen Ihrem Server und Telegram.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/33-admin-telegram.webp" alt="Telegram-Bot verbinden" loading="lazy" width="1440" height="900" /></div><figcaption>„Verwaltung → Telegram“.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Bot erstellen</b><span>Öffnen Sie in Telegram @BotFather, senden Sie /newbot und wählen Sie einen Namen, etwa „Planer Firma“.</span></li>
+        <li><b>Benutzername des Bots</b><span>Er muss auf bot enden, zum Beispiel planer_firma_bot.</span></li>
+        <li><b>Token</b><span>BotFather schickt ein Token wie 123456789:AAH… Fügen Sie es ein und drücken Sie „Verbinden“.</span></li>
+        <li><b>Mitarbeiter</b><span>Jeder verknüpft sein Telegram im Profil. Den Bot können Sie auch in einen Team-Chat aufnehmen und dort Sticker mit /stiker Text schreiben.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="updates">
+    <span class="num">18</span>
+    <h2>Updates</h2>
+    <p class="lead">Eine neue Version können Sie zuerst einigen Personen geben (beta) und alle anderen auf der bewährten lassen (stable).</p>
+    <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Update-Kanäle" loading="lazy" width="1440" height="900" /></div><figcaption>„Verwaltung → Updates“.</figcaption></figure>
+    <p>Jede Abteilung und jede Person hat einen Schalter, die persönliche Wahl geht vor. Umstellen und Zurückrollen wirken sofort, ohne Ausfall: Die nächste Anfrage der Person geht an die gewählte Version. Fällt die Testversion aus, arbeiten ihre Nutzer automatisch mit der Hauptversion weiter.</p>
+    <div class="note">{{icon:i15}}<span>Wie man die Testversion neben der Hauptversion startet, steht in <span class="chip">docs/updates.md</span> im Repository. Vor jedem Datenbank-Update erstellt das Programm selbst eine Sicherung und behält die letzten 10.</span></div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="faq">
+    <span class="num">19</span>
+    <h2>Häufige Fragen</h2>
+    <p class="lead">&nbsp;</p>
+    <details class="faq"><summary>Mein Sticker ging an die falsche Person. Was tun?</summary><p>Solange er nicht sortiert ist, öffnen Sie ihn unter „Gesendet“ und drücken Sie „Zurückziehen“, dann erstellen Sie einen neuen mit dem richtigen Empfänger. Ist er schon in Arbeit, schreiben Sie dem Empfänger einen Kommentar in der Karte.</p></details>
+    <details class="faq"><summary>Sieht meine Führungskraft meine persönlichen Sticker?</summary><p>Nein. Einen Sticker „Für mich“ sehen nur Sie. Sticker an Kollegen sehen nur Sie und der Empfänger; die Führungskraft sieht in der Statistik nur ihre Anzahl.</p></details>
+    <details class="faq"><summary>Warum ist ein Sticker von selbst nach „Sofort erledigen“ gewandert?</summary><p>Zwei Tage vor der Frist wird ein Sticker dringend. Der Quadrant ändert sich, die Wichtigkeit bleibt; in der Karte steht dann „Wegen der Frist dringend geworden“.</p></details>
+    <details class="faq"><summary>Browser-Benachrichtigungen kommen nicht an.</summary><p>Prüfen Sie drei Dinge: Die Adresse beginnt mit https, der Browser erlaubt Benachrichtigungen für die Seite, und unter „Profil → Benachrichtigungen“ sind sie auf diesem Gerät eingeschaltet. Die Schaltfläche „Testen“ schickt eine Testbenachrichtigung.</p></details>
+    <details class="faq"><summary>Ich wurde nach falschen Passwörtern gesperrt.</summary><p>Warten Sie 15 Minuten oder bitten Sie den Administrator, ein neues Passwort zu setzen.</p></details>
+    <details class="faq"><summary>Ein Mitarbeiter hat das Unternehmen verlassen. Löschen?</summary><p>Nicht nötig: Deaktivieren Sie ihn unter „Benutzer → Bearbeiten → Aktiv“. Er kann sich nicht mehr anmelden, Sticker-Verlauf und Statistik bleiben erhalten.</p></details>
+    <details class="faq"><summary>Welche Sprachen spricht das Programm?</summary><p>Russisch, Englisch, Deutsch, Tschechisch, Belarussisch, Kasachisch und Georgisch. Die Sprache wird unter „Profil → Darstellung“ umgestellt, jeder wählt selbst. Benachrichtigungen, Telegram-Bot und Excel-Bericht kommen in der gewählten Sprache.</p></details>
+  </section>
+
+  <section class="author" id="author">
+    <div>
+      <h2>Projektautor</h2>
+      <p>Alexandria Planer ist ein offenes Projekt. Haben Sie einen Fehler gefunden, eine Idee oder brauchen Hilfe bei der Installation, schreiben Sie in Telegram oder eröffnen Sie ein Issue auf GitHub.</p>
+    </div>
+    <div class="links">
+      <a href="https://t.me/marshall033" target="_blank" rel="noreferrer">{{icon:i16}}Telegram</a>
+      <a href="https://github.com/Loktionov-g-bit" target="_blank" rel="noreferrer">{{icon:i17}}GitHub</a>
+    </div>
+  </section>
+  <footer>Die Screenshots stammen aus dem echten Programm mit Demodaten. Alle Namen sind erfunden.</footer>
+</main>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Vergrößerter Screenshot"><img alt="" /></div>

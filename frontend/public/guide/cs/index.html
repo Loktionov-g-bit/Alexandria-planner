@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Uživatelská příručka · Alexandria Plánovač</title>
+<meta name="description" content="Příručka krok za krokem k Alexandria Plánovač: štítky, Eisenhowerova matice, nástěnka vedoucího, oznámení a správa." />
+<link rel="icon" href="../../favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@400;500;600&family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="../guide.css" rel="stylesheet" />
+</head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Obsah">
+  <a class="brand" href="#top"><img src="../../alexandria-planner-logo.svg" alt="" /><div><b>Alexandria</b><span>Plánovač · příručka</span></div></a>
+  <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" lang="ru">Русский</option><option value="en" lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" selected lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
+  <h4>Seznámení</h4>
+  <ol>
+    <li><a href="#idea"><i>01</i>O co jde</a></li>
+    <li><a href="#matrix"><i>02</i>Eisenhowerova matice</a></li>
+    <li><a href="#roles"><i>03</i>Kdo je kdo</a></li>
+    <li><a href="#login"><i>04</i>Přihlášení a zabezpečení</a></li>
+  </ol>
+  <h4>Pro zaměstnance</h4>
+  <ol>
+    <li><a href="#compose"><i>05</i>Poslat štítek</a></li>
+    <li><a href="#sent"><i>06</i>Sledovat odpověď</a></li>
+  </ol>
+  <h4>Pro vedoucí</h4>
+  <ol>
+    <li><a href="#board"><i>07</i>Nástěnka</a></li>
+    <li><a href="#sheet"><i>08</i>Karta štítku</a></li>
+    <li><a href="#resolve"><i>09</i>Rozhodnutí a další akce</a></li>
+    <li><a href="#archive"><i>10</i>Archiv</a></li>
+    <li><a href="#stats"><i>11</i>Statistika a Excel</a></li>
+  </ol>
+  <h4>Pro všechny</h4>
+  <ol>
+    <li><a href="#notify"><i>12</i>Oznámení</a></li>
+    <li><a href="#profile"><i>13</i>Profil</a></li>
+    <li><a href="#phone"><i>14</i>V telefonu</a></li>
+  </ol>
+  <h4>Pro administrátory</h4>
+  <ol>
+    <li><a href="#setup"><i>15</i>První spuštění</a></li>
+    <li><a href="#users"><i>16</i>Lidé a oddělení</a></li>
+    <li><a href="#telegram"><i>17</i>Telegram bot</a></li>
+    <li><a href="#updates"><i>18</i>Aktualizace</a></li>
+  </ol>
+  <h4>Další</h4>
+  <ol>
+    <li><a href="#faq"><i>19</i>Časté dotazy</a></li>
+    <li><a href="#author"><i>20</i>Autor</a></li>
+  </ol>
+</nav>
+
+<main id="top">
+  <header class="cover">
+    <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" lang="ru">Русский</option><option value="en" lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" selected lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
+    <span class="kicker">Uživatelská příručka · verze 0.1</span>
+    <h1>Alexandria Plánovač</h1>
+    <p class="big">Dotazy pro vedoucího bez papírků na stole. Zaměstnanec napíše štítek, vedoucí ho zařadí do Eisenhowerovy matice a odpoví, autor vidí rozhodnutí.</p>
+    <div class="who">
+      <a href="#compose"><span style="background:var(--q-plan)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></span>Jsem zaměstnanec</a>
+      <a href="#board"><span style="background:var(--q-do)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></span>Jsem vedoucí</a>
+      <a href="#setup"><span style="background:var(--q-drop)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span>Jsem administrátor</a>
+    </div>
+    <div class="hero"><img src="img/10-board.webp" alt="Nástěnka vedoucího: doručené štítky a Eisenhowerova matice" width="1440" height="900" /></div>
+  </header>
+
+  <!-- 01 -->
+  <section class="slide" id="idea">
+    <span class="num">01</span>
+    <h2>O co jde</h2>
+    <p class="lead">Dřív zaměstnanci nechávali vedoucímu na stole papírky: „schvalte mi dovolenou“, „klient chce slevu“, „rozbil se mi notebook“. Papírky se ztrácely, odpovědi se zapomínaly a nikdo nevěděl, co už je vyřešené.</p>
+    <div class="cols even">
+      <ol class="steps">
+        <li><b>Zaměstnanec napíše štítek</b><span>Stručně: co je potřeba a do kdy. Může připojit soubor a označit, jak je to naléhavé a důležité.</span></li>
+        <li><b>Vedoucí třídí</b><span>Štítek přistane v Doručených na nástěnce. Vedoucí ho vloží do jednoho ze čtyř kvadrantů a začne ho řešit, doptá se, svěří ho někomu nebo rovnou rozhodne.</span></li>
+        <li><b>Autor dostane odpověď</b><span>Rozhodnutí přijde do prohlížeče i do Telegramu. Autor potvrdí, že odpověď viděl, a štítek odejde do archivu.</span></li>
+      </ol>
+      <div>
+        <p>Vše probíhá v prohlížeči, na počítači i v telefonu. Program běží na serveru vaší firmy: data nikam neodcházejí a autor projektu je nevidí.</p>
+        <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg><span>Jste tu poprvé? Přečtěte si oddíly 01–04 a pak část pro svou roli: <a href="#compose">zaměstnanec</a>, <a href="#board">vedoucí</a> nebo <a href="#setup">administrátor</a>.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" id="matrix">
+    <span class="num">02</span>
+    <h2>Eisenhowerova matice</h2>
+    <p class="lead">Každý štítek se posuzuje podle dvou otázek: je to naléhavé a je to důležité? Vzniknou čtyři kvadranty, každý má svou barvu a tu uvidíte v programu všude.</p>
+    <div class="matrix">
+      <div class="q"><small>1 · naléhavé a důležité</small><h3>Udělat hned</h3><p>Hoří a ovlivňuje výsledek. Například smlouva s klientem, kterou je třeba podepsat dnes.</p></div>
+      <div class="q"><small>2 · důležité, nenaléhavé</small><h3>Naplánovat</h3><p>Ovlivňuje výsledek, ale je čas. Měsíční zpráva, školení, plány.</p></div>
+      <div class="q"><small>3 · naléhavé, nedůležité</small><h3>Delegovat</h3><p>Musí to být rychle, ale nemusí to dělat vedoucí. Aktualizovat ceník, objednat vizitky.</p></div>
+      <div class="q"><small>4 · nenaléhavé, nedůležité</small><h3>Nedělat</h3><p>Může dlouho počkat nebo se dá odmítnout. Objednat vodu, koupit kávovar.</p></div>
+    </div>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Zaměstnanec při odeslání připojí svůj <i>odhad</i> („Naléhavé“, „Důležité“). Konečný kvadrant volí vedoucí. Když se liší, ukáže to statistika: tak se tým učí vidět priority stejně.</span></div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" id="roles">
+    <span class="num">03</span>
+    <h2>Kdo je kdo</h2>
+    <p class="lead">Program má tři role. Jeden člověk může mít dvě: vedoucí malého oddělení bývá často i administrátorem.</p>
+    <div class="roles">
+      <div class="role"><div class="ico" style="background:var(--q-plan)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div><h3>Zaměstnanec</h3><p>Píše štítky vedoucímu nebo kolegům, odpovídá na dotazy, potvrzuje rozhodnutí. Vidí jen své štítky a ty, které mu někdo zpřístupnil.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Vedoucí</h3><p>Dostává štítky oddělení na nástěnku, třídí je do kvadrantů, odpovídá, deleguje, sleduje statistiku a exportuje přehled do Excelu.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Administrátor</h3><p>Zakládá lidi a oddělení, obnovuje hesla, připojuje Telegram bota a řídí aktualizace. Vidí záznam přihlášení.</p></div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" id="login">
+    <span class="num">04</span>
+    <h2>Přihlášení a zabezpečení</h2>
+    <p class="lead">Přihlašovací jméno a dočasné heslo vám dá administrátor. Přihlašovací jméno obvykle tvoří první písmeno jména a příjmení: <span class="chip">j.novak</span>.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/04-login.webp" alt="Přihlašovací obrazovka" loading="lazy" width="1440" height="900" /></div><figcaption>Krok 1. Přihlašovací jméno a heslo.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/05-totp.webp" alt="Zadání kódu z aplikace" loading="lazy" width="1440" height="900" /></div><figcaption>Krok 2. Kód z aplikace: jen u vedoucích, administrátorů a těch, kdo si ochranu zapnuli sami.</figcaption></figure>
+    </div>
+    <h3>Dvoufázové ověření (2FA)</h3>
+    <p>Pro vedoucí a administrátory je povinné: při prvním přihlášení program ukáže QR kód. Nainstalujte si do telefonu Google Authenticator, Microsoft Authenticator nebo podobnou aplikaci, naskenujte kód a zadejte 6 číslic. Pak program při každém přihlášení požádá o nový kód z aplikace.</p>
+    <div class="note warn"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg><span>Zapomněli jste heslo nebo ztratili telefon s aplikací? Obraťte se na administrátora: v části „Správa → Uživatelé“ nastaví nové heslo nebo resetuje 2FA. Obnova přes e-mail neexistuje, je to bezpečnější.</span></div>
+  </section>
+
+  <div class="part"><h2>Pro zaměstnance</h2><span>jak se zeptat a dostat odpověď</span></div>
+
+  <!-- 05 -->
+  <section class="slide" id="compose">
+    <span class="num">05</span>
+    <h2>Poslat štítek</h2>
+    <p class="lead">Klikněte na „Nový štítek“ v pravém horním rohu kterékoli stránky. Otevře se krátký formulář.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/15-compose.webp" alt="Formulář nového štítku" loading="lazy" width="1440" height="900" />
+        <i class="pin" style="--x:28.6;--y:24.6">1</i><i class="pin" style="--x:28.6;--y:34">2</i><i class="pin" style="--x:28.6;--y:57">3</i><i class="pin" style="--x:28.6;--y:69.6">4</i></div>
+        <figcaption>Formulář „Nový štítek“.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Komu</b><span>Ve výchozím stavu váš vedoucí. Můžete vybrat kolegu nebo „Pro sebe (osobní štítek)“: ten vidíte jen vy, hodí se jako připomínka.</span></li>
+        <li><b>Nadpis a podrobnosti</b><span>Nadpis na jeden řádek: o co jde. Do podrobností patří detaily a termín.</span></li>
+        <li><b>Váš odhad</b><span>Stiskněte „Naléhavé“ a/nebo „Důležité“, pokud to tak je. Je to nápověda pro vedoucího, konečný kvadrant vybere on.</span></li>
+        <li><b>Termín a soubory</b><span>Potřebujete-li odpověď k datu, nastavte termín: dva dny předem se štítek sám stane naléhavým. Soubory do 25 MB.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" id="sent">
+    <span class="num">06</span>
+    <h2>Sledovat odpověď</h2>
+    <p class="lead">Oddíl „Odeslané“ ukazuje, co se děje s vašimi štítky. Leží ve sloupcích podle kroků.</p>
+    <figure class="shot"><div class="frame"><img src="img/43-answer.webp" alt="Odeslané štítky a dotaz vedoucího" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:21;--y:12">1</i><i class="pin" style="--x:79.5;--y:25.5">2</i><i class="pin" style="--x:20.6;--y:37.6">3</i><i class="pin" style="--x:47.1;--y:37.6">4</i><i class="pin" style="--x:73.6;--y:37.6">5</i></div>
+      <figcaption>„Odeslané“ očima zaměstnance: vedoucí se na něco ptá.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Čeká se na vaši odpověď</b><span>Když se vedoucí na něco ptá, dotaz se připne nahoru na stránku. Dokud neodpovíte, štítek čeká na vás.</span></li>
+      <li><b>Odpovědět</b><span>Napište odpověď přímo sem a stiskněte „Odpovědět“. Štítek se vrátí vedoucímu.</span></li>
+      <li><b>Čekají na roztřídění</b><span>Vedoucí štítek ještě neotevřel.</span></li>
+      <li><b>V řešení</b><span>Štítek je roztříděný. Jeho barva ukazuje kvadrant, který zvolil vedoucí.</span></li>
+      <li><b>Vyřešené</b><span>Je tu odpověď. Otevřete štítek, přečtěte si rozhodnutí a stiskněte „Potvrdit převzetí“: štítek se uzavře a odejde do archivu. Pokud odpověď nesedí, stiskněte „Znovu otevřít“ a vysvětlete proč.</span></li>
+    </ol>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg><span>Rozmysleli jste si to? Dokud vedoucí štítek neroztřídil (sloupec „Čekají na roztřídění“), můžete ho stáhnout tlačítkem „Stáhnout“ v kartě.</span></div>
+  </section>
+
+  <div class="part"><h2>Pro vedoucí</h2><span>třídění doručených a odpovědi</span></div>
+
+  <!-- 07 -->
+  <section class="slide" id="board">
+    <span class="num">07</span>
+    <h2>Nástěnka</h2>
+    <p class="lead">Hlavní obrazovka vedoucího. Nahoře přehled dne, pod ním Doručené a matice se čtyřmi kvadranty.</p>
+    <figure class="shot"><div class="frame"><img src="img/10-board.webp" alt="Nástěnka vedoucího" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:16.6;--y:3">1</i><i class="pin" style="--x:48.8;--y:5">2</i><i class="pin" style="--x:85.9;--y:4.5">3</i><i class="pin" style="--x:19.6;--y:14">4</i><i class="pin" style="--x:19.6;--y:29.5">5</i><i class="pin" style="--x:22.4;--y:66">6</i></div>
+      <figcaption>Nástěnka vedoucího ráno.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Zvonek</b><span>Nové události: štítky, odpovědi, zprávy řešitelů. Číslo ukazuje nepřečtené.</span></li>
+      <li><b>Kruh postupu</b><span>Kolik štítků na nástěnce je už roztříděno. Cíl na den: prázdné Doručené.</span></li>
+      <li><b>Hledání a nový štítek</b><span>Hledání podle nadpisu, textu a čísla. Vedoucí může také psát štítky: sobě, zaměstnanci nebo svému vedoucímu.</span></li>
+      <li><b>Přehled</b><span>Kolik čeká na roztřídění, kolik je naléhavých, co je po termínu a kolik vašich štítků čeká na vaši odpověď.</span></li>
+      <li><b>Doručené</b><span>Nové, ještě neroztříděné štítky. Přetáhněte štítek myší (v telefonu prstem) do kvadrantu nebo na něj klikněte a otevřete ho.</span></li>
+      <li><b>Kvadranty</b><span>Roztříděné štítky. Mezi kvadranty je můžete kdykoli přesouvat. Červené datum znamená, že termín vypršel.</span></li>
+    </ol>
+    <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>Je tu i tmavý motiv: „Profil → Vzhled“. Ve výchozím stavu se program řídí nastavením systému.</span></div>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Nástěnka v tmavém motivu" loading="lazy" width="1440" height="900" /></div><figcaption>Stejná nástěnka v tmavém motivu.</figcaption></figure>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" id="sheet">
+    <span class="num">08</span>
+    <h2>Karta štítku</h2>
+    <p class="lead">Klikněte na libovolný štítek a otevře se jeho karta. Vlevo text a konverzace, vpravo vše, co se štítkem můžete udělat.</p>
+    <figure class="shot"><div class="frame"><img src="img/12-sheet.webp" alt="Karta štítku" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:17.4;--y:39.6">1</i><i class="pin" style="--x:56.3;--y:14.2">2</i><i class="pin" style="--x:56.3;--y:38.2">3</i><i class="pin" style="--x:56.3;--y:57.8">4</i><i class="pin" style="--x:56.3;--y:68">5</i></div>
+      <figcaption>Nový štítek od zaměstnankyně.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Komentář a soubory</b><span>Konverzace ke štítku. Autor komentář uvidí hned.</span></li>
+      <li><b>Průběh štítku</b><span>Kde štítek právě je: nový, roztříděný, v řešení, vyřešený, uzavřený.</span></li>
+      <li><b>Kvadrant</b><span>Klikněte na kvadrant a štítek se tam přesune. Níže je vidět, jak ho odhadl autor.</span></li>
+      <li><b>Termín</b><span>Lze nastavit, změnit nebo zrušit.</span></li>
+      <li><b>Akce</b><span>Tlačítka závisí na stavu štítku a vaší roli. Podrobněji v dalším oddílu.</span></li>
+    </ol>
+    <p>Vpravo dole „Historie změn“: kdo, kdy a co na štítku měnil.</p>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" id="resolve">
+    <span class="num">09</span>
+    <h2>Rozhodnutí a další akce</h2>
+    <p class="lead">Chcete-li autorovi odpovědět, stiskněte „Vyřešit“, vyberte výsledek a napište pár slov. Odpověď hned odejde autorovi.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/13-resolve.webp" alt="Rozhodnutí ke štítku" loading="lazy" width="1440" height="900" /></div><figcaption>Rozhodnutí: výsledek „Schváleno“ a odpověď autorovi.</figcaption></figure>
+      <div>
+        <h3 style="margin-top:0">Výsledky</h3>
+        <table>
+          <tr><td>Schváleno</td><td>Ano, souhlasím.</td></tr>
+          <tr><td>Zamítnuto</td><td>Ne, s vysvětlením.</td></tr>
+          <tr><td>Splněno</td><td>Hotovo: přístup zřízen, dokument podepsán.</td></tr>
+          <tr><td>Na vědomí</td><td>Vzato na vědomí, není třeba nic dělat.</td></tr>
+        </table>
+      </div>
+    </div>
+    <h3>Všechny akce</h3>
+    <table>
+      <tr><th>Tlačítko</th><th>Co se stane</th></tr>
+      <tr><td>Začít řešit</td><td>Štítku se věnujete. Autor vidí stav „V řešení“.</td></tr>
+      <tr><td>Upřesnit</td><td>Položit autorovi dotaz. Štítek čeká na odpověď a autorovi se dotaz připne v „Odeslaných“.</td></tr>
+      <tr><td>Delegovat</td><td>Svěřit zaměstnanci. Štítek se objeví na jeho nástěnce, řešitel podá zprávu tlačítkem „Podat zprávu“ a vy práci převezmete, nebo ji vrátíte tlačítkem „Vrátit k přepracování“.</td></tr>
+      <tr><td>Odložit</td><td>Sundat z nástěnky do zítřka, na týden nebo do data. V daný den se štítek vrátí sám.</td></tr>
+      <tr><td>Zamítnout</td><td>Odmítnout bez řešení a uvést důvod.</td></tr>
+      <tr><td>Sdílet</td><td>Ukázat štítek kolegovi, třeba zástupci. Uvidí ho ve svých „Odeslaných“.</td></tr>
+    </table>
+    <figure class="shot" style="margin-top:26px"><div class="frame"><img src="img/14-sheet-question.webp" alt="Štítek s dotazem" loading="lazy" width="1440" height="900" /></div><figcaption>Po „Upřesnit“ je dotaz vidět v konverzaci a štítek čeká na odpověď autora.</figcaption></figure>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M5 3 2 6M19 3l3 3"/></svg><span>Program sám hlídá termíny: dva dny před termínem se štítek stane naléhavým, štítky po termínu jsou zvýrazněné červeně a vyřešené štítky, které autor nepotvrdil, se po třech dnech automaticky uzavřou.</span></div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="archive">
+    <span class="num">10</span>
+    <h2>Archiv</h2>
+    <p class="lead">Uzavřené, zamítnuté a stažené štítky se ukládají do archivu po měsících. Na každém je razítko s výsledkem.</p>
+    <figure class="shot"><div class="frame"><img src="img/20-archive.webp" alt="Archiv štítků" loading="lazy" width="1440" height="900" /></div><figcaption>Hledání podle nadpisu, textu nebo čísla a filtry podle výsledku.</figcaption></figure>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="stats">
+    <span class="num">11</span>
+    <h2>Statistika a Excel</h2>
+    <p class="lead">Kolik dotazů přichází, jak rychle odpovídáte a kdo ze zaměstnanců vidí priority jinak než vy.</p>
+    <figure class="shot"><div class="frame"><img src="img/21-stats.webp" alt="Statistika" loading="lazy" width="1440" height="900" />
+      <i class="pin" style="--x:35.2;--y:2.6">1</i><i class="pin" style="--x:87.6;--y:2.6">2</i><i class="pin" style="--x:19.6;--y:14.2">3</i><i class="pin" style="--x:59.4;--y:29.8">4</i><i class="pin" style="--x:19.6;--y:58.4">5</i></div>
+      <figcaption>Statistika vedoucího za týden.</figcaption></figure>
+    <ol class="steps" style="margin-top:26px">
+      <li><b>Období</b><span>Den, týden, měsíc, čtvrtletí nebo vlastní data.</span></li>
+      <li><b>Stáhnout Excel</b><span>Přehled za zvolené období na třech listech: „Přehled“, „Štítky“ a „Podle lidí“. Hodí se jako příloha zprávy pro nadřízeného.</span></li>
+      <li><b>Souhrn období</b><span>Kolik přišlo, kolik je vyřešeno, kolik zbývá a co je po termínu.</span></li>
+      <li><b>Rychlost</b><span>Průměrná doba do roztřídění, do rozhodnutí a do potvrzení autorem. Níže: jak často se odhad autora shodl s vaším rozhodnutím.</span></li>
+      <li><b>Od koho</b><span>U každého zaměstnance: kolik poslal, kolik je vyřešeno, doba odpovědi a rozdíly v odhadech.</span></li>
+    </ol>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Štítky, které si zaměstnanci posílají navzájem, vedoucí nečte: ve statistice vidí jen jejich počet a průměrnou dobu odpovědi.</span></div>
+  </section>
+
+  <div class="part"><h2>Pro všechny</h2><span>oznámení, profil, telefon</span></div>
+
+  <!-- 12 -->
+  <section class="slide" id="notify">
+    <span class="num">12</span>
+    <h2>Oznámení</h2>
+    <p class="lead">O novém štítku, dotazu nebo rozhodnutí se dozvíte třemi způsoby.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/16-feed.webp" alt="Přehled oznámení" loading="lazy" width="1440" height="900" /></div><figcaption>Zvonek vlevo nahoře otevře seznam událostí.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Zvonek</b><span>Funguje vždy, dokud je stránka otevřená. Kliknutím na událost otevřete štítek.</span></li>
+        <li><b>Oznámení prohlížeče</b><span>Chodí, i když je karta zavřená. Zapínají se v „Profil → Oznámení“ na každém zařízení zvlášť. Je potřeba zabezpečená adresa (https).</span></li>
+        <li><b>Telegram</b><span>Pokud administrátor připojil bota: „Profil → Telegram → Propojit“, pak „Start“ v botovi. V Telegramu můžete odpovídat tlačítky a vytvářet štítky.</span></li>
+      </ol>
+    </div>
+    <h3>Přehledy</h3>
+    <p>Ranní přehled chodí v pracovní dny ve zvolený čas: co vás dnes čeká, co je naléhavé, termíny a dotazy na vás. Večerní shrnutí přijde v 18:00. Obojí se nastavuje v profilu.</p>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="profile">
+    <span class="num">13</span>
+    <h2>Profil</h2>
+    <p class="lead">Osobní nastavení. Vše se ukládá hned, tlačítko „Uložit“ není potřeba.</p>
+    <figure class="shot"><div class="frame"><img src="img/22-profile.webp" alt="Profil" loading="lazy" width="1440" height="1010" /></div><figcaption>Vlevo karta se jménem a rolí, vpravo nastavení.</figcaption></figure>
+    <table style="margin-top:22px">
+      <tr><td>Vzhled</td><td>Světlý, tmavý nebo podle systému. Jazyk rozhraní: jeden ze sedmi.</td></tr>
+      <tr><td>Čas</td><td>Časové pásmo. Podle něj se počítají termíny a chodí přehledy.</td></tr>
+      <tr><td>Oznámení</td><td>Prohlížeč na tomto zařízení a Telegram.</td></tr>
+      <tr><td>Přehledy</td><td>Ranní (čas a dny) a večerní shrnutí.</td></tr>
+      <tr><td>Zabezpečení</td><td>Změna hesla (ostatní relace se ukončí) a dvoufázové ověření.</td></tr>
+    </table>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="phone">
+    <span class="num">14</span>
+    <h2>V telefonu</h2>
+    <p class="lead">Samostatná aplikace není potřeba: otevřete adresu Plánovače v prohlížeči telefonu. Vše funguje stejně, štítky se dají přetahovat prstem.</p>
+    <div class="phones">
+      <figure class="shot phone"><div class="frame"><img src="img/50-mobile-board.webp" alt="Nástěnka v telefonu" loading="lazy" width="780" height="1688" /></div><figcaption>Nástěnka.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/51-mobile-sheet.webp" alt="Karta štítku v telefonu" loading="lazy" width="780" height="1688" /></div><figcaption>Karta štítku.</figcaption></figure>
+      <figure class="shot phone"><div class="frame"><img src="img/52-mobile-sent.webp" alt="Odeslané v telefonu" loading="lazy" width="780" height="1688" /></div><figcaption>Odeslané.</figcaption></figure>
+    </div>
+    <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18h2"/></svg><span>Přidejte si Plánovač na plochu a bude se otevírat jako aplikace. iPhone: Safari → „Sdílet“ → „Přidat na plochu“. Android: Chrome → nabídka ⋮ → „Přidat na plochu“. Na iPhonu oznámení fungují jen v Plánovači otevřeném z plochy.</span></div>
+  </section>
+
+  <div class="part"><h2>Pro administrátory</h2><span>instalace a nastavení</span></div>
+
+  <!-- 15 -->
+  <section class="slide" id="setup">
+    <span class="num">15</span>
+    <h2>První spuštění</h2>
+    <p class="lead">Hned po instalaci program nabídne vytvořit administrátora. Výchozí hesla neexistují: tento účet je jediná cesta dovnitř.</p>
+    <div class="cols even">
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="První spuštění" loading="lazy" width="1440" height="900" /></div><figcaption>Oddělení, jméno, přihlašovací jméno (doplní se samo) a heslo.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Zapnutí dvoufázového ověření" loading="lazy" width="1440" height="900" /></div><figcaption>Hned potom se zapne 2FA.</figcaption></figure>
+    </div>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Název oddělení, jméno a příjmení</b><span>Přihlašovací jméno se sestaví ze jména a příjmení, dá se upravit.</span></li>
+      <li><b>Heslo</b><span>Alespoň 10 znaků, tři druhy ze čtyř: malá písmena, velká písmena, číslice, symboly.</span></li>
+      <li><b>„Toto oddělení také vedu“</b><span>Nechte zaškrtnuté, pokud štítky třídíte vy. Pokud ne, zrušte zaškrtnutí a vedoucího určete později v „Odděleních“.</span></li>
+      <li><b>2FA</b><span>Naskenujte QR kód aplikací v telefonu a zadejte kód. Potom se otevře prázdná nástěnka.</span></li>
+    </ol>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="users">
+    <span class="num">16</span>
+    <h2>Lidé a oddělení</h2>
+    <p class="lead">Oddíl „Správa“. Zaměstnanci se neregistrují sami: zakládá je administrátor.</p>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Seznam uživatelů" loading="lazy" width="1440" height="900" /></div><figcaption>Uživatelé: přihlašovací jméno, oddělení, role, zda je zapnuté 2FA.</figcaption></figure>
+    <ol class="steps" style="margin-top:22px">
+      <li><b>Přidat uživatele</b><span>Jméno, příjmení, oddělení, role a dočasné heslo. Přihlašovací jméno se doplní samo. Předejte člověku přihlašovací jméno, heslo a odkaz na tuto příručku.</span></li>
+      <li><b>Upravit</b><span>Nové heslo, jiné oddělení nebo role, reset 2FA, deaktivace odešlého zaměstnance. Jeho štítky zůstanou zachovány.</span></li>
+      <li><b>Oddělení</b><span>Název a vedoucí. Štítky zaměstnance jdou ve výchozím stavu vedoucímu jeho oddělení.</span></li>
+      <li><b>Záznam přihlášení</b><span>Kdo, kdy a odkud se přihlásil, neúspěšné pokusy a blokace. Po 5 špatných heslech se přihlášení na 15 minut zablokuje.</span></li>
+    </ol>
+    <div class="cols even" style="margin-top:22px">
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Oddělení" loading="lazy" width="1440" height="900" /></div><figcaption>Oddělení a jejich vedoucí.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Záznam přihlášení" loading="lazy" width="1440" height="900" /></div><figcaption>Záznam přihlášení.</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="telegram">
+    <span class="num">17</span>
+    <h2>Telegram bot</h2>
+    <p class="lead">Každá firma má vlastního bota: administrátor ho vytvoří za pár minut a zprávy jdou přímo mezi vaším serverem a Telegramem.</p>
+    <div class="cols">
+      <figure class="shot"><div class="frame"><img src="img/33-admin-telegram.webp" alt="Připojení Telegram bota" loading="lazy" width="1440" height="900" /></div><figcaption>„Správa → Telegram“.</figcaption></figure>
+      <ol class="steps">
+        <li><b>Vytvořte bota</b><span>V Telegramu otevřete @BotFather, pošlete /newbot a vymyslete název, třeba „Plánovač Firma“.</span></li>
+        <li><b>Jméno bota</b><span>Musí končit na bot, například planovac_firma_bot.</span></li>
+        <li><b>Token</b><span>BotFather pošle token ve tvaru 123456789:AAH… Vložte ho a stiskněte „Připojit“.</span></li>
+        <li><b>Zaměstnanci</b><span>Každý si propojí svůj Telegram v profilu. Bota můžete přidat do pracovního chatu a psát tam štítky příkazem /stiker text.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="updates">
+    <span class="num">18</span>
+    <h2>Aktualizace</h2>
+    <p class="lead">Novou verzi můžete nejdřív dát několika lidem (beta) a ostatní nechat na ověřené (stable).</p>
+    <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Kanály aktualizací" loading="lazy" width="1440" height="900" /></div><figcaption>„Správa → Aktualizace“.</figcaption></figure>
+    <p>Přepínače má každé oddělení i každý člověk, osobní volba má přednost. Převod i návrat platí hned, bez výpadku: další požadavek člověka jde na zvolenou verzi. Pokud testovací verze spadne, její uživatelé automaticky pokračují na hlavní.</p>
+    <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span>Jak spustit testovací verzi vedle hlavní, popisuje soubor <span class="chip">docs/updates.md</span> v repozitáři. Před každou aktualizací databáze program sám udělá zálohu a uchovává posledních 10.</span></div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="faq">
+    <span class="num">19</span>
+    <h2>Časté dotazy</h2>
+    <p class="lead">&nbsp;</p>
+    <details class="faq"><summary>Štítek šel nesprávnému člověku. Co teď?</summary><p>Dokud není roztříděný, otevřete ho v „Odeslaných“ a stiskněte „Stáhnout“, pak vytvořte nový se správným příjemcem. Pokud už je v řešení, napište příjemci komentář v kartě.</p></details>
+    <details class="faq"><summary>Vidí vedoucí moje osobní štítky?</summary><p>Ne. Štítek „Pro sebe“ vidíte jen vy. Štítky kolegům vidíte jen vy a příjemce; vedoucí ve statistice vidí pouze jejich počet.</p></details>
+    <details class="faq"><summary>Proč se štítek sám přesunul do „Udělat hned“?</summary><p>Dva dny před termínem se štítek stane naléhavým. Kvadrant se změní, důležitost zůstane; v kartě je to označeno jako „Kvůli termínu se stal naléhavým“.</p></details>
+    <details class="faq"><summary>Nechodí oznámení v prohlížeči.</summary><p>Zkontrolujte tři věci: adresa začíná https, prohlížeč webu oznámení povolil a v „Profil → Oznámení“ jsou na tomto zařízení zapnutá. Tlačítko „Vyzkoušet“ pošle testovací oznámení.</p></details>
+    <details class="faq"><summary>Po špatných heslech mě to zablokovalo.</summary><p>Počkejte 15 minut nebo požádejte administrátora o nové heslo.</p></details>
+    <details class="faq"><summary>Zaměstnanec odešel. Mám ho smazat?</summary><p>Není třeba: deaktivujte ho v „Uživatelé → Upravit → Aktivní“. Přihlásit se nebude moct, historie štítků a statistika zůstanou.</p></details>
+    <details class="faq"><summary>V jakých jazycích program funguje?</summary><p>Rusky, anglicky, německy, česky, bělorusky, kazašsky a gruzínsky. Jazyk se přepíná v „Profil → Vzhled“, každý si ho volí sám. Oznámení, Telegram bot i přehled v Excelu přicházejí ve zvoleném jazyce.</p></details>
+  </section>
+
+  <section class="author" id="author">
+    <div>
+      <h2>Autor projektu</h2>
+      <p>Alexandria Plánovač je otevřený projekt. Pokud jste našli chybu, máte nápad nebo potřebujete pomoc s instalací, napište na Telegram nebo založte issue na GitHubu.</p>
+    </div>
+    <div class="links">
+      <a href="https://t.me/marshall033" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.4 13.2 1.7 11.7c-1-.3-1-1 .2-1.5L20.6 3c.9-.3 1.6.2 1.3 1.3z"/></svg>Telegram</a>
+      <a href="https://github.com/Loktionov-g-bit" target="_blank" rel="noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </section>
+  <footer>Snímky obrazovky pocházejí ze skutečného programu s ukázkovými daty. Všechna jména jsou smyšlená.</footer>
+</main>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-label="Zvětšený snímek obrazovky"><img alt="" /></div>
+
+<script src="../guide.js"></script>
+</body>
+</html>
