@@ -1,6 +1,8 @@
 import hashlib
+import hmac
 import re
 import secrets
+import time
 
 import pyotp
 from argon2 import PasswordHasher
@@ -58,7 +60,29 @@ def totp_uri(secret: str, login: str) -> str:
 
 
 def verify_totp(secret: str | None, code: str) -> bool:
+    return totp_step(secret, code) is not None
+
+
+def totp_step(secret: str | None, code: str, after: int | None = None) -> int | None:
+    """The 30-second step the code belongs to (current one ±1 for clock drift), or None.
+    Steps not newer than `after` are refused: one code, one use."""
     if not secret:
-        return False
+        return None
     code = re.sub(r"\s", "", code or "")
-    return code.isdigit() and pyotp.TOTP(secret).verify(code, valid_window=1)
+    if not (code.isdigit() and len(code) == 6):
+        return None
+    totp = pyotp.TOTP(secret)
+    now = int(time.time()) // totp.interval
+    for step in (now, now - 1, now + 1):
+        if (after is None or step > after) and hmac.compare_digest(totp.at(step * totp.interval), code):
+            return step
+    return None
+
+
+def use_totp(user, code: str) -> bool:
+    """Check a code and burn it."""
+    step = totp_step(user.totp_secret, code, user.totp_last_step)
+    if step is None:
+        return False
+    user.totp_last_step = step
+    return True

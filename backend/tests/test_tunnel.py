@@ -62,6 +62,8 @@ def test_parse_zip_variants():
     ("[Interface]\nAddress = 10.0.0.2/32\n[Peer]\nPublicKey = x\nEndpoint = h:1\n", "bad_format"),
     (CONF.replace("[Peer]", "Jc = 4\nJmin = 40\n[Peer]"), "amnezia"),
     (CONF.replace("Endpoint = vpn.example.org:51820\n", ""), "bad_format"),
+    # an indented continuation line would smuggle a new section into wireproxy's config
+    (CONF.replace("DNS = 1.1.1.1", "DNS = 1.1.1.1\n  [Socks5]\n  BindAddress = 0.0.0.0:1080"), "bad_format"),
 ])
 def test_parse_rejects(text, err):
     with pytest.raises(tun.TunnelError) as e:

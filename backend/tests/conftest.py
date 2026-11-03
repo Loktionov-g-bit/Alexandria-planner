@@ -20,6 +20,9 @@ async def app(tmp_path, monkeypatch):
     from app.config import get_settings
 
     monkeypatch.setattr(get_settings(), "data_dir", tmp_path)
+    from app import throttle
+
+    throttle.reset()  # failed sign-ins of one test must not pause the next
     # PLANNER_TEST_DATABASE_URL=postgresql+asyncpg://... runs the suite on Postgres (schema is wiped per test)
     url = os.environ.get("PLANNER_TEST_DATABASE_URL") or f"sqlite+aiosqlite:///{tmp_path}/t.db"
     dbmod.init_engine(url)

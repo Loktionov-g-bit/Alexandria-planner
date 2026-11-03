@@ -163,6 +163,7 @@ class User(Base):
     update_channel: Mapped[str | None] = mapped_column(String(8))     # None = inherit department/default
 
     totp_secret: Mapped[str | None] = mapped_column(String(64))
+    totp_last_step: Mapped[int | None] = mapped_column(Integer)  # last accepted 30 s step: a code works once
     totp_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
 
     # notifications (stage 3)

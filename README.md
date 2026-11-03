@@ -87,7 +87,9 @@ All settings are environment variables with the `PLANNER_` prefix:
 |---|---|---|
 | `PLANNER_BASE_URL` | `http://localhost:8000` | Public address, used in links and for secure cookies |
 | `PLANNER_DATABASE_URL` | set by compose | PostgreSQL connection |
-| `PLANNER_FORWARDED_ALLOW_IPS` | `*` | Proxies whose `X-Forwarded-*` are trusted |
+| `PLANNER_FORWARDED_ALLOW_IPS` | private networks | Proxies whose `X-Forwarded-*` are trusted; set your proxy's address |
+| `PLANNER_IP_MAX_FAILURES` | `20` | Failed sign-ins from one IP per 15 min before it is paused |
+| `PLANNER_API_DOCS` | `false` | Expose `/api/docs` (API schema) |
 | `PLANNER_SESSION_DAYS` | `14` | Session lifetime |
 | `PLANNER_LOGIN_MAX_ATTEMPTS` | `5` | Failed logins before a temporary lock |
 | `PLANNER_PASSWORD_MIN_LENGTH` | `10` | Minimum password length |
@@ -134,6 +136,13 @@ The guide screenshots are generated from a running instance with fictional peopl
 ## Security
 
 Please report vulnerabilities privately, see [SECURITY.md](SECURITY.md).
+
+Before you open the app to the internet:
+
+- **Finish the first-run wizard first.** Until it is done, whoever opens the page first becomes the administrator.
+- **Serve it over HTTPS only**, through a reverse proxy; do not publish port 8000 to the internet directly.
+- Keep `.env` private and use a long random `POSTGRES_PASSWORD`. The database port is not published by default; keep it so.
+- Update regularly: `docker compose pull && docker compose up -d`.
 
 ## Author
 

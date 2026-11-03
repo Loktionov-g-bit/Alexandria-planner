@@ -28,6 +28,12 @@ thin = Side(style="thin", color=LINE)
 B_BOTTOM = Border(bottom=thin)
 
 
+
+def text(v):
+    """User-written text (titles, names, departments) as plain text: Excel must never run it as a formula.
+    openpyxl turns any string starting with "=" into a formula, and Excel also treats +, -, @ as formula starts."""
+    return ("\u200b" + v) if isinstance(v, str) and v[:1] in ("=", "+", "-", "@", "\t", "\r") else v
+
 def fill(c: str) -> PatternFill:
     return PatternFill("solid", start_color=c, end_color=c)
 
@@ -44,7 +50,7 @@ def title_block(ws, tx: dict, title: str, subtitle: str, width_cols: int) -> Non
     ws["B3"] = title
     ws["B3"].font = f(22, True)
     ws.row_dimensions[3].height = 34
-    ws["B4"] = subtitle
+    ws["B4"] = text(subtitle)
     ws["B4"].font = f(11, False, MUTED)
     for c in range(2, 2 + width_cols):
         ws.cell(row=5, column=c).border = Border(bottom=Side(style="medium", color=INK))
@@ -161,7 +167,7 @@ def build_xlsx(rep: Report, user: User, dept_name: str | None) -> bytes:
         r = 8 + i
         aq = lc.author_quadrant(s).value
         note = tx["outcome"].get(s.outcome.value, "") if s.outcome else ""
-        vals = [s.id, s.title, s.author.display_name, executor(s), tx["q"][s.decided_quadrant.value] if s.decided_quadrant else tx["inbox"],
+        vals = [s.id, text(s.title), text(s.author.display_name), text(executor(s)), tx["q"][s.decided_quadrant.value] if s.decided_quadrant else tx["inbox"],
                 tx["q"][aq], local(s.created_at, tz), s.deadline, local(s.resolved_at, tz), tx["status"][s.status.value], note]
         for j, v in enumerate(vals):
             c = ws2.cell(row=r, column=2 + j, value=v)
@@ -195,7 +201,7 @@ def build_xlsx(rep: Report, user: User, dept_name: str | None) -> bytes:
     for i, p in enumerate(rep.by_person):
         r = 8 + i
         h = p["avg_response_hours"]
-        vals = [p["user"].display_name, p["sent"], p["resolved"], round(h / 24, 1) if h is not None else None, p["diverged"],
+        vals = [text(p["user"].display_name), p["sent"], p["resolved"], round(h / 24, 1) if h is not None else None, p["diverged"],
                 f"=IF(C{r}=0,0,F{r}/C{r})"]
         for j, v in enumerate(vals):
             c = ws3.cell(row=r, column=2 + j, value=v)

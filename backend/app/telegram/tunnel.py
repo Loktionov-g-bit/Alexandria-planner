@@ -70,6 +70,10 @@ def _clean(raw: str, name: str) -> Parsed:
     peers = [cp[s] for s in cp.sections() if s.lower().startswith("peer.")]
     if iface is None or not peers:
         raise TunnelError("bad_format")
+    for sec in cp.sections():
+        for k, v in cp[sec].items():
+            if any(ch in v for ch in "\r\n\x00") or not re.fullmatch(r"[A-Za-z0-9_]+", k):
+                raise TunnelError("bad_format")  # a value spanning lines could add sections to wireproxy's config
     keys = {k.lower() for s in cp.sections() for k in cp[s]}
     if keys & AMNEZIA:
         raise TunnelError("amnezia")

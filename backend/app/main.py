@@ -27,6 +27,12 @@ async def scheduler() -> None:
         await asyncio.sleep(get_settings().scheduler_minutes * 60)
 
 
+# No inline scripts, nothing from other sites except Google Fonts. React sets style attributes, hence 'unsafe-inline' for styles.
+CSP = ("default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+       "font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; "
+       "manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     st = get_settings()
@@ -106,7 +112,9 @@ async def worker_guard() -> None:
 
 def create_app() -> FastAPI:
     st = get_settings()
-    app = FastAPI(title="Alexandria Planner", version=__version__, lifespan=lifespan, docs_url="/api/docs", openapi_url="/api/openapi.json", redoc_url=None)
+    docs = st.api_docs  # the API schema is a map for attackers: off unless the operator wants it
+    app = FastAPI(title="Alexandria Planner", version=__version__, lifespan=lifespan, docs_url="/api/docs" if docs else None,
+                  openapi_url="/api/openapi.json" if docs else None, redoc_url=None)
     for r in (setup.router, auth.router, profile.router, admin.router, stickers.router, notifications.router, telegram.router, stats.router, channels.router):
         app.include_router(r)
 
@@ -132,6 +140,11 @@ def create_app() -> FastAPI:
         response.headers.setdefault("X-Content-Type-Options", "nosniff")
         response.headers.setdefault("Referrer-Policy", "same-origin")
         response.headers.setdefault("X-Frame-Options", "DENY")
+        response.headers.setdefault("Content-Security-Policy", CSP)
+        response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=(), usb=()")
+        response.headers.setdefault("Cross-Origin-Opener-Policy", "same-origin")
+        if st.cookie_secure:
+            response.headers.setdefault("Strict-Transport-Security", "max-age=31536000")
         return response
 
     # Built frontend is served by the same process (no extra nginx container).

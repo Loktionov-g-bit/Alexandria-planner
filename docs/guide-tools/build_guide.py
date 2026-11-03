@@ -62,15 +62,16 @@ for lang in LANGS:
     built.append(lang)
 
 codes = json.dumps(built)
+# the language picker lives in its own file: the app's Content-Security-Policy forbids inline scripts
+(OUT / "pick.js").write_text(f"""// same origin as the app, so the app's saved language wins
+var codes = {codes}, pick = null
+try {{ pick = localStorage.getItem('lang') }} catch (e) {{}}
+if (codes.indexOf(pick) < 0) pick = (navigator.languages || [navigator.language]).map(function (l) {{ return l.slice(0, 2) }}).filter(function (l) {{ return codes.indexOf(l) >= 0 }})[0] || 'en'
+location.replace(pick + '/' + location.hash)
+""", encoding="utf-8")
 (OUT / "index.html").write_text(f"""<!doctype html>
 <html><head><meta charset="utf-8" /><title>Alexandria Planner</title>
-<script>
-  // same origin as the app, so the app's saved language wins
-  var codes = {codes}, pick = null
-  try {{ pick = localStorage.getItem('lang') }} catch (e) {{}}
-  if (codes.indexOf(pick) < 0) pick = (navigator.languages || [navigator.language]).map(function (l) {{ return l.slice(0, 2) }}).filter(function (l) {{ return codes.indexOf(l) >= 0 }})[0] || 'en'
-  location.replace(pick + '/' + location.hash)
-</script>
+<script src="pick.js"></script>
 </head><body><noscript>{" · ".join(f'<a href="{c}/">{LANGS[c]}</a>' for c in built)}</noscript></body></html>
 """, encoding="utf-8")
 print("built", built)

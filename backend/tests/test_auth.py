@@ -1,3 +1,4 @@
+import time
 import pyotp
 
 from .conftest import STRONG, new_client
@@ -28,8 +29,14 @@ async def test_login_with_totp(app, admin):
     assert r.json()["pending"] == "totp"
     assert (await c.get("/api/admin/users")).status_code == 401
     assert (await c.post("/api/auth/totp", json={"code": "000000"})).status_code == 401
-    r = await c.post("/api/auth/totp", json={"code": pyotp.TOTP(admin).now()})
+    # the code used to enable 2FA cannot be used again (replay); the next 30 s code is accepted
+    assert (await c.post("/api/auth/totp", json={"code": pyotp.TOTP(admin).now()})).status_code == 401
+    nxt = pyotp.TOTP(admin).at(time.time() + 30)
+    r = await c.post("/api/auth/totp", json={"code": nxt})
     assert r.json()["verified"] is True
+    c2 = await new_client(app)
+    await c2.post("/api/auth/login", json={"login": "boss", "password": STRONG})
+    assert (await c2.post("/api/auth/totp", json={"code": nxt})).status_code == 401  # same code, another session
     assert (await c.get("/api/admin/users")).status_code == 200
 
 
@@ -119,3 +126,23 @@ def test_every_locale_has_complete_server_texts():
             assert slots(other[k]) == slots(v), (loc, k)
     for section in ("notify", "report", "telegram"):
         assert set(texts(section)) == set(LOCALES)
+
+
+async def test_ip_throttle_stops_password_spraying(app, client, admin, monkeypatch):
+    from app.config import get_settings
+
+    monkeypatch.setattr(get_settings(), "ip_max_failures", 6)
+    for login in ("boss", "a", "b", "c", "d", "e"):  # different accounts, one address
+        assert (await client.post("/api/auth/login", json={"login": login, "password": "Wrong-pass-123"})).status_code == 401
+    r = await client.post("/api/auth/login", json={"login": "boss", "password": STRONG})
+    assert r.status_code == 429 and r.json()["detail"] == "auth.too_many_attempts"  # even the right password waits
+
+
+async def test_security_headers_and_no_public_api_map(client):
+    r = await client.get("/api/health")
+    csp = r.headers["content-security-policy"]
+    assert "script-src 'self'" in csp and "frame-ancestors 'none'" in csp and "unsafe-eval" not in csp
+    assert r.headers["x-frame-options"] == "DENY" and r.headers["x-content-type-options"] == "nosniff"
+    assert "strict-transport-security" not in r.headers  # plain http in tests: HSTS only behind https
+    assert (await client.get("/api/openapi.json")).status_code == 404
+    assert (await client.get("/api/docs")).status_code == 404

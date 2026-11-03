@@ -8,6 +8,7 @@ from ..config import get_settings
 from ..deps import CHANNEL_COOKIE, COOKIE, DB, set_channel_cookie, CurrentUser, as_utc, client_ip, current_session, load_session
 from ..models import AuthSession, LoginEvent, User
 from ..schemas import CodeIn, LoginIn, MeOut, PasswordChangeIn, TotpSetupOut, UserOut
+from .. import throttle
 from ..security import (
     hash_password,
     new_token,
@@ -15,7 +16,7 @@ from ..security import (
     password_problems,
     totp_uri,
     verify_password,
-    verify_totp,
+    use_totp,
 )
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -94,6 +95,7 @@ def ensure_not_locked(user: User | None) -> None:
 
 @router.post("/login", response_model=MeOut)
 async def login(data: LoginIn, request: Request, response: Response, db: DB) -> MeOut:
+    throttle.check(client_ip(request))
     user = await db.scalar(select(User).where(User.login == data.login.strip()))
     try:
         ensure_not_locked(user)
@@ -105,6 +107,7 @@ async def login(data: LoginIn, request: Request, response: Response, db: DB) -> 
     if not ok or not user.is_active:
         if user:
             register_failure(user)
+        throttle.failed(client_ip(request))
         log_event(db, request, data.login, user, False, "bad_password" if not ok else "inactive")
         await db.commit()
         raise HTTPException(401, "auth.invalid")
@@ -119,11 +122,13 @@ async def login(data: LoginIn, request: Request, response: Response, db: DB) -> 
 @router.post("/totp", response_model=MeOut)
 async def totp_verify(data: CodeIn, request: Request, db: DB, s: Annotated[AuthSession, Depends(current_session)]) -> MeOut:
     user = s.user
+    throttle.check(client_ip(request))
     ensure_not_locked(user)
     if not user.totp_enabled:
         raise HTTPException(400, "auth.totp_not_enabled")
-    if not verify_totp(user.totp_secret, data.code):
+    if not use_totp(user, data.code):
         register_failure(user)
+        throttle.failed(client_ip(request))
         log_event(db, request, user.login, user, False, "bad_totp")
         await db.commit()
         raise HTTPException(401, "auth.bad_code")
@@ -150,7 +155,7 @@ async def totp_enable(data: CodeIn, request: Request, db: DB, s: Annotated[AuthS
     user = s.user
     if user.totp_enabled:
         raise HTTPException(400, "auth.totp_already_enabled")
-    if not verify_totp(user.totp_secret, data.code):
+    if not use_totp(user, data.code):
         raise HTTPException(401, "auth.bad_code")
     user.totp_enabled = True
     s.verified = True
@@ -163,7 +168,7 @@ async def totp_enable(data: CodeIn, request: Request, db: DB, s: Annotated[AuthS
 async def totp_disable(data: CodeIn, db: DB, user: CurrentUser, s: Annotated[AuthSession, Depends(current_session)]) -> MeOut:
     if user.needs_2fa:
         raise HTTPException(403, "auth.totp_mandatory")
-    if not verify_totp(user.totp_secret, data.code):
+    if not use_totp(user, data.code):
         raise HTTPException(401, "auth.bad_code")
     user.totp_enabled = False
     user.totp_secret = None
@@ -187,8 +192,11 @@ async def logout(response: Response, db: DB, planner_session: Annotated[str | No
 
 
 @router.post("/password", status_code=204)
-async def change_password(data: PasswordChangeIn, db: DB, user: CurrentUser, s: Annotated[AuthSession, Depends(current_session)]) -> None:
+async def change_password(data: PasswordChangeIn, request: Request, db: DB, user: CurrentUser,
+                          s: Annotated[AuthSession, Depends(current_session)]) -> None:
+    throttle.check(client_ip(request))
     if not verify_password(user.password_hash, data.old_password):
+        throttle.failed(client_ip(request))
         raise HTTPException(401, "auth.invalid")
     problems = password_problems(data.new_password, login=user.login)
     if problems:

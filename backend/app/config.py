@@ -12,8 +12,10 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://planner:planner@db:5432/planner"
     # Public base URL, e.g. https://planner.example.com or https://nas.local/planner
     base_url: str = "http://localhost:8000"
-    # Proxies whose X-Forwarded-* headers are trusted ("*" = any, fine when only the proxy can reach the app)
-    forwarded_allow_ips: str = "*"
+    # Proxies whose X-Forwarded-* headers are trusted. Default: loopback and private networks, i.e. a reverse proxy
+    # on the same host, in Docker or on the LAN. A client coming straight from the internet cannot fake its IP
+    # (that would dodge the per-IP sign-in limit). Set the exact proxy address for the tightest setup; "*" trusts anyone.
+    forwarded_allow_ips: str = "127.0.0.1,::1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,fc00::/7"
     data_dir: Path = Path("/data")
     static_dir: Path = Path(__file__).resolve().parent.parent / "static"
 
@@ -31,6 +33,10 @@ class Settings(BaseSettings):
     # background work (scheduler, notifications, Telegram, digests). Off on beta: one Telegram token, one poller
     worker: bool = True
     backup_keep: int = 10                # pre-migration backups kept in /data/backups
+    api_docs: bool = False               # /api/docs and /api/openapi.json (off: no API map for strangers)
+    # failed sign-ins (password or 2FA code) from one IP before it is paused; per-account locking works on top
+    ip_max_failures: int = 20
+    ip_window_minutes: int = 15
 
     @property
     def cookie_secure(self) -> bool:

@@ -69,6 +69,7 @@ def main() -> None:
         forwarded_allow_ips=st.forwarded_allow_ips,
         root_path=st.root_path,
         log_level="info",
+        server_header=False,  # do not advertise the web server
     )
 
 
