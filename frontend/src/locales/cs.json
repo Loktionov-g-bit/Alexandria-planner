@@ -226,7 +226,8 @@
     "share": "Zpřístupněno",
     "edited": "Text změněn",
     "attachment": "Přidán soubor",
-    "delegate_quadrant": "Řešitel přesunul štítek"
+    "delegate_quadrant": "Řešitel přesunul štítek",
+    "deputy": "{{name}} je pryč: štítek dostal i zástupce {{deputy}}"
   },
   "compose": {
     "heading": "Nový štítek",
@@ -250,7 +251,9 @@
     "nFiles_few": "{{count}} soubory",
     "nFiles_many": "{{count}} souboru",
     "nFiles_other": "{{count}} souborů",
-    "send": "Odeslat"
+    "send": "Odeslat",
+    "away": "Pryč do {{date}}",
+    "awayDeputy": "Štítek dostane i zástupce: {{name}}."
   },
   "lists": {
     "needAnswer": "Čeká se na vaši odpověď",
@@ -430,7 +433,37 @@
     "security": "Zabezpečení",
     "twofaMandatory": "Pro vaši roli povinné",
     "enable2fa": "Zapnout 2FA",
-    "disable2fa": "Vypnout"
+    "disable2fa": "Vypnout",
+    "away": {
+      "title": "Nepřítomnost a zástup",
+      "hint": "Když tu nejste, nové štítky chodí vám i zástupci, který je může vyřídit.",
+      "atWork": "Jste v práci",
+      "now": "Jste pryč do {{date}}",
+      "planned": "Plánovaná nepřítomnost: {{from}} – {{to}}",
+      "deputyGets": "Zástupce: {{name}}",
+      "noDeputy": "Zástupce není vybrán: štítky na vás počkají.",
+      "back": "Jsem zpět",
+      "from": "Od (nepovinné)",
+      "until": "Do",
+      "deputy": "Zástupce",
+      "nobody": "Nikdo"
+    },
+    "cal": {
+      "section": "Kalendář",
+      "hint": "Termíny štítků v kalendáři telefonu nebo pošty. Aktualizuje se sám.",
+      "title": "Odkaz na kalendář",
+      "on": "Zapnuto. Vidět jsou jen názvy štítků s termínem.",
+      "off": "Vypnuto.",
+      "enable": "Zapnout",
+      "open": "Přidat do kalendáře",
+      "copy": "Kopírovat",
+      "copied": "Odkaz zkopírován.",
+      "copyFail": "Kopírování se nepovedlo: označte odkaz a zkopírujte ho ručně.",
+      "how": "Google Kalendář: „Další kalendáře“ → „Z adresy URL“. iPhone: Nastavení → Kalendář → Účty → „Přidat odebíraný kalendář“. Outlook: „Přidat kalendář“ → „Odebírat z webu“.",
+      "renew": "Získat nový odkaz",
+      "renewWarn": "Starý odkaz přestane fungovat a kalendář bude potřeba odebírat znovu.",
+      "renewYes": "Ano, nový odkaz"
+    }
   },
   "tg": {
     "howTitle": "Jak připojit bota",
@@ -614,5 +647,33 @@
     "too_big": "Soubor je na konfiguraci WireGuard příliš velký.",
     "amnezia": "Tohle je konfigurace AmneziaWG (obsahuje Jc, Jmin, H1…). Je potřeba běžný WireGuard; aplikace Amnezia ho umí exportovat.",
     "not_configured": "Konfigurace zatím není nahraná."
+  },
+  "triage": {
+    "start": "Třídit po jednom",
+    "title": "Třídění doručených",
+    "left_one": "zbývá {{count}}",
+    "left_few": "zbývají {{count}}",
+    "left_many": "zbývá {{count}}",
+    "left_other": "zbývá {{count}}",
+    "thinks": "Autor si myslí",
+    "more": "Komentáře: {{comments}}, soubory: {{files}}",
+    "back": "Zpět",
+    "open": "Otevřít",
+    "skip": "Přeskočit",
+    "done": "Doručené roztříděny",
+    "endSkipped_one": "Přeskočen {{count}} štítek",
+    "endSkipped_few": "Přeskočeny {{count}} štítky",
+    "endSkipped_many": "Přeskočeno {{count}} štítku",
+    "endSkipped_other": "Přeskočeno {{count}} štítků",
+    "sorted_one": "Zařazen {{count}} štítek",
+    "sorted_few": "Zařazeny {{count}} štítky",
+    "sorted_many": "Zařazeno {{count}} štítku",
+    "sorted_other": "Zařazeno {{count}} štítků",
+    "again": "Zpět k přeskočeným",
+    "finish": "Hotovo"
+  },
+  "absence": {
+    "bad_dates": "Datum začátku je po datu konce.",
+    "self_deputy": "Nemůžete být svým vlastním zástupcem."
   }
 }

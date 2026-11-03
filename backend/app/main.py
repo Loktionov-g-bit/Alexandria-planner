@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 
 from . import __version__
+from . import calendar
 from .api import admin, auth, channels, notifications, profile, setup, stats, stickers, telegram
 from .config import get_settings
 from .db import get_engine, sessionmaker
@@ -115,7 +116,7 @@ def create_app() -> FastAPI:
     docs = st.api_docs  # the API schema is a map for attackers: off unless the operator wants it
     app = FastAPI(title="Alexandria Planner", version=__version__, lifespan=lifespan, docs_url="/api/docs" if docs else None,
                   openapi_url="/api/openapi.json" if docs else None, redoc_url=None)
-    for r in (setup.router, auth.router, profile.router, admin.router, stickers.router, notifications.router, telegram.router, stats.router, channels.router):
+    for r in (setup.router, auth.router, profile.router, admin.router, stickers.router, notifications.router, telegram.router, stats.router, channels.router, calendar.router):
         app.include_router(r)
 
     @app.get("/api/health")

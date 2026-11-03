@@ -226,7 +226,8 @@
     "share": "Freigegeben",
     "edited": "Text geändert",
     "attachment": "Datei hinzugefügt",
-    "delegate_quadrant": "Ausführende Person hat den Sticker verschoben"
+    "delegate_quadrant": "Ausführende Person hat den Sticker verschoben",
+    "deputy": "{{name}} ist abwesend: auch die Vertretung {{deputy}} hat den Sticker bekommen"
   },
   "compose": {
     "heading": "Neuer Sticker",
@@ -250,7 +251,9 @@
     "nFiles_few": "{{count}} Dateien",
     "nFiles_many": "{{count}} Dateien",
     "nFiles_other": "{{count}} Dateien",
-    "send": "Senden"
+    "send": "Senden",
+    "away": "Abwesend bis {{date}}",
+    "awayDeputy": "Die Vertretung bekommt den Sticker auch: {{name}}."
   },
   "lists": {
     "needAnswer": "Ihre Antwort wird gebraucht",
@@ -430,7 +433,37 @@
     "security": "Sicherheit",
     "twofaMandatory": "Für Ihre Rolle Pflicht",
     "enable2fa": "2FA einschalten",
-    "disable2fa": "Ausschalten"
+    "disable2fa": "Ausschalten",
+    "away": {
+      "title": "Abwesenheit und Vertretung",
+      "hint": "Während Sie weg sind, gehen neue Sticker an Sie und an Ihre Vertretung, die sie bearbeiten kann.",
+      "atWork": "Sie sind da",
+      "now": "Sie sind abwesend bis {{date}}",
+      "planned": "Abwesenheit geplant: {{from}} – {{to}}",
+      "deputyGets": "Vertretung: {{name}}",
+      "noDeputy": "Keine Vertretung: Sticker warten auf Sie.",
+      "back": "Ich bin zurück",
+      "from": "Von (optional)",
+      "until": "Bis",
+      "deputy": "Vertretung",
+      "nobody": "Niemand"
+    },
+    "cal": {
+      "section": "Kalender",
+      "hint": "Fristen der Sticker im Kalender von Handy oder Mail. Aktualisiert sich selbst.",
+      "title": "Kalender-Link",
+      "on": "An. Nur Titel von Stickern mit Frist sind sichtbar.",
+      "off": "Aus.",
+      "enable": "Einschalten",
+      "open": "Zum Kalender hinzufügen",
+      "copy": "Kopieren",
+      "copied": "Link kopiert.",
+      "copyFail": "Kopieren fehlgeschlagen: Link markieren und von Hand kopieren.",
+      "how": "Google Kalender: „Weitere Kalender“ → „Per URL“. iPhone: Einstellungen → Kalender → Accounts → „Kalenderabo hinzufügen“. Outlook: „Kalender hinzufügen“ → „Aus dem Internet abonnieren“.",
+      "renew": "Neuen Link erzeugen",
+      "renewWarn": "Der alte Link funktioniert dann nicht mehr, der Kalender muss neu abonniert werden.",
+      "renewYes": "Ja, neuer Link"
+    }
   },
   "tg": {
     "howTitle": "So verbinden Sie den Bot",
@@ -614,5 +647,33 @@
     "too_big": "Die Datei ist zu groß für eine WireGuard-Konfiguration.",
     "amnezia": "Das ist eine AmneziaWG-Konfiguration (mit Jc, Jmin, H1…). Nötig ist normales WireGuard; die Amnezia-App kann es exportieren.",
     "not_configured": "Noch keine Konfiguration hochgeladen."
+  },
+  "triage": {
+    "start": "Einzeln sortieren",
+    "title": "Eingang sortieren",
+    "left_one": "noch {{count}}",
+    "left_few": "noch {{count}}",
+    "left_many": "noch {{count}}",
+    "left_other": "noch {{count}}",
+    "thinks": "Autor meint",
+    "more": "Kommentare: {{comments}}, Dateien: {{files}}",
+    "back": "Zurück",
+    "open": "Öffnen",
+    "skip": "Überspringen",
+    "done": "Eingang sortiert",
+    "endSkipped_one": "{{count}} Sticker übersprungen",
+    "endSkipped_few": "{{count}} Sticker übersprungen",
+    "endSkipped_many": "{{count}} Sticker übersprungen",
+    "endSkipped_other": "{{count}} Sticker übersprungen",
+    "sorted_one": "{{count}} Sticker einsortiert",
+    "sorted_few": "{{count}} Sticker einsortiert",
+    "sorted_many": "{{count}} Sticker einsortiert",
+    "sorted_other": "{{count}} Sticker einsortiert",
+    "again": "Zu den übersprungenen",
+    "finish": "Fertig"
+  },
+  "absence": {
+    "bad_dates": "Das Startdatum liegt nach dem Enddatum.",
+    "self_deputy": "Sie können nicht Ihre eigene Vertretung sein."
   }
 }

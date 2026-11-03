@@ -374,14 +374,30 @@ async def create(db: AsyncSession, user: User, *, title: str, body: str = "", ur
             ids = [dept.manager_id]
         if user.id in ids:
             raise HTTPException(422, "sticker.self_recipient")
-        for uid in ids:
-            await active_user(db, uid)
+        subs: list[tuple[User, User]] = []  # (away recipient, deputy who stands in)
+        for uid in list(ids):
+            r = await active_user(db, uid)
+            dep = await deputy_for(db, r)
+            if dep is not None and dep.id != user.id and dep.id not in ids:
+                ids.append(dep.id)
+                subs.append((r, dep))
         s.placements = [Placement(user_id=uid, role=PlacementRole.recipient) for uid in ids]
     db.add(s)
     await db.flush()
     audit(db, s, user, "created", recipients=[p.user_id for p in s.placements])
+    if not personal:
+        for away, dep in subs:
+            audit(db, s, None, "deputy", user_id=away.id, deputy_id=dep.id, user=away.display_name, deputy=dep.display_name)
     notify.emit(db, s, user, "created", text=snippet(s.body))
     return s
+
+
+async def deputy_for(db: AsyncSession, u: User) -> User | None:
+    """Who stands in for `u` today: the deputy while `u` is away (one hop only, no chains)."""
+    if u.deputy_id is None or not u.is_away():
+        return None
+    dep = await db.get(User, u.deputy_id)
+    return dep if dep is not None and dep.is_active and dep.deleted_at is None else None
 
 
 def storage_dir():

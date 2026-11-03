@@ -3,11 +3,11 @@ import { useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { api, type Department, type User } from '../api'
 import { errorText } from '../session'
-import { uploadFile, useDirectory, useInvalidateStickers, type StickerDetail } from '../stickers'
+import { shortDate, uploadFile, useDirectory, useInvalidateStickers, type StickerDetail } from '../stickers'
 import { FileIcon } from './StickerSheet'
 
 export default function Compose({ user, onClose, onCreated }: { user: User; onClose: () => void; onCreated: (id: number) => void }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const people = useDirectory()
   const depts = useQuery({ queryKey: ['departments'], queryFn: () => api<Department[]>('directory/departments'), staleTime: 60_000 })
   const refresh = useInvalidateStickers()
@@ -29,6 +29,8 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
   const others = (people.data ?? []).filter((u) => u.id !== user.id)
   const managers = others.filter((u) => u.role === 'manager')
   const colleagues = others.filter((u) => u.role !== 'manager')
+  const picked = typeof target === 'number' ? others.find((u) => u.id === target) : undefined
+  const stand = picked?.away_now_until ? (people.data ?? []).find((u) => u.id === picked.away_deputy_id) : undefined
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
@@ -78,6 +80,12 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
               <option value="me">{t('compose.toMe')}</option>
             </select>
             {target === 'me' && <p className="hint">{t('compose.toMeHint')}</p>}
+            {picked?.away_now_until && (
+              <p className="hint away">
+                {t('compose.away', { date: shortDate(picked.away_now_until, i18n.language) })}
+                {stand && stand.id !== user.id ? ` · ${t('compose.awayDeputy', { name: stand.display_name })}` : ''}
+              </p>
+            )}
           </div>
           <div className="field">
             <label htmlFor="c-title">{t('compose.title')}</label>

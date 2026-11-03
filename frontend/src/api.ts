@@ -57,6 +57,10 @@ export interface User {
   digest_skip_empty: boolean
   telegram_username: string | null
   telegram_linked: boolean
+  away_from: string | null
+  away_until: string | null
+  deputy_id: number | null
+  calendar_enabled: boolean
 }
 
 export interface Me {

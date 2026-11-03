@@ -15,6 +15,8 @@ export interface UserBrief {
   avatar_color: string
   role: Role
   department_id: number | null
+  away_now_until?: string | null
+  away_deputy_id?: number | null
 }
 
 export interface StickerSummary {

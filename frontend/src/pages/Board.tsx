@@ -10,6 +10,7 @@ import { api, type User } from '../api'
 import { DraggableSticker, StickerFace, toneOf } from '../components/StickerCard'
 import StickerSheet from '../components/StickerSheet'
 import Compose from '../components/Compose'
+import Triage from '../components/Triage'
 import { QUADRANTS, useBoard, useMove, type Quadrant, type StickerSummary } from '../stickers'
 
 type Period = 'morning' | 'day' | 'evening' | 'night'
@@ -107,6 +108,7 @@ export default function BoardPage({ user }: { user: User }) {
   openRef.current = open
   const openSticker = useCallback((id: number) => openRef.current(id), [])
   const [compose, setCompose] = useState(false)
+  const [triage, setTriage] = useState(false)
   const [query, setQuery] = useState('')
   const [dragId, setDragId] = useState<number | null>(null)
 
@@ -182,6 +184,12 @@ export default function BoardPage({ user }: { user: User }) {
             <h2>{t('board.inbox')}</h2>
             <span className="count">{inbox.length}</span>
             <span className="m">{t('board.inboxHint')}</span>
+            {inbox.length > 1 && (
+              <button type="button" className="btn tr-start" onClick={() => setTriage(true)}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><rect x="5" y="4" width="14" height="16" rx="2" /><path d="M9 9h6M9 13h4" /></svg>
+                {t('triage.start')}
+              </button>
+            )}
           </div>
           <div className="pile">
             {inbox.map((s) => <DraggableSticker key={s.id} s={s} where="inbox" onOpen={openSticker} />)}
@@ -207,6 +215,7 @@ export default function BoardPage({ user }: { user: User }) {
         </DragOverlay>
       </DndContext>
 
+      {triage && <Triage inbox={inbox} paused={openId !== null} onOpen={openSticker} onClose={() => setTriage(false)} />}
       {openId !== null && <StickerSheet id={openId} onClose={() => open(null)} />}
       {compose && <Compose user={user} onClose={() => setCompose(false)} onCreated={(id) => { setCompose(false); open(id) }} />}
     </div>

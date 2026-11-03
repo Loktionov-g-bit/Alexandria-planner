@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { QRCodeSVG } from 'qrcode.react'
 import { api, type Department, type Me, type User } from '../api'
 import { errorText, useSetMe } from '../session'
-import { initials } from '../stickers'
+import { initials, isoDate, shortDate, useDirectory } from '../stickers'
 import { LANGS, type Lang } from '../i18n'
 import { intlLang, weekdays } from '../dates'
 import { disablePush, enablePush, pushState, type PushState } from '../notifications'
@@ -323,6 +323,101 @@ function Digest({ me, save }: { me: Me; save: (p: Partial<User>) => Promise<void
   )
 }
 
+function Absence({ me, save }: { me: Me; save: (p: Partial<User>) => Promise<void> }) {
+  const { t, i18n } = useTranslation()
+  const u = me.user
+  const people = useDirectory()
+  const others = (people.data ?? []).filter((p) => p.id !== u.id)
+  const today = isoDate(new Date())
+  const awayNow = !!u.away_until && u.away_until >= today && (!u.away_from || u.away_from <= today)
+  const planned = !!u.away_until && u.away_until >= today && !awayNow
+  const deputy = others.find((p) => p.id === u.deputy_id)
+  return (
+    <>
+      <div className="pline">
+        <div className="w">
+          <b>{awayNow ? t('profile.away.now', { date: shortDate(u.away_until!, i18n.language) })
+            : planned ? t('profile.away.planned', { from: shortDate(u.away_from!, i18n.language), to: shortDate(u.away_until!, i18n.language) })
+              : t('profile.away.atWork')}</b>
+          <small>{deputy ? t('profile.away.deputyGets', { name: deputy.display_name }) : t('profile.away.noDeputy')}</small>
+        </div>
+        {(awayNow || planned) && <button className="btn" type="button" onClick={() => save({ away_from: null, away_until: null })}>{t('profile.away.back')}</button>}
+      </div>
+      <div className="row absence">
+        <div className="field">
+          <label htmlFor="aw-from">{t('profile.away.from')}</label>
+          <input id="aw-from" type="date" value={u.away_from ?? ''} max={u.away_until ?? undefined} onChange={(e) => save({ away_from: e.target.value || null })} />
+        </div>
+        <div className="field">
+          <label htmlFor="aw-until">{t('profile.away.until')}</label>
+          <input id="aw-until" type="date" value={u.away_until ?? ''} min={u.away_from ?? today} onChange={(e) => save({ away_until: e.target.value || null })} />
+        </div>
+        <div className="field">
+          <label htmlFor="aw-deputy">{t('profile.away.deputy')}</label>
+          <select id="aw-deputy" value={u.deputy_id ?? ''} onChange={(e) => save({ deputy_id: e.target.value ? Number(e.target.value) : null })}>
+            <option value="">{t('profile.away.nobody')}</option>
+            {others.map((p) => <option key={p.id} value={p.id}>{p.display_name}</option>)}
+          </select>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function CalendarFeed() {
+  const { t } = useTranslation()
+  const qc = useQueryClient()
+  const feed = useQuery({ queryKey: ['calendar'], queryFn: () => api<{ url: string | null }>('profile/calendar') })
+  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null)
+  const [renewing, setRenewing] = useState(false)
+  const run = async (method: 'POST' | 'DELETE') => {
+    setMsg(null)
+    try {
+      qc.setQueryData(['calendar'], await api<{ url: string | null }>('profile/calendar', { method }))
+      setRenewing(false)
+    } catch (e) {
+      setMsg({ ok: false, text: errorText(t, e) })
+    }
+  }
+  const copy = async (url: string) => {
+    try {
+      await navigator.clipboard.writeText(url)
+      setMsg({ ok: true, text: t('profile.cal.copied') })
+    } catch {
+      setMsg({ ok: false, text: t('profile.cal.copyFail') })
+    }
+  }
+  if (!feed.data) return null
+  const url = feed.data.url
+  return (
+    <div className="pline">
+      <div className="w"><b>{t('profile.cal.title')}</b><small>{url ? t('profile.cal.on') : t('profile.cal.off')}</small></div>
+      {!url && <button className="btn primary" type="button" onClick={() => run('POST')}>{t('profile.cal.enable')}</button>}
+      {url && (
+        <>
+          <a className="btn" href={url.replace(/^https?:/, 'webcal:')}>{t('profile.cal.open')}</a>
+          <button className="btn" type="button" onClick={() => run('DELETE')}>{t('profile.notify.disable')}</button>
+          <div className="full calurl">
+            <input readOnly value={url} aria-label={t('profile.cal.title')} onFocus={(e) => e.target.select()} />
+            <button className="btn" type="button" onClick={() => copy(url)}>{t('profile.cal.copy')}</button>
+          </div>
+          <p className="full hint">{t('profile.cal.how')}</p>
+          {!renewing
+            ? <button className="linkish full" type="button" onClick={() => setRenewing(true)}>{t('profile.cal.renew')}</button>
+            : (
+              <p className="full hint">
+                {t('profile.cal.renewWarn')}{' '}
+                <button className="btn" type="button" onClick={() => run('POST')}>{t('profile.cal.renewYes')}</button>{' '}
+                <button className="btn" type="button" onClick={() => setRenewing(false)}>{t('common.cancel')}</button>
+              </p>
+            )}
+        </>
+      )}
+      {msg && <p className={`full ${msg.ok ? 'notice' : 'error'}`}>{msg.text}</p>}
+    </div>
+  )
+}
+
 export default function ProfilePage({ me }: { me: Me }) {
   const { t, i18n } = useTranslation()
   const u = me.user
@@ -380,6 +475,12 @@ export default function ProfilePage({ me }: { me: Me }) {
         <Section id="p-notify" title={t('profile.notify.title')} hint={t('profile.notify.hint')}>
           <PushRow />
           <TelegramRow me={me} save={save} />
+        </Section>
+        <Section id="p-away" title={t('profile.away.title')} hint={t('profile.away.hint')}>
+          <Absence me={me} save={save} />
+        </Section>
+        <Section id="p-cal" title={t('profile.cal.section')} hint={t('profile.cal.hint')}>
+          <CalendarFeed />
         </Section>
         <Section id="p-digest" title={t('profile.digest.title')} hint={t('profile.digest.hint')}>
           <Digest me={me} save={save} />

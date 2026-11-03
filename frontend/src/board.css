@@ -480,3 +480,32 @@ input.token { flex: 1 1 320px; font-family: ui-monospace, monospace; font-size: 
   button.sticker, button.more, .zone, .slot, .kpi, .sky svg, .scrim, .sheet { transition: none !important; animation: none !important; }
   button.sticker:hover { transform: rotate(var(--r)); }
 }
+
+/* ---------------------------------------------------------------- triage: one inbox sticker at a time */
+.tray .sec .tr-start { margin-left: auto; min-height: 36px; font-size: 13.5px; display: inline-flex; align-items: center; gap: 7px; }
+.triage-scrim { z-index: 45; }
+.triage { width: min(620px, 100%); max-height: calc(100vh - 32px); overflow: auto; border-radius: 22px; background: var(--surface); box-shadow: var(--lift);
+  display: flex; flex-direction: column; animation: pop .36s cubic-bezier(.2, 1.25, .4, 1); }
+.tr-top { display: flex; align-items: center; gap: 12px; padding: 16px 18px 0 24px; }
+.tr-top .close { margin-left: auto; }
+.triage .paperwrap { margin: 14px 18px 0; border-radius: 16px; animation: pop .3s cubic-bezier(.2, 1.25, .4, 1); }
+.tr-paper .body { max-height: 30vh; overflow: auto; }
+.tr-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.tr-q { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 18px 18px 0; }
+.tr-q .qbtn { min-height: 52px; font-size: 14.5px; }
+.tr-q .qbtn.hint-q { box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ink) 45%, transparent); }
+.triage kbd { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 6px; font: 600 12px var(--font);
+  background: color-mix(in srgb, var(--surface) 70%, transparent); box-shadow: inset 0 0 0 1px var(--btnline); }
+.tr-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 16px 18px 20px; }
+.tr-nav .btn { display: inline-flex; align-items: center; gap: 8px; }
+.tr-done { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 24px 8px; }
+.tr-done h2 { margin: 12px 0 4px; }
+@media (max-width: 560px) { .tr-q { grid-template-columns: minmax(0, 1fr); } .triage kbd { display: none; } }
+
+/* profile: absence, calendar feed */
+.row.absence .field { flex: 1 1 160px; }
+.row.absence label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.calurl { display: flex; gap: 8px; }
+.calurl input { flex: 1; min-width: 0; font-size: 13px; }
+.hint.away { color: var(--ink); font-weight: 500; }
+.pline a.btn { text-decoration: none; }

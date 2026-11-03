@@ -226,7 +226,8 @@
     "share": "Shared",
     "edited": "Text edited",
     "attachment": "File added",
-    "delegate_quadrant": "Assignee moved the sticker"
+    "delegate_quadrant": "Assignee moved the sticker",
+    "deputy": "{{name}} is away: the deputy {{deputy}} got the sticker too"
   },
   "compose": {
     "heading": "New sticker",
@@ -250,7 +251,9 @@
     "nFiles_few": "{{count}} files",
     "nFiles_many": "{{count}} files",
     "nFiles_other": "{{count}} files",
-    "send": "Send"
+    "send": "Send",
+    "away": "Away until {{date}}",
+    "awayDeputy": "The deputy gets the sticker too: {{name}}."
   },
   "lists": {
     "needAnswer": "Your answer is needed",
@@ -430,7 +433,37 @@
     "security": "Security",
     "twofaMandatory": "Mandatory for your role",
     "enable2fa": "Turn on 2FA",
-    "disable2fa": "Turn off"
+    "disable2fa": "Turn off",
+    "away": {
+      "title": "Time off and deputy",
+      "hint": "While you are away, new stickers come to you and to your deputy, who can handle them.",
+      "atWork": "You are at work",
+      "now": "You are away until {{date}}",
+      "planned": "Time off planned: {{from}} – {{to}}",
+      "deputyGets": "Deputy: {{name}}",
+      "noDeputy": "No deputy: stickers will wait for you.",
+      "back": "I'm back",
+      "from": "From (optional)",
+      "until": "Until",
+      "deputy": "Deputy",
+      "nobody": "Nobody"
+    },
+    "cal": {
+      "section": "Calendar",
+      "hint": "Sticker deadlines in your phone or mail calendar. Updates by itself.",
+      "title": "Calendar link",
+      "on": "On. Only titles of stickers with a deadline are shown.",
+      "off": "Off.",
+      "enable": "Turn on",
+      "open": "Add to calendar",
+      "copy": "Copy",
+      "copied": "Link copied.",
+      "copyFail": "Could not copy: select the link and copy it by hand.",
+      "how": "Google Calendar: \"Other calendars\" → \"From URL\". iPhone: Settings → Calendar → Accounts → \"Add Subscribed Calendar\". Outlook: \"Add calendar\" → \"Subscribe from web\".",
+      "renew": "Get a new link",
+      "renewWarn": "The old link will stop working and the calendar has to be subscribed again.",
+      "renewYes": "Yes, new link"
+    }
   },
   "tg": {
     "howTitle": "How to connect a bot",
@@ -614,5 +647,33 @@
     "too_big": "The file is too big for a WireGuard config.",
     "amnezia": "This is an AmneziaWG config (it has Jc, Jmin, H1…). Plain WireGuard is needed; the Amnezia app can export one.",
     "not_configured": "No config uploaded yet."
+  },
+  "triage": {
+    "start": "Sort one by one",
+    "title": "Sorting the inbox",
+    "left_one": "{{count}} left",
+    "left_few": "{{count}} left",
+    "left_many": "{{count}} left",
+    "left_other": "{{count}} left",
+    "thinks": "Author thinks",
+    "more": "Comments: {{comments}}, files: {{files}}",
+    "back": "Back",
+    "open": "Open",
+    "skip": "Skip",
+    "done": "Inbox sorted",
+    "endSkipped_one": "{{count}} sticker skipped",
+    "endSkipped_few": "{{count}} stickers skipped",
+    "endSkipped_many": "{{count}} stickers skipped",
+    "endSkipped_other": "{{count}} stickers skipped",
+    "sorted_one": "{{count}} sticker sorted",
+    "sorted_few": "{{count}} stickers sorted",
+    "sorted_many": "{{count}} stickers sorted",
+    "sorted_other": "{{count}} stickers sorted",
+    "again": "Back to skipped ones",
+    "finish": "Done"
+  },
+  "absence": {
+    "bad_dates": "The start date is after the end date.",
+    "self_deputy": "You cannot be your own deputy."
   }
 }

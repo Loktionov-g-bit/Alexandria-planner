@@ -16,6 +16,8 @@ class UserBrief(ORM):
     avatar_color: str
     role: Role
     department_id: int | None
+    away_now_until: date | None = None  # set only while the person is away
+    away_deputy_id: int | None = None
 
 
 class DepartmentOut(ORM):
@@ -50,6 +52,10 @@ class UserOut(ORM):
     digest_skip_empty: bool
     telegram_username: str | None
     telegram_linked: bool
+    away_from: date | None
+    away_until: date | None
+    deputy_id: int | None
+    calendar_enabled: bool
 
 
 class MeOut(BaseModel):
@@ -141,6 +147,9 @@ class ProfileUpdateIn(BaseModel):
     digest_time: str | None = Field(default=None, pattern=r"^([01]\d|2[0-3]):[0-5]\d$")
     digest_days: str | None = Field(default=None, pattern=r"^[1-7]{0,7}$")
     digest_skip_empty: bool | None = None
+    away_from: date | None = None
+    away_until: date | None = None
+    deputy_id: int | None = None
 
 
 class DepartmentIn(BaseModel):

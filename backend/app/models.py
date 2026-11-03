@@ -183,11 +183,37 @@ class User(Base):
     telegram_link_code: Mapped[str | None] = mapped_column(String(32), unique=True)  # one-time, from the profile
     telegram_link_expires: Mapped[datetime | None] = mapped_column(UTCDateTime())
 
+    # absence: while away (away_from..away_until, both inclusive) new stickers addressed to this person
+    # also go to the deputy. away_from None = from now on.
+    away_from: Mapped[date | None] = mapped_column(Date)
+    away_until: Mapped[date | None] = mapped_column(Date)
+    deputy_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"))
+    # secret part of the personal calendar feed URL (deadlines as ICS); None = feed off
+    calendar_token: Mapped[str | None] = mapped_column(String(64), unique=True)
+
     failed_logins: Mapped[int] = mapped_column(Integer, default=0)
     locked_until: Mapped[datetime | None] = mapped_column(UTCDateTime())
     created_at: Mapped[datetime] = mapped_column(UTCDateTime(), default=utcnow)
 
     department: Mapped[Department | None] = relationship(foreign_keys=[department_id], lazy="joined")
+
+    def is_away(self, today: date | None = None) -> bool:
+        today = today or date.today()
+        return (self.away_until is not None and self.away_until >= today
+                and (self.away_from is None or self.away_from <= today))
+
+    @property
+    def away_now_until(self) -> date | None:
+        """Last day of the current absence, None when the person is at work (shown to colleagues)."""
+        return self.away_until if self.is_away() else None
+
+    @property
+    def calendar_enabled(self) -> bool:
+        return self.calendar_token is not None
+
+    @property
+    def away_deputy_id(self) -> int | None:
+        return self.deputy_id if self.is_away() else None
 
     @property
     def effective_channel(self) -> str:

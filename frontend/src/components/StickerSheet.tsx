@@ -64,6 +64,7 @@ function historyLine(h: StickerDetail['history'][number], t: (k: string, o?: Rec
     case 'status': return t('history.status', { status: t(`status.${d.new}`) })
     case 'quadrant': return t('history.quadrant', { q: t(`quadrant.${d.new}`) })
     case 'deadline': return d.new ? t('history.deadline', { date: d.new }) : t('history.deadlineRemoved')
+    case 'deputy': return t('history.deputy', { name: d.user, deputy: d.deputy })
     default: return t(`history.${h.action}`)
   }
 }
