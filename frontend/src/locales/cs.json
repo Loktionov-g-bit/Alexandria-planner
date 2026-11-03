@@ -333,7 +333,11 @@
     "device": "Zařízení",
     "result": "Výsledek",
     "edit": "Upravit",
-    "blocked": "Deaktivován"
+    "blocked": "Deaktivován",
+    "setPassword": "Nastavit nové heslo",
+    "delete": "Smazat",
+    "deleteConfirm": "Smazat uživatele ze systému? Nelze to vrátit zpět.",
+    "deleteYes": "Ano, smazat"
   },
   "role": {
     "employee": "Zaměstnanec",
@@ -562,7 +566,8 @@
   "user": {
     "not_found": "Uživatel nenalezen",
     "login_taken": "Toto přihlašovací jméno je již obsazené",
-    "cannot_demote_self": "Nemůžete si odebrat práva administrátora ani deaktivovat sami sebe"
+    "cannot_demote_self": "Nemůžete si odebrat práva administrátora ani deaktivovat sami sebe",
+    "cannot_delete_self": "Nemůžete smazat sami sebe."
   },
   "department": {
     "name_taken": "Oddělení s tímto názvem už existuje",

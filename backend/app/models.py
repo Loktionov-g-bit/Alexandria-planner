@@ -177,6 +177,8 @@ class User(Base):
     digest_last_sent: Mapped[date | None] = mapped_column(Date)
     digest_evening_last_sent: Mapped[date | None] = mapped_column(Date)
     telegram_chat_id: Mapped[int | None] = mapped_column(BigInteger, unique=True)
+    # set when an admin deleted the account but the person's stickers or comments stay in other people's history
+    deleted_at: Mapped[datetime | None] = mapped_column(UTCDateTime())
     telegram_username: Mapped[str | None] = mapped_column(String(64))
     telegram_link_code: Mapped[str | None] = mapped_column(String(32), unique=True)  # one-time, from the profile
     telegram_link_expires: Mapped[datetime | None] = mapped_column(UTCDateTime())

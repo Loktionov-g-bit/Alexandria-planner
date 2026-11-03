@@ -146,3 +146,36 @@ async def test_security_headers_and_no_public_api_map(client):
     assert "strict-transport-security" not in r.headers  # plain http in tests: HSTS only behind https
     assert (await client.get("/api/openapi.json")).status_code == 404
     assert (await client.get("/api/docs")).status_code == 404
+
+
+async def test_admin_deletes_users(client, admin):
+    from .conftest import new_client  # noqa: F401
+
+    async def make(first):
+        r = await client.post("/api/admin/users", json={"first_name": first, "last_name": "Test", "password": STRONG, "department_id": 1})
+        return r.json()
+
+    # nobody depends on a fresh account: it is gone for good and the login is free again
+    a = await make("Anton")
+    r = await client.delete(f"/api/admin/users/{a['id']}")
+    assert r.json() == {"deleted": True, "kept_in_history": False}
+    assert a["login"] not in [u["login"] for u in (await client.get("/api/admin/users")).json()]
+    assert (await client.post("/api/admin/users", json={"first_name": "Anton", "last_name": "Test", "password": STRONG})).json()["login"] == a["login"]
+
+    # someone who wrote a sticker: erased, history keeps "Удалённый пользователь", cannot sign in
+    b = await make("Boris")
+    from httpx import ASGITransport, AsyncClient
+    bc = AsyncClient(transport=client._transport, base_url="http://testserver")
+    assert (await bc.post("/api/auth/login", json={"login": b["login"], "password": STRONG})).status_code == 200
+    sid = (await bc.post("/api/stickers", json={"title": "Отпуск"})).json()["id"]
+    r = await client.delete(f"/api/admin/users/{b['id']}")
+    assert r.json() == {"deleted": True, "kept_in_history": True}
+    assert (await bc.get("/api/board")).status_code == 401  # signed out everywhere
+    assert (await bc.post("/api/auth/login", json={"login": b["login"], "password": STRONG})).status_code == 401
+    assert b["login"] not in [u["login"] for u in (await client.get("/api/admin/users")).json()]
+    s = (await client.get(f"/api/stickers/{sid}")).json()
+    assert s["author"]["display_name"] == "Удалённый пользователь"
+    assert (await client.delete(f"/api/admin/users/{b['id']}")).status_code == 404
+
+    me = (await client.get("/api/auth/me")).json()["user"]
+    assert (await client.delete(f"/api/admin/users/{me['id']}")).json()["detail"] == "user.cannot_delete_self"

@@ -3,11 +3,13 @@
 import random
 
 from fastapi import APIRouter, HTTPException
-from sqlalchemy import delete, select
+from sqlalchemy import delete, exists, or_, select, update
 from sqlalchemy.exc import IntegrityError
 
 from ..deps import DB, AdminUser
-from ..models import AuthSession, Department, LoginEvent, Role, User
+from ..locales import texts
+from ..models import (Attachment, AuditEvent, AuthSession, Comment, Department, LoginEvent, Notification, Placement,
+                      PushSubscription, Role, Sticker, User, utcnow)
 from ..schemas import DepartmentIn, DepartmentOut, LoginEventOut, UserCreateIn, UserOut, UserUpdateIn
 from ..names import free_login, set_names
 from ..security import hash_password, password_problems
@@ -30,7 +32,7 @@ async def check_department(db: DB, dept_id: int | None) -> None:
 
 @router.get("/users", response_model=list[UserOut])
 async def list_users(db: DB, _: AdminUser) -> list[User]:
-    return list(await db.scalars(select(User).order_by(User.display_name)))
+    return list(await db.scalars(select(User).where(User.deleted_at.is_(None)).order_by(User.display_name)))
 
 
 @router.get("/login-suggestion")
@@ -135,3 +137,48 @@ async def login_journal(db: DB, _: AdminUser, limit: int = 200, before_id: int |
     if before_id:
         q = q.where(LoginEvent.id < before_id)
     return list(await db.scalars(q))
+
+
+DELETED = texts("common")
+
+
+@router.delete("/users/{user_id}")
+async def delete_user(user_id: int, db: DB, admin: AdminUser) -> dict:
+    """Remove an account from the system.
+
+    Nobody else's data depends on it -> the row is deleted for good. Otherwise (the person wrote stickers or comments
+    that stay in colleagues' history) the account is erased: no login, password, 2FA, e-mail or Telegram remain,
+    the name becomes "Deleted user", it disappears from every list, and the login can be given to someone new."""
+    user = await db.get(User, user_id)
+    if user is None or user.deleted_at is not None:
+        raise HTTPException(404, "user.not_found")
+    if user.id == admin.id:
+        raise HTTPException(400, "user.cannot_delete_self")
+    await db.execute(update(Department).where(Department.manager_id == user.id).values(manager_id=None))
+    for model in (AuthSession, PushSubscription, Notification):
+        await db.execute(delete(model).where(model.user_id == user.id))
+    await db.execute(update(Notification).where(Notification.actor_id == user.id).values(actor_id=None))
+    await db.execute(update(LoginEvent).where(LoginEvent.user_id == user.id).values(user_id=None))
+    used = await db.scalar(select(or_(
+        exists().where(Sticker.author_id == user.id), exists().where(Comment.author_id == user.id),
+        exists().where(Attachment.uploader_id == user.id), exists().where(AuditEvent.actor_id == user.id),
+        exists().where(Placement.user_id == user.id),
+    )))
+    if not used:
+        await db.delete(user)
+        await db.commit()
+        return {"deleted": True, "kept_in_history": False}
+    name = DELETED.get(admin.locale, DELETED["ru"])["deleted_user"]
+    user.login = f"deleted-{user.id}"
+    user.first_name, user.last_name, user.display_name = name, "", name
+    user.email = None
+    user.password_hash = hash_password(random.randbytes(32).hex())  # nobody knows it
+    user.totp_enabled, user.totp_secret, user.totp_last_step = False, None, None
+    user.telegram_chat_id = user.telegram_username = user.telegram_link_code = user.telegram_link_expires = None
+    user.notify_telegram = False
+    user.is_active, user.is_admin, user.role = False, False, Role.employee
+    user.department_id = None
+    user.avatar_color = "#9aa1ab"
+    user.deleted_at = utcnow()
+    await db.commit()
+    return {"deleted": True, "kept_in_history": True}

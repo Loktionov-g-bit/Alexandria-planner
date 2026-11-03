@@ -333,7 +333,11 @@
     "device": "Gerät",
     "result": "Ergebnis",
     "edit": "Bearbeiten",
-    "blocked": "Deaktiviert"
+    "blocked": "Deaktiviert",
+    "setPassword": "Neues Passwort festlegen",
+    "delete": "Löschen",
+    "deleteConfirm": "Diesen Benutzer aus dem System löschen? Das lässt sich nicht rückgängig machen.",
+    "deleteYes": "Ja, löschen"
   },
   "role": {
     "employee": "Mitarbeiter",
@@ -562,7 +566,8 @@
   "user": {
     "not_found": "Benutzer nicht gefunden",
     "login_taken": "Dieser Login ist bereits vergeben",
-    "cannot_demote_self": "Sie können sich nicht selbst die Administratorrechte entziehen oder sich deaktivieren"
+    "cannot_demote_self": "Sie können sich nicht selbst die Administratorrechte entziehen oder sich deaktivieren",
+    "cannot_delete_self": "Sie können sich nicht selbst löschen."
   },
   "department": {
     "name_taken": "Eine Abteilung mit diesem Namen gibt es schon",

@@ -1,6 +1,6 @@
 [project]
 name = "alexandria-planner"
-version = "0.1.1"
+version = "0.1.2"
 description = "Alexandria Planner: sticky notes from employees to managers, sorted by the Eisenhower matrix"
 license = "MIT"
 requires-python = ">=3.12"

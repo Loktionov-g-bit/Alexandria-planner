@@ -3,7 +3,7 @@ import { NavLink, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { api, type Department, type LoginEvent, type Role, type User } from '../api'
-import { errorText } from '../session'
+import { errorText, useMe } from '../session'
 import { Avatar } from '../Shell'
 import AdminTelegram from './AdminTelegram'
 import AdminChannels from './AdminChannels'
@@ -35,8 +35,9 @@ export default function AdminPage({ me }: { me: User }) {
 const useUsers = () => useQuery({ queryKey: ['admin', 'users'], queryFn: () => api<User[]>('admin/users') })
 const useDepartments = () => useQuery({ queryKey: ['admin', 'departments'], queryFn: () => api<Department[]>('admin/departments') })
 
-function Modal({ title, onClose, onSubmit, error, busy, children }: {
+function Modal({ title, onClose, onSubmit, error, busy, children, left }: {
   title: string; onClose: () => void; onSubmit: (e: FormEvent) => void; error: string; busy: boolean; children: React.ReactNode
+  left?: React.ReactNode
 }) {
   const { t } = useTranslation()
   return (
@@ -46,6 +47,7 @@ function Modal({ title, onClose, onSubmit, error, busy, children }: {
         {children}
         {error && <div className="error">{error}</div>}
         <div className="row">
+          {left}
           <span className="spacer" />
           <button type="button" className="ghost" onClick={onClose}>{t('admin.cancel')}</button>
           <button className="primary" disabled={busy}>{t('admin.save')}</button>
@@ -83,6 +85,12 @@ function UserDialog({ user, onClose }: { user: User | null; onClose: () => void 
     department_id: user?.department_id ?? depts[0]?.id ?? null, reset_2fa: false, telegram_unlink: false,
   })
   const save = useSave('admin/users', onClose)
+  // the "new password" field only appears on request: otherwise Chrome fills it (and the e-mail field) with the
+  // admin's own saved login, which blocks saving or silently resets the employee's password
+  const [pwOpen, setPwOpen] = useState(!user)
+  const [confirmDelete, setConfirmDelete] = useState(false)
+  const del = useSave('admin/users', onClose)
+  const isMe = useMe().data?.user.id === user?.id
   // login is generated from the name until the admin edits it by hand
   const [loginTouched, setLoginTouched] = useState(!!user)
   useEffect(() => {
@@ -109,7 +117,17 @@ function UserDialog({ user, onClose }: { user: User | null; onClose: () => void 
     }
   }
   return (
-    <Modal title={user ? user.display_name : t('admin.addUser')} onClose={onClose} onSubmit={submit} error={save.errorMsg} busy={save.isPending}>
+    <Modal title={user ? user.display_name : t('admin.addUser')} onClose={onClose} onSubmit={submit} error={save.errorMsg || del.errorMsg}
+      busy={save.isPending || del.isPending}
+      left={user && !isMe && (confirmDelete ? (
+        <span className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
+          <span className="small">{t('admin.deleteConfirm')}</span>
+          <button type="button" className="danger" disabled={del.isPending} onClick={() => del.mutate({ method: 'DELETE', url: `admin/users/${user.id}`, body: undefined })}>{t('admin.deleteYes')}</button>
+          <button type="button" className="ghost" onClick={() => setConfirmDelete(false)}>{t('admin.cancel')}</button>
+        </span>
+      ) : (
+        <button type="button" className="ghost danger" onClick={() => setConfirmDelete(true)}>{t('admin.delete')}</button>
+      ))}>
       <div className="grid2">
         <label className="field">{t('admin.firstName')}<input required autoFocus={!user} value={f.first_name} onChange={(e) => setF({ ...f, first_name: e.target.value })} /></label>
         <label className="field">{t('admin.lastName')}<input required value={f.last_name} onChange={(e) => setF({ ...f, last_name: e.target.value })} /></label>
@@ -118,7 +136,7 @@ function UserDialog({ user, onClose }: { user: User | null; onClose: () => void 
             onChange={(e) => { setLoginTouched(true); setF({ ...f, login: e.target.value }) }} />
           {!user && <span className="small">{t('admin.loginHint')}</span>}
         </label>
-        <label className="field">{t('admin.email')}<input type="email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></label>
+        <label className="field">{t('admin.email')}<input type="email" autoComplete="off" name="employee-email" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} /></label>
         <label className="field">{t('admin.department')}
           <select value={f.department_id ?? ''} onChange={(e) => setF({ ...f, department_id: e.target.value ? Number(e.target.value) : null })}>
             <option value="">{t('admin.noDepartment')}</option>
@@ -132,10 +150,17 @@ function UserDialog({ user, onClose }: { user: User | null; onClose: () => void 
           </select>
         </label>
       </div>
-      <label className="field">{user ? t('admin.newPassword') : t('admin.password')}
-        <input type="password" autoComplete="new-password" required={!user} value={f.password} onChange={(e) => setF({ ...f, password: e.target.value })} />
-      </label>
-      <span className="muted small">{t('password.hint')}</span>
+      {pwOpen ? (
+        <>
+          <label className="field">{user ? t('admin.newPassword') : t('admin.password')}
+            <input type="password" autoComplete="new-password" name="employee-new-password" required={!user} value={f.password}
+              autoFocus={!!user} onChange={(e) => setF({ ...f, password: e.target.value })} />
+          </label>
+          <span className="muted small">{t('password.hint')}</span>
+        </>
+      ) : (
+        <button type="button" className="ghost" style={{ alignSelf: 'flex-start' }} onClick={() => setPwOpen(true)}>{t('admin.setPassword')}</button>
+      )}
       <label className="check"><input type="checkbox" checked={f.is_admin} onChange={(e) => setF({ ...f, is_admin: e.target.checked })} />{t('admin.admin')}</label>
       {user && <label className="check"><input type="checkbox" checked={f.is_active} onChange={(e) => setF({ ...f, is_active: e.target.checked })} />{t('admin.active')}</label>}
       {user?.totp_enabled && <label className="check"><input type="checkbox" checked={f.reset_2fa} onChange={(e) => setF({ ...f, reset_2fa: e.target.checked })} />{t('admin.reset2fa')}</label>}

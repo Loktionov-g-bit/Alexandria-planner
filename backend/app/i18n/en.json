@@ -246,5 +246,8 @@
   "resolved": "Sticker №{id} is closed, the author got your answer.",
   "new.assigned": "<b>You have a new sticker</b>",
   "new.delegated": "<b>A sticker was delegated to you</b>"
+ },
+ "common": {
+  "deleted_user": "Deleted user"
  }
 }

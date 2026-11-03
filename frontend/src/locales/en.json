@@ -333,7 +333,11 @@
     "device": "Device",
     "result": "Result",
     "edit": "Edit",
-    "blocked": "Disabled"
+    "blocked": "Disabled",
+    "setPassword": "Set a new password",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this user from the system? This cannot be undone.",
+    "deleteYes": "Yes, delete"
   },
   "role": {
     "employee": "Employee",
@@ -562,7 +566,8 @@
   "user": {
     "not_found": "User not found",
     "login_taken": "This login is already taken",
-    "cannot_demote_self": "You cannot remove your own admin rights or disable yourself"
+    "cannot_demote_self": "You cannot remove your own admin rights or disable yourself",
+    "cannot_delete_self": "You cannot delete yourself."
   },
   "department": {
     "name_taken": "A department with this name already exists",

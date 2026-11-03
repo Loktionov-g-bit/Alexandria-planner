@@ -246,5 +246,8 @@
   "resolved": "Zettel №{id} ist geschlossen, der Autor hat Ihre Antwort.",
   "new.assigned": "<b>Sie haben einen neuen Zettel</b>",
   "new.delegated": "<b>Ihnen wurde ein Zettel übertragen</b>"
+ },
+ "common": {
+  "deleted_user": "Gelöschter Benutzer"
  }
 }

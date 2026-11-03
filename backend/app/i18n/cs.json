@@ -246,5 +246,8 @@
   "resolved": "Štítek №{id} je uzavřen, autor dostal vaši odpověď.",
   "new.assigned": "<b>Máte nový štítek</b>",
   "new.delegated": "<b>Byl vám předán štítek</b>"
+ },
+ "common": {
+  "deleted_user": "Smazaný uživatel"
  }
 }
