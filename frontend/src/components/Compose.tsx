@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { api, type Department, type User } from '../api'
-import { errorText } from '../session'
+import { errorText, useSolo } from '../session'
 import { shortDate, uploadFile, useDirectory, useInvalidateStickers, type StickerDetail } from '../stickers'
 import { FileIcon } from './StickerSheet'
 
@@ -11,6 +11,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
   const people = useDirectory()
   const depts = useQuery({ queryKey: ['departments'], queryFn: () => api<Department[]>('directory/departments'), staleTime: 60_000 })
   const refresh = useInvalidateStickers()
+  const solo = useSolo()
   const myDept = depts.data?.find((d) => d.id === user.department_id)
   const defaultTo = myDept?.manager_id && myDept.manager_id !== user.id ? myDept.manager_id : null
 
@@ -25,7 +26,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
   const [err, setErr] = useState<unknown>(null)
   const input = useRef<HTMLInputElement>(null)
 
-  const target: number | 'me' = to ?? defaultTo ?? 'me'
+  const target: number | 'me' = solo ? 'me' : to ?? defaultTo ?? 'me'
   const others = (people.data ?? []).filter((u) => u.id !== user.id)
   const managers = others.filter((u) => u.role === 'manager')
   const colleagues = others.filter((u) => u.role !== 'manager')
@@ -63,7 +64,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
           </div>
-          <div className="field">
+          {!solo && <div className="field">
             <label htmlFor="c-to">{t('compose.to')}</label>
             <select id="c-to" value={String(target)}
               onChange={(e) => setTo(e.target.value === 'me' ? 'me' : Number(e.target.value))}>
@@ -86,7 +87,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
                 {stand && stand.id !== user.id ? ` · ${t('compose.awayDeputy', { name: stand.display_name })}` : ''}
               </p>
             )}
-          </div>
+          </div>}
           <div className="field">
             <label htmlFor="c-title">{t('compose.title')}</label>
             <input id="c-title" className="big" value={title} maxLength={200} onChange={(e) => setTitle(e.target.value)} placeholder={t('compose.titlePh')} autoFocus />
@@ -96,7 +97,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
             <textarea id="c-body" value={body} onChange={(e) => setBody(e.target.value)} placeholder={t('compose.bodyPh')} />
           </div>
           <div>
-            <p className="label">{t('compose.estimate')}</p>
+            <p className="label">{t(target === 'me' ? 'compose.selfEstimate' : 'compose.estimate')}</p>
             <div className="toggles">
               <button type="button" className={`tgl ${urgent ? 'on' : ''}`} aria-pressed={urgent} onClick={() => setUrgent(!urgent)}>{t('compose.urgent')}</button>
               <button type="button" className={`tgl ${important ? 'on' : ''}`} aria-pressed={important} onClick={() => setImportant(!important)}>{t('compose.important')}</button>
@@ -116,7 +117,7 @@ export default function Compose({ user, onClose, onCreated }: { user: User; onCl
           </div>
           {err !== null && <p className="error">{errorText(t, err)}</p>}
           <div className="actions">
-            <button type="submit" className="btn primary" disabled={busy || !title.trim() || !target}>{t('compose.send')}</button>
+            <button type="submit" className="btn primary" disabled={busy || !title.trim() || !target}>{t(target === 'me' ? 'compose.add' : 'compose.send')}</button>
             <button type="button" className="btn" onClick={onClose}>{t('common.cancel')}</button>
           </div>
         </form>

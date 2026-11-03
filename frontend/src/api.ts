@@ -68,6 +68,7 @@ export interface Me {
   verified: boolean
   pending: null | 'totp' | 'totp_setup'
   channel: string
+  mode: 'team' | 'solo'
 }
 
 export interface Department {

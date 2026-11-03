@@ -16,13 +16,23 @@
   "setup": {
     "title": "First launch",
     "lead": "Create the administrator. There are no default passwords: this account is the only way in.",
-    "department": "Department name",
+    "department": "Team name",
     "login": "Login",
     "name": "Your name",
     "password": "Password",
     "password2": "Repeat password",
-    "isManager": "I am also the manager of this department",
-    "submit": "Create and continue"
+    "isManager": "I also lead this team",
+    "submit": "Create and continue",
+    "modeLead": "How will you use the Planner?",
+    "mode": {
+      "team": "Team",
+      "teamHint": "People write stickers to their manager and to each other; the manager sorts them on the Eisenhower matrix.",
+      "solo": "Just me: a diary",
+      "soloHint": "Personal tasks on the Eisenhower matrix. No colleagues, no inbox: everything goes straight to your board."
+    },
+    "modeLater": "You can change this later in the admin area.",
+    "modeChange": "change",
+    "team_name_required": "Enter the team name."
   },
   "login": {
     "title": "Sign in",
@@ -82,7 +92,8 @@
       "overdue": "Overdue",
       "overdueNote": "past the deadline",
       "waitingMe": "Waiting for your answer",
-      "waitingMeNote": "questions on your stickers"
+      "waitingMeNote": "questions on your stickers",
+      "planNote": "important, not urgent"
     },
     "inbox": "Inbox",
     "inboxHint": "not triaged yet: drag a sticker into a quadrant or open it",
@@ -163,7 +174,7 @@
     "personal": "Personal sticker",
     "delegatedToMe": "Delegated to me",
     "authorThought": "author",
-    "no_recipient": "No recipient: your department has no manager. Pick a recipient.",
+    "no_recipient": "No recipient: your team has no manager. Pick a recipient.",
     "self_recipient": "You cannot send a sticker to yourself. Choose \"Me (personal sticker)\".",
     "text_required": "Please write some text.",
     "action_not_allowed": "This action is not available now. Refresh the page.",
@@ -253,7 +264,9 @@
     "nFiles_other": "{{count}} files",
     "send": "Send",
     "away": "Away until {{date}}",
-    "awayDeputy": "The deputy gets the sticker too: {{name}}."
+    "awayDeputy": "The deputy gets the sticker too: {{name}}.",
+    "selfEstimate": "Urgency and importance",
+    "add": "Add"
   },
   "lists": {
     "needAnswer": "Your answer is needed",
@@ -305,10 +318,10 @@
   },
   "admin": {
     "users": "Users",
-    "departments": "Departments",
+    "departments": "Teams",
     "logins": "Sign-in log",
     "addUser": "Add user",
-    "addDepartment": "Add department",
+    "addDepartment": "Add team",
     "save": "Save",
     "create": "Create",
     "cancel": "Cancel",
@@ -319,7 +332,7 @@
     "loginHint": "Made from the first and last name, you can change it",
     "email": "Email",
     "role": "Role",
-    "department": "Department",
+    "department": "Team",
     "admin": "Administrator",
     "active": "Active",
     "password": "Password",
@@ -327,7 +340,7 @@
     "reset2fa": "Reset 2FA",
     "manager": "Manager",
     "noManager": "Not assigned",
-    "noDepartment": "No department",
+    "noDepartment": "No team",
     "twofa": "2FA",
     "you": "you",
     "when": "When",
@@ -537,10 +550,10 @@
     "response": "Response time",
     "mismatch": "Mismatches",
     "empty": "No stickers in this period.",
-    "e2e_one": "People in the department sent each other {{count}} sticker, average response {{time}}. You do not see their content.",
-    "e2e_other": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
-    "e2e_few": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
-    "e2e_many": "People in the department sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "e2e_one": "People in the team sent each other {{count}} sticker, average response {{time}}. You do not see their content.",
+    "e2e_other": "People in the team sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "e2e_few": "People in the team sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
+    "e2e_many": "People in the team sent each other {{count}} stickers, average response {{time}}. You do not see their content.",
     "min": "{{n}} min",
     "hours": "{{n}} h",
     "days": "{{n}} d"
@@ -559,8 +572,8 @@
     "allStable": "Move everyone back to stable",
     "hint": "Moves and rollbacks apply immediately, no downtime: the next request goes to the chosen version.",
     "hintOff": "The test version is not running. How to start it: docs/updates.md. Everyone is on the main version.",
-    "inherit": "as department",
-    "usersHint": "a personal choice overrides the department"
+    "inherit": "as team",
+    "usersHint": "a personal choice overrides the team"
   },
   "telegram": {
     "bad_token": "Telegram rejected the token. Copy it from BotFather in full.",
@@ -603,8 +616,8 @@
     "cannot_delete_self": "You cannot delete yourself."
   },
   "department": {
-    "name_taken": "A department with this name already exists",
-    "manager_must_be_manager": "Only a user with the Manager role can manage a department"
+    "name_taken": "A team with this name already exists",
+    "manager_must_be_manager": "Only a user with the Manager role can lead a team"
   },
   "tunnel": {
     "title": "Backup route via WireGuard",
@@ -675,5 +688,18 @@
   "absence": {
     "bad_dates": "The start date is after the end date.",
     "self_deputy": "You cannot be your own deputy."
+  },
+  "mode": {
+    "solo": "Diary",
+    "tab": "Mode",
+    "current": "Now",
+    "toTeam": "Switch to team mode",
+    "toTeamHint": "You become the lead of the first team and can add people. Your personal stickers stay yours only.",
+    "toTeamBtn": "Switch",
+    "toSolo": "Back to a diary",
+    "toSoloHint": "Only possible when nobody else uses the Planner: deactivate the other users first.",
+    "toSoloBtn": "Make it a diary",
+    "has_people": "There are other active users. Deactivate them to switch to a diary.",
+    "solo_no_people": "A diary has no colleagues. Switch to team mode to add people."
   }
 }

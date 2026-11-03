@@ -11,6 +11,7 @@ import { DraggableSticker, StickerFace, toneOf } from '../components/StickerCard
 import StickerSheet from '../components/StickerSheet'
 import Compose from '../components/Compose'
 import Triage from '../components/Triage'
+import { useSolo } from '../session'
 import { QUADRANTS, useBoard, useMove, type Quadrant, type StickerSummary } from '../stickers'
 
 type Period = 'morning' | 'day' | 'evening' | 'night'
@@ -98,7 +99,8 @@ function order(a: StickerSummary, b: StickerSummary) {
 export default function BoardPage({ user }: { user: User }) {
   const { t } = useTranslation()
   const board = useBoard()
-  const sent = useQuery({ queryKey: ['sent'], queryFn: () => api<StickerSummary[]>('stickers/sent') })
+  const solo = useSolo()
+  const sent = useQuery({ queryKey: ['sent'], queryFn: () => api<StickerSummary[]>('stickers/sent'), enabled: !solo })
   const move = useMove()
   const [params, setParams] = useSearchParams()
   const openId = params.get('s') ? Number(params.get('s')) : null
@@ -159,7 +161,7 @@ export default function BoardPage({ user }: { user: User }) {
             <p>{t(`board.lead.${period}`)}</p>
           </div>
         </div>
-        {total > 0 && <Ring done={triaged} total={total} />}
+        {total > 0 && !solo && <Ring done={triaged} total={total} />}
         <span className="spacer" />
         <label className="search">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden><circle cx="11" cy="11" r="6.5" /><path d="M16 16l4.5 4.5" /></svg>
@@ -172,14 +174,15 @@ export default function BoardPage({ user }: { user: User }) {
       </div>
 
       <div className="kpis">
-        <div className="kpi"><small>{t('board.kpi.inbox')}</small><b>{inbox.length}</b><em>{t('board.kpi.inboxNote')}</em></div>
+        {!solo && <div className="kpi"><small>{t('board.kpi.inbox')}</small><b>{inbox.length}</b><em>{t('board.kpi.inboxNote')}</em></div>}
         <div className="kpi"><small>{t('quadrant.do')}</small><b>{byQ.do.length}</b><em>{t('board.kpi.doNote')}</em></div>
+        {solo && <div className="kpi"><small>{t('quadrant.plan')}</small><b>{byQ.plan.length}</b><em>{t('board.kpi.planNote')}</em></div>}
         <div className="kpi"><small>{t('board.kpi.overdue')}</small><b className={overdue ? 'late' : ''}>{overdue}</b><em>{t('board.kpi.overdueNote')}</em></div>
-        <Link to="/sent" className="kpi link"><small>{t('board.kpi.waitingMe')}</small><b className={waitingMe ? 'late' : ''}>{waitingMe}</b><em>{t('board.kpi.waitingMeNote')}</em></Link>
+        {!solo && <Link to="/sent" className="kpi link"><small>{t('board.kpi.waitingMe')}</small><b className={waitingMe ? 'late' : ''}>{waitingMe}</b><em>{t('board.kpi.waitingMeNote')}</em></Link>}
       </div>
 
       <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd} onDragCancel={() => setDragId(null)}>
-        <section className="tray" aria-label={t('board.inbox')}>
+        {!solo && <section className="tray" aria-label={t('board.inbox')}>
           <div className="sec">
             <h2>{t('board.inbox')}</h2>
             <span className="count">{inbox.length}</span>
@@ -200,7 +203,7 @@ export default function BoardPage({ user }: { user: User }) {
               </p>
             )}
           </div>
-        </section>
+        </section>}
 
         <section className="matrix" aria-label={t('board.matrix')}>
           <div className="ax a-tu" aria-hidden>{t('board.axis.urgent')}</div>

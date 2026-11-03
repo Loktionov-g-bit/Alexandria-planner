@@ -28,9 +28,12 @@ def pending_step(s: AuthSession) -> str | None:
     return "totp" if s.user.totp_enabled else "totp_setup"
 
 
-def me_out(s: AuthSession) -> MeOut:
+async def me_out(db, s: AuthSession) -> MeOut:
+    from ..mode import get_mode
+
     return MeOut(
-        user=UserOut.model_validate(s.user), verified=s.verified, pending=pending_step(s), channel=get_settings().channel
+        user=UserOut.model_validate(s.user), verified=s.verified, pending=pending_step(s), channel=get_settings().channel,
+        mode=await get_mode(db),
     )
 
 
@@ -116,7 +119,7 @@ async def login(data: LoginIn, request: Request, response: Response, db: DB) -> 
     s = await start_session(db, request, response, user)
     log_event(db, request, data.login, user, True, "ok" if s.verified else "password_ok")
     await db.commit()
-    return me_out(s)
+    return await me_out(db, s)
 
 
 @router.post("/totp", response_model=MeOut)
@@ -136,7 +139,7 @@ async def totp_verify(data: CodeIn, request: Request, db: DB, s: Annotated[AuthS
     s.verified = True
     log_event(db, request, user.login, user, True, "ok")
     await db.commit()
-    return me_out(s)
+    return await me_out(db, s)
 
 
 @router.post("/totp/setup", response_model=TotpSetupOut)
@@ -161,7 +164,7 @@ async def totp_enable(data: CodeIn, request: Request, db: DB, s: Annotated[AuthS
     s.verified = True
     log_event(db, request, user.login, user, True, "totp_enabled")
     await db.commit()
-    return me_out(s)
+    return await me_out(db, s)
 
 
 @router.post("/totp/disable", response_model=MeOut)
@@ -173,12 +176,12 @@ async def totp_disable(data: CodeIn, db: DB, user: CurrentUser, s: Annotated[Aut
     user.totp_enabled = False
     user.totp_secret = None
     await db.commit()
-    return me_out(s)
+    return await me_out(db, s)
 
 
 @router.get("/me", response_model=MeOut)
-async def me(s: Annotated[AuthSession, Depends(current_session)]) -> MeOut:
-    return me_out(s)
+async def me(db: DB, s: Annotated[AuthSession, Depends(current_session)]) -> MeOut:
+    return await me_out(db, s)
 
 
 @router.post("/logout", status_code=204)

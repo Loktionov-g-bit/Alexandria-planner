@@ -10,7 +10,8 @@ from ..deps import DB, AdminUser
 from ..locales import texts
 from ..models import (Attachment, AuditEvent, AuthSession, Comment, Department, LoginEvent, Notification, Placement,
                       PushSubscription, Role, Sticker, User, utcnow)
-from ..schemas import DepartmentIn, DepartmentOut, LoginEventOut, UserCreateIn, UserOut, UserUpdateIn
+from ..mode import get_mode, set_mode
+from ..schemas import ModeIn, DepartmentIn, DepartmentOut, LoginEventOut, UserCreateIn, UserOut, UserUpdateIn
 from ..names import free_login, set_names
 from ..security import hash_password, password_problems
 
@@ -41,8 +42,38 @@ async def login_suggestion(first_name: str, last_name: str, db: DB, _: AdminUser
     return {"login": await free_login(db, first_name[:60], last_name[:60])}
 
 
+@router.post("/mode")
+async def change_mode(data: ModeIn, db: DB, admin: AdminUser) -> dict:
+    """Diary -> team: the admin leads the first team (named here). Team -> diary: only while nobody else is active."""
+    if data.mode == await get_mode(db):
+        return {"mode": data.mode}
+    if data.mode == "team":
+        name = (data.team or "").strip()
+        if not name:
+            raise HTTPException(422, "setup.team_name_required")
+        if admin.department_id is None:
+            dept = await db.scalar(select(Department).where(Department.name == name))
+            if dept is None:
+                dept = Department(name=name)
+                db.add(dept)
+                await db.flush()
+            admin.department_id = dept.id
+            admin.role = Role.manager
+            if dept.manager_id is None:
+                dept.manager_id = admin.id
+    else:
+        others = await db.scalar(select(User.id).where(User.is_active.is_(True), User.deleted_at.is_(None), User.id != admin.id).limit(1))
+        if others is not None:
+            raise HTTPException(409, "mode.has_people")
+    await set_mode(db, data.mode)
+    await db.commit()
+    return {"mode": data.mode}
+
+
 @router.post("/users", response_model=UserOut, status_code=201)
 async def create_user(data: UserCreateIn, db: DB, admin: AdminUser) -> User:
+    if await get_mode(db) == "solo":
+        raise HTTPException(409, "mode.solo_no_people")
     login = data.login or await free_login(db, data.first_name, data.last_name)
     check_password(data.password, login)
     await check_department(db, data.department_id)

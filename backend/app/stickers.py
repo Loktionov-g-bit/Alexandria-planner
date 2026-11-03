@@ -354,7 +354,12 @@ async def tick(db: AsyncSession, today: date | None = None) -> dict:
 
 async def create(db: AsyncSession, user: User, *, title: str, body: str = "", urgent: bool = False, important: bool = False,
                  deadline: date | None = None, personal: bool = False, recipient_ids: list[int] | None = None) -> Sticker:
-    """New sticker from the web or the bot. Without recipients it goes to the author's department manager."""
+    """New sticker from the web or the bot. Without recipients it goes to the author's department manager.
+    In a personal diary (solo mode) every sticker is a personal one."""
+    from .mode import get_mode
+
+    if not personal and await get_mode(db) == "solo":
+        personal = True
     s = Sticker(
         kind=Kind.personal if personal else Kind.normal,
         title=title.strip()[:200], body=body.strip(), author_id=user.id,

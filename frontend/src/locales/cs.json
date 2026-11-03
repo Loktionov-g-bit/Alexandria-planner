@@ -16,13 +16,23 @@
   "setup": {
     "title": "První spuštění",
     "lead": "Vytvořte administrátora. Výchozí hesla neexistují – tento účet je jediná cesta dovnitř.",
-    "department": "Název oddělení",
+    "department": "Název týmu",
     "login": "Přihlašovací jméno",
     "name": "Jak se jmenujete",
     "password": "Heslo",
     "password2": "Heslo znovu",
-    "isManager": "Toto oddělení také vedu",
-    "submit": "Vytvořit a pokračovat"
+    "isManager": "Tento tým také vedu",
+    "submit": "Vytvořit a pokračovat",
+    "modeLead": "Jak budete Plánovač používat?",
+    "mode": {
+      "team": "Tým",
+      "teamHint": "Lidé píší štítky vedoucímu i sobě navzájem, vedoucí je třídí podle Eisenhowerovy matice.",
+      "solo": "Jen já: diář",
+      "soloHint": "Osobní úkoly v Eisenhowerově matici. Bez kolegů, bez doručených: vše rovnou na vaší nástěnce."
+    },
+    "modeLater": "Režim lze později změnit v administraci.",
+    "modeChange": "změnit",
+    "team_name_required": "Zadejte název týmu."
   },
   "login": {
     "title": "Přihlášení",
@@ -82,7 +92,8 @@
       "overdue": "Po termínu",
       "overdueNote": "termín vypršel",
       "waitingMe": "Čekají na vaši odpověď",
-      "waitingMeNote": "dotazy k vašim štítkům"
+      "waitingMeNote": "dotazy k vašim štítkům",
+      "planNote": "důležité, nespěchá"
     },
     "inbox": "Doručené",
     "inboxHint": "neroztříděné: přetáhněte štítek do kvadrantu nebo ho otevřete",
@@ -163,7 +174,7 @@
     "personal": "Osobní štítek",
     "delegatedToMe": "Svěřeno mně",
     "authorThought": "autor",
-    "no_recipient": "Není vybrán příjemce: vaše oddělení nemá vedoucího. Vyberte adresáta ručně.",
+    "no_recipient": "Není vybrán příjemce: váš tým nemá vedoucího. Vyberte adresáta ručně.",
     "self_recipient": "Štítek nelze poslat sám sobě. Zvolte „Pro sebe (osobní štítek)“.",
     "text_required": "Napište text.",
     "action_not_allowed": "Tato akce teď není dostupná. Obnovte stránku.",
@@ -253,7 +264,9 @@
     "nFiles_other": "{{count}} souborů",
     "send": "Odeslat",
     "away": "Pryč do {{date}}",
-    "awayDeputy": "Štítek dostane i zástupce: {{name}}."
+    "awayDeputy": "Štítek dostane i zástupce: {{name}}.",
+    "selfEstimate": "Naléhavost a důležitost",
+    "add": "Přidat"
   },
   "lists": {
     "needAnswer": "Čeká se na vaši odpověď",
@@ -305,10 +318,10 @@
   },
   "admin": {
     "users": "Uživatelé",
-    "departments": "Oddělení",
+    "departments": "Týmy",
     "logins": "Záznam přihlášení",
     "addUser": "Přidat uživatele",
-    "addDepartment": "Přidat oddělení",
+    "addDepartment": "Přidat tým",
     "save": "Uložit",
     "create": "Vytvořit",
     "cancel": "Zrušit",
@@ -319,7 +332,7 @@
     "loginHint": "Vytvoří se ze jména a příjmení, lze upravit",
     "email": "E-mail",
     "role": "Role",
-    "department": "Oddělení",
+    "department": "Tým",
     "admin": "Administrátor",
     "active": "Aktivní",
     "password": "Heslo",
@@ -327,7 +340,7 @@
     "reset2fa": "Resetovat 2FA",
     "manager": "Vedoucí",
     "noManager": "Nepřiřazen",
-    "noDepartment": "Bez oddělení",
+    "noDepartment": "Bez týmu",
     "twofa": "2FA",
     "you": "vy",
     "when": "Kdy",
@@ -537,10 +550,10 @@
     "response": "Doba odpovědi",
     "mismatch": "Rozdíly",
     "empty": "Za toto období žádné štítky.",
-    "e2e_one": "Kolegové z oddělení si poslali {{count}} štítek, průměrná odpověď {{time}}. Obsah nevidíte.",
-    "e2e_few": "Kolegové z oddělení si poslali {{count}} štítky, průměrná odpověď {{time}}. Obsah nevidíte.",
-    "e2e_many": "Kolegové z oddělení si poslali {{count}} štítku, průměrná odpověď {{time}}. Obsah nevidíte.",
-    "e2e_other": "Kolegové z oddělení si poslali {{count}} štítků, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_one": "Členové týmu si poslali {{count}} štítek, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_few": "Členové týmu si poslali {{count}} štítky, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_many": "Členové týmu si poslali {{count}} štítku, průměrná odpověď {{time}}. Obsah nevidíte.",
+    "e2e_other": "Členové týmu si poslali {{count}} štítků, průměrná odpověď {{time}}. Obsah nevidíte.",
     "min": "{{n}} min",
     "hours": "{{n}} h",
     "days": "{{n}} d"
@@ -559,8 +572,8 @@
     "allStable": "Vrátit všechny na stable",
     "hint": "Převod i návrat platí hned, bez výpadku: další požadavek člověka jde na zvolenou verzi.",
     "hintOff": "Testovací verze neběží. Jak ji spustit: docs/updates.md. Zatím všichni pracují na hlavní verzi.",
-    "inherit": "jako oddělení",
-    "usersHint": "osobní volba má přednost před oddělením"
+    "inherit": "jako tým",
+    "usersHint": "osobní volba má přednost před týmem"
   },
   "telegram": {
     "bad_token": "Telegram token nepřijal. Zkopírujte ho z BotFather celý.",
@@ -603,8 +616,8 @@
     "cannot_delete_self": "Nemůžete smazat sami sebe."
   },
   "department": {
-    "name_taken": "Oddělení s tímto názvem už existuje",
-    "manager_must_be_manager": "Vedoucím oddělení může být jen uživatel s rolí „Vedoucí“"
+    "name_taken": "Tým s tímto názvem už existuje",
+    "manager_must_be_manager": "Vedoucím týmu může být jen uživatel s rolí „Vedoucí“"
   },
   "tunnel": {
     "title": "Záložní spojení přes WireGuard",
@@ -675,5 +688,18 @@
   "absence": {
     "bad_dates": "Datum začátku je po datu konce.",
     "self_deputy": "Nemůžete být svým vlastním zástupcem."
+  },
+  "mode": {
+    "solo": "Diář",
+    "tab": "Režim",
+    "current": "Nyní",
+    "toTeam": "Přejít na týmový režim",
+    "toTeamHint": "Stanete se vedoucím prvního týmu a budete moci přidávat lidi. Vaše osobní štítky zůstanou jen vaše.",
+    "toTeamBtn": "Přejít",
+    "toSolo": "Zpět na diář",
+    "toSoloHint": "Jde jen tehdy, když Plánovač nikdo jiný nepoužívá: nejdřív deaktivujte ostatní uživatele.",
+    "toSoloBtn": "Udělat diář",
+    "has_people": "Jsou tu další aktivní uživatelé. Deaktivujte je, abyste mohli přejít na diář.",
+    "solo_no_people": "Diář nemá kolegy. Pro přidávání lidí přejděte na týmový režim."
   }
 }

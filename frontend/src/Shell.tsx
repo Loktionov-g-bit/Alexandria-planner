@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { api, type Department, type Me } from './api'
-import { useSetMe } from './session'
+import { useSetMe, useSolo } from './session'
 import { useBoard, type StickerSummary } from './stickers'
 import Bell from './components/Bell'
 
@@ -47,6 +47,7 @@ export default function Shell({ me, children }: { me: Me; children: ReactNode })
   const setMe = useSetMe()
   const u = me.user
   const board = useBoard()
+  const solo = useSolo()
   const sent = useQuery({ queryKey: ['sent'], queryFn: () => api<StickerSummary[]>('stickers/sent') })
   const depts = useQuery({ queryKey: ['departments'], queryFn: () => api<Department[]>('directory/departments'), staleTime: 60_000 })
   const dept = depts.data?.find((d) => d.id === u.department_id)
@@ -73,9 +74,9 @@ export default function Shell({ me, children }: { me: Me; children: ReactNode })
         </div>
         <nav>
           {link('/', 'board', board.data?.length ? <span className="n">{board.data.length}</span> : null)}
-          {link('/sent', 'sent', asks ? <span className="n late" title={t('board.kpi.waitingMe')}>{asks}</span> : null)}
+          {!solo && link('/sent', 'sent', asks ? <span className="n late" title={t('board.kpi.waitingMe')}>{asks}</span> : null)}
           {link('/archive', 'archive')}
-          {link('/stats', 'stats')}
+          {!solo && link('/stats', 'stats')}
           {u.is_admin && link('/admin', 'admin')}
           {link('/profile', 'profile')}
         </nav>
@@ -83,7 +84,7 @@ export default function Shell({ me, children }: { me: Me; children: ReactNode })
           <Avatar name={u.display_name} color={u.avatar_color} size={36} />
           <div className="who">
             <b>{u.first_name || u.display_name.split(' ')[0]}</b>
-            <span>{dept?.name ?? t(`role.${u.role}`)}</span>
+            <span>{solo ? t('mode.solo') : dept?.name ?? t(`role.${u.role}`)}</span>
           </div>
           <button className="iconbtn" onClick={logout} aria-label={t('nav.logout')} title={t('nav.logout')}>
             <I><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10" /></I>

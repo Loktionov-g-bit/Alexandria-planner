@@ -17,6 +17,11 @@ export function useMe() {
   })
 }
 
+/** A personal diary (one person, every sticker is a note to self) instead of a team. */
+export function useSolo() {
+  return useMe().data?.mode === 'solo'
+}
+
 export function useSetMe() {
   const qc = useQueryClient()
   return (me: Me | null) => qc.setQueryData(['me'], me)

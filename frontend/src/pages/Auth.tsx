@@ -67,6 +67,7 @@ export function SetupPage() {
   const { t, i18n } = useTranslation()
   const qc = useQueryClient()
   const setMe = useSetMe()
+  const [mode, setMode] = useState<'team' | 'solo' | null>(null)
   const [f, setF] = useState({ department: '', login: '', first_name: '', last_name: '', password: '', password2: '', is_manager: true })
   const [loginTouched, setLoginTouched] = useState(false)
   const login = loginTouched ? f.login : baseLogin(f.first_name, f.last_name)
@@ -78,7 +79,7 @@ export function SetupPage() {
       const { password2, ...body } = f
       void password2
       return api<Me>('setup', {
-        body: { ...body, login, locale: i18n.language, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone },
+        body: { ...body, mode, login, locale: i18n.language, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone },
       })
     },
     (me) => {
@@ -88,9 +89,28 @@ export function SetupPage() {
   )
 
   return (
-    <AuthCard title={t('setup.title')} lead={t('setup.lead')}>
+    <AuthCard title={t('setup.title')} lead={mode ? t('setup.lead') : t('setup.modeLead')}>
+      {!mode ? (
+        <div className="modes" role="radiogroup" aria-label={t('setup.modeLead')}>
+          {(['team', 'solo'] as const).map((m) => (
+            <button key={m} type="button" role="radio" aria-checked={false} className={`modecard m-${m}`} onClick={() => setMode(m)}>
+              <span className="mi" aria-hidden>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  {m === 'team'
+                    ? <><circle cx="9" cy="8" r="3.2" /><path d="M3 19c0-3.3 2.7-5.5 6-5.5s6 2.2 6 5.5" /><circle cx="17" cy="9" r="2.6" /><path d="M16 13.6c2.9.1 5 2 5 4.9" /></>
+                    : <><path d="M6 3.5h11a1.5 1.5 0 0 1 1.5 1.5v14.5a1 1 0 0 1-1 1H6.5A2 2 0 0 1 4.5 18.5V5A1.5 1.5 0 0 1 6 3.5z" /><path d="M8 3.5v17M11 8h4.5M11 11.5h3" /></>}
+                </svg>
+              </span>
+              <b>{t(`setup.mode.${m}`)}</b>
+              <small>{t(`setup.mode.${m}Hint`)}</small>
+            </button>
+          ))}
+          <p className="small muted">{t('setup.modeLater')}</p>
+        </div>
+      ) : (
       <form className="stack" onSubmit={submit}>
-        <label className="field">{t('setup.department')}<input required value={f.department} onChange={set('department')} /></label>
+        <button type="button" className="linkish" onClick={() => setMode(null)}>← {t(`setup.mode.${mode}`)} · {t('setup.modeChange')}</button>
+        {mode === 'team' && <label className="field">{t('setup.department')}<input required value={f.department} onChange={set('department')} /></label>}
         <div className="grid2">
           <label className="field">{t('admin.firstName')}<input required value={f.first_name} onChange={set('first_name')} /></label>
           <label className="field">{t('admin.lastName')}<input required value={f.last_name} onChange={set('last_name')} /></label>
@@ -103,10 +123,11 @@ export function SetupPage() {
         <label className="field">{t('setup.password')}<input required type="password" autoComplete="new-password" value={f.password} onChange={set('password')} /></label>
         <label className="field">{t('setup.password2')}<input required type="password" autoComplete="new-password" value={f.password2} onChange={set('password2')} /></label>
         <span className="muted small">{t('password.hint')}</span>
-        <label className="check"><input type="checkbox" checked={f.is_manager} onChange={set('is_manager')} />{t('setup.isManager')}</label>
+        {mode === 'team' && <label className="check"><input type="checkbox" checked={f.is_manager} onChange={set('is_manager')} />{t('setup.isManager')}</label>}
         {error && <div className="error">{error}</div>}
         <button className="primary big" disabled={busy}>{t('setup.submit')}</button>
       </form>
+      )}
     </AuthCard>
   )
 }

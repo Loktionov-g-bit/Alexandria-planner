@@ -16,13 +16,23 @@
   "setup": {
     "title": "Erster Start",
     "lead": "Legen Sie den Administrator an. Es gibt keine Standardpasswörter – dieses Konto ist der einzige Weg hinein.",
-    "department": "Name der Abteilung",
+    "department": "Name des Teams",
     "login": "Login",
     "name": "Ihr Name",
     "password": "Passwort",
     "password2": "Passwort wiederholen",
-    "isManager": "Ich leite diese Abteilung auch",
-    "submit": "Anlegen und weiter"
+    "isManager": "Ich leite dieses Team auch",
+    "submit": "Anlegen und weiter",
+    "modeLead": "Wie möchten Sie den Planer nutzen?",
+    "mode": {
+      "team": "Team",
+      "teamHint": "Mitarbeitende schreiben Sticker an ihre Leitung und aneinander; die Leitung sortiert sie in der Eisenhower-Matrix.",
+      "solo": "Nur ich: Tagebuch",
+      "soloHint": "Eigene Aufgaben in der Eisenhower-Matrix. Ohne Kollegen, ohne Eingang: alles direkt auf Ihrer Tafel."
+    },
+    "modeLater": "Der Modus lässt sich später in der Verwaltung ändern.",
+    "modeChange": "ändern",
+    "team_name_required": "Geben Sie den Namen des Teams ein."
   },
   "login": {
     "title": "Anmeldung",
@@ -82,7 +92,8 @@
       "overdue": "Überfällig",
       "overdueNote": "Frist abgelaufen",
       "waitingMe": "Warten auf Ihre Antwort",
-      "waitingMeNote": "Rückfragen zu Ihren Stickern"
+      "waitingMeNote": "Rückfragen zu Ihren Stickern",
+      "planNote": "wichtig, nicht dringend"
     },
     "inbox": "Eingang",
     "inboxHint": "noch nicht sortiert: Sticker in einen Quadranten ziehen oder öffnen",
@@ -163,7 +174,7 @@
     "personal": "Persönlicher Sticker",
     "delegatedToMe": "Mir delegiert",
     "authorThought": "Autor",
-    "no_recipient": "Kein Empfänger gewählt: Ihre Abteilung hat keine Leitung. Wählen Sie den Empfänger selbst.",
+    "no_recipient": "Kein Empfänger gewählt: Ihr Team hat keine Leitung. Wählen Sie den Empfänger selbst.",
     "self_recipient": "Sie können sich keinen Sticker schicken. Wählen Sie „Für mich (persönlicher Sticker)“.",
     "text_required": "Bitte Text eingeben.",
     "action_not_allowed": "Diese Aktion ist gerade nicht möglich. Laden Sie die Seite neu.",
@@ -253,7 +264,9 @@
     "nFiles_other": "{{count}} Dateien",
     "send": "Senden",
     "away": "Abwesend bis {{date}}",
-    "awayDeputy": "Die Vertretung bekommt den Sticker auch: {{name}}."
+    "awayDeputy": "Die Vertretung bekommt den Sticker auch: {{name}}.",
+    "selfEstimate": "Dringlichkeit und Wichtigkeit",
+    "add": "Hinzufügen"
   },
   "lists": {
     "needAnswer": "Ihre Antwort wird gebraucht",
@@ -305,10 +318,10 @@
   },
   "admin": {
     "users": "Benutzer",
-    "departments": "Abteilungen",
+    "departments": "Teams",
     "logins": "Anmeldeprotokoll",
     "addUser": "Benutzer hinzufügen",
-    "addDepartment": "Abteilung hinzufügen",
+    "addDepartment": "Team hinzufügen",
     "save": "Speichern",
     "create": "Anlegen",
     "cancel": "Abbrechen",
@@ -319,7 +332,7 @@
     "loginHint": "Wird aus Vor- und Nachname gebildet, änderbar",
     "email": "E-Mail",
     "role": "Rolle",
-    "department": "Abteilung",
+    "department": "Team",
     "admin": "Administrator",
     "active": "Aktiv",
     "password": "Passwort",
@@ -327,7 +340,7 @@
     "reset2fa": "2FA zurücksetzen",
     "manager": "Leitung",
     "noManager": "Nicht festgelegt",
-    "noDepartment": "Ohne Abteilung",
+    "noDepartment": "Ohne Team",
     "twofa": "2FA",
     "you": "Sie",
     "when": "Wann",
@@ -537,10 +550,10 @@
     "response": "Antwortzeit",
     "mismatch": "Abweichungen",
     "empty": "Keine Sticker in diesem Zeitraum.",
-    "e2e_one": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
-    "e2e_few": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
-    "e2e_many": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
-    "e2e_other": "Die Abteilung hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_one": "Das Team hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_few": "Das Team hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_many": "Das Team hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
+    "e2e_other": "Das Team hat sich gegenseitig {{count}} Sticker geschickt, Antwort im Schnitt nach {{time}}. Den Inhalt sehen Sie nicht.",
     "min": "{{n}} Min.",
     "hours": "{{n}} Std.",
     "days": "{{n}} T."
@@ -559,8 +572,8 @@
     "allStable": "Alle zurück auf stable",
     "hint": "Umstellen und Zurückrollen wirken sofort, ohne Ausfall: die nächste Anfrage geht an die gewählte Version.",
     "hintOff": "Die Testversion läuft nicht. Wie man sie startet: docs/updates.md. Bis dahin arbeiten alle mit der Hauptversion.",
-    "inherit": "wie Abteilung",
-    "usersHint": "persönliche Wahl geht vor der Abteilung"
+    "inherit": "wie Team",
+    "usersHint": "persönliche Wahl geht vor dem Team"
   },
   "telegram": {
     "bad_token": "Telegram hat das Token nicht akzeptiert. Kopieren Sie es vollständig aus BotFather.",
@@ -603,8 +616,8 @@
     "cannot_delete_self": "Sie können sich nicht selbst löschen."
   },
   "department": {
-    "name_taken": "Eine Abteilung mit diesem Namen gibt es schon",
-    "manager_must_be_manager": "Eine Abteilung kann nur ein Benutzer mit der Rolle „Führungskraft“ leiten"
+    "name_taken": "Ein Team mit diesem Namen gibt es schon",
+    "manager_must_be_manager": "Ein Team kann nur ein Benutzer mit der Rolle „Führungskraft“ leiten"
   },
   "tunnel": {
     "title": "Ersatzverbindung über WireGuard",
@@ -675,5 +688,18 @@
   "absence": {
     "bad_dates": "Das Startdatum liegt nach dem Enddatum.",
     "self_deputy": "Sie können nicht Ihre eigene Vertretung sein."
+  },
+  "mode": {
+    "solo": "Tagebuch",
+    "tab": "Modus",
+    "current": "Aktuell",
+    "toTeam": "Zum Team-Modus wechseln",
+    "toTeamHint": "Sie leiten dann das erste Team und können Personen hinzufügen. Ihre persönlichen Sticker bleiben nur Ihre.",
+    "toTeamBtn": "Wechseln",
+    "toSolo": "Zurück zum Tagebuch",
+    "toSoloHint": "Nur möglich, wenn niemand sonst den Planer nutzt: deaktivieren Sie zuerst die anderen Benutzer.",
+    "toSoloBtn": "Zum Tagebuch machen",
+    "has_people": "Es gibt andere aktive Benutzer. Deaktivieren Sie sie, um zum Tagebuch zu wechseln.",
+    "solo_no_people": "Ein Tagebuch hat keine Kollegen. Wechseln Sie zum Team-Modus, um Personen hinzuzufügen."
   }
 }

@@ -8,6 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from ..deps import DB
 from ..models import AppSetting, Department, Role, User
 from ..schemas import MeOut, SetupIn
+from ..mode import set_mode
 from ..names import base_login, full_name
 from ..security import hash_password, password_problems
 from .auth import me_out, start_session
@@ -32,6 +33,9 @@ async def state(db: DB) -> SetupState:
 async def run_setup(data: SetupIn, request: Request, response: Response, db: DB) -> MeOut:
     if not await setup_needed(db):
         raise HTTPException(409, "setup.already_done")
+    team = data.mode == "team"
+    if team and not data.department.strip():
+        raise HTTPException(422, "setup.team_name_required")
     login = data.login or base_login(data.first_name, data.last_name)
     problems = password_problems(data.password, login=login)
     if problems:
@@ -42,25 +46,29 @@ async def run_setup(data: SetupIn, request: Request, response: Response, db: DB)
         await db.flush()
     except IntegrityError:
         raise HTTPException(409, "setup.already_done") from None
-    dept = Department(name=data.department.strip())
-    db.add(dept)
-    await db.flush()
+    await set_mode(db, data.mode)
+    dept = None
+    if team:
+        dept = Department(name=data.department.strip())
+        db.add(dept)
+        await db.flush()
     user = User(
         login=login,
         first_name=data.first_name.strip(),
         last_name=data.last_name.strip(),
         display_name=full_name(data.first_name, data.last_name),
         password_hash=hash_password(data.password),
-        role=Role.manager if data.is_manager else Role.employee,
+        # a diary's owner is their own manager: if the diary later grows into a team, they lead it
+        role=Role.manager if data.is_manager or not team else Role.employee,
         is_admin=True,
-        department_id=dept.id,
+        department_id=dept.id if dept else None,
         locale=data.locale,
         timezone=data.timezone,
     )
     db.add(user)
     await db.flush()
-    if data.is_manager:
+    if dept is not None and data.is_manager:
         dept.manager_id = user.id
     s = await start_session(db, request, response, user)
     await db.commit()
-    return me_out(s)
+    return await me_out(db, s)

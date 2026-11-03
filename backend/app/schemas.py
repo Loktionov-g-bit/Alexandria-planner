@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -64,10 +65,12 @@ class MeOut(BaseModel):
     # what the client must do before using the app: None | "totp" | "totp_setup"
     pending: str | None
     channel: str
+    mode: Literal["team", "solo"] = "team"
 
 
 class SetupIn(BaseModel):
-    department: str = Field(min_length=1, max_length=120)
+    mode: Literal["team", "solo"] = "team"
+    department: str = Field(default="", max_length=120)  # the team's name; required for a team
     login: str | None = Field(default=None, min_length=2, max_length=64, pattern=r"^[A-Za-z0-9._-]+$")  # None = generate
     first_name: str = Field(min_length=1, max_length=60)
     last_name: str = Field(min_length=1, max_length=60)
@@ -150,6 +153,11 @@ class ProfileUpdateIn(BaseModel):
     away_from: date | None = None
     away_until: date | None = None
     deputy_id: int | None = None
+
+
+class ModeIn(BaseModel):
+    mode: Literal["team", "solo"]
+    team: str | None = Field(default=None, max_length=120)  # name of the first team when a diary grows into a team
 
 
 class DepartmentIn(BaseModel):

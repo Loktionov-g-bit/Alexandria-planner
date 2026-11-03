@@ -3,7 +3,7 @@ import { NavLink, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { api, type Department, type LoginEvent, type Role, type User } from '../api'
-import { errorText, useMe } from '../session'
+import { errorText, useMe, useSolo } from '../session'
 import { Avatar } from '../Shell'
 import AdminTelegram from './AdminTelegram'
 import AdminChannels from './AdminChannels'
@@ -11,18 +11,21 @@ import { stamp } from '../dates'
 
 export default function AdminPage({ me }: { me: User }) {
   const { t } = useTranslation()
+  const solo = useSolo()
   return (
     <>
       <h1>{t('nav.admin')}</h1>
       <div className="tabs">
-        <NavLink to="/admin" end>{t('admin.users')}</NavLink>
-        <NavLink to="/admin/departments">{t('admin.departments')}</NavLink>
+        {!solo && <NavLink to="/admin" end>{t('admin.users')}</NavLink>}
+        {!solo && <NavLink to="/admin/departments">{t('admin.departments')}</NavLink>}
+        <NavLink to={solo ? '/admin' : '/admin/mode'} end>{t('mode.tab')}</NavLink>
         <NavLink to="/admin/logins">{t('admin.logins')}</NavLink>
         <NavLink to="/admin/telegram">Telegram</NavLink>
         <NavLink to="/admin/updates">{t('ch.tab')}</NavLink>
       </div>
       <Routes>
-        <Route index element={<Users me={me} />} />
+        <Route index element={solo ? <ModePanel /> : <Users me={me} />} />
+        <Route path="mode" element={<ModePanel />} />
         <Route path="departments" element={<Departments />} />
         <Route path="logins" element={<Logins />} />
         <Route path="telegram" element={<AdminTelegram />} />
@@ -277,6 +280,53 @@ function Logins() {
           ))}
         </tbody>
       </table>
+    </div>
+  )
+}
+
+function ModePanel() {
+  const { t } = useTranslation()
+  const qc = useQueryClient()
+  const solo = useSolo()
+  const [team, setTeam] = useState('')
+  const [err, setErr] = useState('')
+  const [busy, setBusy] = useState(false)
+  const change = async (e?: FormEvent) => {
+    e?.preventDefault()
+    setErr('')
+    setBusy(true)
+    try {
+      await api('admin/mode', { body: solo ? { mode: 'team', team } : { mode: 'solo' } })
+      await qc.invalidateQueries({ queryKey: ['me'] })
+      qc.invalidateQueries({ queryKey: ['departments'] })
+    } catch (x) {
+      setErr(errorText(t, x))
+    } finally {
+      setBusy(false)
+    }
+  }
+  return (
+    <div className="modepanel">
+      <div className={`modecard static m-${solo ? 'solo' : 'team'}`}>
+        <small className="muted">{t('mode.current')}</small>
+        <b>{t(`setup.mode.${solo ? 'solo' : 'team'}`)}</b>
+        <small>{t(`setup.mode.${solo ? 'solo' : 'team'}Hint`)}</small>
+      </div>
+      {solo ? (
+        <form className="stack" onSubmit={change}>
+          <h2>{t('mode.toTeam')}</h2>
+          <p className="muted">{t('mode.toTeamHint')}</p>
+          <label className="field">{t('setup.department')}<input required value={team} maxLength={120} onChange={(e) => setTeam(e.target.value)} /></label>
+          <div><button className="btn primary" disabled={busy || !team.trim()}>{t('mode.toTeamBtn')}</button></div>
+        </form>
+      ) : (
+        <div className="stack">
+          <h2>{t('mode.toSolo')}</h2>
+          <p className="muted">{t('mode.toSoloHint')}</p>
+          <div><button className="btn" type="button" disabled={busy} onClick={() => change()}>{t('mode.toSoloBtn')}</button></div>
+        </div>
+      )}
+      {err && <p className="error">{err}</p>}
     </div>
   )
 }

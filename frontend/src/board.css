@@ -509,3 +509,19 @@ input.token { flex: 1 1 320px; font-family: ui-monospace, monospace; font-size: 
 .calurl input { flex: 1; min-width: 0; font-size: 13px; }
 .hint.away { color: var(--ink); font-weight: 500; }
 .pline a.btn { text-decoration: none; }
+
+/* ---------------------------------------------------------------- team or diary */
+.modes { display: grid; gap: 12px; }
+.modecard { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; align-items: start; text-align: left; padding: 16px 18px;
+  border: 0; border-radius: 16px; background: var(--raised, var(--surface)); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font: inherit; }
+button.modecard { cursor: pointer; transition: box-shadow .15s, transform .15s; }
+button.modecard:hover { box-shadow: inset 0 0 0 2px var(--ink); transform: translateY(-1px); }
+.modecard .mi { grid-row: span 2; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: var(--tone); }
+.modecard.m-team { --tone: var(--q-plan); }
+.modecard.m-solo { --tone: var(--q-delegate); }
+.modecard b { font-size: 16px; }
+.modecard small { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.modecard.static { grid-template-columns: 1fr; max-width: 520px; background: color-mix(in srgb, var(--tone) 22%, var(--surface)); }
+.modepanel { display: grid; gap: 22px; max-width: 560px; }
+.modepanel h2 { margin: 0; font-size: 17px; }
+.modepanel p { margin: 0; }

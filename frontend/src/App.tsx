@@ -27,9 +27,9 @@ export default function App() {
     <Shell me={me.data}>
       <Routes>
         <Route path="/" element={<BoardPage user={user} />} />
-        <Route path="/sent" element={<SentPage user={user} />} />
+        {me.data.mode === 'team' && <Route path="/sent" element={<SentPage user={user} />} />}
         <Route path="/archive" element={<ArchivePage />} />
-        <Route path="/stats" element={<StatsPage />} />
+        {me.data.mode === 'team' && <Route path="/stats" element={<StatsPage />} />}
         <Route path="/profile" element={<ProfilePage me={me.data} />} />
         {user.is_admin && <Route path="/admin/*" element={<AdminPage me={user} />} />}
         <Route path="*" element={<Navigate to="/" replace />} />

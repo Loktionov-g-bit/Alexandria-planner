@@ -685,6 +685,12 @@ class Bot:
 
     async def write_start(self, db, chat_id: int, user: User) -> None:
         loc = user.locale
+        from ..mode import get_mode
+
+        if await get_mode(db) == "solo":  # a diary: every sticker is a note to self, no "whom?" step
+            self.pending[chat_id] = {"action": "compose", "to": []}
+            await self.say(chat_id, t(loc, "write.prompt_self"), reply_markup={"inline_keyboard": [[{"text": t(loc, "btn.cancel"), "callback_data": "w:x"}]]})
+            return
         rows = []
         mgr = await self.my_manager(db, user)
         if mgr is not None:

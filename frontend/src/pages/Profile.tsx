@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { QRCodeSVG } from 'qrcode.react'
 import { api, type Department, type Me, type User } from '../api'
-import { errorText, useSetMe } from '../session'
+import { errorText, useSetMe, useSolo } from '../session'
 import { initials, isoDate, shortDate, useDirectory } from '../stickers'
 import { LANGS, type Lang } from '../i18n'
 import { intlLang, weekdays } from '../dates'
@@ -83,7 +83,7 @@ function NameTag({ me }: { me: Me }) {
           <h1>{u.display_name}</h1>
           <dl>
             <dt>{t('profile.role')}</dt><dd>{t(`role.${u.role}`)}{u.is_admin ? ` · ${t('admin.admin').toLowerCase()}` : ''}</dd>
-            <dt>{t('admin.department')}</dt><dd>{depts.data?.find((d) => d.id === u.department_id)?.name ?? t('admin.noDepartment')}</dd>
+            {me.mode === 'team' && <><dt>{t('admin.department')}</dt><dd>{depts.data?.find((d) => d.id === u.department_id)?.name ?? t('admin.noDepartment')}</dd></>}
             <dt>{t('admin.login')}</dt><dd>{u.login}</dd>
             <dt>{t('profile.email')}</dt><dd>{u.email || t('profile.noEmail')}</dd>
           </dl>
@@ -422,6 +422,7 @@ export default function ProfilePage({ me }: { me: Me }) {
   const { t, i18n } = useTranslation()
   const u = me.user
   const { save, status } = useSaveProfile(me)
+  const solo = useSolo()
   const zones = useMemo(() => {
     const list = ZONES.includes(u.timezone) ? ZONES : [u.timezone, ...ZONES]
     return list.map((z) => ({ z, label: zoneLabel(z, i18n.language) }))
@@ -476,9 +477,11 @@ export default function ProfilePage({ me }: { me: Me }) {
           <PushRow />
           <TelegramRow me={me} save={save} />
         </Section>
-        <Section id="p-away" title={t('profile.away.title')} hint={t('profile.away.hint')}>
-          <Absence me={me} save={save} />
-        </Section>
+        {!solo && (
+          <Section id="p-away" title={t('profile.away.title')} hint={t('profile.away.hint')}>
+            <Absence me={me} save={save} />
+          </Section>
+        )}
         <Section id="p-cal" title={t('profile.cal.section')} hint={t('profile.cal.hint')}>
           <CalendarFeed />
         </Section>
