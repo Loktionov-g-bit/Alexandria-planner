@@ -12,9 +12,31 @@ services:
       PLANNER_DATABASE_URL: postgresql+asyncpg://planner:${POSTGRES_PASSWORD}@db:5432/planner
       PLANNER_BASE_URL: ${PLANNER_BASE_URL}
       PLANNER_CHANNEL: stable
+      # users on the beta channel are forwarded here; if beta is not running they simply stay on stable
+      PLANNER_BETA_URL: http://app-beta:8000
       TZ: Europe/Moscow
     ports:
       - "${PLANNER_PORT:-3085}:8000"
+    volumes:
+      - ./data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 384m
+
+  # Canary release (docs/updates.md): `docker compose --profile beta pull app-beta` and
+  # `docker compose --profile beta up -d app-beta`. Same database and files as stable, no published port.
+  app-beta:
+    image: ghcr.io/loktionov-g-bit/alexandria-planner:${PLANNER_BETA_TAG:-beta}
+    container_name: alexandria-planner-beta
+    profiles: ["beta"]
+    restart: unless-stopped
+    environment:
+      PLANNER_DATABASE_URL: postgresql+asyncpg://planner:${POSTGRES_PASSWORD}@db:5432/planner
+      PLANNER_BASE_URL: ${PLANNER_BASE_URL}
+      PLANNER_CHANNEL: beta
+      PLANNER_WORKER: "false"   # scheduler, notifications and the Telegram bot run on stable only
+      TZ: Europe/Moscow
     volumes:
       - ./data:/data
     depends_on:

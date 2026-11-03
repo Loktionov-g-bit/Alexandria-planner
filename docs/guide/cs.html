@@ -33,7 +33,7 @@
   <h4>Pro administrátory</h4>
   <ol>
     <li><a href="#setup"><i>15</i>První spuštění</a></li>
-    <li><a href="#users"><i>16</i>Lidé a oddělení</a></li>
+    <li><a href="#users"><i>16</i>Lidé a týmy</a></li>
     <li><a href="#telegram"><i>17</i>Telegram bot</a></li>
     <li><a href="#updates"><i>18</i>Aktualizace</a></li>
   </ol>
@@ -47,7 +47,7 @@
 <main id="top">
   <header class="cover">
     {{langs}}
-    <span class="kicker">Uživatelská příručka · verze 0.1</span>
+    <span class="kicker">Uživatelská příručka · verze 0.2</span>
     <h1>Alexandria Plánovač</h1>
     <p class="big">Dotazy pro vedoucího bez papírků na stole. Zaměstnanec napíše štítek, vedoucí ho zařadí do Eisenhowerovy matice a odpoví, autor vidí rozhodnutí.</p>
     <div class="who">
@@ -82,10 +82,10 @@
     <h2>Eisenhowerova matice</h2>
     <p class="lead">Každý štítek se posuzuje podle dvou otázek: je to naléhavé a je to důležité? Vzniknou čtyři kvadranty, každý má svou barvu a tu uvidíte v programu všude.</p>
     <div class="matrix">
-      <div class="q"><small>1 · naléhavé a důležité</small><h3>Udělat hned</h3><p>Hoří a ovlivňuje výsledek. Například smlouva s klientem, kterou je třeba podepsat dnes.</p></div>
-      <div class="q"><small>2 · důležité, nenaléhavé</small><h3>Naplánovat</h3><p>Ovlivňuje výsledek, ale je čas. Měsíční zpráva, školení, plány.</p></div>
-      <div class="q"><small>3 · naléhavé, nedůležité</small><h3>Delegovat</h3><p>Musí to být rychle, ale nemusí to dělat vedoucí. Aktualizovat ceník, objednat vizitky.</p></div>
-      <div class="q"><small>4 · nenaléhavé, nedůležité</small><h3>Nedělat</h3><p>Může dlouho počkat nebo se dá odmítnout. Objednat vodu, koupit kávovar.</p></div>
+      <div class="q"><small>1 · udělat hned</small><h3>Naléhavé a důležité</h3><p>Hoří a ovlivňuje výsledek. Například smlouva s klientem, kterou je třeba podepsat dnes.</p></div>
+      <div class="q"><small>2 · naplánovat</small><h3>Důležité, nenaléhavé</h3><p>Ovlivňuje výsledek, ale je čas. Měsíční zpráva, školení, plány.</p></div>
+      <div class="q"><small>3 · delegovat</small><h3>Naléhavé, nedůležité</h3><p>Musí to být rychle, ale nemusí to dělat vedoucí. Aktualizovat ceník, objednat vizitky.</p></div>
+      <div class="q"><small>4 · nedělat</small><h3>Nenaléhavé, nedůležité</h3><p>Může dlouho počkat nebo se dá odmítnout. Objednat vodu, koupit kávovar.</p></div>
     </div>
     <div class="note">{{icon:i5}}<span>Zaměstnanec při odeslání připojí svůj <i>odhad</i> („Naléhavé“, „Důležité“). Konečný kvadrant volí vedoucí. Když se liší, ukáže to statistika: tak se tým učí vidět priority stejně.</span></div>
   </section>
@@ -94,11 +94,11 @@
   <section class="slide" id="roles">
     <span class="num">03</span>
     <h2>Kdo je kdo</h2>
-    <p class="lead">Program má tři role. Jeden člověk může mít dvě: vedoucí malého oddělení bývá často i administrátorem.</p>
+    <p class="lead">Program má tři role. Jeden člověk může mít dvě: vedoucí malého týmu bývá často i administrátorem.</p>
     <div class="roles">
       <div class="role"><div class="ico" style="background:var(--q-plan)">{{icon:i6}}</div><h3>Zaměstnanec</h3><p>Píše štítky vedoucímu nebo kolegům, odpovídá na dotazy, potvrzuje rozhodnutí. Vidí jen své štítky a ty, které mu někdo zpřístupnil.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Vedoucí</h3><p>Dostává štítky oddělení na nástěnku, třídí je do kvadrantů, odpovídá, deleguje, sleduje statistiku a exportuje přehled do Excelu.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrátor</h3><p>Zakládá lidi a oddělení, obnovuje hesla, připojuje Telegram bota a řídí aktualizace. Vidí záznam přihlášení.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Vedoucí</h3><p>Dostává štítky týmu na nástěnku, třídí je do kvadrantů, odpovídá, deleguje, sleduje statistiku a exportuje přehled do Excelu.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrátor</h3><p>Zakládá lidi a týmy, obnovuje hesla, připojuje Telegram bota a řídí aktualizace. Vidí záznam přihlášení.</p></div>
     </div>
   </section>
 
@@ -174,6 +174,9 @@
     </ol>
     <div class="note tip">{{icon:i11}}<span>Je tu i tmavý motiv: „Profil → Vzhled“. Ve výchozím stavu se program řídí nastavením systému.</span></div>
     <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Nástěnka v tmavém motivu" loading="lazy" width="1440" height="900" /></div><figcaption>Stejná nástěnka v tmavém motivu.</figcaption></figure>
+    <h3 style="margin-top:30px">Třídit po jednom</h3>
+    <p>Když je v doručených hodně štítků, stiskněte „Třídit po jednom“. Štítky se otevírají po jednom: klávesy <b>1–4</b> zařadí štítek do kvadrantu, <b>Enter</b> otevře kartu, <b>→</b> přeskočí, <b>←</b> vrátí zpět, <b>Esc</b> zavře. Kvadrant navržený autorem je zvýrazněn.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/17-triage.webp" alt="Třídění doručených po jednom" loading="lazy" width="1440" height="900" /></div><figcaption>Režim třídění: velký štítek a čtyři kvadranty.</figcaption></figure>
   </section>
 
   <!-- 08 -->
@@ -283,6 +286,11 @@
       <tr><td>Přehledy</td><td>Ranní (čas a dny) a večerní shrnutí.</td></tr>
       <tr><td>Zabezpečení</td><td>Změna hesla (ostatní relace se ukončí) a dvoufázové ověření.</td></tr>
     </table>
+    <h3 style="margin-top:30px">Nepřítomnost a zástup</h3>
+    <p>V části „Nepřítomnost a zástup“ zadejte data a zástupce. Když tu nejste, nové štítky pro vás chodí i zástupci, který je může vyřídit. Je to vidět v historii štítku a autor při psaní uvidí „Pryč do …“. Tlačítko „Jsem zpět“ nepřítomnost zruší.</p>
+    <h3>Kalendář</h3>
+    <p>„Kalendář → Zapnout“ vytvoří osobní odkaz s termíny vašich štítků. Přidejte ho do Google Kalendáře („Další kalendáře → Z adresy URL“), na iPhone („Nastavení → Kalendář → Účty → Přidat odebíraný kalendář“) nebo do Outlooku. Vidět jsou jen názvy. Pokud se odkaz dostal k nesprávným lidem, stiskněte „Získat nový odkaz“: starý přestane fungovat.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/23-profile-away.webp" alt="Nepřítomnost a kalendář v profilu" loading="lazy" width="1440" height="900" /></div><figcaption>Nepřítomnost se zástupcem a odkaz na kalendář.</figcaption></figure>
   </section>
 
   <!-- 14 -->
@@ -305,14 +313,16 @@
     <span class="num">15</span>
     <h2>První spuštění</h2>
     <p class="lead">Hned po instalaci program nabídne vytvořit administrátora. Výchozí hesla neexistují: tento účet je jediná cesta dovnitř.</p>
+    <p>Nejdřív se průvodce zeptá, jak budete Plánovač používat: jako <b>tým</b> (lidé píší vedoucímu, vedoucí třídí) nebo <b>jen já</b>, jako osobní diář v Eisenhowerově matici. V diáři jsou všechny štítky osobní a jdou rovnou do kvadrantu: žádné doručené, odeslané, statistiky ani uživatelé.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/00-mode.webp" alt="Volba režimu" loading="lazy" width="1440" height="900" /></div><figcaption>Tým nebo diář: režim lze později změnit.</figcaption></figure>
     <div class="cols even">
-      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="První spuštění" loading="lazy" width="1440" height="900" /></div><figcaption>Oddělení, jméno, přihlašovací jméno (doplní se samo) a heslo.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="První spuštění" loading="lazy" width="1440" height="900" /></div><figcaption>Tým, jméno, přihlašovací jméno (doplní se samo) a heslo.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Zapnutí dvoufázového ověření" loading="lazy" width="1440" height="900" /></div><figcaption>Hned potom se zapne 2FA.</figcaption></figure>
     </div>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Název oddělení, jméno a příjmení</b><span>Přihlašovací jméno se sestaví ze jména a příjmení, dá se upravit.</span></li>
+      <li><b>Název týmu, jméno a příjmení</b><span>Přihlašovací jméno se sestaví ze jména a příjmení, dá se upravit.</span></li>
       <li><b>Heslo</b><span>Alespoň 10 znaků, tři druhy ze čtyř: malá písmena, velká písmena, číslice, symboly.</span></li>
-      <li><b>„Toto oddělení také vedu“</b><span>Nechte zaškrtnuté, pokud štítky třídíte vy. Pokud ne, zrušte zaškrtnutí a vedoucího určete později v „Odděleních“.</span></li>
+      <li><b>„Tento tým také vedu“</b><span>Nechte zaškrtnuté, pokud štítky třídíte vy. Pokud ne, zrušte zaškrtnutí a vedoucího určete později v „Týmech“.</span></li>
       <li><b>2FA</b><span>Naskenujte QR kód aplikací v telefonu a zadejte kód. Potom se otevře prázdná nástěnka.</span></li>
     </ol>
   </section>
@@ -320,19 +330,22 @@
   <!-- 16 -->
   <section class="slide" id="users">
     <span class="num">16</span>
-    <h2>Lidé a oddělení</h2>
+    <h2>Lidé a týmy</h2>
     <p class="lead">Oddíl „Správa“. Zaměstnanci se neregistrují sami: zakládá je administrátor.</p>
-    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Seznam uživatelů" loading="lazy" width="1440" height="900" /></div><figcaption>Uživatelé: přihlašovací jméno, oddělení, role, zda je zapnuté 2FA.</figcaption></figure>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Seznam uživatelů" loading="lazy" width="1440" height="900" /></div><figcaption>Uživatelé: přihlašovací jméno, tým, role, zda je zapnuté 2FA.</figcaption></figure>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Přidat uživatele</b><span>Jméno, příjmení, oddělení, role a dočasné heslo. Přihlašovací jméno se doplní samo. Předejte člověku přihlašovací jméno, heslo a odkaz na tuto příručku.</span></li>
-      <li><b>Upravit</b><span>Nové heslo, jiné oddělení nebo role, reset 2FA, deaktivace odešlého zaměstnance. Jeho štítky zůstanou zachovány.</span></li>
-      <li><b>Oddělení</b><span>Název a vedoucí. Štítky zaměstnance jdou ve výchozím stavu vedoucímu jeho oddělení.</span></li>
+      <li><b>Přidat uživatele</b><span>Jméno, příjmení, tým, role a dočasné heslo. Přihlašovací jméno se doplní samo. Předejte člověku přihlašovací jméno, heslo a odkaz na tuto příručku.</span></li>
+      <li><b>Upravit</b><span>Nové heslo, jiný tým nebo role, reset 2FA, deaktivace odešlého zaměstnance. Jeho štítky zůstanou zachovány.</span></li>
+      <li><b>Týmy</b><span>Název a vedoucí. Štítky zaměstnance jdou ve výchozím stavu vedoucímu jeho týmu.</span></li>
       <li><b>Záznam přihlášení</b><span>Kdo, kdy a odkud se přihlásil, neúspěšné pokusy a blokace. Po 5 špatných heslech se přihlášení na 15 minut zablokuje.</span></li>
     </ol>
     <div class="cols even" style="margin-top:22px">
-      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Oddělení" loading="lazy" width="1440" height="900" /></div><figcaption>Oddělení a jejich vedoucí.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Týmy" loading="lazy" width="1440" height="900" /></div><figcaption>Týmy a jejich vedoucí.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Záznam přihlášení" loading="lazy" width="1440" height="900" /></div><figcaption>Záznam přihlášení.</figcaption></figure>
     </div>
+    <h3 style="margin-top:30px">Režim</h3>
+    <p>„Administrace → Režim“ ukazuje aktuální režim. Z diáře může vzniknout tým: zadejte název týmu, stanete se jeho vedoucím a můžete přidávat lidi; osobní štítky zůstanou vaše. Zpět na diář lze jen tehdy, když nejsou další aktivní uživatelé.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/35-admin-mode.webp" alt="Režim" loading="lazy" width="1440" height="900" /></div><figcaption>Přepínání mezi týmem a diářem.</figcaption></figure>
   </section>
 
   <!-- 17 -->
@@ -357,7 +370,7 @@
     <h2>Aktualizace</h2>
     <p class="lead">Novou verzi můžete nejdřív dát několika lidem (beta) a ostatní nechat na ověřené (stable).</p>
     <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Kanály aktualizací" loading="lazy" width="1440" height="900" /></div><figcaption>„Správa → Aktualizace“.</figcaption></figure>
-    <p>Přepínače má každé oddělení i každý člověk, osobní volba má přednost. Převod i návrat platí hned, bez výpadku: další požadavek člověka jde na zvolenou verzi. Pokud testovací verze spadne, její uživatelé automaticky pokračují na hlavní.</p>
+    <p>Přepínače má každý tým i každý člověk, osobní volba má přednost. Převod i návrat platí hned, bez výpadku: další požadavek člověka jde na zvolenou verzi. Pokud testovací verze spadne, její uživatelé automaticky pokračují na hlavní.</p>
     <div class="note">{{icon:i15}}<span>Jak spustit testovací verzi vedle hlavní, popisuje soubor <span class="chip">docs/updates.md</span> v repozitáři. Před každou aktualizací databáze program sám udělá zálohu a uchovává posledních 10.</span></div>
   </section>
 
@@ -368,7 +381,7 @@
     <p class="lead">&nbsp;</p>
     <details class="faq"><summary>Štítek šel nesprávnému člověku. Co teď?</summary><p>Dokud není roztříděný, otevřete ho v „Odeslaných“ a stiskněte „Stáhnout“, pak vytvořte nový se správným příjemcem. Pokud už je v řešení, napište příjemci komentář v kartě.</p></details>
     <details class="faq"><summary>Vidí vedoucí moje osobní štítky?</summary><p>Ne. Štítek „Pro sebe“ vidíte jen vy. Štítky kolegům vidíte jen vy a příjemce; vedoucí ve statistice vidí pouze jejich počet.</p></details>
-    <details class="faq"><summary>Proč se štítek sám přesunul do „Udělat hned“?</summary><p>Dva dny před termínem se štítek stane naléhavým. Kvadrant se změní, důležitost zůstane; v kartě je to označeno jako „Kvůli termínu se stal naléhavým“.</p></details>
+    <details class="faq"><summary>Proč se štítek sám přesunul do „Naléhavé a důležité“?</summary><p>Dva dny před termínem se štítek stane naléhavým. Kvadrant se změní, důležitost zůstane; v kartě je to označeno jako „Kvůli termínu se stal naléhavým“.</p></details>
     <details class="faq"><summary>Nechodí oznámení v prohlížeči.</summary><p>Zkontrolujte tři věci: adresa začíná https, prohlížeč webu oznámení povolil a v „Profil → Oznámení“ jsou na tomto zařízení zapnutá. Tlačítko „Vyzkoušet“ pošle testovací oznámení.</p></details>
     <details class="faq"><summary>Po špatných heslech mě to zablokovalo.</summary><p>Počkejte 15 minut nebo požádejte administrátora o nové heslo.</p></details>
     <details class="faq"><summary>Zaměstnanec odešel. Mám ho smazat?</summary><p>Není třeba: deaktivujte ho v „Uživatelé → Upravit → Aktivní“. Přihlásit se nebude moct, historie štítků a statistika zůstanou.</p></details>

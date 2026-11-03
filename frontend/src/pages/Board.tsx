@@ -175,8 +175,8 @@ export default function BoardPage({ user }: { user: User }) {
 
       <div className="kpis">
         {!solo && <div className="kpi"><small>{t('board.kpi.inbox')}</small><b>{inbox.length}</b><em>{t('board.kpi.inboxNote')}</em></div>}
-        <div className="kpi"><small>{t('quadrant.do')}</small><b>{byQ.do.length}</b><em>{t('board.kpi.doNote')}</em></div>
-        {solo && <div className="kpi"><small>{t('quadrant.plan')}</small><b>{byQ.plan.length}</b><em>{t('board.kpi.planNote')}</em></div>}
+        <div className="kpi"><small>{t('quadrant.do')}</small><b>{byQ.do.length}</b><em>{t('quadrant.verb.do')}</em></div>
+        {solo && <div className="kpi"><small>{t('quadrant.plan')}</small><b>{byQ.plan.length}</b><em>{t('quadrant.verb.plan')}</em></div>}
         <div className="kpi"><small>{t('board.kpi.overdue')}</small><b className={overdue ? 'late' : ''}>{overdue}</b><em>{t('board.kpi.overdueNote')}</em></div>
         {!solo && <Link to="/sent" className="kpi link"><small>{t('board.kpi.waitingMe')}</small><b className={waitingMe ? 'late' : ''}>{waitingMe}</b><em>{t('board.kpi.waitingMeNote')}</em></Link>}
       </div>

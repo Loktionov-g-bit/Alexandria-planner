@@ -45,7 +45,7 @@
   <h4>For administrators</h4>
   <ol>
     <li><a href="#setup"><i>15</i>First launch</a></li>
-    <li><a href="#users"><i>16</i>People and departments</a></li>
+    <li><a href="#users"><i>16</i>People and teams</a></li>
     <li><a href="#telegram"><i>17</i>Telegram bot</a></li>
     <li><a href="#updates"><i>18</i>Updates</a></li>
   </ol>
@@ -59,7 +59,7 @@
 <main id="top">
   <header class="cover">
     <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" lang="ru">Русский</option><option value="en" selected lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
-    <span class="kicker">User guide · version 0.1</span>
+    <span class="kicker">User guide · version 0.2</span>
     <h1>Alexandria Planner</h1>
     <p class="big">Questions for your manager without paper notes on their desk. An employee writes a sticker, the manager sorts it on the Eisenhower matrix and answers, the author sees the decision.</p>
     <div class="who">
@@ -94,10 +94,10 @@
     <h2>The Eisenhower matrix</h2>
     <p class="lead">Every sticker is judged by two questions: is it urgent, and is it important. That gives four quadrants. Each has its own colour, and you will see that colour everywhere in the program.</p>
     <div class="matrix">
-      <div class="q"><small>1 · urgent and important</small><h3>Do now</h3><p>On fire and affects results. For example, a client contract that has to be signed today.</p></div>
-      <div class="q"><small>2 · important, not urgent</small><h3>Schedule</h3><p>Affects results, but there is time. A monthly report, training, plans.</p></div>
-      <div class="q"><small>3 · urgent, not important</small><h3>Delegate</h3><p>Needs to be quick, but not necessarily by the manager. Update the price list, order business cards.</p></div>
-      <div class="q"><small>4 · not urgent, not important</small><h3>Eliminate</h3><p>Can wait a long time or be declined. Order water, buy a coffee machine.</p></div>
+      <div class="q"><small>1 · do now</small><h3>Urgent and important</h3><p>On fire and affects results. For example, a client contract that has to be signed today.</p></div>
+      <div class="q"><small>2 · schedule</small><h3>Important, not urgent</h3><p>Affects results, but there is time. A monthly report, training, plans.</p></div>
+      <div class="q"><small>3 · delegate</small><h3>Urgent, not important</h3><p>Needs to be quick, but not necessarily by the manager. Update the price list, order business cards.</p></div>
+      <div class="q"><small>4 · eliminate</small><h3>Not urgent, not important</h3><p>Can wait a long time or be declined. Order water, buy a coffee machine.</p></div>
     </div>
     <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>When sending, the employee adds their own <i>estimate</i> ("Urgent", "Important"). The manager chooses the final quadrant. When the two differ, it shows up in the statistics: this is how a team learns to see priorities the same way.</span></div>
   </section>
@@ -106,11 +106,11 @@
   <section class="slide" id="roles">
     <span class="num">03</span>
     <h2>Who is who</h2>
-    <p class="lead">There are three roles. One person can hold two: the head of a small department is often the administrator too.</p>
+    <p class="lead">There are three roles. One person can hold two: the head of a small team is often the administrator too.</p>
     <div class="roles">
       <div class="role"><div class="ico" style="background:var(--q-plan)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div><h3>Employee</h3><p>Writes stickers to the manager or colleagues, answers questions, confirms decisions. Sees only their own stickers and those shared with them.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Manager</h3><p>Receives the department's stickers on the board, sorts them into quadrants, answers, delegates, reviews statistics and exports the Excel report.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Administrator</h3><p>Adds people and departments, resets passwords, connects the Telegram bot and manages updates. Sees the sign-in log.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Manager</h3><p>Receives the team's stickers on the board, sorts them into quadrants, answers, delegates, reviews statistics and exports the Excel report.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Administrator</h3><p>Adds people and teams, resets passwords, connects the Telegram bot and manages updates. Sees the sign-in log.</p></div>
     </div>
   </section>
 
@@ -186,6 +186,9 @@
     </ol>
     <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>There is a dark theme: "Profile → Appearance". By default the program follows your system setting.</span></div>
     <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="The board in the dark theme" loading="lazy" width="1440" height="900" /></div><figcaption>The same board in the dark theme.</figcaption></figure>
+    <h3 style="margin-top:30px">Sort one by one</h3>
+    <p>When the inbox is full, press "Sort one by one". Stickers open one at a time: keys <b>1–4</b> file the sticker into a quadrant, <b>Enter</b> opens the card, <b>→</b> skips, <b>←</b> goes back, <b>Esc</b> closes. The quadrant the author suggested is highlighted.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/17-triage.webp" alt="Sorting the inbox one by one" loading="lazy" width="1440" height="900" /></div><figcaption>Sorting mode: a large sticker and four quadrants.</figcaption></figure>
   </section>
 
   <!-- 08 -->
@@ -295,6 +298,11 @@
       <tr><td>Digests</td><td>Morning digest (time and days) and the evening summary.</td></tr>
       <tr><td>Security</td><td>Change password (all other sessions are signed out) and two-factor protection.</td></tr>
     </table>
+    <h3 style="margin-top:30px">Time off and deputy</h3>
+    <p>Under "Time off and deputy" set the dates and a deputy. While you are away, new stickers addressed to you also go to the deputy, who can handle them. The sticker history shows it, and authors see "Away until …" when writing to you. "I'm back" cancels the time off.</p>
+    <h3>Calendar</h3>
+    <p>"Calendar → Turn on" gives a personal link with the deadlines of your stickers. Add it to Google Calendar ("Other calendars → From URL"), iPhone ("Settings → Calendar → Accounts → Add Subscribed Calendar") or Outlook. Only titles are shown. If the link got into the wrong hands, press "Get a new link": the old one stops working.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/23-profile-away.webp" alt="Time off and calendar in the profile" loading="lazy" width="1440" height="900" /></div><figcaption>Time off with a deputy and the calendar link.</figcaption></figure>
   </section>
 
   <!-- 14 -->
@@ -317,14 +325,16 @@
     <span class="num">15</span>
     <h2>First launch</h2>
     <p class="lead">Right after installation the program asks you to create an administrator. There are no default passwords: this account is the only way in.</p>
+    <p>First the wizard asks how you will use the Planner: as a <b>team</b> (people write to their manager, the manager sorts) or <b>just me</b>, a personal diary on the Eisenhower matrix. In a diary every sticker is personal and goes straight into a quadrant: no inbox, no Sent, no statistics, no users.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/00-mode.webp" alt="Choosing the mode" loading="lazy" width="1440" height="900" /></div><figcaption>Team or diary: the mode can be changed later.</figcaption></figure>
     <div class="cols even">
-      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="First launch" loading="lazy" width="1440" height="900" /></div><figcaption>Department, name, login (filled in for you) and password.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="First launch" loading="lazy" width="1440" height="900" /></div><figcaption>Team, name, login (filled in for you) and password.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Turning on two-factor protection" loading="lazy" width="1440" height="900" /></div><figcaption>2FA is turned on right after that.</figcaption></figure>
     </div>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Department name, first and last name</b><span>The login is built from your name, and you can edit it.</span></li>
+      <li><b>Team name, first and last name</b><span>The login is built from your name, and you can edit it.</span></li>
       <li><b>Password</b><span>At least 10 characters, three kinds out of four: lowercase, uppercase, digits, symbols.</span></li>
-      <li><b>"I am also the manager of this department"</b><span>Keep it ticked if you are the one sorting stickers. If not, untick it and assign a manager later under "Departments".</span></li>
+      <li><b>"I am also the manager of this team"</b><span>Keep it ticked if you are the one sorting stickers. If not, untick it and assign a manager later under "Teams".</span></li>
       <li><b>2FA</b><span>Scan the QR code with an app on your phone and enter the code. An empty board opens after that.</span></li>
     </ol>
   </section>
@@ -332,19 +342,22 @@
   <!-- 16 -->
   <section class="slide" id="users">
     <span class="num">16</span>
-    <h2>People and departments</h2>
+    <h2>People and teams</h2>
     <p class="lead">The "Administration" section. Employees do not sign up themselves: the administrator adds them.</p>
-    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="User list" loading="lazy" width="1440" height="900" /></div><figcaption>Users: login, department, role, whether 2FA is on.</figcaption></figure>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="User list" loading="lazy" width="1440" height="900" /></div><figcaption>Users: login, team, role, whether 2FA is on.</figcaption></figure>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Add user</b><span>First and last name, department, role and a temporary password. The login is filled in for you. Give the person their login, password and a link to this guide.</span></li>
-      <li><b>Edit</b><span>A new password, another department or role, 2FA reset, deactivating someone who has left. A deactivated person's stickers are kept.</span></li>
-      <li><b>Departments</b><span>Name and manager. By default an employee's stickers go to the manager of their department.</span></li>
+      <li><b>Add user</b><span>First and last name, team, role and a temporary password. The login is filled in for you. Give the person their login, password and a link to this guide.</span></li>
+      <li><b>Edit</b><span>A new password, another team or role, 2FA reset, deactivating someone who has left. A deactivated person's stickers are kept.</span></li>
+      <li><b>Teams</b><span>Name and manager. By default an employee's stickers go to the manager of their team.</span></li>
       <li><b>Sign-in log</b><span>Who signed in, when and from where, failed attempts and lockouts. After 5 wrong passwords sign-in is locked for 15 minutes.</span></li>
     </ol>
     <div class="cols even" style="margin-top:22px">
-      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Departments" loading="lazy" width="1440" height="900" /></div><figcaption>Departments and their managers.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Teams" loading="lazy" width="1440" height="900" /></div><figcaption>Teams and their managers.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Sign-in log" loading="lazy" width="1440" height="900" /></div><figcaption>Sign-in log.</figcaption></figure>
     </div>
+    <h3 style="margin-top:30px">Mode</h3>
+    <p>"Admin → Mode" shows the current mode. A diary can grow into a team: enter the team name, you become its lead and can add people; personal stickers stay yours. Going back to a diary is possible only when there are no other active users.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/35-admin-mode.webp" alt="Mode" loading="lazy" width="1440" height="900" /></div><figcaption>Switching between team and diary.</figcaption></figure>
   </section>
 
   <!-- 17 -->
@@ -369,7 +382,7 @@
     <h2>Updates</h2>
     <p class="lead">You can give a new version to a few people first (beta) and keep everyone else on the proven one (stable).</p>
     <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Update channels" loading="lazy" width="1440" height="900" /></div><figcaption>"Administration → Updates".</figcaption></figure>
-    <p>Every department and every person has a switch, and a personal choice overrides the department's. Moving and rolling back take effect immediately, with no downtime: the person's next request goes to the chosen version. If the test version goes down, its users automatically carry on with the main one.</p>
+    <p>Every team and every person has a switch, and a personal choice overrides the team's. Moving and rolling back take effect immediately, with no downtime: the person's next request goes to the chosen version. If the test version goes down, its users automatically carry on with the main one.</p>
     <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span>How to run the test version next to the main one is described in <span class="chip">docs/updates.md</span> in the repository. Before every database update the program makes a backup and keeps the last 10.</span></div>
   </section>
 
@@ -380,7 +393,7 @@
     <p class="lead">&nbsp;</p>
     <details class="faq"><summary>My sticker went to the wrong person. What now?</summary><p>While it has not been sorted, open it in "Sent" and press "Withdraw", then create a new one with the right recipient. If it is already in progress, leave the recipient a comment on the card.</p></details>
     <details class="faq"><summary>Does my manager see my personal stickers?</summary><p>No. Only you see a "Me (personal sticker)". Stickers to colleagues are seen only by you and the recipient; the manager sees just how many there were in the statistics.</p></details>
-    <details class="faq"><summary>Why did a sticker move to "Do now" by itself?</summary><p>Two days before its deadline a sticker becomes urgent. The quadrant changes but the importance stays; the card marks it as "Became urgent by deadline".</p></details>
+    <details class="faq"><summary>Why did a sticker move to "Urgent and important" by itself?</summary><p>Two days before its deadline a sticker becomes urgent. The quadrant changes but the importance stays; the card marks it as "Became urgent by deadline".</p></details>
     <details class="faq"><summary>Browser notifications do not arrive.</summary><p>Check three things: the address starts with https, the browser allows notifications for the site, and notifications are on under "Profile → Notifications" on this device. The "Test" button sends a test notification.</p></details>
     <details class="faq"><summary>I got locked out after wrong passwords.</summary><p>Wait 15 minutes or ask the administrator to set a new password.</p></details>
     <details class="faq"><summary>An employee has left. Should I delete them?</summary><p>No need: deactivate them under "Users → Edit → Active". They cannot sign in, and the sticker history and statistics are kept.</p></details>

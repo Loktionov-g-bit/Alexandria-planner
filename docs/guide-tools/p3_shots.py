@@ -46,6 +46,8 @@ with sync_playwright() as p:
         ctx, pg = new(b)
         login(pg, "boss", shots=True)
         shot(pg, "10-board")
+        pg.click("button.tr-start"); pg.wait_for_selector(".triage"); shot(pg, "17-triage")
+        pg.keyboard.press("Escape"); pg.wait_for_timeout(400)
         pg.get_by_text(C["main"]).first.click(); pg.wait_for_selector(".sheet .panel"); shot(pg, "12-sheet")
         pg.locator(".sheet").get_by_role("button", name=ui("action.resolve"), exact=True).first.click(); pg.wait_for_timeout(300)
         pg.locator(".sheet").get_by_role("button", name=ui("outcome.approved"), exact=True).first.click()
@@ -64,7 +66,8 @@ with sync_playwright() as p:
         go(pg, "/archive"); shot(pg, "20-archive")
         go(pg, "/stats"); shot(pg, "21-stats")
         pg.set_viewport_size({"width": 1440, "height": 1010}); go(pg, "/profile"); shot(pg, "22-profile"); pg.set_viewport_size({"width": 1440, "height": 900})
-        for path, n in [("/admin", "30-admin-users"), ("/admin/departments", "31-admin-departments"), ("/admin/logins", "32-admin-logins"), ("/admin/telegram", "33-admin-telegram"), ("/admin/updates", "34-admin-updates")]:
+        pg.locator("#p-away").scroll_into_view_if_needed(); pg.evaluate("window.scrollBy(0, -40)"); shot(pg, "23-profile-away")
+        for path, n in [("/admin", "30-admin-users"), ("/admin/departments", "31-admin-departments"), ("/admin/logins", "32-admin-logins"), ("/admin/telegram", "33-admin-telegram"), ("/admin/updates", "34-admin-updates"), ("/admin/mode", "35-admin-mode")]:
             go(pg, path); shot(pg, n)
         ctx.close()
     if not only or "dark" in only:

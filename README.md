@@ -24,8 +24,8 @@ a board of four quadrants:
 
 | | Urgent | Not urgent |
 |---|---|---|
-| **Important** | Do now | Schedule |
-| **Not important** | Delegate | Eliminate |
+| **Important** | Urgent and important: do now | Important, not urgent: schedule |
+| **Not important** | Urgent, not important: delegate | Not urgent, not important: eliminate |
 
 Every sticker then has a clear life: asked for details, delegated, snoozed, resolved with an answer, and
 confirmed by the author. Nothing gets lost in chats and nobody has to ask "did you see my message?".
@@ -36,14 +36,16 @@ confirmed by the author. Nothing gets lost in chats and nobody has to ask "did y
 - **Full sticker lifecycle**: ask, delegate, snooze, resolve (approved / declined / done / FYI), reject, reopen.
 - **Deadlines that escalate**: an overdue sticker becomes more urgent on its own.
 - **Telegram bot, your own**: notifications with buttons, a main menu, writing stickers to a manager,
-  department or colleague, Done / Not done right from the chat, `/stiker` in a group chat.
+  team or colleague, Done / Not done right from the chat, `/stiker` in a group chat.
 - **Backup route to Telegram through WireGuard** for servers where Telegram is blocked: upload a `.conf`
   in the admin panel; only Telegram traffic uses it.
 - **Statistics** with Excel export: per quadrant, per person, response times, author vs manager estimates.
 - **Security**: mandatory 2FA (TOTP) for managers and admins, password rules, login throttling,
   sign-in log, httpOnly sessions.
 - **Seven languages**: English, Russian, German, Czech, Belarusian, Kazakh, Georgian.
-- **Updates without downtime**: stable and beta channels on one database, per user or department.
+- **Updates without downtime**: stable and beta channels on one database, per user or team.
+- **Team or diary**: on first launch choose a personal diary for one person; it can grow into a team later.
+- **Sort one by one, calendar, time off**: sort the inbox with keys 1–4, see deadlines in your phone calendar (ICS), a deputy gets new stickers while you are away.
 - **Light**: one app container plus PostgreSQL, the whole stack idles under 512 MB RAM. amd64 and arm64.
 - **Phone-ready**: responsive PWA, browser push notifications.
 
@@ -70,7 +72,7 @@ curl -fsSL https://raw.githubusercontent.com/Loktionov-g-bit/alexandria-planner/
 docker compose up -d
 ```
 
-Open `http://<server>:8000` (or your `PLANNER_BASE_URL`). The first-run wizard creates the department and the
+Open `http://<server>:8000` (or your `PLANNER_BASE_URL`). The first-run wizard asks for the mode (team or diary), creates the team and the
 administrator and asks to set up 2FA. There are no default passwords.
 
 **Synology NAS**: use [`deploy/synology/compose.yaml`](deploy/synology/compose.yaml) as a Container Manager

@@ -45,7 +45,7 @@
   <h4>Администратору</h4>
   <ol>
     <li><a href="#setup"><i>15</i>Первый запуск</a></li>
-    <li><a href="#users"><i>16</i>Люди и отделы</a></li>
+    <li><a href="#users"><i>16</i>Люди и команды</a></li>
     <li><a href="#telegram"><i>17</i>Telegram-бот</a></li>
     <li><a href="#updates"><i>18</i>Обновления</a></li>
   </ol>
@@ -59,7 +59,7 @@
 <main id="top">
   <header class="cover">
     <label class="langs"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><select aria-label="Language" onchange="location.href='../'+this.value+'/'"><option value="ru" selected lang="ru">Русский</option><option value="en" lang="en">English</option><option value="de" lang="de">Deutsch</option><option value="cs" lang="cs">Čeština</option><option value="be" lang="be">Беларуская</option><option value="kk" lang="kk">Қазақша</option><option value="ka" lang="ka">ქართული</option></select></label>
-    <span class="kicker">Руководство пользователя · версия 0.1</span>
+    <span class="kicker">Руководство пользователя · версия 0.2</span>
     <h1>Alexandria Планер</h1>
     <p class="big">Вопросы руководителю без бумажных стикеров на столе. Сотрудник пишет стикер, руководитель раскладывает его по матрице Эйзенхауэра и отвечает, автор видит решение.</p>
     <div class="who">
@@ -94,10 +94,10 @@
     <h2>Матрица Эйзенхауэра</h2>
     <p class="lead">Каждый стикер оценивается по двум вопросам: срочно ли это и важно ли это. Получается четыре квадранта, у каждого свой цвет, и этот цвет вы будете видеть везде в программе.</p>
     <div class="matrix">
-      <div class="q"><small>1 · срочно и важно</small><h3>Сделать сейчас</h3><p>Горит и влияет на результат. Например, договор с клиентом, который нужно подписать сегодня.</p></div>
-      <div class="q"><small>2 · важно, не срочно</small><h3>Запланировать</h3><p>Влияет на результат, но время есть. Отчёт за месяц, обучение, планы.</p></div>
-      <div class="q"><small>3 · срочно, не важно</small><h3>Поручить</h3><p>Нужно быстро, но не обязательно руководителю. Обновить прайс, заказать визитки.</p></div>
-      <div class="q"><small>4 · не срочно, не важно</small><h3>Не делать</h3><p>Можно отложить надолго или отказаться. Заказать воду, купить кофемашину.</p></div>
+      <div class="q"><small>1 · сделать сейчас</small><h3>Срочно и важно</h3><p>Горит и влияет на результат. Например, договор с клиентом, который нужно подписать сегодня.</p></div>
+      <div class="q"><small>2 · запланировать</small><h3>Важно, не срочно</h3><p>Влияет на результат, но время есть. Отчёт за месяц, обучение, планы.</p></div>
+      <div class="q"><small>3 · поручить</small><h3>Срочно, не важно</h3><p>Нужно быстро, но не обязательно руководителю. Обновить прайс, заказать визитки.</p></div>
+      <div class="q"><small>4 · не делать</small><h3>Не срочно, не важно</h3><p>Можно отложить надолго или отказаться. Заказать воду, купить кофемашину.</p></div>
     </div>
     <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><span>Сотрудник при отправке ставит свою <i>оценку</i> («Срочно», «Важно»). Окончательный квадрант выбирает руководитель. Если оценки расходятся, это видно в статистике: так команда учится одинаково понимать приоритеты.</span></div>
   </section>
@@ -106,11 +106,11 @@
   <section class="slide" id="roles">
     <span class="num">03</span>
     <h2>Кто есть кто</h2>
-    <p class="lead">В программе три роли. Один человек может совмещать две: например, руководитель небольшого отдела часто сам и администратор.</p>
+    <p class="lead">В программе три роли. Один человек может совмещать две: например, руководитель небольшой команды часто сам и администратор.</p>
     <div class="roles">
       <div class="role"><div class="ico" style="background:var(--q-plan)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div><h3>Сотрудник</h3><p>Пишет стикеры руководителю или коллегам, отвечает на уточнения, подтверждает решения. Видит только свои стикеры и те, которыми с ним поделились.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Руководитель</h3><p>Получает стикеры отдела на доску, раскладывает их по квадрантам, отвечает, поручает, смотрит статистику и выгружает отчёт в Excel.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Администратор</h3><p>Заводит людей и отделы, сбрасывает пароли, подключает Telegram-бота и управляет обновлениями. Видит журнал входов.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 3v18M3 12h18"/></svg></div><h3>Руководитель</h3><p>Получает стикеры команды на доску, раскладывает их по квадрантам, отвечает, поручает, смотрит статистику и выгружает отчёт в Excel.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><h3>Администратор</h3><p>Заводит людей и команды, сбрасывает пароли, подключает Telegram-бота и управляет обновлениями. Видит журнал входов.</p></div>
     </div>
   </section>
 
@@ -186,6 +186,9 @@
     </ol>
     <div class="note tip"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><span>Есть тёмная тема: «Профиль → Внешний вид». По умолчанию программа следует настройке системы.</span></div>
     <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Доска в тёмной теме" loading="lazy" width="1440" height="900" /></div><figcaption>Та же доска в тёмной теме.</figcaption></figure>
+    <h3 style="margin-top:30px">Разбор по одному</h3>
+    <p>Когда во входящих много стикеров, нажмите «Разобрать по одному». Стикеры откроются по одному крупно: клавиши <b>1–4</b> кладут стикер в квадрант, <b>Enter</b> открывает карточку, <b>→</b> пропускает, <b>←</b> возвращает к предыдущему, <b>Esc</b> закрывает. Квадрант, который предложил автор, подсвечен.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/17-triage.webp" alt="Разбор входящих по одному" loading="lazy" width="1440" height="900" /></div><figcaption>Режим разбора: крупный стикер и четыре квадранта.</figcaption></figure>
   </section>
 
   <!-- 08 -->
@@ -295,6 +298,11 @@
       <tr><td>Сводки</td><td>Утренняя (время и дни) и вечерние итоги.</td></tr>
       <tr><td>Безопасность</td><td>Смена пароля (остальные сеансы при этом завершатся) и двухфакторная защита.</td></tr>
     </table>
+    <h3 style="margin-top:30px">Отпуск и замещение</h3>
+    <p>В разделе «Отпуск и замещение» укажите даты и заместителя. Пока вас нет, новые стикеры, адресованные вам, приходят и заместителю, и он может их разобрать. Это видно в истории стикера, а автор при создании стикера видит подсказку «В отпуске до …». Кнопка «Я на месте» отменяет отпуск.</p>
+    <h3>Календарь</h3>
+    <p>«Календарь → Включить» даёт личную ссылку со сроками ваших стикеров. Добавьте её в Google Календарь («Другие календари → Добавить по URL»), на iPhone («Настройки → Календарь → Учётные записи → Подписной календарь») или в Outlook. Видны только заголовки. Если ссылка попала не туда, нажмите «Получить новую ссылку»: старая перестанет работать.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/23-profile-away.webp" alt="Отпуск и календарь в профиле" loading="lazy" width="1440" height="900" /></div><figcaption>Отпуск с заместителем и ссылка на календарь.</figcaption></figure>
   </section>
 
   <!-- 14 -->
@@ -317,14 +325,16 @@
     <span class="num">15</span>
     <h2>Первый запуск</h2>
     <p class="lead">После установки программа сразу предлагает создать администратора. Паролей по умолчанию нет: этот аккаунт единственный способ войти.</p>
+    <p>Сначала мастер спрашивает, как вы будете пользоваться Планером: <b>командой</b> (сотрудники пишут руководителю, руководитель разбирает) или <b>только вы</b>, как личный ежедневник по матрице Эйзенхауэра. В ежедневнике все стикеры личные и сразу попадают в квадрант: нет входящих, «Отправленных», статистики и пользователей.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/00-mode.webp" alt="Выбор режима" loading="lazy" width="1440" height="900" /></div><figcaption>Команда или ежедневник: режим можно сменить позже.</figcaption></figure>
     <div class="cols even">
-      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Первый запуск" loading="lazy" width="1440" height="900" /></div><figcaption>Отдел, имя, логин (подставится сам) и пароль.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Первый запуск" loading="lazy" width="1440" height="900" /></div><figcaption>Команда, имя, логин (подставится сам) и пароль.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Включение двухфакторной защиты" loading="lazy" width="1440" height="900" /></div><figcaption>Сразу после этого включается 2FA.</figcaption></figure>
     </div>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Название отдела, имя и фамилия</b><span>Логин составится из имени и фамилии, его можно поправить.</span></li>
+      <li><b>Название команды, имя и фамилия</b><span>Логин составится из имени и фамилии, его можно поправить.</span></li>
       <li><b>Пароль</b><span>Не короче 10 символов, три вида из четырёх: строчные, заглавные, цифры, знаки.</span></li>
-      <li><b>«Я также руководитель этого отдела»</b><span>Оставьте галочку, если вы и разбираете стикеры. Если нет, снимите её и позже назначьте руководителя в «Отделах».</span></li>
+      <li><b>«Я также руководитель этой команды»</b><span>Оставьте галочку, если вы и разбираете стикеры. Если нет, снимите её и позже назначьте руководителя в «Командах».</span></li>
       <li><b>2FA</b><span>Отсканируйте QR-код приложением на телефоне и введите код. После этого откроется пустая доска.</span></li>
     </ol>
   </section>
@@ -332,19 +342,22 @@
   <!-- 16 -->
   <section class="slide" id="users">
     <span class="num">16</span>
-    <h2>Люди и отделы</h2>
+    <h2>Люди и команды</h2>
     <p class="lead">Раздел «Администрирование». Сотрудники не регистрируются сами: их заводит администратор.</p>
-    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Список пользователей" loading="lazy" width="1440" height="900" /></div><figcaption>Пользователи: логин, отдел, роль, включена ли 2FA.</figcaption></figure>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Список пользователей" loading="lazy" width="1440" height="900" /></div><figcaption>Пользователи: логин, команда, роль, включена ли 2FA.</figcaption></figure>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Добавить пользователя</b><span>Имя, фамилия, отдел, роль и временный пароль. Логин подставится сам. Передайте человеку логин, пароль и ссылку на это руководство.</span></li>
-      <li><b>Изменить</b><span>Новый пароль, другой отдел или роль, сброс 2FA, отключение уволенного сотрудника. Стикеры отключённого сохраняются.</span></li>
-      <li><b>Отделы</b><span>Название и руководитель. Стикеры сотрудника по умолчанию уходят руководителю его отдела.</span></li>
+      <li><b>Добавить пользователя</b><span>Имя, фамилия, команда, роль и временный пароль. Логин подставится сам. Передайте человеку логин, пароль и ссылку на это руководство.</span></li>
+      <li><b>Изменить</b><span>Новый пароль, другую команду или роль, сброс 2FA, отключение уволенного сотрудника. Стикеры отключённого сохраняются.</span></li>
+      <li><b>Команды</b><span>Название и руководитель. Стикеры сотрудника по умолчанию уходят руководителю его команды.</span></li>
       <li><b>Журнал входов</b><span>Кто, когда и откуда входил, неудачные попытки и блокировки. После 5 неверных паролей вход блокируется на 15 минут.</span></li>
     </ol>
     <div class="cols even" style="margin-top:22px">
-      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Отделы" loading="lazy" width="1440" height="900" /></div><figcaption>Отделы и их руководители.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Команды" loading="lazy" width="1440" height="900" /></div><figcaption>Команды и их руководители.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Журнал входов" loading="lazy" width="1440" height="900" /></div><figcaption>Журнал входов.</figcaption></figure>
     </div>
+    <h3 style="margin-top:30px">Режим работы</h3>
+    <p>«Администрирование → Режим работы» показывает текущий режим. Ежедневник можно превратить в команду: введите название команды, вы станете её руководителем и сможете добавлять людей, личные стикеры останутся вашими. Вернуться в ежедневник можно, только если других активных пользователей нет.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/35-admin-mode.webp" alt="Режим работы" loading="lazy" width="1440" height="900" /></div><figcaption>Переключение между командой и ежедневником.</figcaption></figure>
   </section>
 
   <!-- 17 -->
@@ -369,7 +382,7 @@
     <h2>Обновления</h2>
     <p class="lead">Новую версию можно сначала дать нескольким людям (beta), а остальных оставить на проверенной (stable).</p>
     <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Каналы обновлений" loading="lazy" width="1440" height="900" /></div><figcaption>«Администрирование → Обновления».</figcaption></figure>
-    <p>Переключатели есть у каждого отдела и у каждого человека, личный выбор важнее выбора отдела. Перевод и откат срабатывают сразу, без простоя: следующий запрос человека уходит на выбранную версию. Если тестовая версия упадёт, её пользователи автоматически продолжат работать на основной.</p>
+    <p>Переключатели есть у каждой команды и у каждого человека, личный выбор важнее выбора команды. Перевод и откат срабатывают сразу, без простоя: следующий запрос человека уходит на выбранную версию. Если тестовая версия упадёт, её пользователи автоматически продолжат работать на основной.</p>
     <div class="note"><svg class="ni" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span>Как запустить тестовую версию рядом с основной, описано в файле <span class="chip">docs/updates.md</span> в репозитории. Перед каждым обновлением базы программа сама делает резервную копию и хранит последние 10.</span></div>
   </section>
 
@@ -380,7 +393,7 @@
     <p class="lead">&nbsp;</p>
     <details class="faq"><summary>Стикер ушёл не тому человеку. Что делать?</summary><p>Пока его не разобрали, откройте стикер в «Отправленных» и нажмите «Отозвать», затем создайте новый с правильным получателем. Если стикер уже в работе, напишите получателю комментарий в карточке.</p></details>
     <details class="faq"><summary>Руководитель видит мои личные стикеры?</summary><p>Нет. Стикер «Себе» видите только вы. Стикеры коллегам видят только вы и получатель; руководитель видит лишь их количество в статистике.</p></details>
-    <details class="faq"><summary>Почему стикер сам переехал в «Сделать сейчас»?</summary><p>За два дня до срока стикер становится срочным. Квадрант меняется, а важность остаётся: в карточке это отмечено как «Стал срочным по сроку».</p></details>
+    <details class="faq"><summary>Почему стикер сам переехал в «Срочно и важно»?</summary><p>За два дня до срока стикер становится срочным. Квадрант меняется, а важность остаётся: в карточке это отмечено как «Стал срочным по сроку».</p></details>
     <details class="faq"><summary>Не приходят уведомления в браузере.</summary><p>Проверьте три вещи: адрес начинается с https, браузер разрешил уведомления для сайта, уведомления включены в «Профиль → Уведомления» на этом устройстве. Кнопка «Проверить» пришлёт тестовое уведомление.</p></details>
     <details class="faq"><summary>Меня заблокировало после неверных паролей.</summary><p>Подождите 15 минут или попросите администратора задать новый пароль.</p></details>
     <details class="faq"><summary>Сотрудник уволился. Удалять его?</summary><p>Не нужно: отключите его в «Пользователи → Изменить → Активен». Войти он не сможет, а история стикеров и статистика сохранятся.</p></details>

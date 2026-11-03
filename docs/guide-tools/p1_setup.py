@@ -12,6 +12,8 @@ with sync_playwright() as p:
     ctx = b.new_context(viewport={"width": 1440, "height": 900}, locale=C["browser"], timezone_id=C["tz"], color_scheme="light")
     pg = ctx.new_page()
     pg.goto(U); pg.wait_for_timeout(1000)
+    pg.screenshot(path=f"{OUT}/00-mode.png")
+    pg.locator(".modecard.m-team").click(); pg.wait_for_timeout(400)
     ins = pg.locator("input")
     ins.nth(0).fill(C["dept"]); ins.nth(1).fill(C["boss"][0]); ins.nth(2).fill(C["boss"][1])
     pg.wait_for_timeout(400)

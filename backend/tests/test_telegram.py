@@ -81,7 +81,7 @@ async def test_link_and_create_from_dm(client, team, tg):  # noqa: F811
     bot, api = tg
     assert "Telegram привязан" in api.sent(111)[-2]["text"]
     menu = api.last(111)["reply_markup"]["keyboard"]
-    assert [b["text"] for row in menu for b in row] == ["Сделать сейчас", "Запланировать", "Поручить", "Не делать", "Мои стикеры", "Написать стикер", "Обстановка"]
+    assert [b["text"] for row in menu for b in row] == ["Срочно и важно", "Важно, не срочно", "Срочно, не важно", "Не срочно, не важно", "Мои стикеры", "Написать стикер", "Обстановка"]
     me = (await team["ivan"][1].get("/api/auth/me")).json()["user"]
     assert me["telegram_linked"] and me["telegram_username"] == "u111"
 
@@ -217,11 +217,11 @@ async def test_menu_write_triage_and_close(client, team, tg):  # noqa: F811
     await deliver()
     await bot.handle(cb(222, f"s:{sid}"))
     await bot.handle(cb(222, f"q:{sid}:do", {"message_id": 50, "chat": {"id": 222}, "text": "x"}))
-    assert "→ <b>Сделать сейчас</b>" in [p for m, p in api.calls if m == "editMessageText"][-1]["text"]
-    assert "Сделать сейчас · 1" in keyboard_texts(api.last(222))
+    assert "→ <b>Срочно и важно</b>" in [p for m, p in api.calls if m == "editMessageText"][-1]["text"]
+    assert "Срочно и важно · 1" in keyboard_texts(api.last(222))
 
     # the quadrant button lists its stickers; a sticker opens with Done / Not done, Delegate / Ask / Snooze, Back
-    await bot.handle(msg(222, "Сделать сейчас · 1"))
+    await bot.handle(msg(222, "Срочно и важно · 1"))
     assert buttons(api.last(222)["reply_markup"]) == [f"S:{sid}"]
     await bot.handle(cb(222, f"S:{sid}"))
     assert buttons(api.last(222)["reply_markup"]) == [f"o:{sid}:done", f"o:{sid}:declined", f"a:{sid}:delegate", f"a:{sid}:ask",
@@ -253,7 +253,7 @@ async def test_menu_write_triage_and_close(client, team, tg):  # noqa: F811
 
     # Overview
     await bot.handle(msg(222, "Обстановка"))
-    assert "Обстановка сейчас" in api.last(222)["text"] and "Сделать сейчас: 0" in api.last(222)["text"]
+    assert "Обстановка сейчас" in api.last(222)["text"] and "Срочно и важно: 0" in api.last(222)["text"]
     # Ivan cannot close the boss's sticker
     await bot.handle(cb(111, f"o:{sid2}:done"))
     assert [p for m, p in api.calls if m == "answerCallbackQuery"][-1]["text"] == "Это действие сейчас недоступно"

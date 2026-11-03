@@ -43,10 +43,10 @@
   },
   "authDesk": {
     "kinds": [
-      "Schedule",
-      "Delegate",
-      "Do now",
-      "Eliminate",
+      "Important, not urgent",
+      "Urgent, not important",
+      "Urgent and important",
+      "Not urgent, not important",
       "New"
     ],
     "deco": [
@@ -110,21 +110,21 @@
     "zoneEmpty": "Empty. Drop a sticker here."
   },
   "quadrant": {
-    "do": "Do now",
-    "plan": "Schedule",
-    "delegate": "Delegate",
-    "drop": "Eliminate",
+    "do": "Urgent and important",
+    "plan": "Important, not urgent",
+    "delegate": "Urgent, not important",
+    "drop": "Not urgent, not important",
     "short": {
       "do": "Urgent · important",
-      "plan": "Important",
-      "delegate": "Urgent",
-      "drop": "Neither"
+      "plan": "Important, not urgent",
+      "delegate": "Urgent, not important",
+      "drop": "Not urgent, not important"
     },
     "verb": {
-      "do": "urgent and important",
-      "plan": "important, not urgent",
-      "delegate": "urgent, not important",
-      "drop": "not urgent, not important"
+      "do": "do now",
+      "plan": "schedule",
+      "delegate": "delegate",
+      "drop": "eliminate"
     }
   },
   "status": {

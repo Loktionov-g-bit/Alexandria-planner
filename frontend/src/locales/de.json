@@ -43,10 +43,10 @@
   },
   "authDesk": {
     "kinds": [
-      "Einplanen",
-      "Delegieren",
-      "Sofort erledigen",
-      "Nicht tun",
+      "Wichtig, nicht dringend",
+      "Dringend, nicht wichtig",
+      "Dringend und wichtig",
+      "Nicht dringend, nicht wichtig",
       "Neu"
     ],
     "deco": [
@@ -110,21 +110,21 @@
     "zoneEmpty": "Leer. Ziehen Sie einen Sticker hierher."
   },
   "quadrant": {
-    "do": "Sofort erledigen",
-    "plan": "Einplanen",
-    "delegate": "Delegieren",
-    "drop": "Nicht tun",
+    "do": "Dringend und wichtig",
+    "plan": "Wichtig, nicht dringend",
+    "delegate": "Dringend, nicht wichtig",
+    "drop": "Nicht dringend, nicht wichtig",
     "short": {
       "do": "Dringend · wichtig",
-      "plan": "Wichtig",
-      "delegate": "Dringend",
+      "plan": "Wichtig, nicht dringend",
+      "delegate": "Dringend, nicht wichtig",
       "drop": "Nicht dringend · nicht wichtig"
     },
     "verb": {
-      "do": "dringend und wichtig",
-      "plan": "wichtig, nicht dringend",
-      "delegate": "dringend, nicht wichtig",
-      "drop": "nicht dringend, nicht wichtig"
+      "do": "sofort erledigen",
+      "plan": "einplanen",
+      "delegate": "delegieren",
+      "drop": "nicht tun"
     }
   },
   "status": {

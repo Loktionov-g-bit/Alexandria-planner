@@ -33,7 +33,7 @@
   <h4>Für Administratoren</h4>
   <ol>
     <li><a href="#setup"><i>15</i>Erster Start</a></li>
-    <li><a href="#users"><i>16</i>Personen und Abteilungen</a></li>
+    <li><a href="#users"><i>16</i>Personen und Teams</a></li>
     <li><a href="#telegram"><i>17</i>Telegram-Bot</a></li>
     <li><a href="#updates"><i>18</i>Updates</a></li>
   </ol>
@@ -47,7 +47,7 @@
 <main id="top">
   <header class="cover">
     {{langs}}
-    <span class="kicker">Benutzerhandbuch · Version 0.1</span>
+    <span class="kicker">Benutzerhandbuch · Version 0.2</span>
     <h1>Alexandria Planer</h1>
     <p class="big">Fragen an die Führungskraft ohne Papierzettel auf dem Schreibtisch. Mitarbeiter schreiben einen Sticker, die Führungskraft sortiert ihn in der Eisenhower-Matrix und antwortet, der Autor sieht die Entscheidung.</p>
     <div class="who">
@@ -82,10 +82,10 @@
     <h2>Die Eisenhower-Matrix</h2>
     <p class="lead">Jeder Sticker wird nach zwei Fragen bewertet: Ist es dringend? Ist es wichtig? Daraus entstehen vier Quadranten, jeder mit eigener Farbe, die Sie überall im Programm wiederfinden.</p>
     <div class="matrix">
-      <div class="q"><small>1 · dringend und wichtig</small><h3>Sofort erledigen</h3><p>Brennt und wirkt sich auf das Ergebnis aus. Zum Beispiel ein Kundenvertrag, der heute unterschrieben werden muss.</p></div>
-      <div class="q"><small>2 · wichtig, nicht dringend</small><h3>Einplanen</h3><p>Wirkt sich auf das Ergebnis aus, aber es ist Zeit. Monatsbericht, Weiterbildung, Pläne.</p></div>
-      <div class="q"><small>3 · dringend, nicht wichtig</small><h3>Delegieren</h3><p>Muss schnell gehen, aber nicht unbedingt durch die Führungskraft. Preisliste aktualisieren, Visitenkarten bestellen.</p></div>
-      <div class="q"><small>4 · nicht dringend, nicht wichtig</small><h3>Nicht tun</h3><p>Kann lange warten oder abgelehnt werden. Wasser bestellen, Kaffeemaschine kaufen.</p></div>
+      <div class="q"><small>1 · sofort erledigen</small><h3>Dringend und wichtig</h3><p>Brennt und wirkt sich auf das Ergebnis aus. Zum Beispiel ein Kundenvertrag, der heute unterschrieben werden muss.</p></div>
+      <div class="q"><small>2 · einplanen</small><h3>Wichtig, nicht dringend</h3><p>Wirkt sich auf das Ergebnis aus, aber es ist Zeit. Monatsbericht, Weiterbildung, Pläne.</p></div>
+      <div class="q"><small>3 · delegieren</small><h3>Dringend, nicht wichtig</h3><p>Muss schnell gehen, aber nicht unbedingt durch die Führungskraft. Preisliste aktualisieren, Visitenkarten bestellen.</p></div>
+      <div class="q"><small>4 · nicht tun</small><h3>Nicht dringend, nicht wichtig</h3><p>Kann lange warten oder abgelehnt werden. Wasser bestellen, Kaffeemaschine kaufen.</p></div>
     </div>
     <div class="note">{{icon:i5}}<span>Beim Senden gibt der Mitarbeiter seine <i>Einschätzung</i> an („Dringend“, „Wichtig“). Den endgültigen Quadranten wählt die Führungskraft. Weichen beide ab, zeigt das die Statistik: So lernt ein Team, Prioritäten gleich zu sehen.</span></div>
   </section>
@@ -94,11 +94,11 @@
   <section class="slide" id="roles">
     <span class="num">03</span>
     <h2>Wer ist wer</h2>
-    <p class="lead">Es gibt drei Rollen. Eine Person kann zwei davon haben: Die Leitung einer kleinen Abteilung ist oft auch Administrator.</p>
+    <p class="lead">Es gibt drei Rollen. Eine Person kann zwei davon haben: Die Leitung eines kleinen Teams ist oft auch Administrator.</p>
     <div class="roles">
       <div class="role"><div class="ico" style="background:var(--q-plan)">{{icon:i6}}</div><h3>Mitarbeiter</h3><p>Schreibt Sticker an die Führungskraft oder an Kollegen, beantwortet Rückfragen, bestätigt Entscheidungen. Sieht nur eigene Sticker und solche, die für ihn freigegeben wurden.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Führungskraft</h3><p>Bekommt die Sticker der Abteilung aufs Board, sortiert sie in Quadranten, antwortet, delegiert, sieht die Statistik und exportiert den Excel-Bericht.</p></div>
-      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrator</h3><p>Legt Personen und Abteilungen an, setzt Passwörter zurück, verbindet den Telegram-Bot und steuert Updates. Sieht das Anmeldeprotokoll.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-do)">{{icon:i7}}</div><h3>Führungskraft</h3><p>Bekommt die Sticker des Teams aufs Board, sortiert sie in Quadranten, antwortet, delegiert, sieht die Statistik und exportiert den Excel-Bericht.</p></div>
+      <div class="role"><div class="ico" style="background:var(--q-drop)">{{icon:i8}}</div><h3>Administrator</h3><p>Legt Personen und Teams an, setzt Passwörter zurück, verbindet den Telegram-Bot und steuert Updates. Sieht das Anmeldeprotokoll.</p></div>
     </div>
   </section>
 
@@ -174,6 +174,9 @@
     </ol>
     <div class="note tip">{{icon:i11}}<span>Es gibt ein dunkles Design: „Profil → Darstellung“. Standardmäßig folgt das Programm der Systemeinstellung.</span></div>
     <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/11-board-dark.webp" alt="Board im dunklen Design" loading="lazy" width="1440" height="900" /></div><figcaption>Dasselbe Board im dunklen Design.</figcaption></figure>
+    <h3 style="margin-top:30px">Einzeln sortieren</h3>
+    <p>Wenn der Eingang voll ist, drücken Sie „Einzeln sortieren“. Die Sticker öffnen sich einzeln: Tasten <b>1–4</b> legen den Sticker in einen Quadranten, <b>Enter</b> öffnet die Karte, <b>→</b> überspringt, <b>←</b> geht zurück, <b>Esc</b> schließt. Der vom Autor vorgeschlagene Quadrant ist hervorgehoben.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/17-triage.webp" alt="Eingang einzeln sortieren" loading="lazy" width="1440" height="900" /></div><figcaption>Sortiermodus: ein großer Sticker und vier Quadranten.</figcaption></figure>
   </section>
 
   <!-- 08 -->
@@ -283,6 +286,11 @@
       <tr><td>Zusammenfassungen</td><td>Morgenübersicht (Uhrzeit und Tage) und Tagesbilanz.</td></tr>
       <tr><td>Sicherheit</td><td>Passwort ändern (alle anderen Sitzungen werden beendet) und Zwei-Faktor-Schutz.</td></tr>
     </table>
+    <h3 style="margin-top:30px">Abwesenheit und Vertretung</h3>
+    <p>Unter „Abwesenheit und Vertretung“ legen Sie Daten und Vertretung fest. Während Sie weg sind, gehen neue Sticker an Sie auch an die Vertretung, die sie bearbeiten kann. Das steht im Verlauf des Stickers, und Autoren sehen beim Schreiben „Abwesend bis …“. „Ich bin zurück“ beendet die Abwesenheit.</p>
+    <h3>Kalender</h3>
+    <p>„Kalender → Einschalten“ erzeugt einen persönlichen Link mit den Fristen Ihrer Sticker. Fügen Sie ihn in Google Kalender („Weitere Kalender → Per URL“), auf dem iPhone („Einstellungen → Kalender → Accounts → Kalenderabo hinzufügen“) oder in Outlook hinzu. Sichtbar sind nur Titel. Ist der Link in falsche Hände geraten, drücken Sie „Neuen Link erzeugen“: der alte funktioniert dann nicht mehr.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/23-profile-away.webp" alt="Abwesenheit und Kalender im Profil" loading="lazy" width="1440" height="900" /></div><figcaption>Abwesenheit mit Vertretung und Kalender-Link.</figcaption></figure>
   </section>
 
   <!-- 14 -->
@@ -305,14 +313,16 @@
     <span class="num">15</span>
     <h2>Erster Start</h2>
     <p class="lead">Direkt nach der Installation bittet das Programm, einen Administrator anzulegen. Standardpasswörter gibt es nicht: Dieses Konto ist der einzige Zugang.</p>
+    <p>Zuerst fragt der Assistent, wie Sie den Planer nutzen: als <b>Team</b> (Mitarbeitende schreiben der Leitung, die Leitung sortiert) oder <b>nur ich</b>, als persönliches Tagebuch in der Eisenhower-Matrix. Im Tagebuch sind alle Sticker persönlich und landen direkt im Quadranten: kein Eingang, keine „Gesendeten“, keine Statistik, keine Benutzer.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/00-mode.webp" alt="Modus wählen" loading="lazy" width="1440" height="900" /></div><figcaption>Team oder Tagebuch: der Modus lässt sich später ändern.</figcaption></figure>
     <div class="cols even">
-      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Erster Start" loading="lazy" width="1440" height="900" /></div><figcaption>Abteilung, Name, Login (wird vorgeschlagen) und Passwort.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/01-setup.webp" alt="Erster Start" loading="lazy" width="1440" height="900" /></div><figcaption>Team, Name, Login (wird vorgeschlagen) und Passwort.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/02-totp-setup.webp" alt="Zwei-Faktor-Schutz einschalten" loading="lazy" width="1440" height="900" /></div><figcaption>Gleich danach wird 2FA eingeschaltet.</figcaption></figure>
     </div>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Abteilungsname, Vor- und Nachname</b><span>Der Login wird aus dem Namen gebildet und lässt sich ändern.</span></li>
+      <li><b>Teamname, Vor- und Nachname</b><span>Der Login wird aus dem Namen gebildet und lässt sich ändern.</span></li>
       <li><b>Passwort</b><span>Mindestens 10 Zeichen, drei von vier Arten: Kleinbuchstaben, Großbuchstaben, Ziffern, Sonderzeichen.</span></li>
-      <li><b>„Ich leite diese Abteilung auch“</b><span>Lassen Sie das Häkchen, wenn Sie selbst Sticker sortieren. Wenn nicht, entfernen Sie es und legen Sie die Leitung später unter „Abteilungen“ fest.</span></li>
+      <li><b>„Ich leite dieses Team auch“</b><span>Lassen Sie das Häkchen, wenn Sie selbst Sticker sortieren. Wenn nicht, entfernen Sie es und legen Sie die Leitung später unter „Teams“ fest.</span></li>
       <li><b>2FA</b><span>Scannen Sie den QR-Code mit der App auf dem Smartphone und geben Sie den Code ein. Danach öffnet sich ein leeres Board.</span></li>
     </ol>
   </section>
@@ -320,19 +330,22 @@
   <!-- 16 -->
   <section class="slide" id="users">
     <span class="num">16</span>
-    <h2>Personen und Abteilungen</h2>
+    <h2>Personen und Teams</h2>
     <p class="lead">Der Bereich „Verwaltung“. Mitarbeiter registrieren sich nicht selbst: Der Administrator legt sie an.</p>
-    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Benutzerliste" loading="lazy" width="1440" height="900" /></div><figcaption>Benutzer: Login, Abteilung, Rolle, ob 2FA eingeschaltet ist.</figcaption></figure>
+    <figure class="shot"><div class="frame"><img src="img/30-admin-users.webp" alt="Benutzerliste" loading="lazy" width="1440" height="900" /></div><figcaption>Benutzer: Login, Team, Rolle, ob 2FA eingeschaltet ist.</figcaption></figure>
     <ol class="steps" style="margin-top:22px">
-      <li><b>Benutzer hinzufügen</b><span>Vor- und Nachname, Abteilung, Rolle und ein vorläufiges Passwort. Der Login wird vorgeschlagen. Geben Sie der Person Login, Passwort und einen Link zu diesem Handbuch.</span></li>
-      <li><b>Bearbeiten</b><span>Neues Passwort, andere Abteilung oder Rolle, 2FA zurücksetzen, ausgeschiedene Mitarbeiter deaktivieren. Ihre Sticker bleiben erhalten.</span></li>
-      <li><b>Abteilungen</b><span>Name und Leitung. Sticker eines Mitarbeiters gehen standardmäßig an die Leitung seiner Abteilung.</span></li>
+      <li><b>Benutzer hinzufügen</b><span>Vor- und Nachname, Team, Rolle und ein vorläufiges Passwort. Der Login wird vorgeschlagen. Geben Sie der Person Login, Passwort und einen Link zu diesem Handbuch.</span></li>
+      <li><b>Bearbeiten</b><span>Neues Passwort, anderes Team oder andere Rolle, 2FA zurücksetzen, ausgeschiedene Mitarbeiter deaktivieren. Ihre Sticker bleiben erhalten.</span></li>
+      <li><b>Teams</b><span>Name und Leitung. Sticker eines Mitarbeiters gehen standardmäßig an die Leitung seines Teams.</span></li>
       <li><b>Anmeldeprotokoll</b><span>Wer sich wann und von wo angemeldet hat, Fehlversuche und Sperren. Nach 5 falschen Passwörtern wird die Anmeldung für 15 Minuten gesperrt.</span></li>
     </ol>
     <div class="cols even" style="margin-top:22px">
-      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Abteilungen" loading="lazy" width="1440" height="900" /></div><figcaption>Abteilungen und ihre Leitung.</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="img/31-admin-departments.webp" alt="Teams" loading="lazy" width="1440" height="900" /></div><figcaption>Teams und ihre Leitung.</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="img/32-admin-logins.webp" alt="Anmeldeprotokoll" loading="lazy" width="1440" height="900" /></div><figcaption>Anmeldeprotokoll.</figcaption></figure>
     </div>
+    <h3 style="margin-top:30px">Modus</h3>
+    <p>„Verwaltung → Modus“ zeigt den aktuellen Modus. Ein Tagebuch kann zum Team werden: Teamnamen eingeben, Sie leiten das Team und können Personen hinzufügen; persönliche Sticker bleiben Ihre. Zurück zum Tagebuch geht nur, wenn es keine anderen aktiven Benutzer gibt.</p>
+    <figure class="shot" style="margin-top:22px"><div class="frame"><img src="img/35-admin-mode.webp" alt="Modus" loading="lazy" width="1440" height="900" /></div><figcaption>Wechsel zwischen Team und Tagebuch.</figcaption></figure>
   </section>
 
   <!-- 17 -->
@@ -357,7 +370,7 @@
     <h2>Updates</h2>
     <p class="lead">Eine neue Version können Sie zuerst einigen Personen geben (beta) und alle anderen auf der bewährten lassen (stable).</p>
     <figure class="shot"><div class="frame"><img src="img/34-admin-updates.webp" alt="Update-Kanäle" loading="lazy" width="1440" height="900" /></div><figcaption>„Verwaltung → Updates“.</figcaption></figure>
-    <p>Jede Abteilung und jede Person hat einen Schalter, die persönliche Wahl geht vor. Umstellen und Zurückrollen wirken sofort, ohne Ausfall: Die nächste Anfrage der Person geht an die gewählte Version. Fällt die Testversion aus, arbeiten ihre Nutzer automatisch mit der Hauptversion weiter.</p>
+    <p>Jedes Team und jede Person hat einen Schalter, die persönliche Wahl geht vor. Umstellen und Zurückrollen wirken sofort, ohne Ausfall: Die nächste Anfrage der Person geht an die gewählte Version. Fällt die Testversion aus, arbeiten ihre Nutzer automatisch mit der Hauptversion weiter.</p>
     <div class="note">{{icon:i15}}<span>Wie man die Testversion neben der Hauptversion startet, steht in <span class="chip">docs/updates.md</span> im Repository. Vor jedem Datenbank-Update erstellt das Programm selbst eine Sicherung und behält die letzten 10.</span></div>
   </section>
 
@@ -368,7 +381,7 @@
     <p class="lead">&nbsp;</p>
     <details class="faq"><summary>Mein Sticker ging an die falsche Person. Was tun?</summary><p>Solange er nicht sortiert ist, öffnen Sie ihn unter „Gesendet“ und drücken Sie „Zurückziehen“, dann erstellen Sie einen neuen mit dem richtigen Empfänger. Ist er schon in Arbeit, schreiben Sie dem Empfänger einen Kommentar in der Karte.</p></details>
     <details class="faq"><summary>Sieht meine Führungskraft meine persönlichen Sticker?</summary><p>Nein. Einen Sticker „Für mich“ sehen nur Sie. Sticker an Kollegen sehen nur Sie und der Empfänger; die Führungskraft sieht in der Statistik nur ihre Anzahl.</p></details>
-    <details class="faq"><summary>Warum ist ein Sticker von selbst nach „Sofort erledigen“ gewandert?</summary><p>Zwei Tage vor der Frist wird ein Sticker dringend. Der Quadrant ändert sich, die Wichtigkeit bleibt; in der Karte steht dann „Wegen der Frist dringend geworden“.</p></details>
+    <details class="faq"><summary>Warum ist ein Sticker von selbst nach „Dringend und wichtig“ gewandert?</summary><p>Zwei Tage vor der Frist wird ein Sticker dringend. Der Quadrant ändert sich, die Wichtigkeit bleibt; in der Karte steht dann „Wegen der Frist dringend geworden“.</p></details>
     <details class="faq"><summary>Browser-Benachrichtigungen kommen nicht an.</summary><p>Prüfen Sie drei Dinge: Die Adresse beginnt mit https, der Browser erlaubt Benachrichtigungen für die Seite, und unter „Profil → Benachrichtigungen“ sind sie auf diesem Gerät eingeschaltet. Die Schaltfläche „Testen“ schickt eine Testbenachrichtigung.</p></details>
     <details class="faq"><summary>Ich wurde nach falschen Passwörtern gesperrt.</summary><p>Warten Sie 15 Minuten oder bitten Sie den Administrator, ein neues Passwort zu setzen.</p></details>
     <details class="faq"><summary>Ein Mitarbeiter hat das Unternehmen verlassen. Löschen?</summary><p>Nicht nötig: Deaktivieren Sie ihn unter „Benutzer → Bearbeiten → Aktiv“. Er kann sich nicht mehr anmelden, Sticker-Verlauf und Statistik bleiben erhalten.</p></details>

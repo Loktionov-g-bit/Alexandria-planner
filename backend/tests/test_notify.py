@@ -20,7 +20,7 @@ async def test_who_hears_what(client, team):  # noqa: F811
     assert (await feed(ivan))["unread"] == 0  # the actor is never notified
 
     await client.put(f"/api/stickers/{sid}/place", json={"quadrant": "plan"})
-    assert (await feed(ivan))["items"][0]["title"] == "Стикер разобран: запланировать"
+    assert (await feed(ivan))["items"][0]["title"] == "Стикер разобран: важно, не срочно"
     await act(client, sid, "ask", text="Каких стульев?")
     n = (await feed(ivan))["items"][0]
     assert n["title"] == "Босс Главный: вопрос" and n["body"].endswith("Каких стульев?")

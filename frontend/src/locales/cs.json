@@ -43,10 +43,10 @@
   },
   "authDesk": {
     "kinds": [
-      "Naplánovat",
-      "Delegovat",
-      "Udělat hned",
-      "Nedělat",
+      "Důležité, nenaléhavé",
+      "Naléhavé, nedůležité",
+      "Naléhavé a důležité",
+      "Nenaléhavé, nedůležité",
       "Nový"
     ],
     "deco": [
@@ -110,21 +110,21 @@
     "zoneEmpty": "Prázdno. Přetáhněte sem štítek."
   },
   "quadrant": {
-    "do": "Udělat hned",
-    "plan": "Naplánovat",
-    "delegate": "Delegovat",
-    "drop": "Nedělat",
+    "do": "Naléhavé a důležité",
+    "plan": "Důležité, nenaléhavé",
+    "delegate": "Naléhavé, nedůležité",
+    "drop": "Nenaléhavé, nedůležité",
     "short": {
       "do": "Naléhavé · důležité",
-      "plan": "Důležité",
-      "delegate": "Naléhavé",
+      "plan": "Důležité, nenaléhavé",
+      "delegate": "Naléhavé, nedůležité",
       "drop": "Nenaléhavé · nedůležité"
     },
     "verb": {
-      "do": "naléhavé a důležité",
-      "plan": "důležité, nenaléhavé",
-      "delegate": "naléhavé, nedůležité",
-      "drop": "nenaléhavé, nedůležité"
+      "do": "udělat hned",
+      "plan": "naplánovat",
+      "delegate": "delegovat",
+      "drop": "nedělat"
     }
   },
   "status": {
